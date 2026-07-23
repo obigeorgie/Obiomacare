@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free NGN Clinical Judgment Framework — Obioma Care</title>
+    <meta name="description" content="Download the free NGN Clinical Judgment Framework. The same decision-making model that helps nurses pass the Next Generation NCLEX.">
+    <link rel="canonical" href="https://obiomacare.com/free-framework">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <!-- Facebook Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'FB_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a365d; --accent: #c53030; --gold: #d69e2e; --text: #2d3748; --bg-warm: #fffaf0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg-warm); }
+        .container { max-width: 600px; margin: 0 auto; padding: 60px 24px; }
+        .logo { text-align: center; margin-bottom: 40px; font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        h1 { font-size: 2rem; text-align: center; margin-bottom: 16px; }
+        .subtitle { text-align: center; color: #718096; margin-bottom: 40px; }
+        .form { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 24px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+        input { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
+        input:focus { outline: none; border-color: var(--primary); }
+        button { width: 100%; padding: 16px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 1.125rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        button:hover { background: #9b2c2c; transform: translateY(-1px); }
+        .trust { text-align: center; margin-top: 24px; font-size: 0.875rem; color: #718096; }
+        .success { display: none; text-align: center; padding: 40px; }
+        .success h2 { color: var(--primary); margin-bottom: 16px; }
+        .success p { color: #718096; margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🩺 Obioma Care</div>
+        
+        <div id="form-section">
+            <h1>Free NGN Clinical Judgment Framework</h1>
+            <p class="subtitle">The exact decision-making model I use in ER and teach every new grad. No fluff — just the framework.</p>
+            
+            <div class="form">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="firstName" placeholder="Your first name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                </div>
+                <button onclick="submitLead()">Send Me the Free Framework →</button>
+                <p class="trust">🔒 No spam. Unsubscribe anytime. Your email is safe with me.</p>
+            </div>
+        </div>
+        
+        <div id="success-section" class="success">
+            <h2>📧 Check your email!</h2>
+            <p>The framework is on its way. Over the next few days, I'll send you my best clinical judgment tips.</p>
+            <p style="margin-top: 24px;">While you wait — <a href="/" style="color: var(--accent); font-weight: 600;">check out the complete mastery system</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        async function submitLead() {
+            const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
+            
+            if (!email || !email.includes('@')) return alert('Please enter a valid email');
+            
+            // Track lead submission
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'generate_lead', {
+                    currency: 'USD',
+                    value: 0
+                });
+            }
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
+            
+            try {
+                const res = await fetch('/api/lead-magnet', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, firstName })
+                });
+                
+                if (res.ok) {
+                    document.getElementById('form-section').style.display = 'none';
+                    document.getElementById('success-section').style.display = 'block';
+                } else {
+                    alert('Something went wrong. Try again?');
+                }
+            } catch (err) {
+                alert('Network error. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

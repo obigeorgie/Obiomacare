@@ -1,13 +1,6 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.js" },
-    { "src": "/downloads/(.*)", "dest": "/public/downloads/$1" },
-    { "src": "/robots.txt", "dest": "/public/robots.txt" },
-    { "src": "/sitemap.xml", "dest": "/public/sitemap.xml" },
-    { "src": "/", "dest": "/landing/index.html" },
-    { "src": "/free-framework", "dest": "/landing/free-framework.html" },
-    { "src": "/success", "dest": "/landing/success.html" },
-    { "src": "/(.*)", "dest": "/landing/404.html" }
+    { "src": "/api/(.*)", "dest": "/api/index.js" }
   ]
 }

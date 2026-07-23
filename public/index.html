@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obioma Care — Clinical Judgment Mastery System for NGN NCLEX</title>
+    <meta name="description" content="Stop failing the NGN NCLEX. The Clinical Judgment Mastery System gives nurses the exact decision-making framework to pass the Next Generation NCLEX. Created by Nnamdi Okorafor, RN.">
+    <meta name="keywords" content="NGN NCLEX, clinical judgment, nursing exam, NCLEX prep, prioritization, nursing student, NGN, Next Generation NCLEX">
+    <meta name="author" content="Nnamdi Okorafor, RN">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Obioma Care — Clinical Judgment Mastery for NGN NCLEX">
+    <meta property="og:description" content="The exact decision-making framework that helps nursing students pass the NGN NCLEX. Created by an ER nurse with 15 years experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://obiomacare.com">
+    <meta property="og:image" content="https://obiomacare.com/og-image.jpg">
+    <meta property="og:site_name" content="Obioma Care">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Obioma Care — Clinical Judgment Mastery for NGN NCLEX">
+    <meta name="twitter:description" content="The exact decision-making framework that helps nursing students pass the NGN NCLEX.">
+    <meta name="twitter:image" content="https://obiomacare.com/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://obiomacare.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'FB_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Clinical Judgment Mastery System",
+      "description": "The decision-making framework that helps nursing students pass the NGN NCLEX",
+      "brand": {
+        "@type": "Brand",
+        "name": "Obioma Care"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Core System",
+          "price": "47.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Complete Mastery",
+          "price": "67.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --accent: #c53030;
+            --accent-hover: #9b2c2c;
+            --gold: #d69e2e;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #ffffff;
+            --bg-warm: #fffaf0;
+            --border: #e2e8f0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+        .hero .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto 32px; }
+        .hero .badge { display: inline-block; background: var(--gold); color: var(--primary); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.875rem; margin-bottom: 24px; }
+        .cta-button { display: inline-block; background: var(--accent); color: white; padding: 18px 48px; border-radius: 8px; font-weight: 700; font-size: 1.125rem; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+        .cta-button:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(197,48,48,0.3); }
+        .price-tag { margin-top: 16px; font-size: 1.5rem; font-weight: 700; }
+        .price-tag .original { text-decoration: line-through; opacity: 0.6; margin-right: 12px; font-size: 1.125rem; }
+        
+        /* Problem Section */
+        .problem { padding: 80px 0; background: var(--bg-warm); }
+        .problem h2 { text-align: center; font-size: 2.25rem; margin-bottom: 48px; }
+        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .problem-card { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .problem-card .icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .problem-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .problem-card p { color: var(--text-light); }
+        
+        /* Solution */
+        .solution { padding: 80px 0; }
+        .solution h2 { text-align: center; font-size: 2.25rem; margin-bottom: 48px; }
+        .modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .module { border: 2px solid var(--border); border-radius: 12px; padding: 32px; transition: all 0.2s; }
+        .module:hover { border-color: var(--primary); box-shadow: 0 4px 20px rgba(26,54,93,0.1); }
+        .module .number { display: inline-block; background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 700; margin-bottom: 16px; }
+        .module h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .module ul { list-style: none; color: var(--text-light); }
+        .module ul li { padding: 4px 0; padding-left: 20px; position: relative; }
+        .module ul li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+        
+        /* Social Proof */
+        .social-proof { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+        .social-proof .stats { display: flex; justify-content: center; gap: 64px; margin-top: 32px; }
+        .stat h3 { font-size: 2.5rem; font-weight: 800; color: var(--gold); }
+        .stat p { opacity: 0.8; }
+        
+        /* Pricing */
+        .pricing { padding: 80px 0; background: var(--bg-warm); }
+        .pricing h2 { text-align: center; font-size: 2.25rem; margin-bottom: 48px; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 800px; margin: 0 auto; }
+        .pricing-card { background: white; border-radius: 16px; padding: 48px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .pricing-card.featured { border: 3px solid var(--gold); position: relative; }
+        .pricing-card.featured::before { content: "MOST POPULAR"; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--primary); padding: 4px 20px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .pricing-card .price { font-size: 3rem; font-weight: 800; color: var(--primary); margin: 16px 0; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+        .pricing-card ul { list-style: none; text-align: left; margin: 24px 0; }
+        .pricing-card ul li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+        .pricing-card ul li::before { content: "✓"; color: var(--gold); font-weight: 700; margin-right: 8px; }
+        
+        /* FAQ */
+        .faq { padding: 80px 0; }
+        .faq h2 { text-align: center; font-size: 2.25rem; margin-bottom: 48px; }
+        .faq-item { max-width: 800px; margin: 0 auto 16px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .faq-question { padding: 20px 24px; font-weight: 600; cursor: pointer; background: white; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { padding: 0 24px; max-height: 0; overflow: hidden; transition: all 0.3s; background: var(--bg-warm); }
+        .faq-item.active .faq-answer { padding: 20px 24px; max-height: 200px; }
+        .faq-item.active .faq-question { background: var(--primary); color: white; }
+        
+        /* Footer */
+        .footer { background: var(--primary); color: white; padding: 40px 0; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .problem-grid, .modules, .pricing-cards { grid-template-columns: 1fr; }
+            .social-proof .stats { flex-direction: column; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="badge">🩺 From 10+ Years ER & Oncology Bedside Experience</div>
+            <h1>Stop Memorizing. Start Thinking Like a Nurse.</h1>
+            <p class="subtitle">The Clinical Judgment Mastery System that helps nursing students and new grads dominate the NGN NCLEX and survive their first year on the floor — without the panic.</p>
+            <a href="#pricing" class="cta-button">Get Instant Access →</a>
+            <div class="price-tag"><span class="original">$197</span> $67 (Limited Launch Price)</div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <h2>The Real Reason Students Fail the NGN NCLEX</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">🧠</div>
+                    <h3>Cognitive Overload</h3>
+                    <p>The new NGN format tests clinical judgment, not memorization. Students are drowning in content but can't think through scenarios under pressure.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">📚</div>
+                    <h3>Generic Study Guides</h3>
+                    <p>Most NCLEX prep is just note dumps. "Top 100 Drugs" lists don't teach you HOW to prioritize a crashing patient at 3 AM.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">😰</div>
+                    <h3>First-Year Shock</h3>
+                    <p>Even students who pass the NCLEX struggle in their first year. Schools teach to the test. No one teaches you to think like an experienced nurse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <h2>What's Inside the Clinical Judgment Mastery System</h2>
+            <div class="modules">
+                <div class="module">
+                    <div class="number">1</div>
+                    <h3>The NGN Decision Framework</h3>
+                    <ul>
+                        <li>Recognize cues → Analyze → Prioritize → Take action</li>
+                        <li>Step-by-step clinical judgment model</li>
+                        <li>30+ practice scenarios with walkthroughs</li>
+                        <li>Answer rationales written by an ER nurse</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="number">2</div>
+                    <h3>Prioritization Mastery</h3>
+                    <ul>
+                        <li>ABC + Maslow + Safety frameworks</li>
+                        <li>"Who do you see first?" decision trees</li>
+                        <li>Delegation rules that actually make sense</li>
+                        <li>ER triage thinking for med-surg floors</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="number">3</div>
+                    <h3>Real Case Walkthroughs</h3>
+                    <ul>
+                        <li>Actual cases from ER and oncology</li>
+                        <li>"What the experienced nurse actually does"</li>
+                        <li>Common mistakes new grads make</li>
+                        <li>SBAR scripts that get results</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <div class="number">4</div>
+                    <h3>Memory Tools & Cheat Sheets</h3>
+                    <ul>
+                        <li>Lab value quick-reference cards</li>
+                        <li>Medication classification memory aids</li>
+                        <li>Printable clinical day worksheets</li>
+                        <li>Edit in Canva or Google Docs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h2>Built By a Nurse Who's Actually Done the Work</h2>
+            <p style="opacity: 0.9; max-width: 600px; margin: 16px auto 0;">Not a study-note shop. Not a content farm. Real frameworks from real bedside experience.</p>
+            <div class="stats">
+                <div class="stat">
+                    <h3>10+</h3>
+                    <p>Years Bedside Nursing</p>
+                </div>
+                <div class="stat">
+                    <h3>ER + Oncology</h3>
+                    <p>Specialty Experience</p>
+                </div>
+                <div class="stat">
+                    <h3>NGN Ready</h3>
+                    <p>Next Gen NCLEX Focused</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Choose Your Path</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Core System</h3>
+                    <div class="price">$47<span>/one-time</span></div>
+                    <ul>
+                        <li>NGN Decision Framework PDF</li>
+                        <li>Prioritization decision trees</li>
+                        <li>Clinical cheat sheets (printable)</li>
+                        <li>30 practice scenarios</li>
+                        <li>Editable worksheets</li>
+                    </ul>
+                    <button class="cta-button" onclick="checkout('core')">Get Core System</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Complete Mastery</h3>
+                    <div class="price">$67<span>/one-time</span></div>
+                    <ul>
+                        <li>Everything in Core System</li>
+                        <li>5 video walkthroughs (ER & oncology cases)</li>
+                        <li>Real case study deep-dives</li>
+                        <li>SBAR templates & scripts</li>
+                        <li>First-year survival guide</li>
+                        <li>Bonus: Clinical day planner</li>
+                    </ul>
+                    <button class="cta-button" onclick="checkout('complete')">Get Complete System →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item active">
+                <div class="faq-question">Is this for nursing students or new grads? <span>+</span></div>
+                <div class="faq-answer">Both. The NGN Decision Framework is specifically designed for the new Next Generation NCLEX format. The case walkthroughs and prioritization training are exactly what new grads need to survive their first year.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How is this different from other NCLEX prep? <span>+</span></div>
+                <div class="faq-answer">Most NCLEX prep teaches you to memorize. This teaches you to THINK. Every framework comes from real ER and oncology experience — not a textbook. You get the decision-making process an experienced nurse uses, not just the right answer.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What's the format? <span>+</span></div>
+                <div class="faq-answer">Instant digital delivery. PDF guides, editable worksheets (Canva/Google Docs links), and video links. Access everything immediately after purchase. No shipping, no waiting.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is there a refund policy? <span>+</span></div>
+                <div class="faq-answer">Yes. 30-day money-back guarantee. If this doesn't help you think through clinical scenarios more clearly, email me for a full refund. No questions asked.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero" style="padding: 60px 0;">
+        <div class="container">
+            <h2>Ready to Think Like an Experienced Nurse?</h2>
+            <p class="subtitle" style="margin-bottom: 32px;">Stop cramming. Start mastering clinical judgment. Your patients — and your license — depend on it.</p>
+            <a href="#pricing" class="cta-button">Get the Complete System for $67 →</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Obioma Care. Built with 💙 by Nnamdi Okorafor, RN.</p>
+            <p style="opacity: 0.7; margin-top: 8px;">15 years nursing. ER + Oncology. Now helping the next generation of nurses think clearly under pressure.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                q.parentElement.classList.toggle('active');
+            });
+        });
+
+        // Checkout
+        async function checkout(tier) {
+            // Track conversion events
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'USD',
+                    value: tier === 'complete' ? 67 : 47,
+                    items: [{
+                        item_name: tier === 'complete' ? 'Complete Mastery' : 'Core System',
+                        item_id: tier,
+                        price: tier === 'complete' ? 67 : 47,
+                        quantity: 1
+                    }]
+                });
+            }
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: tier === 'complete' ? 'Complete Mastery' : 'Core System',
+                    content_type: 'product',
+                    value: tier === 'complete' ? 67 : 47,
+                    currency: 'USD'
+                });
+            }
+            
+            try {
+                const res = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier })
+                });
+                const data = await res.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Checkout temporarily unavailable. Please try again.');
+                }
+            } catch (err) {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
