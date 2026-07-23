@@ -1,6 +1,9 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.js" }
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/free-framework", "dest": "/public/free-framework.html" },
+    { "src": "/success", "dest": "/public/success.html" },
+    { "src": "/downloads/(.*)", "dest": "/public/downloads/$1" }
   ]
 }
