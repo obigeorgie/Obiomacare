@@ -211,8 +211,9 @@ app.get('/download/:token', async (req, res) => {
   
   delivery.downloads++;
   const product = PRODUCTS[delivery.tier];
+  const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
   
-  res.send(downloadPageTemplate(product, token, req.headers.host));
+  res.send(downloadPageTemplate(product, delivery.tier, baseUrl));
 });
 
 // ==================== SUCCESS PAGE ====================
@@ -232,8 +233,34 @@ app.get('/api/health', (req, res) => {
 });
 
 // ==================== TEMPLATES ====================
-function downloadPageTemplate(product, token, host) {
-  const protocol = host?.includes('localhost') ? 'http' : 'https';
+function downloadPageTemplate(product, tier, baseUrl) {
+  const isComplete = tier === 'complete';
+  
+  const coreFiles = [
+    { name: 'NGN Clinical Judgment Framework', file: 'ngn-framework.pdf', desc: 'The core decision-making model' },
+    { name: 'Prioritization Decision Trees', file: 'prioritization-trees.pdf', desc: '10 practice scenarios with answers' },
+    { name: 'SBAR Templates & Scripts', file: 'sbar-templates.pdf', desc: 'Communication frameworks' },
+    { name: 'Clinical Day Planner', file: 'clinical-day-planner.pdf', desc: 'Printable daily organizer' },
+  ];
+  
+  const completeFiles = [
+    { name: 'Real Case Walkthroughs', file: 'case-walkthroughs.pdf', desc: '5 detailed cases from ER & oncology' },
+    { name: 'First-Year Survival Guide', file: 'survival-guide.pdf', desc: 'What nursing school didn\'t teach you' },
+    { name: 'Video Scripts', file: 'video-scripts.pdf', desc: 'Scripts for clinical walkthroughs' },
+  ];
+  
+  const files = isComplete ? [...coreFiles, ...completeFiles] : coreFiles;
+  
+  const fileListHtml = files.map(f => `
+    <li class="file-item">
+      <span class="file-icon">📄</span>
+      <div class="file-info">
+        <span class="file-name">${f.name}</span>
+        <span class="file-desc">${f.desc}</span>
+      </div>
+      <a href="${baseUrl}/downloads/${f.file}" class="btn" download>Download</a>
+    </li>
+  `).join('');
   
   return `
     <!DOCTYPE html>
@@ -267,64 +294,7 @@ function downloadPageTemplate(product, token, host) {
         </div>
         
         <ul class="file-list">
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">NGN Clinical Judgment Framework</span>
-              <span class="file-desc">PDF — The core decision-making model</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">Prioritization Decision Trees</span>
-              <span class="file-desc">PDF — 10 practice scenarios with answers</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">Clinical Cheat Sheets</span>
-              <span class="file-desc">PDF — Quick reference cards</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">Clinical Day Planner</span>
-              <span class="file-desc">PDF — Printable daily organizer</span>
-            </div>
-          </li>
-          ${delivery.tier === 'complete' ? `
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">Real Case Walkthroughs</span>
-              <span class="file-desc">PDF — 5 detailed cases from ER & oncology</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">SBAR Templates & Scripts</span>
-              <span class="file-desc">PDF — Communication frameworks</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">📄</span>
-            <div class="file-info">
-              <span class="file-name">First-Year Survival Guide</span>
-              <span class="file-desc">PDF — What nursing school didn't teach you</span>
-            </div>
-          </li>
-          <li class="file-item">
-            <span class="file-icon">🎥</span>
-            <div class="file-info">
-              <span class="file-name">5 Video Walkthroughs</span>
-              <span class="file-desc">MP4 — Real cases explained by an ER nurse</span>
-            </div>
-          </li>
-          ` : ''}
+          ${fileListHtml}
         </ul>
         
         <div class="support">
