@@ -3,9 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obioma Care — Clinical Judgment Mastery for NGN NCLEX</title>
+    <title>Obioma Care — Clinical Judgment Mastery System for NGN NCLEX</title>
+    <meta name="description" content="Stop failing the NGN NCLEX. The Clinical Judgment Mastery System gives nurses the exact decision-making framework to pass the Next Generation NCLEX. Created by Nnamdi Okorafor, RN.">
+    <meta name="keywords" content="NGN NCLEX, clinical judgment, nursing exam, NCLEX prep, prioritization, nursing student, NGN, Next Generation NCLEX">
+    <meta name="author" content="Nnamdi Okorafor, RN">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Obioma Care — Clinical Judgment Mastery for NGN NCLEX">
+    <meta property="og:description" content="The exact decision-making framework that helps nursing students pass the NGN NCLEX. Created by an ER nurse with 15 years experience.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://obiomacare.com">
+    <meta property="og:image" content="https://obiomacare.com/og-image.jpg">
+    <meta property="og:site_name" content="Obioma Care">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Obioma Care — Clinical Judgment Mastery for NGN NCLEX">
+    <meta name="twitter:description" content="The exact decision-making framework that helps nursing students pass the NGN NCLEX.">
+    <meta name="twitter:image" content="https://obiomacare.com/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://obiomacare.com">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'FB_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Clinical Judgment Mastery System",
+      "description": "The decision-making framework that helps nursing students pass the NGN NCLEX",
+      "brand": {
+        "@type": "Brand",
+        "name": "Obioma Care"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Core System",
+          "price": "47.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Complete Mastery",
+          "price": "67.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127"
+      }
+    }
+    </script>
+    
     <style>
         :root {
             --primary: #1a365d;
@@ -276,6 +365,28 @@
 
         // Checkout
         async function checkout(tier) {
+            // Track conversion events
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'USD',
+                    value: tier === 'complete' ? 67 : 47,
+                    items: [{
+                        item_name: tier === 'complete' ? 'Complete Mastery' : 'Core System',
+                        item_id: tier,
+                        price: tier === 'complete' ? 67 : 47,
+                        quantity: 1
+                    }]
+                });
+            }
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_name: tier === 'complete' ? 'Complete Mastery' : 'Core System',
+                    content_type: 'product',
+                    value: tier === 'complete' ? 67 : 47,
+                    currency: 'USD'
+                });
+            }
+            
             try {
                 const res = await fetch('/api/create-checkout', {
                     method: 'POST',

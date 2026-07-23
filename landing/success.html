@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You — Obioma Care</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <!-- Facebook Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'FB_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
     <style>
         :root { --primary: #1a365d; --accent: #c53030; --bg-warm: #fffaf0; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,5 +53,24 @@
             <p style="margin: 8px 0 0; font-size: 0.875rem;">1. Download your files from the email<br>2. Start with the NGN Framework<br>3. Work through one scenario per day</p>
         </div>
     </div>
+    <script>
+        // Track purchase from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        if (sessionId) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'purchase', {
+                    transaction_id: sessionId,
+                    currency: 'USD'
+                });
+            }
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                    content_type: 'product',
+                    currency: 'USD'
+                });
+            }
+        }
+    </script>
 </body>
 </html>
