@@ -275,11 +275,22 @@
         });
 
         // Checkout
-        function checkout(tier) {
-            // Will integrate with Stripe/Gumroad
-            const prices = { core: 'price_core_47', complete: 'price_complete_67' };
-            alert('Stripe checkout loading for: ' + tier + ' — integration in progress');
-            // window.location.href = '/checkout?tier=' + tier;
+        async function checkout(tier) {
+            try {
+                const res = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier })
+                });
+                const data = await res.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert('Checkout temporarily unavailable. Please try again.');
+                }
+            } catch (err) {
+                alert('Something went wrong. Please try again.');
+            }
         }
 
         // Smooth scroll

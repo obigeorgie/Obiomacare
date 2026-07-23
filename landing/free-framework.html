@@ -60,7 +60,7 @@
             const email = document.getElementById('email').value;
             const firstName = document.getElementById('firstName').value;
             
-            if (!email) return alert('Please enter your email');
+            if (!email || !email.includes('@')) return alert('Please enter a valid email');
             
             try {
                 const res = await fetch('/api/lead-magnet', {
@@ -72,9 +72,11 @@
                 if (res.ok) {
                     document.getElementById('form-section').style.display = 'none';
                     document.getElementById('success-section').style.display = 'block';
+                } else {
+                    alert('Something went wrong. Try again?');
                 }
             } catch (err) {
-                alert('Something went wrong. Try again?');
+                alert('Network error. Please try again.');
             }
         }
     </script>

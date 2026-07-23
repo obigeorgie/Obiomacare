@@ -1,24 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/landing/$1"
-    }
-  ],
-  "env": {
-    "RESEND_API_KEY": "@resend_api_key",
-    "STRIPE_SECRET_KEY": "@stripe_secret_key",
-    "STRIPE_WEBHOOK_SECRET": "@stripe_webhook_secret"
-  }
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/", "dest": "/landing/index.html" },
+    { "src": "/free-framework", "dest": "/landing/free-framework.html" },
+    { "src": "/success", "dest": "/landing/success.html" },
+    { "src": "/(.*)", "dest": "/landing/$1" }
+  ]
 }
