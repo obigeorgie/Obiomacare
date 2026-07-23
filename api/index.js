@@ -40,6 +40,7 @@ app.post('/api/create-checkout', async (req, res) => {
   if (!product) return res.status(400).json({ error: 'Invalid product tier' });
 
   try {
+    const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -47,8 +48,8 @@ app.post('/api/create-checkout', async (req, res) => {
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin}/`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/`,
       customer_email: email,
       metadata: { tier, product: product.name }
     });
@@ -78,6 +79,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     const tier = session.metadata.tier;
     const email = session.customer_email || session.customer_details?.email;
     const product = PRODUCTS[tier];
+    const baseUrl = 'https://obioma-care.vercel.app';
     
     const downloadToken = crypto.randomUUID();
     deliveryTokens.set(downloadToken, {
@@ -104,7 +106,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
               <p>Thanks for your purchase. Click below to access your files:</p>
               
               <div style="text-align: center; margin: 32px 0;">
-                <a href="${req.headers.origin}/download/${downloadToken}" 
+                <a href="${baseUrl}/download/${downloadToken}" 
                    style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 1.125rem;">
                    Download Now →
                 </a>
@@ -132,6 +134,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
 // ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', async (req, res) => {
   const { email, firstName } = req.body;
+  const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
   
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
@@ -172,7 +175,7 @@ app.post('/api/lead-magnet', async (req, res) => {
             </ul>
             
             <div style="text-align: center; margin: 32px 0;">
-              <a href="${req.headers.origin}" 
+              <a href="${baseUrl}" 
                  style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">
                  See the Complete System →
               </a>
