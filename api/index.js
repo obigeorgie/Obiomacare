@@ -163,20 +163,21 @@ function saveLeads() {
 const NURTURE_SEQUENCE = [
   {
     day: 0,
-    subject: 'Your NGN Framework is here (+ why most students get it wrong)',
+    subject: 'Your NCLEX Study Checklist is here (+ why most students get it wrong)',
     sendImmediately: true,
     template: (lead, baseUrl) => `
       <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
         <h2 style="color: #1a365d;">Hey ${lead.firstName || 'there'}!</h2>
-        <p>Your framework is attached. But before you open it, let me tell you something important:</p>
+        <p>Thanks for downloading the NCLEX Study Checklist. Before you dive in, let me tell you something important:</p>
         <p>Most students study for the NGN NCLEX by memorizing more content.</p>
         <p>That's like trying to put out a fire by adding more wood.</p>
-        <p>The new NCLEX tests clinical JUDGMENT — not recall. Can you recognize cues? Analyze data? Prioritize under pressure? Take action when everything is urgent?</p>
-        <p>That's what this framework trains.</p>
-        <p>Open the PDF. Work through the first scenario. Then reply and tell me — did it feel different from how you've been studying?</p>
+        <p>The new NCLEX tests clinical <strong>JUDGMENT</strong> — not recall. Can you recognize cues? Analyze data? Prioritize under pressure? Take action when everything is urgent?</p>
+        <p>That's what this checklist trains.</p>
+        <p>Access your checklist here: <a href="${baseUrl}/free-nclex-checklist.html" style="color: #c53030; font-weight: 700;">NCLEX Study Checklist →</a></p>
+        <p>Work through the first section. Then reply and tell me — did it feel different from how you've been studying?</p>
         <p>I read every reply.</p>
         <p>— Nnamdi, RN<br>Obioma Care</p>
-        <p style="margin-top: 24px;"><a href="${baseUrl}" style="color: #c53030;">P.S. If you want 30+ more scenarios + video walkthroughs, the Complete System is here →</a></p>
+        <p style="margin-top: 24px;"><a href="${baseUrl}/#pricing" style="color: #c53030;">P.S. If you want 30+ more scenarios + video walkthroughs, the Complete System is here →</a></p>
       </div>
     `
   },
@@ -362,13 +363,28 @@ async function sendNurtureEmails() {
 }
 
 // ==================== NURTURE CRON ====================
+// Protected by CRON_SECRET for Vercel Cron Jobs
+const CRON_SECRET = process.env.CRON_SECRET;
+
 app.get('/api/cron/nurture', async (req, res) => {
+  // Auth check for Vercel Cron
+  const authHeader = req.headers.authorization;
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
   console.log('🔄 Running nurture sequence...');
   const result = await sendNurtureEmails();
   res.json({ success: true, ...result, leadsTotal: leads.length });
 });
 
 app.post('/api/cron/nurture', async (req, res) => {
+  // Auth check for Vercel Cron
+  const authHeader = req.headers.authorization;
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
   console.log('🔄 Running nurture sequence...');
   const result = await sendNurtureEmails();
   res.json({ success: true, ...result, leadsTotal: leads.length });
