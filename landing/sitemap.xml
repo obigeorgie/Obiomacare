@@ -44,6 +44,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://obiomacare.com/content/nclex-lab-values.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-pharmacology-drug-classes.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://obiomacare.com/tools/prerequisite-checklist.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
