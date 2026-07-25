@@ -131,7 +131,260 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
   res.json({received: true});
 });
 
-// ==================== LEAD MAGNET ====================
+const fs = require('fs');
+
+// In-memory lead store (use database in production)
+const leads = [];
+const LEADS_FILE = path.join(__dirname, '..', 'data', 'leads.json');
+
+// Load leads from file if exists
+try {
+  if (fs.existsSync(LEADS_FILE)) {
+    const data = JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8'));
+    leads.push(...data);
+    console.log(`📋 Loaded ${leads.length} leads`);
+  }
+} catch (err) {
+  console.error('Failed to load leads:', err);
+}
+
+// Save leads to file
+function saveLeads() {
+  try {
+    const dir = path.dirname(LEADS_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
+  } catch (err) {
+    console.error('Failed to save leads:', err);
+  }
+}
+
+// Email sequence definition
+const NURTURE_SEQUENCE = [
+  {
+    day: 0,
+    subject: 'Your NGN Framework is here (+ why most students get it wrong)',
+    sendImmediately: true,
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">Hey ${lead.firstName || 'there'}!</h2>
+        <p>Your framework is attached. But before you open it, let me tell you something important:</p>
+        <p>Most students study for the NGN NCLEX by memorizing more content.</p>
+        <p>That's like trying to put out a fire by adding more wood.</p>
+        <p>The new NCLEX tests clinical JUDGMENT — not recall. Can you recognize cues? Analyze data? Prioritize under pressure? Take action when everything is urgent?</p>
+        <p>That's what this framework trains.</p>
+        <p>Open the PDF. Work through the first scenario. Then reply and tell me — did it feel different from how you've been studying?</p>
+        <p>I read every reply.</p>
+        <p>— Nnamdi, RN<br>Obioma Care</p>
+        <p style="margin-top: 24px;"><a href="${baseUrl}" style="color: #c53030;">P.S. If you want 30+ more scenarios + video walkthroughs, the Complete System is here →</a></p>
+      </div>
+    `
+  },
+  {
+    day: 2,
+    subject: 'The #1 mistake I see on every clinical floor',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">The #1 mistake I see on every clinical floor</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>I made this mistake as a new grad. My preceptor caught it. Now I see students make it every single day.</p>
+        <p>Here's the mistake: <strong>Treating every abnormal lab/vital as equally urgent.</strong></p>
+        <p>A BP of 148/92 in a stable patient? Document and monitor.<br>
+        A BP of 148/92 in a post-op patient with a sudden headache? Page the doctor NOW.</p>
+        <p>Same number. Completely different action.</p>
+        <p>The difference is context. And context is what clinical judgment is built on.</p>
+        <p>This is why I built the prioritization decision trees in the Complete System. They force you to ask the right questions before you act.</p>
+        <p><a href="${baseUrl}" style="color: #c53030;">See the full prioritization framework →</a></p>
+        <p>— Nnamdi</p>
+      </div>
+    `
+  },
+  {
+    day: 4,
+    subject: '"Room 4 is crashing" — a real ER story',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">"Room 4 is crashing" — a real ER story</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>3 AM. I'm the only ER nurse with 6 patients.</p>
+        <p>The charge nurse yells: "Room 4 is crashing!"</p>
+        <p>At the same time:<br>
+        • Room 2: Chest pain, troponin elevated<br>
+        • Room 5: Post-op appendectomy, fever 102.3<br>
+        • Room 8: COPD exacerbation, O2 sat 88% on 2L</p>
+        <p>Who do I see first?</p>
+        <p>Not Room 2 (chest pain is stable, troponin is trending). Not Room 5 (post-op fever, concerning but not crashing). Definitely not Room 8 (COPD patient, needs titration but not emergent).</p>
+        <p>Room 4. Because "crashing" means airway/breathing/circulation are failing RIGHT NOW.</p>
+        <p>But here's what textbooks don't teach you: After I stabilize Room 4, I DON'T go to Room 2 next. I delegate Room 8's O2 titration to the tech, reassess Room 5 from the doorway, THEN see Room 2.</p>
+        <p>That's clinical judgment. That's what the NGN tests. That's what I teach.</p>
+        <p><a href="${baseUrl}" style="color: #c53030;">Want the full framework? Complete System →</a></p>
+        <p>— Nnamdi</p>
+      </div>
+    `
+  },
+  {
+    day: 7,
+    subject: 'I finally understand prioritization',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">"I finally understand prioritization"</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>I don't have testimonials yet (this is a new product). But I can tell you what I've seen mentoring new grads:</p>
+        <p>The ones who struggle in their first year aren't the ones who didn't memorize enough. They're the ones who can't THINK through a scenario when the answer isn't in a textbook.</p>
+        <p>The Complete System changes that. Here's what's inside:</p>
+        <ul>
+          <li>✓ NGN Decision Framework</li>
+          <li>✓ 30+ practice scenarios with thought process</li>
+          <li>✓ 5 video walkthroughs of real cases</li>
+          <li>✓ SBAR templates that get results</li>
+          <li>✓ First-year survival guide</li>
+          <li>✓ Clinical day planner</li>
+        </ul>
+        <p><a href="${baseUrl}" style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">Get the Complete System for $67 →</a></p>
+        <p>30-day guarantee. If it doesn't help you think through scenarios more clearly, I'll refund every penny.</p>
+        <p>— Nnamdi</p>
+      </div>
+    `
+  },
+  {
+    day: 10,
+    subject: '"I already bought an NCLEX review course"',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">"I already bought an NCLEX review course"</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>If you already bought UWorld, Kaplan, or Archer — good. Those are excellent for question practice.</p>
+        <p>But here's what they don't do:</p>
+        <p>They don't teach you the THINKING process. They give you questions and explanations. That's like giving someone fish instead of teaching them to fish.</p>
+        <p>The Clinical Judgment Mastery System is the thinking layer. It shows you HOW an experienced nurse approaches a scenario — not just what the right answer is.</p>
+        <p>Use BOTH. Practice questions on UWorld. Learn the thinking framework here.</p>
+        <p><a href="${baseUrl}" style="color: #c53030;">Get the Complete System →</a></p>
+        <p>— Nnamdi</p>
+      </div>
+    `
+  },
+  {
+    day: 12,
+    subject: 'Price goes up Friday',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">Price goes up Friday</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>Quick note: The launch price of $67 ends Friday. After that, the Complete System goes to $97.</p>
+        <p>If you've been thinking about it, now's the time.</p>
+        <p><a href="${baseUrl}" style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">Get it at $67 →</a></p>
+        <p>— Nnamdi</p>
+      </div>
+    `
+  },
+  {
+    day: 14,
+    subject: 'Last call: Clinical Judgment Mastery System',
+    template: (lead, baseUrl) => `
+      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+        <h2 style="color: #1a365d;">Last call: Clinical Judgment Mastery System</h2>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>This is the last email in this sequence.</p>
+        <p>If the Complete System isn't for you right now, no worries. Keep the free framework — it's yours.</p>
+        <p>But if you're struggling with:<br>
+        • NGN scenario questions<br>
+        • Prioritization on the floor<br>
+        • Feeling like you memorized everything but can't think through cases</p>
+        <p>This was built for you. From real experience. Not a textbook.</p>
+        <p><a href="${baseUrl}" style="color: #c53030;">Last chance at $67 →</a></p>
+        <p>Either way, good luck on the NCLEX and your first year. You've got this.</p>
+        <p>— Nnamdi, RN<br>Obioma Care</p>
+        <p>P.S. If you ever want to chat nursing, just reply. I read every email.</p>
+      </div>
+    `
+  }
+];
+
+function shouldSendEmail(lead, sequenceDay) {
+  const subscribedAt = new Date(lead.subscribedAt);
+  const now = new Date();
+  const daysSinceSubscription = Math.floor((now - subscribedAt) / (1000 * 60 * 60 * 24));
+  
+  // Check if this email has already been sent
+  const sentKey = `email_${sequenceDay}`;
+  if (lead.emailsSent?.includes(sentKey)) return false;
+  
+  // Check if it's time to send
+  return daysSinceSubscription >= sequenceDay;
+}
+
+async function sendNurtureEmails() {
+  if (!resend) {
+    console.log('❌ Resend not configured, skipping nurture');
+    return { sent: 0, errors: 0 };
+  }
+  
+  const baseUrl = 'https://obiomacare.com';
+  let sent = 0;
+  let errors = 0;
+  
+  for (const lead of leads) {
+    // Skip leads who purchased
+    if (lead.purchased) continue;
+    
+    for (const emailDef of NURTURE_SEQUENCE) {
+      if (!shouldSendEmail(lead, emailDef.day)) continue;
+      
+      try {
+        await resend.emails.send({
+          from: process.env.FROM_EMAIL || 'Obioma Care <admin@obiomacare.com>',
+          to: lead.email,
+          subject: emailDef.subject,
+          html: emailDef.template(lead, baseUrl)
+        });
+        
+        // Mark as sent
+        if (!lead.emailsSent) lead.emailsSent = [];
+        lead.emailsSent.push(`email_${emailDef.day}`);
+        lead.lastEmailSent = new Date().toISOString();
+        sent++;
+        
+        console.log(`✅ Sent day ${emailDef.day} email to ${lead.email}`);
+        
+        // Rate limit: max 10 emails per batch
+        if (sent >= 10) break;
+      } catch (err) {
+        console.error(`❌ Failed to send to ${lead.email}:`, err);
+        errors++;
+      }
+    }
+    
+    if (sent >= 10) break;
+  }
+  
+  if (sent > 0) saveLeads();
+  return { sent, errors };
+}
+
+// ==================== NURTURE CRON ====================
+app.get('/api/cron/nurture', async (req, res) => {
+  // Verify cron secret if configured
+  const cronSecret = req.headers['x-cron-secret'] || req.query.secret;
+  if (process.env.CRON_SECRET && cronSecret !== process.env.CRON_SECRET) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
+  console.log('🔄 Running nurture sequence...');
+  const result = await sendNurtureEmails();
+  res.json({ success: true, ...result, leadsTotal: leads.length });
+});
+
+// Also allow POST for flexibility
+app.post('/api/cron/nurture', async (req, res) => {
+  const cronSecret = req.headers['x-cron-secret'] || req.query.secret;
+  if (process.env.CRON_SECRET && cronSecret !== process.env.CRON_SECRET) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
+  console.log('🔄 Running nurture sequence...');
+  const result = await sendNurtureEmails();
+  res.json({ success: true, ...result, leadsTotal: leads.length });
+});
 app.post('/api/lead-magnet', async (req, res) => {
   const { email, firstName } = req.body;
   const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
@@ -140,51 +393,43 @@ app.post('/api/lead-magnet', async (req, res) => {
     return res.status(400).json({ error: 'Valid email required' });
   }
   
+  // Check if lead already exists
+  const existingLead = leads.find(l => l.email === email);
+  if (existingLead) {
+    return res.json({ success: true, message: 'You\'re already subscribed! Check your email.' });
+  }
+  
+  // Create new lead
+  const lead = {
+    email,
+    firstName: firstName || '',
+    subscribedAt: new Date().toISOString(),
+    emailsSent: [],
+    purchased: false
+  };
+  leads.push(lead);
+  saveLeads();
+  
   if (resend) {
     try {
+      // Send welcome email using nurture sequence day 0
+      const welcomeEmail = NURTURE_SEQUENCE.find(e => e.day === 0);
       await resend.emails.send({
         from: process.env.FROM_EMAIL || 'Obioma Care <admin@obiomacare.com>',
         to: email,
-        subject: 'Your Free NGN Clinical Judgment Framework',
-        html: `
+        subject: welcomeEmail ? welcomeEmail.subject : 'Your Free NGN Clinical Judgment Framework',
+        html: welcomeEmail ? welcomeEmail.template(lead, baseUrl) : `
           <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-            <div style="text-align: center; margin-bottom: 32px;">
-              <div style="font-size: 2rem; margin-bottom: 8px;">🩺</div>
-              <h1 style="color: #1a365d; margin: 0; font-size: 1.5rem;">Obioma Care</h1>
-            </div>
-            
-            <h2 style="color: #1a365d;">Hey ${firstName || 'there'}!</h2>
+            <h2>Hey ${firstName || 'there'}!</h2>
             <p>Here's your free NGN Clinical Judgment Framework preview.</p>
-            
-            <div style="background: #fffaf0; padding: 24px; border-radius: 8px; margin: 24px 0;">
-              <h3 style="margin-top: 0;">📋 The Four-Phase Model:</h3>
-              <ol>
-                <li><strong>Recognize</strong> — What cues matter?</li>
-                <li><strong>Analyze</strong> — What's really going on?</li>
-                <li><strong>Prioritize</strong> — Who needs you first?</li>
-                <li><strong>Act</strong> — What's the right intervention?</li>
-                <li><strong>Evaluate</strong> — Did it work?</li>
-              </ol>
-            </div>
-            
-            <p>Over the next few days, I'll send you my best clinical judgment tips:</p>
-            <ul>
-              <li><strong>Day 1:</strong> The #1 mistake students make on NGN scenarios</li>
-              <li><strong>Day 3:</strong> How ER nurses prioritize when everything is urgent</li>
-              <li><strong>Day 5:</strong> The SBAR script that gets doctors to act fast</li>
-            </ul>
-            
-            <div style="text-align: center; margin: 32px 0;">
-              <a href="${baseUrl}" 
-                 style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">
-                 See the Complete System →
-              </a>
-            </div>
-            
-            <p>Talk soon,<br>Nnamdi, RN</p>
           </div>
         `
       });
+      
+      // Mark welcome email as sent
+      lead.emailsSent.push('email_0');
+      saveLeads();
+      
       console.log(`🎯 Lead captured: ${email}`);
     } catch (err) {
       console.error('Lead magnet error:', err);
