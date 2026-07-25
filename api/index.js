@@ -363,9 +363,9 @@ async function sendNurtureEmails() {
 
 // ==================== NURTURE CRON ====================
 app.get('/api/cron/nurture', async (req, res) => {
-  // Verify cron secret if configured
   const cronSecret = req.headers['x-cron-secret'] || req.query.secret;
-  if (process.env.CRON_SECRET && cronSecret !== process.env.CRON_SECRET) {
+  const hasSecret = process.env.CRON_SECRET && process.env.CRON_SECRET.length > 0;
+  if (hasSecret && cronSecret !== process.env.CRON_SECRET) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
@@ -377,7 +377,8 @@ app.get('/api/cron/nurture', async (req, res) => {
 // Also allow POST for flexibility
 app.post('/api/cron/nurture', async (req, res) => {
   const cronSecret = req.headers['x-cron-secret'] || req.query.secret;
-  if (process.env.CRON_SECRET && cronSecret !== process.env.CRON_SECRET) {
+  const hasSecret = process.env.CRON_SECRET && process.env.CRON_SECRET.length > 0;
+  if (hasSecret && cronSecret !== process.env.CRON_SECRET) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
