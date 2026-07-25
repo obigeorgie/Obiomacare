@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Path Planner — Free Tool | Obioma</title>
+    <meta name="description" content="Free learning path planner for children ages 4-11. Generate a step-by-step learning path with time estimates. Based on 1,590+ micro-topics.">
+    <meta name="keywords" content="learning path planner, homeschool curriculum planner, personalized learning plan, math learning path, literacy learning path">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Learning Path Planner — Free Tool | Obioma">
+    <meta property="og:description" content="Generate a step-by-step learning path for your child with time estimates. Free tool.">
+    <meta property="og:url" content="https://obiomacare.com/tools/learning-path-planner.html">
+    <meta property="og:type" content="website">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-922HP9B76M');
+    </script>
+    <style>
+        :root {
+            --mg-primary: #6366f1;
+            --mg-primary-dark: #4f46e5;
+            --mg-success: #10b981;
+            --mg-warm-50: #faf9f7;
+            --mg-warm-100: #f5f3ef;
+            --mg-warm-200: #e8e5df;
+            --mg-warm-300: #d4cfc5;
+            --mg-warm-500: #7c756d;
+            --mg-warm-700: #3d3834;
+            --mg-warm-800: #1f1c19;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--mg-warm-50);
+            color: var(--mg-warm-800);
+            line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 48px 0;
+            text-align: center;
+            color: white;
+        }
+        header h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+        header p { font-size: 18px; opacity: 0.9; }
+        .tool { padding: 48px 0; }
+        .step { background: white; padding: 32px; border-radius: 16px; margin-bottom: 24px; border: 1px solid var(--mg-warm-200); }
+        .step h2 { font-size: 20px; color: var(--mg-warm-700); margin-bottom: 16px; }
+        .step p { color: var(--mg-warm-500); margin-bottom: 16px; }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--mg-warm-200);
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus { outline: none; border-color: var(--mg-primary); }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); }
+        .path-result { display: none; }
+        .path-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid var(--mg-warm-200);
+        }
+        .path-step-number {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 14px;
+            flex-shrink: 0;
+        }
+        .path-step-content h3 { font-size: 16px; color: var(--mg-warm-700); margin-bottom: 4px; }
+        .path-step-content p { color: var(--mg-warm-500); font-size: 14px; margin: 0; }
+        .path-step-content .time { color: var(--mg-success); font-weight: 600; font-size: 13px; margin-top: 4px; }
+        .share { margin-top: 32px; padding: 24px; background: var(--mg-warm-100); border-radius: 12px; text-align: center; }
+        .share p { color: var(--mg-warm-500); font-size: 14px; margin-bottom: 16px; }
+        .share a { color: var(--mg-primary); font-weight: 600; text-decoration: none; }
+        .share a:hover { text-decoration: underline; }
+        footer { padding: 32px; text-align: center; color: var(--mg-warm-400); font-size: 14px; }
+        @media (max-width: 600px) {
+            header h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🗺️ Learning Path Planner</h1>
+            <p>Generate a step-by-step learning path for your child with time estimates.</p>
+        </div>
+    </header>
+    
+    <div class="tool">
+        <div class="container">
+            <div class="step">
+                <h2>Tell us about your child</h2>
+                <label style="display: block; color: var(--mg-warm-500); font-size: 14px; margin-bottom: 8px;">Child's age</label>
+                <input type="number" id="childAge" min="4" max="11" value="7" placeholder="e.g., 7">
+                
+                <label style="display: block; color: var(--mg-warm-500); font-size: 14px; margin-bottom: 8px;">Subject area</label>
+                <select id="subject">
+                    <option value="math">Mathematics</option>
+                    <option value="literacy">Literacy & Reading</option>
+                    <option value="science">Science</option>
+                </select>
+                
+                <label style="display: block; color: var(--mg-warm-500); font-size: 14px; margin-bottom: 8px;">What do they want to learn? (or where are they stuck?)</label>
+                <input type="text" id="goal" placeholder="e.g., fractions, multiplication, reading comprehension">
+                
+                <button class="btn btn-primary" onclick="generatePath()">Generate Learning Path →</button>
+            </div>
+            
+            <div class="path-result" id="pathResult">
+                <h2 style="margin-bottom: 24px;">🎯 Your Child's Learning Path</h2>
+                <div id="pathSteps"></div>
+                <div style="background: #f0f9ff; padding: 24px; border-radius: 12px; margin-top: 24px; text-align: center;">
+                    <p style="color: var(--mg-warm-600); margin-bottom: 16px;">
+                        This is a simplified preview. Get the full path with <strong>1,590+ micro-topics</strong> and <strong>prerequisite tracking</strong>.
+                    </p>
+                    <a href="https://app.obiomacare.com/assessment" class="btn btn-primary">Get Full Path in Obioma →</a>
+                </div>
+            </div>
+            
+            <div class="share">
+                <p>📤 This tool is free. Share it with other parents who might find it helpful.</p>
+                <p><a href="https://twitter.com/intent/tweet?text=Free%20learning%20path%20planner%20for%20kids%20ages%204-11&url=https://obiomacare.com/tools/learning-path-planner.html">Share on Twitter/X</a> · <a href="https://www.facebook.com/sharer/sharer.php?u=https://obiomacare.com/tools/learning-path-planner.html">Share on Facebook</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Powered by <a href="https://obiomacare.com" style="color: var(--mg-primary); text-decoration: none;">Obioma</a> — prerequisite-aware learning paths for kids 4-11.</p>
+    </footer>
+    
+    <script>
+    var samplePaths = {
+        math: {
+            fractions: [
+                { name: "Counting to 100", time: "1 week", desc: "Foundation: strong number sense" },
+                { name: "Single-digit addition/subtraction", time: "2 weeks", desc: "Automatic recall of facts" },
+                { name: "Equal parts concept", time: "1 week", desc: "Understanding halves, thirds, fourths" },
+                { name: "Fractions as parts of a whole", time: "2 weeks", desc: "Numerator and denominator basics" },
+                { name: "Comparing fractions", time: "1 week", desc: "Same denominator comparisons" },
+                { name: "Adding fractions with same denominator", time: "1 week", desc: "Basic fraction operations" },
+                { name: "Equivalent fractions", time: "2 weeks", desc: "Understanding 1/2 = 2/4 = 3/6" },
+                { name: "Understanding fractions", time: "2 weeks", desc: "Full conceptual mastery" }
+            ],
+            multiplication: [
+                { name: "Counting by 2s, 5s, 10s", time: "1 week", desc: "Skip counting foundation" },
+                { name: "Repeated addition", time: "1 week", desc: "3 + 3 + 3 = 9" },
+                { name: "Equal groups concept", time: "1 week", desc: "Groups of items" },
+                { name: "2× and 5× tables", time: "2 weeks", desc: "Easy multiplication facts" },
+                { name: "10× and 11× tables", time: "1 week", desc: "Pattern-based facts" },
+                { name: "3× and 4× tables", time: "2 weeks", desc: "Building recall" },
+                { name: "6× and 7× tables", time: "2 weeks", desc: "Challenger facts" },
+                { name: "8× and 9× tables", time: "2 weeks", desc: "Final facts" },
+                { name: "Mixed multiplication practice", time: "2 weeks", desc: "Automatic recall" },
+                { name: "Multiplication tables", time: "1 week", desc: "Mastery confirmed" }
+            ]
+        },
+        literacy: {
+            reading: [
+                { name: "Letter recognition", time: "2 weeks", desc: "A-Z uppercase and lowercase" },
+                { name: "Letter sounds", time: "2 weeks", desc: "Phonemic awareness" },
+                { name: "Blending sounds", time: "2 weeks", desc: "CVC words (cat, dog, sit)" },
+                { name: "Sight words", time: "2 weeks", desc: "Common words by sight" },
+                { name: "Simple sentences", time: "1 week", desc: "Reading fluency" },
+                { name: "Short passages", time: "2 weeks", desc: "Comprehension begins" },
+                { name: "Reading comprehension", time: "2 weeks", desc: "Answering questions about text" }
+            ]
+        }
+    };
+    
+    function generatePath(){
+        var age = parseInt(document.getElementById('childAge').value);
+        var subject = document.getElementById('subject').value;
+        var goal = document.getElementById('goal').value.toLowerCase();
+        
+        var pathKey = 'fractions';
+        if(goal.includes('multiplication') || goal.includes('times table')) pathKey = 'multiplication';
+        else if(goal.includes('fraction')) pathKey = 'fractions';
+        else if(goal.includes('reading') || goal.includes('comprehension')) pathKey = 'reading';
+        else if(goal.includes('division')) pathKey = 'fractions';
+        
+        var paths = samplePaths[subject] || samplePaths['math'];
+        var steps = paths[pathKey] || paths['fractions'];
+        
+        var html = '';
+        steps.forEach(function(step, i){
+            html += '<div class="path-step">';
+            html += '<div class="path-step-number">' + (i + 1) + '</div>';
+            html += '<div class="path-step-content">';
+            html += '<h3>' + step.name + '</h3>';
+            html += '<p>' + step.desc + '</p>';
+            html += '<div class="time">⏱️ Estimated: ' + step.time + '</div>';
+            html += '</div></div>';
+        });
+        
+        document.getElementById('pathSteps').innerHTML = html;
+        document.getElementById('pathResult').style.display = 'block';
+        document.getElementById('pathResult').scrollIntoView({behavior: 'smooth'});
+        
+        gtag('event', 'generate_lead', {content_type: 'path_planner', subject: subject, goal: pathKey});
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obioma A/B Test Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #faf9f7;
+            color: #1f1c19;
+            padding: 40px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { color: #7c756d; margin-bottom: 32px; }
+        
+        .test-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid #e8e5df;
+        }
+        .test-card h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .test-card .description {
+            color: #7c756d;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .variant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .variant-card {
+            background: #f5f3ef;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .variant-card.leading {
+            border-color: #10b981;
+            background: #ecfdf5;
+        }
+        .variant-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e8e5df;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #7c756d; font-size: 13px; }
+        .metric-value { font-weight: 700; font-size: 15px; }
+        .metric-value.rate { color: #6366f1; font-size: 20px; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .status-running { background: #dbeafe; color: #1e40af; }
+        .status-winner { background: #d1fae5; color: #065f46; }
+        .status-insufficient { background: #fef3c7; color: #92400e; }
+        
+        .refresh-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 24px;
+        }
+        .refresh-btn:hover { background: #4f46e5; }
+        
+        .last-updated {
+            color: #a8a198;
+            font-size: 13px;
+            margin-top: 32px;
+        }
+        
+        .instructions {
+            background: #eef2ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .instructions h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e3a8a;
+        }
+        .instructions code {
+            background: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        .instructions p {
+            color: #1e40af;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 A/B Test Dashboard</h1>
+        <p class="subtitle">Real-time results from your Obioma landing page experiments</p>
+        
+        <div class="instructions">
+            <h3>How to View Results</h3>
+            <p>1. Visit your landing page in an incognito window</p>
+            <p>2. Open browser console (F12 → Console)</p>
+            <p>3. Type: <code>Obioma_AB.exportResults()</code></p>
+            <p>4. Copy the JSON output and paste it below</p>
+        </div>
+        
+        <button class="refresh-btn" onclick="loadResults()">🔄 Load Results from Browser</button>
+        
+        <div id="results-container">
+            <div class="test-card">
+                <h2>No Data Yet</h2>
+                <p class="description">Visit your landing page, interact with it, then click "Load Results" above.</p>
+            </div>
+        </div>
+        
+        <p class="last-updated">Last updated: <span id="last-updated">Never</span></p>
+    </div>
+    
+    <script>
+        // Try to load results from parent window (if embedded) or localStorage
+        function loadResults() {
+            // Check if we have results from the main page
+            let results = null;
+            
+            try {
+                // Try to get from localStorage (if same origin)
+                const stored = localStorage.getItem('obio_ab_events');
+                if (stored) {
+                    const events = JSON.parse(stored);
+                    results = analyzeEvents(events);
+                }
+            } catch (e) {
+                console.log('Could not access localStorage');
+            }
+            
+            // If no results, show prompt
+            if (!results || Object.keys(results).length === 0) {
+                document.getElementById('results-container').innerHTML = `
+                    <div class="test-card">
+                        <h2>No Data Found</h2>
+                        <p class="description">No A/B test data in localStorage. Make sure you:</p>
+                        <ol style="margin-left: 20px; color: #7c756d; line-height: 1.8;">
+                            <li>Visited <a href="https://obiomacare.com" target="_blank">obiomacare.com</a></li>
+                            <li>Clicked some buttons (CTAs, pricing, etc.)</li>
+                            <li>Are checking from the same browser</li>
+                        </ol>
+                        <p style="margin-top: 16px; color: #7c756d;">
+                            Alternatively, paste exported JSON from console:<br>
+                            <textarea id="manual-json" style="width: 100%; height: 100px; margin-top: 8px; padding: 8px; border: 1px solid #e8e5df; border-radius: 8px; font-family: monospace; font-size: 12px;" placeholder='Paste Obioma_AB.exportResults() output here...'></textarea>
+                            <button onclick="parseManualJson()" style="margin-top: 8px; background: #6366f1; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Parse JSON</button>
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+            
+            renderResults(results);
+            document.getElementById('last-updated').textContent = new Date().toLocaleString();
+        }
+        
+        function parseManualJson() {
+            const json = document.getElementById('manual-json').value;
+            try {
+                const data = JSON.parse(json);
+                if (data.results) {
+                    renderResults(data.results);
+                } else if (data.rawEvents) {
+                    renderResults(analyzeEvents(data.rawEvents));
+                }
+                document.getElementById('last-updated').textContent = new Date().toLocaleString();
+            } catch (e) {
+                alert('Invalid JSON. Make sure you copied the full output from Obioma_AB.exportResults()');
+            }
+        }
+        
+        function analyzeEvents(events) {
+            const tests = {
+                'hero-headline': {
+                    name: 'Hero Headline',
+                    description: 'Which headline drives more signups?',
+                    variants: {
+                        'control': { name: 'Clinical Judgment, Mastered', exposures: 0, conversions: 0 },
+                        'v2': { name: 'Pass the Next Gen NCLEX. Think Like a Nurse.', exposures: 0, conversions: 0 }
+                    }
+                },
+                'hero-subheadline': {
+                    name: 'Hero Subheadline',
+                    description: 'Which subheadline resonates better?',
+                    variants: {
+                        'control': { name: 'AI-powered case studies aligned with NCSBN framework', exposures: 0, conversions: 0 },
+                        'v2': { name: 'The only NCLEX prep that trains clinical judgment', exposures: 0, conversions: 0 }
+                    }
+                },
+                'cta-button': {
+                    name: 'CTA Button Text',
+                    description: 'Which CTA button converts better?',
+                    variants: {
+                        'control': { name: 'Start Free Trial — No Card Required', exposures: 0, conversions: 0 },
+                        'v2': { name: 'Get the Free Framework Guide', exposures: 0, conversions: 0 }
+                    }
+                },
+                'video-section': {
+                    name: 'Video Placement',
+                    description: 'Does video in hero improve engagement?',
+                    variants: {
+                        'control': { name: 'Video in separate section', exposures: 0, conversions: 0 },
+                        'v2': { name: 'Video embedded in hero', exposures: 0, conversions: 0 }
+                    }
+                },
+                'social-proof': {
+                    name: 'Social Proof Placement',
+                    description: 'Testimonials before vs after pricing',
+                    variants: {
+                        'control': { name: 'Testimonials after pricing', exposures: 0, conversions: 0 },
+                        'v2': { name: 'Testimonials before pricing', exposures: 0, conversions: 0 }
+                    }
+                },
+                'pricing-highlight': {
+                    name: 'Pricing Highlight',
+                    description: 'Which pricing plan to highlight?',
+                    variants: {
+                        'control': { name: 'Monthly plan highlighted', exposures: 0, conversions: 0 },
+                        'v2': { name: 'Annual plan highlighted (save 31%)', exposures: 0, conversions: 0 }
+                    }
+                }
+            };
+            
+            // Build session-to-variant mapping
+            const sessionVariants = {};
+            events.forEach(e => {
+                if (e.event === 'exposure' && e.tests) {
+                    sessionVariants[e.session_id] = {};
+                    e.tests.forEach(t => {
+                        sessionVariants[e.session_id][t.test_id] = t.variant_id;
+                    });
+                }
+            });
+            
+            // Count exposures
+            events.forEach(e => {
+                if (e.event === 'exposure' && e.tests) {
+                    e.tests.forEach(t => {
+                        if (tests[t.test_id]?.variants[t.variant_id]) {
+                            tests[t.test_id].variants[t.variant_id].exposures++;
+                        }
+                    });
+                }
+            });
+            
+            // Count conversions (per session, per test)
+            const counted = new Set();
+            events.forEach(e => {
+                if (['signup_click', 'trial_start'].includes(e.event)) {
+                    const sessionId = e.session_id;
+                    const variants = sessionVariants[sessionId];
+                    if (variants) {
+                        Object.entries(variants).forEach(([testId, variantId]) => {
+                            const key = `${sessionId}-${testId}-${variantId}`;
+                            if (!counted.has(key) && tests[testId]?.variants[variantId]) {
+                                tests[testId].variants[variantId].conversions++;
+                                counted.add(key);
+                            }
+                        });
+                    }
+                }
+            });
+            
+            return tests;
+        }
+        
+        function renderResults(results) {
+            const container = document.getElementById('results-container');
+            let html = '';
+            
+            for (const [testId, test] of Object.entries(results)) {
+                const variants = Object.entries(test.variants);
+                const totalExposures = variants.reduce((sum, [, v]) => sum + v.exposures, 0);
+                const totalConversions = variants.reduce((sum, [, v]) => sum + v.conversions, 0);
+                
+                // Find leading variant
+                let leadingVariant = null;
+                let bestRate = -1;
+                variants.forEach(([vid, v]) => {
+                    const rate = v.exposures > 0 ? v.conversions / v.exposures : 0;
+                    if (rate > bestRate) {
+                        bestRate = rate;
+                        leadingVariant = vid;
+                    }
+                });
+                
+                // Determine status
+                let status = 'insufficient';
+                let statusText = 'Insufficient Data';
+                if (totalExposures >= 200 && totalConversions >= 10) {
+                    status = 'running';
+                    statusText = 'Running — Keep Testing';
+                }
+                if (totalExposures >= 500 && totalConversions >= 25) {
+                    status = 'winner';
+                    statusText = 'Ready to Declare Winner';
+                }
+                
+                html += `
+                    <div class="test-card">
+                        <h2>${test.name}</h2>
+                        <p class="description">${test.description}</p>
+                        <div class="variant-grid">
+                            ${variants.map(([vid, v]) => {
+                                const rate = v.exposures > 0 ? ((v.conversions / v.exposures) * 100).toFixed(2) : '0.00';
+                                const isLeading = vid === leadingVariant;
+                                return `
+                                    <div class="variant-card ${isLeading ? 'leading' : ''}">
+                                        <h3>${v.name} ${isLeading ? '🏆' : ''}</h3>
+                                        <div class="metric">
+                                            <span class="metric-label">Exposures</span>
+                                            <span class="metric-value">${v.exposures}</span>
+                                        </div>
+                                        <div class="metric">
+                                            <span class="metric-label">Conversions</span>
+                                            <span class="metric-value">${v.conversions}</span>
+                                        </div>
+                                        <div class="metric">
+                                            <span class="metric-label">Conversion Rate</span>
+                                            <span class="metric-value rate">${rate}%</span>
+                                        </div>
+                                        ${v.exposures > 0 ? `
+                                        <div class="metric">
+                                            <span class="metric-label">Share</span>
+                                            <span class="metric-value">${((v.exposures / totalExposures) * 100).toFixed(1)}%</span>
+                                        </div>
+                                        ` : ''}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        <span class="status-badge status-${status}">${statusText}</span>
+                        <p style="margin-top: 12px; color: #a8a198; font-size: 13px;">
+                            Total: ${totalExposures} exposures, ${totalConversions} conversions
+                        </p>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+        
+        // Auto-load on page open
+        loadResults();
+    </script>
+</body>
+</html>
