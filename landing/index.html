@@ -848,8 +848,22 @@
             transform: translateY(0);
         }
         
-        /* Mobile */
+        /* Pricing */
+        .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 900px; margin: 48px auto 0; }
+        .pricing-card { background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px 32px; position: relative; transition: transform 0.3s, border-color 0.3s; }
+        .pricing-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
+        .pricing-popular { border-color: var(--coral); background: linear-gradient(135deg, var(--navy-800) 0%, rgba(255,107,91,0.08) 100%); }
+        .pricing-popular:hover { border-color: var(--coral-light); }
+        .pricing-badge { position: absolute; top: -12px; right: 24px; background: var(--coral); color: white; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .pricing-name { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .pricing-price { font-size: 48px; font-weight: 800; color: var(--coral); margin-bottom: 8px; }
+        .pricing-price::before { content: ''; }
+        .pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+        .pricing-features { list-style: none; padding: 0; margin: 0 0 32px; }
+        .pricing-features li { padding: 8px 0; font-size: 14px; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 10px; }
+        .pricing-features li::before { content: '✓'; color: var(--coral); font-weight: 700; flex-shrink: 0; }
         @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 36px; }
             .hero-tagline { font-size: 22px; }
             .hero-stats { flex-direction: column; gap: 32px; }
@@ -1189,15 +1203,72 @@
     </div>
 </section>
 
-<!-- Pricing CTA -->
-<section class="cta-section" id="pricing">
+<!-- Pricing -->
+<section class="section" id="pricing">
     <div class="container">
-        <h2>Ready to Think Like a Nurse?</h2>
-        <p>Start your free trial today. No credit card required. Cancel anytime.</p>
-        <a href="https://app.obiomacare.com/signup" class="btn btn-primary btn-large">Start Free Trial</a>
-        <p style="margin-top: 16px; font-size: 14px; color: var(--text-muted);">Join 2,000+ nursing students preparing for NCLEX Next Gen</p>
+        <h2 class="section-title animate-on-scroll">Choose Your Path</h2>
+        <p class="section-subtitle animate-on-scroll">One-time investment. Lifetime access. No subscriptions.</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card animate-on-scroll">
+                <div class="pricing-name">Core System</div>
+                <div class="pricing-price">$47</div>
+                <div class="pricing-desc">Everything you need to master clinical judgment</div>
+                <ul class="pricing-features">
+                    <li>NGN Clinical Judgment Framework PDF</li>
+                    <li>Prioritization Decision Trees</li>
+                    <li>Clinical Cheat Sheets</li>
+                    <li>Clinical Day Planner</li>
+                    <li>Lifetime updates</li>
+                </ul>
+                <button class="btn btn-secondary btn-large" onclick="buyNow('core')" style="width: 100%;">Get Core — $47</button>
+            </div>
+            
+            <div class="pricing-card pricing-popular animate-on-scroll">
+                <div class="pricing-badge">Best Value</div>
+                <div class="pricing-name">Complete Mastery</div>
+                <div class="pricing-price">$67</div>
+                <div class="pricing-desc">Full system + video walkthroughs + case studies</div>
+                <ul class="pricing-features">
+                    <li>Everything in Core</li>
+                    <li>Real Case Walkthroughs PDF</li>
+                    <li>SBAR Templates</li>
+                    <li>First-Year Survival Guide</li>
+                    <li>5 Video Walkthroughs (MP4)</li>
+                    <li>Video Scripts & Study Guides</li>
+                    <li>Lifetime updates</li>
+                </ul>
+                <button class="btn btn-primary btn-large" onclick="buyNow('complete')" style="width: 100%;">Get Complete — $67</button>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-muted);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
+        </p>
     </div>
 </section>
+
+<script>
+async function buyNow(tier) {
+    gtag && gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
+    fbq && fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
+    
+    try {
+        const res = await fetch('/api/create-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tier })
+        });
+        const data = await res.json();
+        if (data.url) window.location.href = data.url;
+        else alert('Checkout failed. Please try again.');
+    } catch (e) {
+        console.error(e);
+        alert('Checkout failed. Please try again.');
+    }
+}
+</script>
 
 <!-- Blog Preview -->
 <section class="section section-alt">
