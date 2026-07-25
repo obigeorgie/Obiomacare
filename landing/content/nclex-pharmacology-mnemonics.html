@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NCLEX pharmacology mnemonics: memorize drug classes, side effects, and nursing considerations with proven memory aids. Free printable.">
+    <meta name="keywords" content="NCLEX pharmacology mnemonics, nursing drug mnemonics, pharmacology memory aids, NCLEX meds, nursing pharmacology">
+    <title>NCLEX Pharmacology Mnemonics — 50+ Memory Aids | Obioma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obioma-red: #C53030;
+            --obioma-coral: #FF6B5B;
+            --navy: #1A365D;
+            --dark: #0A1628;
+            --text: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --success: #22C55E;
+            --warning: #F59E0B;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); line-height: 1.7; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--obioma-red);
+        }
+        h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 12px; }
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 24px; }
+        .author { color: var(--text-secondary); font-size: 0.875rem; }
+        .author a { color: var(--obioma-coral); text-decoration: none; }
+        
+        .content { padding: 40px 0; }
+        
+        .mnemonic-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .mnemonic-card h2 {
+            font-size: 1.35rem;
+            color: var(--obioma-coral);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .mnemonic-card h2 .emoji { font-size: 1.5rem; }
+        .mnemonic {
+            background: rgba(197,48,48,0.1);
+            border-left: 4px solid var(--obioma-red);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .mnemonic-breakdown {
+            margin: 16px 0;
+        }
+        .mnemonic-breakdown li {
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 24px;
+            position: relative;
+        }
+        .mnemonic-breakdown li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--obioma-coral);
+        }
+        .clinical-note {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid var(--warning);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            font-size: 0.9375rem;
+        }
+        .clinical-note strong { color: var(--warning); }
+        
+        .cta-section {
+            background: rgba(197,48,48,0.1);
+            border: 1px solid var(--obioma-red);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .cta-section h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .cta-section p { color: var(--text-secondary); margin-bottom: 20px; }
+        .cta-btn {
+            display: inline-block;
+            background: var(--obioma-red);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .related-articles {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .related-articles h3 { font-size: 1.25rem; margin-bottom: 20px; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .related-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+        .related-card:hover { background: rgba(255,255,255,0.08); }
+        .related-card h4 { color: var(--obioma-coral); margin-bottom: 8px; font-size: 1rem; }
+        .related-card p { font-size: 0.875rem; color: var(--text-secondary); }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 640px) {
+            h1 { font-size: 1.75rem; }
+            .mnemonic-card { padding: 20px; }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-922HP9B76M');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>NCLEX Pharmacology Mnemonics</h1>
+            <p class="subtitle">50+ proven memory aids to master drug classes, side effects, and nursing considerations for the NCLEX</p>
+            <p class="author">By <a href="/">Nnamdi Okorafor, RN</a> · Updated July 2026</p>
+        </div>
+    </header>
+    
+    <main class="content">
+        <div class="container">
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">💊</span> Antihypertensives: ABCD</h2>
+                <div class="mnemonic">A — ACE inhibitors (pril)
+B — Beta blockers (lol)
+C — Calcium channel blockers (pine)
+D — Diuretics</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>A</strong>CE: "pril" family — lisinopril, enalapril, captopril. Watch for dry cough and hyperkalemia.</li>
+                    <li><strong>B</strong>eta blockers: "lol" family — metoprolol, atenolol, propranolol. Watch for bradycardia, hypotension, mask hypoglycemia.</li>
+                    <li><strong>C</strong>CB: "pine" family — amlodipine, nifedipine. Watch for peripheral edema, hypotension, reflex tachycardia.</li>
+                    <li><strong>D</strong>iuretics: Loop (furosemide) → K⁺ wasting. Thiazide (HCTZ) → K⁺ wasting. Spironolactone (K⁺ sparing).</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> ACE inhibitors end in "-pril", ARBs in "-sartan". Both can cause hyperkalemia — monitor K⁺ levels.
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">🩸</span> Blood Thinners: HEP-LOW-WAR</h2>
+                <div class="mnemonic">HEP — Heparin (IV, fast, reversible with protamine)
+LOW — Lovenox (enoxaparin, subQ)
+WAR — Warfarin (PO, slow, reversible with vitamin K)</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>HEP</strong>arin: IV only. Therapeutic PTT 1.5-2.5x normal. Antidote: protamine sulfate.</li>
+                    <li><strong>LOW</strong>enox: SubQ. No antidote. Monitor for bleeding, avoid IM injections.</li>
+                    <li><strong>WAR</strong>farin: PO. Therapeutic INR 2-3. Antidote: vitamin K (takes hours) or FFP (immediate).</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Bridge therapy: Start heparin + warfarin together. Stop heparin when INR is therapeutic (2-3) for 2 consecutive days.
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">🧠</span> Anti-Seizure: PHEN-BARB-DILANTIN</h2>
+                <div class="mnemonic">PHEN — Phenytoin (Dilantin): therapeutic 10-20 mcg/mL
+BARB — Phenobarbital: sedating, long-acting
+DILANTIN — Watch for gingival hyperplasia</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>Phenytoin</strong>: Highly protein-bound. Give with food. Side effects: gingival hyperplasia, hirsutism, nystagmus (toxicity).</li>
+                    <li><strong>Phenobarbital</strong>: Induces liver enzymes → interacts with many drugs. Causes sedation, dependency.</li>
+                    <li><strong>Therapeutic levels</strong>: Phenytoin 10-20 mcg/mL. > 20 = nystagmus, ataxia. > 30 = lethargy. > 40 = coma.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Never mix phenytoin with D5W — causes precipitation. Use normal saline only. Administer slowly (max 50 mg/min).
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">💉</span> Insulin: RAPID-SHORT-INTERMEDIATE-LONG</h2>
+                <div class="mnemonic">RAPID — Lispro, Aspart, Glulisine (15 min onset)
+SHORT — Regular (30 min onset)
+INTERMEDIATE — NPH (1-2 hr onset)
+LONG — Glargine, Detemir (1-2 hr onset, 24 hr duration)</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>Rapid</strong>: Lispro (Humalog), Aspart (NovoLog), Glulisine (Apidra). Onset 15 min. Given at mealtime.</li>
+                    <li><strong>Short</strong>: Regular. Onset 30 min. Only insulin given IV.</li>
+                    <li><strong>Intermediate</strong>: NPH. Cloudy. Onset 1-2 hr. Peak 4-8 hr.</li>
+                    <li><strong>Long</strong>: Glargine (Lantus), Detemir (Levemir). Clear. NO PEAK. Given at bedtime. Do NOT mix with other insulins.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Clear to cloudy = NPH. Roll gently (don't shake). Only Regular can be given IV. Hypoglycemia treatment: Rule of 15 — 15g fast carbs, recheck in 15 min.
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">🫀</span> Cardiac Emergency Drugs: LMNOP</h2>
+                <div class="mnemonic">L — Lidocaine (ventricular arrhythmias)
+M — Morphine (chest pain, MI)
+N — Nitroglycerin (chest pain, vasodilator)
+O — Oxygen (always first in MI)
+P — Aspirin (Plavix, antiplatelet)</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>Lidocaine</strong>: Class IB antiarrhythmic. For V-tach, V-fib. Monitor for CNS toxicity (tinnitus, seizures).</li>
+                    <li><strong>Morphine</strong>: Reduces preload/afterload, relieves pain, decreases O₂ demand. Monitor RR, BP.</li>
+                    <li><strong>Nitroglycerin</strong>: Vasodilator. SL q5min x 3 for chest pain. SBP must be > 90. Contraindicated with Viagra (hypotension).</li>
+                    <li><strong>Oxygen</strong>: 2-4L NC. Titrate to SpO₂ > 90%. First intervention in suspected MI.</li>
+                    <li><strong>Aspirin</strong>: 325 mg chewable (if no allergy). Antiplatelet, antipyretic, anti-inflammatory.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> MONA is the classic MI mnemonic (Morphine, Oxygen, Nitro, Aspirin). But don't forget: 12-lead EKG within 10 minutes is the REAL priority.
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">🦴</span> Corticosteroids: Can't Stop Growing (Side Effects)</h2>
+                <div class="mnemonic">C — Cushings syndrome
+A — Adrenal suppression (don't stop abruptly)
+T — Thin skin, easy bruising
+S — Sugar elevation (hyperglycemia)
+G — Growth suppression in children
+R — Risk of infection (immunosuppressed)
+O — Osteoporosis
+W — Weight gain (moon face, buffalo hump)</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>Never stop abruptly</strong> — causes adrenal crisis. Taper gradually.</li>
+                    <li><strong>Always give in AM</strong> — mimics natural cortisol peak (8 AM).</li>
+                    <li><strong>Monitor</strong>: Blood glucose, BP, weight, signs of infection, bone density.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Steroids mask infection signs (no fever). Prednisone 5-20 mg = physiologic dose. > 20 mg = pharmacologic (side effects more likely).
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">🧪</span> Antibiotics: CELL WALL Synthesis Inhibitors</h2>
+                <div class="mnemonic">CELL — Cephalosporins, Erythromycin (macrolides), Lincosamides, Lincosamides
+WALL — Weakens cell wall → bacterial lysis
+PENICILLIN — Prototype beta-lactam</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>Penicillins</strong>: "-cillin" — amoxicillin, ampicillin. Cross-allergy with cephalosporins (10%).</li>
+                    <li><strong>Cephalosporins</strong>: Generations 1-5. "-cef" or "-ceph" — cefazolin, ceftriaxone, cefepime.</li>
+                    <li><strong>Vancomycin</strong>: MRSA coverage. RED MAN syndrome (histamine release) — give slowly, premedicate with antihistamine.</li>
+                    <li><strong>Monitor</strong>: Vancomycin trough (before 4th dose). Goal: 10-20 mcg/mL.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Penicillin + probenecid = increased penicillin levels. Always ask about penicillin allergy before giving cephalosporins (10% cross-reactivity).
+                </div>
+            </div>
+            
+            <div class="mnemonic-card">
+                <h2><span class="emoji">😰</span> Anxiolytics: BENZOS (CIWA Protocol)</h2>
+                <div class="mnemonic">B — Benzos (lorazepam, diazepam) for alcohol withdrawal
+E — Evaluate with CIWA scale (score > 8 = treat)
+N — Never mix with alcohol or opioids (respiratory depression)
+Z — Zero sudden stops (seizure risk — taper)
+O — Overdose antidote: Flumazenil
+S — Short-term use only (dependency risk)</div>
+                <ul class="mnemonic-breakdown">
+                    <li><strong>CIWA-Ar</strong>: > 8 = mild withdrawal, treat with benzos. > 15 = severe, aggressive treatment.</li>
+                    <li><strong>Lorazepam</strong>: Preferred in liver disease (doesn't require hepatic metabolism).</li>
+                    <li><strong>Flumazenil</strong>: Benzo antidote. Can precipitate seizures in chronic users — use cautiously.</li>
+                </ul>
+                <div class="clinical-note">
+                    <strong>Clinical Pearl:</strong> Alcohol withdrawal timeline: Last drink → tremors (6-12 hr) → seizures (12-48 hr) → DTs (48-72 hr). DTs are LIFE-THREATENING.
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h3>Want More Mnemonics + Clinical Scenarios?</h3>
+                <p>The Complete System includes 50+ pharmacology mnemonics, drug calculation walkthroughs, and case studies that apply them in clinical context.</p>
+                <a href="/#pricing" class="cta-btn">Get the Complete System →</a>
+            </div>
+            
+            <div class="related-articles">
+                <h3>Keep Studying</h3>
+                <div class="related-grid">
+                    <a href="/quiz/lab-values.html" class="related-card">
+                        <h4>🧪 Lab Values Quiz</h4>
+                        <p>15 questions with instant scoring and clinical pearls</p>
+                    </a>
+                    <a href="/content/nclex-lab-values-cheat-sheet.html" class="related-card">
+                        <h4>📊 Lab Values Cheat Sheet</h4>
+                        <p>Every value you must memorize, with normal ranges and critical levels</p>
+                    </a>
+                    <a href="/content/sata-questions-strategy.html" class="related-card">
+                        <h4>✅ SATA Strategy Guide</h4>
+                        <p>The True/False method that changes everything</p>
+                    </a>
+                    <a href="/free-nclex-checklist.html" class="related-card">
+                        <h4>📋 Free Study Checklist</h4>
+                        <p>14-day and 30-day study plans with priority frameworks</p>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 Obioma Care — Clinical Judgment, Mastered</p>
+            <p><a href="/">Home</a> · <a href="/quiz/">Quizzes</a> · <a href="/content/">Blog</a></p>
+        </div>
+    </footer>
+</body>
+</html>
