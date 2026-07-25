@@ -1433,10 +1433,10 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     errorEl.style.display = 'none';
     
     try {
-        const response = await fetch('/v1/leads/capture', {
+        const response = await fetch('/api/lead-magnet', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, source: 'landing_page' })
+            body: JSON.stringify({ email, firstName: '' })
         });
         
         if (response.ok) {
