@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free interactive NCLEX lab values quiz. Test your knowledge of sodium, potassium, glucose, ABGs, and more. Instant scoring with explanations.">
+    <meta name="keywords" content="NCLEX lab values quiz, NCLEX practice, lab values test, nursing quiz, NCLEX prep">
+    <title>NCLEX Lab Values Quiz — Free Interactive Practice | Obioma</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --obioma-red: #C53030;
+            --obioma-coral: #FF6B5B;
+            --navy: #1A365D;
+            --dark: #0A1628;
+            --text: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --success: #22C55E;
+            --error: #EF4444;
+            --warning: #F59E0B;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .quiz-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--obioma-red);
+        }
+        
+        .quiz-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: white;
+        }
+        
+        .quiz-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .logo { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-bottom: 24px;
+            text-decoration: none;
+        }
+        .logo-icon { 
+            width: 40px; height: 40px; 
+            background: var(--obioma-red); 
+            border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 1.25rem;
+        }
+        .logo-text { font-size: 1.5rem; font-weight: 800; color: white; }
+        
+        /* Quiz Container */
+        .quiz-container { padding: 40px 0 60px; }
+        
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            height: 8px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: var(--obioma-red);
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.3s ease;
+        }
+        
+        .question-counter {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        
+        /* Question Card */
+        .question-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+        }
+        
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        
+        .question-context {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--obioma-coral);
+        }
+        
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            text-align: left;
+            color: var(--text);
+            font-family: inherit;
+        }
+        
+        .option:hover {
+            border-color: var(--obioma-coral);
+            background: rgba(255,107,91,0.05);
+        }
+        
+        .option.selected {
+            border-color: var(--obioma-red);
+            background: rgba(197,48,48,0.1);
+        }
+        
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(34,197,94,0.1);
+        }
+        
+        .option.incorrect {
+            border-color: var(--error);
+            background: rgba(239,68,68,0.1);
+        }
+        
+        .option:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        /* Explanation */
+        .explanation {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .explanation.show { display: block; }
+        
+        .explanation.correct-box {
+            background: rgba(34,197,94,0.1);
+            border: 1px solid var(--success);
+        }
+        
+        .explanation.incorrect-box {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid var(--error);
+        }
+        
+        .explanation h4 {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .explanation.correct-box h4 { color: var(--success); }
+        .explanation.incorrect-box h4 { color: var(--error); }
+        
+        .explanation p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        .explanation .clinical-pearl {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: var(--text);
+        }
+        
+        .explanation .clinical-pearl strong {
+            color: var(--obioma-coral);
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: var(--obioma-red);
+            color: white;
+        }
+        .btn-primary:hover { background: #A02828; }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+        
+        /* Results */
+        .results-card {
+            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .score-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 6px solid var(--obioma-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .score-message {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .score-subtext {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+        
+        .results-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        
+        .breakdown-item {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .breakdown-item .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--obioma-coral);
+        }
+        
+        .breakdown-item .label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        .cta-section {
+            margin-top: 40px;
+            padding: 32px;
+            background: rgba(197,48,48,0.1);
+            border-radius: 16px;
+            border: 1px solid var(--obioma-red);
+        }
+        
+        .cta-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: var(--obioma-red);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+        .cta-btn:hover { background: #A02828; transform: translateY(-2px); }
+        
+        /* Review Section */
+        .review-section {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .review-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .review-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid;
+        }
+        
+        .review-item.correct { border-left-color: var(--success); }
+        .review-item.incorrect { border-left-color: var(--error); }
+        
+        .review-item .q-text {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .review-item .your-answer {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .review-item .correct-answer {
+            font-size: 0.875rem;
+            color: var(--success);
+        }
+        
+        /* Hide sections */
+        .hidden { display: none !important; }
+        
+        /* Footer */
+        .quiz-footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .quiz-footer a { color: var(--obioma-coral); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            .quiz-header h1 { font-size: 1.75rem; }
+            .question-card { padding: 24px; }
+            .results-breakdown { grid-template-columns: 1fr; }
+            .score-circle { width: 120px; height: 120px; font-size: 2.25rem; }
+        }
+    </style>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-922HP9B76M');
+        
+        // Track quiz events
+        function trackQuiz(event, data) {
+            gtag('event', event, data);
+        }
+    </script>
+</head>
+<body>
+    <header class="quiz-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">🩺</div>
+                <span class="logo-text">Obioma</span>
+            </a>
+            <h1>NCLEX Lab Values Quiz</h1>
+            <p>Test your knowledge of the most critical lab values tested on the NCLEX. 15 questions. Instant scoring. Clinical context included.</p>
+        </div>
+    </header>
+    
+    <main class="quiz-container">
+        <div class="container">
+            <!-- Progress -->
+            <div id="progressSection">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="question-counter" id="questionCounter">Question 1 of 15</div>
+            </div>
+            
+            <!-- Question -->
+            <div id="questionSection">
+                <div class="question-card">
+                    <div class="question-context" id="questionContext"></div>
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="explanation" id="explanation"></div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary hidden" id="prevBtn" onclick="prevQuestion()">← Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+                </div>
+            </div>
+            
+            <!-- Results -->
+            <div id="resultsSection" class="hidden">
+                <div class="question-card results-card">
+                    <div class="score-circle" id="scoreCircle">0%</div>
+                    <div class="score-message" id="scoreMessage"></div>
+                    <div class="score-subtext" id="scoreSubtext"></div>
+                    
+                    <div class="results-breakdown">
+                        <div class="breakdown-item">
+                            <div class="number" id="correctCount">0</div>
+                            <div class="label">Correct</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="number" id="incorrectCount">0</div>
+                            <div class="label">Incorrect</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="number" id="timeTaken">--</div>
+                            <div class="label">Time</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <h3>Need More Practice?</h3>
+                        <p>Get the complete NCLEX Study Checklist with all lab values, priority frameworks, and SATA strategies.</p>
+                        <a href="/free-nclex-checklist.html" class="cta-btn" onclick="trackQuiz('begin_checkout', {item_name: 'Free NCLEX Checklist', source: 'quiz_results'})">Get Free Study Checklist →</a>
+                    </div>
+                    
+                    <div style="margin-top: 24px;">
+                        <button class="btn btn-secondary" onclick="restartQuiz()">Retake Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="review-section" id="reviewSection">
+                    <h3>Review Your Answers</h3>
+                    <div id="reviewContainer"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="quiz-footer">
+        <div class="container">
+            <p>© 2026 Obioma Care — Clinical Judgment, Mastered</p>
+            <p><a href="/">Home</a> · <a href="/free-nclex-checklist.html">Free Checklist</a> · <a href="/content/nclex-lab-values-cheat-sheet.html">Lab Values Guide</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        const questions = [
+            {
+                context: "A 68-year-old patient is admitted with confusion and muscle weakness.",
+                question: "What is the NORMAL range for serum sodium?",
+                options: ["120-130 mEq/L", "132-140 mEq/L", "136-145 mEq/L", "146-155 mEq/L"],
+                correct: 2,
+                explanation: "Normal serum sodium is 136-145 mEq/L. Values below 136 indicate hyponatremia, which can cause confusion and seizures. Values above 145 indicate hypernatremia.",
+                pearl: "Hyponatremia (Na⁺ < 136) causes cerebral edema → confusion, seizures, headache. Always check sodium in altered mental status."
+            },
+            {
+                context: "Your patient on diuretics reports muscle cramps and weakness.",
+                question: "What potassium level requires IMMEDIATE intervention?",
+                options: ["3.2 mEq/L", "3.8 mEq/L", "4.2 mEq/L", "5.1 mEq/L"],
+                correct: 0,
+                explanation: "Potassium < 3.5 mEq/L is hypokalemia. < 3.0 is severe and can cause life-threatening arrhythmias. This patient on diuretics is at high risk.",
+                pearl: "Diuretics cause potassium wasting. Always monitor K⁺ in patients on loop or thiazide diuretics. Critical: K⁺ < 2.5 or > 6.5 = emergency."
+            },
+            {
+                context: "A diabetic patient's glucose reading is 420 mg/dL.",
+                question: "What is the normal FASTING blood glucose range?",
+                options: ["60-90 mg/dL", "70-100 mg/dL", "80-120 mg/dL", "90-140 mg/dL"],
+                correct: 1,
+                explanation: "Normal fasting glucose is 70-100 mg/dL. 100-125 is prediabetic. > 126 on two occasions = diabetes. > 400 = risk of DKA/HHS.",
+                pearl: "In DKA: glucose usually > 250, ketones present, pH < 7.30. In HHS: glucose > 600, NO ketones, pH > 7.30, profound dehydration."
+            },
+            {
+                context: "Post-op patient has BUN 42 mg/dL and creatinine 2.8 mg/dL.",
+                question: "What is the normal range for serum creatinine?",
+                options: ["0.3-0.8 mg/dL", "0.6-1.2 mg/dL", "1.0-1.8 mg/dL", "1.5-2.5 mg/dL"],
+                correct: 1,
+                explanation: "Normal creatinine: 0.6-1.2 mg/dL (men slightly higher). This patient's elevated BUN and creatinine indicate acute kidney injury, likely from hypotension during surgery.",
+                pearl: "BUN:Creatinine ratio > 20:1 suggests prerenal cause (dehydration, CHF). Ratio < 10-15:1 suggests intrinsic renal damage."
+            },
+            {
+                context: "Your patient has Hgb 8.2 g/dL and complains of fatigue and dyspnea on exertion.",
+                question: "What hemoglobin level indicates moderate anemia in an adult female?",
+                options: ["< 10 g/dL", "< 11 g/dL", "< 12 g/dL", "< 13 g/dL"],
+                correct: 2,
+                explanation: "For adult females, Hgb < 12 g/dL = anemia. < 8 = severe, may need transfusion. Adult males: < 13.5 g/dL = anemia.",
+                pearl: "Always check for active bleeding in post-op patients with dropping Hgb. Transfusion threshold is typically Hgb < 7-8 g/dL in stable patients."
+            },
+            {
+                context: "COPD patient has ABG: pH 7.32, PaCO₂ 55, HCO₃ 28.",
+                question: "What does this ABG indicate?",
+                options: ["Respiratory acidosis, compensated", "Respiratory acidosis, uncompensated", "Metabolic alkalosis", "Respiratory alkalosis"],
+                correct: 0,
+                explanation: "pH 7.32 (acidic), PaCO₂ 55 (elevated = respiratory acidosis), HCO₃ 28 (elevated = metabolic compensation). The body is compensating for the respiratory acidosis.",
+                pearl: "COPD patients are chronic CO₂ retainers. Their 'normal' may be pH 7.35, PaCO₂ 50. Don't over-oxygenate — maintain SpO₂ 88-92%."
+            },
+            {
+                context: "Patient with DKA has ABG: pH 7.25, PaCO₂ 28, HCO₃ 14.",
+                question: "What is the primary acid-base disorder?",
+                options: ["Respiratory acidosis", "Metabolic acidosis", "Respiratory alkalosis", "Metabolic alkalosis"],
+                correct: 1,
+                explanation: "pH 7.25 (acidic), HCO₃ 14 (low = metabolic acidosis), PaCO₂ 28 (low = respiratory compensation via Kussmaul breathing). Primary disorder: metabolic acidosis.",
+                pearl: "DKA mnemonic: KUSSMAUL breathing (deep, rapid) is the body's attempt to blow off acid. Treat with fluids + insulin. Monitor K⁺ closely."
+            },
+            {
+                context: "Post-op patient has platelet count of 42,000/mm³.",
+                question: "At what platelet count does spontaneous bleeding risk become significant?",
+                options: ["< 100,000", "< 75,000", "< 50,000", "< 20,000"],
+                correct: 2,
+                explanation: "Platelets < 50,000 = bleeding risk with procedures/trauma. < 20,000 = spontaneous bleeding risk (petechiae, GI bleed, intracranial).",
+                pearl: "Hold anticoagulants if platelets < 50K. Never IM injections if < 20K. Platelet transfusion usually for < 10K or active bleeding."
+            },
+            {
+                context: "Patient on Lasix has Mg²⁺ 1.4 mEq/L.",
+                question: "What is the normal range for magnesium?",
+                options: ["1.0-1.5 mEq/L", "1.5-2.5 mEq/L", "2.0-3.0 mEq/L", "2.5-3.5 mEq/L"],
+                correct: 1,
+                explanation: "Normal Mg²⁺: 1.5-2.5 mEq/L. This patient is hypomagnesemic, likely from Lasix (loop diuretics waste Mg²⁺ along with K⁺).",
+                pearl: "Hypomagnesemia causes: refractory hypokalemia, cardiac arrhythmias (Torsades), tremors, tetany. Always check Mg²⁺ when K⁺ won't correct."
+            },
+            {
+                context: "Patient has WBC 2,800/mm³ and temperature 38.5°C.",
+                question: "What WBC count indicates leukopenia?",
+                options: ["< 10,000", "< 8,000", "< 5,000", "< 4,500"],
+                correct: 3,
+                explanation: "Normal WBC: 4,500-11,000/mm³. < 4,500 = leukopenia. This patient with fever and low WBC may be immunocompromised or have a severe infection.",
+                pearl: "Neutropenic precautions if ANC < 1,500. Severe neutropenia if ANC < 500 = high risk of sepsis. Fever + neutropenia = medical emergency."
+            },
+            {
+                context: "Patient with CHF has BNP 850 pg/mL.",
+                question: "What BNP level strongly suggests heart failure?",
+                options: ["> 100 pg/mL", "> 300 pg/mL", "> 400 pg/mL", "> 500 pg/mL"],
+                correct: 2,
+                explanation: "BNP > 400 pg/mL strongly suggests heart failure. 100-400 is gray zone (could be pulmonary issues, renal failure, or mild HF). < 100 rules out HF.",
+                pearl: "BNP is released by ventricles in response to stretch. Higher = worse heart failure. Also elevated in renal failure (reduced clearance)."
+            },
+            {
+                context: "Patient on warfarin has INR 4.2.",
+                question: "What is the therapeutic INR range for warfarin therapy (most conditions)?",
+                options: ["1.5-2.0", "2.0-3.0", "2.5-3.5", "3.0-4.0"],
+                correct: 1,
+                explanation: "Therapeutic INR for most conditions (AFib, DVT, PE): 2.0-3.0. Mechanical heart valves: 2.5-3.5. INR 4.2 = supratherapeutic, bleeding risk.",
+                pearl: "INR > 4.5: Hold warfarin, consider vitamin K. INR > 9: Vitamin K + potential FFP. Always assess for bleeding (blood in stool, urine, bruising)."
+            },
+            {
+                context: "Patient has calcium 6.8 mg/dL and complains of tingling in fingers.",
+                question: "What is the normal range for total serum calcium?",
+                options: ["7.5-9.0 mg/dL", "8.0-10.0 mg/dL", "8.5-10.5 mg/dL", "9.0-11.0 mg/dL"],
+                correct: 2,
+                explanation: "Normal total calcium: 8.5-10.5 mg/dL. Ionized calcium (active form): 4.5-5.3 mg/dL. This patient is hypocalcemic, causing neuromuscular irritability.",
+                pearl: "Hypocalcemia signs: Chvostek's sign (facial twitching when tapping facial nerve), Trousseau's sign (carpal spasm with BP cuff), tetany, seizures."
+            },
+            {
+                context: "Patient has PaO₂ 58 mmHg on room air.",
+                question: "What PaO₂ level indicates severe hypoxemia?",
+                options: ["< 80 mmHg", "< 70 mmHg", "< 60 mmHg", "< 50 mmHg"],
+                correct: 2,
+                explanation: "PaO₂ < 60 mmHg = severe hypoxemia. Normal: 80-100 mmHg. 60-80 = mild hypoxemia. This patient needs oxygen supplementation immediately.",
+                pearl: "On room air (21% O₂), PaO₂ should be ~100 minus age/3. Example: 30-year-old = ~90 mmHg expected. Use PaO₂/FiO₂ ratio to assess severity."
+            },
+            {
+                context: "Patient has ammonia level of 92 μg/dL and altered mental status.",
+                question: "What condition is most likely?",
+                options: ["Diabetic ketoacidosis", "Hepatic encephalopathy", "Uremic encephalopathy", "Hyperglycemic hyperosmolar state"],
+                correct: 1,
+                explanation: "Ammonia is normally < 40 μg/dL. Elevated ammonia + altered mental status suggests hepatic encephalopathy from liver failure. The liver cannot convert ammonia to urea.",
+                pearl: "Hepatic encephalopathy treatment: lactulose (traps ammonia in gut, promotes excretion) + rifaximin (reduces ammonia-producing bacteria)."
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let answers = [];
+        let selectedOption = null;
+        let startTime = Date.now();
+        
+        function initQuiz() {
+            currentQuestion = 0;
+            answers = [];
+            selectedOption = null;
+            startTime = Date.now();
+            
+            document.getElementById('progressSection').classList.remove('hidden');
+            document.getElementById('questionSection').classList.remove('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            
+            // Update progress
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('questionCounter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            // Set question content
+            document.getElementById('questionContext').textContent = q.context;
+            document.getElementById('questionText').textContent = q.question;
+            
+            // Build options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = opt;
+                btn.onclick = () => selectOption(idx);
+                
+                // Show previous answer if revisiting
+                if (answers[currentQuestion] !== undefined) {
+                    btn.disabled = true;
+                    if (idx === q.correct) {
+                        btn.classList.add('correct');
+                    } else if (idx === answers[currentQuestion] && idx !== q.correct) {
+                        btn.classList.add('incorrect');
+                    }
+                }
+                
+                optionsContainer.appendChild(btn);
+            });
+            
+            // Show explanation if already answered
+            const explanation = document.getElementById('explanation');
+            if (answers[currentQuestion] !== undefined) {
+                showExplanation();
+            } else {
+                explanation.classList.remove('show', 'correct-box', 'incorrect-box');
+                explanation.innerHTML = '';
+            }
+            
+            // Update nav buttons
+            document.getElementById('prevBtn').classList.toggle('hidden', currentQuestion === 0);
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (answers[currentQuestion] !== undefined) {
+                nextBtn.disabled = false;
+                nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See Results →' : 'Next →';
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.textContent = 'Select an answer';
+            }
+            
+            selectedOption = answers[currentQuestion] !== undefined ? answers[currentQuestion] : null;
+        }
+        
+        function selectOption(idx) {
+            if (answers[currentQuestion] !== undefined) return; // Already answered
+            
+            selectedOption = idx;
+            answers[currentQuestion] = idx;
+            
+            // Update visual state
+            const options = document.querySelectorAll('.option');
+            options.forEach((btn, i) => {
+                btn.disabled = true;
+                btn.classList.remove('selected');
+                if (i === questions[currentQuestion].correct) {
+                    btn.classList.add('correct');
+                } else if (i === idx && i !== questions[currentQuestion].correct) {
+                    btn.classList.add('incorrect');
+                }
+            });
+            
+            showExplanation();
+            
+            // Enable next button
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = false;
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See Results →' : 'Next →';
+            
+            // Track
+            const isCorrect = idx === questions[currentQuestion].correct;
+            trackQuiz(isCorrect ? 'quiz_correct' : 'quiz_incorrect', {
+                question_number: currentQuestion + 1,
+                question_category: 'lab_values'
+            });
+        }
+        
+        function showExplanation() {
+            const q = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const isCorrect = answers[currentQuestion] === q.correct;
+            
+            explanation.className = 'explanation show ' + (isCorrect ? 'correct-box' : 'incorrect-box');
+            explanation.innerHTML = `
+                <h4>${isCorrect ? '✓ Correct!' : '✗ Incorrect'}</h4>
+                <p>${q.explanation}</p>
+                <div class="clinical-pearl">
+                    <strong>Clinical Pearl:</strong> ${q.pearl}
+                </div>
+            `;
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+        
+        function showResults() {
+            document.getElementById('progressSection').classList.add('hidden');
+            document.getElementById('questionSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+            
+            const correct = answers.filter((a, i) => a === questions[i].correct).length;
+            const percentage = Math.round((correct / questions.length) * 100);
+            const timeTaken = Math.round((Date.now() - startTime) / 1000 / 60);
+            
+            // Score circle
+            const scoreCircle = document.getElementById('scoreCircle');
+            scoreCircle.textContent = percentage + '%';
+            scoreCircle.style.borderColor = percentage >= 80 ? 'var(--success)' : percentage >= 60 ? 'var(--warning)' : 'var(--error)';
+            
+            // Message
+            const messages = {
+                excellent: { msg: "Excellent! You're NCLEX ready!", sub: "You know your lab values cold. Time to tackle priority questions." },
+                good: { msg: "Good work! Almost there.", sub: "Review the clinical pearls and retake to lock it in." },
+                needsWork: { msg: "Keep studying! You've got this.", sub: "Lab values are memorization + repetition. Use the cheat sheet daily." }
+            };
+            
+            const level = percentage >= 80 ? 'excellent' : percentage >= 60 ? 'good' : 'needsWork';
+            document.getElementById('scoreMessage').textContent = messages[level].msg;
+            document.getElementById('scoreSubtext').textContent = messages[level].sub;
+            
+            // Breakdown
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = questions.length - correct;
+            document.getElementById('timeTaken').textContent = timeTaken + ' min';
+            
+            // Review section
+            const reviewContainer = document.getElementById('reviewContainer');
+            reviewContainer.innerHTML = '';
+            
+            questions.forEach((q, i) => {
+                const isCorrect = answers[i] === q.correct;
+                const item = document.createElement('div');
+                item.className = 'review-item ' + (isCorrect ? 'correct' : 'incorrect');
+                item.innerHTML = `
+                    <div class="q-text">${i + 1}. ${q.question}</div>
+                    <div class="your-answer">Your answer: ${q.options[answers[i]]}</div>
+                    ${!isCorrect ? `<div class="correct-answer">Correct answer: ${q.options[q.correct]}</div>` : ''}
+                `;
+                reviewContainer.appendChild(item);
+            });
+            
+            // Track
+            trackQuiz('quiz_complete', {
+                score: percentage,
+                correct_answers: correct,
+                total_questions: questions.length,
+                time_minutes: timeTaken
+            });
+        }
+        
+        function restartQuiz() {
+            initQuiz();
+            trackQuiz('quiz_restart', {});
+        }
+        
+        // Start
+        initQuiz();
+    </script>
+</body>
+</html>
