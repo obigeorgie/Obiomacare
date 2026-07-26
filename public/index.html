@@ -1252,7 +1252,7 @@
         <div class="pricing-grid">
             <div class="pricing-card animate-on-scroll">
                 <div class="pricing-name">Core System</div>
-                <div class="pricing-price">$47</div>
+                <div class="pricing-price" id="price-core">$47</div>
                 <div class="pricing-desc">Everything you need to master clinical judgment</div>
                 <ul class="pricing-features">
                     <li>NGN Clinical Judgment Framework PDF</li>
@@ -1267,7 +1267,7 @@
             <div class="pricing-card pricing-popular animate-on-scroll">
                 <div class="pricing-badge">Best Value</div>
                 <div class="pricing-name">Complete Mastery</div>
-                <div class="pricing-price">$67</div>
+                <div class="pricing-price" id="price-complete">$67</div>
                 <div class="pricing-desc">Full system + video walkthroughs + case studies</div>
                 <ul class="pricing-features">
                     <li>Everything in Core</li>
@@ -1282,6 +1282,23 @@
             </div>
         </div>
         
+        <!-- Promo Code -->
+        <div style="max-width: 400px; margin: 32px auto 0; text-align: center;">
+            <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+                <input type="text" id="promo-input" placeholder="Enter promo code" 
+                    style="flex: 1; padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); 
+                           background: rgba(255,255,255,0.05); color: var(--text-primary); font-size: 14px; 
+                           outline: none; transition: border-color 0.3s;"
+                    onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                <button type="button" onclick="applyPromo()" 
+                    style="padding: 12px 20px; border-radius: 8px; border: none; background: var(--coral); 
+                           color: white; font-weight: 600; font-size: 14px; cursor: pointer; white-space: nowrap;">
+                    Apply
+                </button>
+            </div>
+            <p id="promo-message" style="margin-top: 8px; font-size: 13px; min-height: 18px;"></p>
+        </div>
+        
         <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-muted);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
@@ -1291,14 +1308,17 @@
 
 <script>
 async function buyNow(tier) {
-    gtag && gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
-    fbq && fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
+    const price = tier === 'core' ? 47 : 67;
+    const discountedPrice = currentPromo ? Math.round(price * (1 - currentPromo.discount)) : price;
+    
+    gtag && gtag('event', 'begin_checkout', { currency: 'USD', value: discountedPrice, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
+    fbq && fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: discountedPrice, currency: 'USD' });
     
     try {
         const res = await fetch('/api/create-checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ tier })
+            body: JSON.stringify({ tier, promoCode: currentPromo ? currentPromo.code : null })
         });
         const data = await res.json();
         if (data.url) window.location.href = data.url;
@@ -1306,6 +1326,59 @@ async function buyNow(tier) {
     } catch (e) {
         console.error(e);
         alert('Checkout failed. Please try again.');
+    }
+}
+
+let currentPromo = null;
+
+async function applyPromo() {
+    const input = document.getElementById('promo-input');
+    const message = document.getElementById('promo-message');
+    const code = input.value.trim();
+    
+    if (!code) {
+        message.textContent = 'Enter a promo code';
+        message.style.color = 'var(--coral)';
+        return;
+    }
+    
+    try {
+        const res = await fetch('/api/validate-promo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code })
+        });
+        const data = await res.json();
+        
+        if (data.valid) {
+            currentPromo = data;
+            message.textContent = '✓ ' + data.description;
+            message.style.color = '#22c55e';
+            updatePrices(data.discount);
+        } else {
+            currentPromo = null;
+            message.textContent = '✗ ' + (data.error || 'Invalid code');
+            message.style.color = 'var(--coral)';
+            updatePrices(0);
+        }
+    } catch (e) {
+        message.textContent = '✗ Error validating code';
+        message.style.color = 'var(--coral)';
+    }
+}
+
+function updatePrices(discount) {
+    const corePrice = 47;
+    const completePrice = 67;
+    
+    if (discount > 0) {
+        const coreDiscounted = Math.round(corePrice * (1 - discount));
+        const completeDiscounted = Math.round(completePrice * (1 - discount));
+        document.getElementById('price-core').innerHTML = '<span style="text-decoration: line-through; opacity: 0.5;">$' + corePrice + '</span> $' + coreDiscounted;
+        document.getElementById('price-complete').innerHTML = '<span style="text-decoration: line-through; opacity: 0.5;">$' + completePrice + '</span> $' + completeDiscounted;
+    } else {
+        document.getElementById('price-core').textContent = '$47';
+        document.getElementById('price-complete').textContent = '$67';
     }
 }
 </script>

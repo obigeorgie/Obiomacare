@@ -30,17 +30,62 @@ const PRODUCTS = {
   }
 };
 
-// ==================== CHECKOUT ====================
+// ==================== PROMO CODES ====================
+// Test promo codes for end-to-end testing
+const PROMO_CODES = {
+  'TEST99': { discount: 0.99, description: '99% off — E2E test code' },  // $47 → $0.47
+  'TEST50': { discount: 0.50, description: '50% off — Development test' }, // $47 → $23.50
+  'NNAMDI': { discount: 0.25, description: '25% off — Founder discount' }   // $47 → $35.25
+};
+
+app.post('/api/validate-promo', (req, res) => {
+  const { code } = req.body;
+  const upperCode = code?.toUpperCase().trim();
+  
+  if (!upperCode) {
+    return res.status(400).json({ valid: false, error: 'Code required' });
+  }
+  
+  const promo = PROMO_CODES[upperCode];
+  if (!promo) {
+    return res.json({ valid: false, error: 'Invalid code' });
+  }
+  
+  res.json({ 
+    valid: true, 
+    code: upperCode,
+    discount: promo.discount,
+    description: promo.description 
+  });
+});
+
+// ==================== CHECKOUT (with promo support) ====================
 app.post('/api/create-checkout', async (req, res) => {
   if (!stripe) return res.status(500).json({ error: 'Stripe not configured' });
   
-  const { tier, email } = req.body;
+  const { tier, email, promoCode } = req.body;
   const product = PRODUCTS[tier];
   
   if (!product) return res.status(400).json({ error: 'Invalid product tier' });
 
   try {
     const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
+    
+    // Check promo code
+    let discounts = [];
+    const promo = promoCode ? PROMO_CODES[promoCode.toUpperCase().trim()] : null;
+    
+    if (promo) {
+      // For test promo codes, we create a coupon dynamically
+      // In production you'd use pre-created Stripe coupons
+      const coupon = await stripe.coupons.create({
+        percent_off: Math.round(promo.discount * 100),
+        duration: 'once',
+        name: promo.description
+      });
+      discounts = [{ coupon: coupon.id }];
+    }
+    
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{
@@ -51,10 +96,11 @@ app.post('/api/create-checkout', async (req, res) => {
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/`,
       customer_email: email,
-      metadata: { tier, product: product.name }
+      metadata: { tier, product: product.name, promoCode: promoCode || 'none' },
+      ...(discounts.length > 0 && { discounts })
     });
 
-    res.json({ url: session.url });
+    res.json({ url: session.url, promoApplied: !!promo });
   } catch (err) {
     console.error('Checkout error:', err);
     res.status(500).json({ error: 'Checkout failed' });
