@@ -374,7 +374,23 @@
         /* Hide sections */
         .hidden { display: none !important; }
         
-        /* Footer */
+        /* Nav */
+        .quiz-nav {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .quiz-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .quiz-nav a:hover { color: var(--obioma-coral); }
+        .quiz-nav a.active { color: var(--obioma-coral); font-weight: 600; }
         .quiz-footer {
             text-align: center;
             padding: 40px 0;
@@ -417,6 +433,12 @@
             </a>
             <h1>NCLEX Lab Values Quiz</h1>
             <p>Test your knowledge of the most critical lab values tested on the NCLEX. 15 questions. Instant scoring. Clinical context included.</p>
+            <nav class="quiz-nav">
+                <a href="/">Home</a>
+                <a href="/quiz/" class="active">Quizzes</a>
+                <a href="/content/">Blog</a>
+                <a href="/free-nclex-checklist.html">Free Checklist</a>
+            </nav>
         </div>
     </header>
     

@@ -900,7 +900,7 @@
     <div class="container">
         <div class="header-inner">
             <a href="/" class="logo">
-                <img src="/assets/logo.svg" alt="Obioma">
+                <img src="/assets/logo.svg" alt="">
                 <span class="logo-text">Obioma<span>.</span></span>
             </a>
             <nav class="nav-links">
@@ -945,12 +945,41 @@
 <section class="video-section">
     <div class="container">
         <h2 class="section-title animate-on-scroll">See How It Works</h2>
-        <p class="section-subtitle animate-on-scroll">Watch how Obioma trains clinical judgment in 2 minutes</p>
-        <div class="video-container animate-on-scroll">
-            <video id="explainerVideo" controls poster="assets/obioma-explainer-thumb.jpg" style="width: 100%; border-radius: 16px;">
-                <source src="assets/obioma-explainer.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <p class="section-subtitle animate-on-scroll">Master clinical judgment in 5 steps — the same framework NCSBN uses to write NCLEX questions</p>
+        <div class="video-container animate-on-scroll" style="padding: 60px 40px; text-align: center;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; max-width: 700px; margin: 0 auto;">
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">1</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Recognize Cues</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Find red flags in the case study</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">2</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Analyze Cues</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">What does this MEAN?</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">3</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Prioritize</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Airway > Breathing > Circulation</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">4</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Generate Solutions</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Pick the SAFEST option</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">5</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Take Action</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Address the threat first</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 16px;">
+                    <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; margin: 0 auto 12px; font-size: 18px;">6</div>
+                    <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff;">Evaluate</h4>
+                    <p style="font-size: 12px; color: var(--text-muted);">Did it work?</p>
+                </div>
+            </div>
+            <a href="/content/nclex-clinical-judgment-5-steps.html" class="btn btn-primary" style="margin-top: 32px; display: inline-block;">Read the Full Guide →</a>
         </div>
     </div>
 </section>
@@ -1232,7 +1261,7 @@
                     <li>Clinical Day Planner</li>
                     <li>Lifetime updates</li>
                 </ul>
-                <button class="btn btn-secondary btn-large" onclick="buyNow('core')" style="width: 100%;">Get Core — $47</button>
+                <button type="button" class="btn btn-secondary btn-large" onclick="buyNow('core')" style="width: 100%;">Get Core — $47</button>
             </div>
             
             <div class="pricing-card pricing-popular animate-on-scroll">
@@ -1249,7 +1278,7 @@
                     <li>Video Scripts & Study Guides</li>
                     <li>Lifetime updates</li>
                 </ul>
-                <button class="btn btn-primary btn-large" onclick="buyNow('complete')" style="width: 100%;">Get Complete — $67</button>
+                <button type="button" class="btn btn-primary btn-large" onclick="buyNow('complete')" style="width: 100%;">Get Complete — $67</button>
             </div>
         </div>
         
@@ -1446,8 +1475,8 @@ async function buyNow(tier) {
             <div class="footer-col">
                 <h4>Company</h4>
                 <a href="mailto:nnamdiokorafor@gmail.com">Contact</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="/terms.html">Terms</a>
             </div>
         </div>
         <div class="footer-bottom">
