@@ -33,7 +33,7 @@ const PRODUCTS = {
 // ==================== PROMO CODES ====================
 // Test promo codes for end-to-end testing
 const PROMO_CODES = {
-  'TEST99': { discount: 0.99, description: '99% off — E2E test code' },  // $47 → $0.47
+  'TEST99': { discount: 0.98, description: '98% off — E2E test code' },  // $47 → $0.94
   'TEST50': { discount: 0.50, description: '50% off — Development test' }, // $47 → $23.50
   'NNAMDI': { discount: 0.25, description: '25% off — Founder discount' }   // $47 → $35.25
 };
