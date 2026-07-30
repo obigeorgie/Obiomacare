@@ -3,6 +3,20 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" }
   ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "api.obiomacare.com" }],
+      "destination": "https://obiomacare.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "app.obiomacare.com" }],
+      "destination": "https://obiomacare.com/:path*",
+      "permanent": true
+    }
+  ],
   "crons": [
     {
       "path": "/api/cron/nurture",
