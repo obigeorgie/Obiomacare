@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const Stripe = require('stripe');
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 const path = require('path');
 const crypto = require('crypto');
 
@@ -9,9 +9,44 @@ const app = express();
 
 // Initialize services
 const stripe = process.env.STRIPE_SECRET_KEY ? Stripe(process.env.STRIPE_SECRET_KEY) : null;
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-app.use(express.json());
+// Email transport: Hostinger SMTP (or fallback to Resend if configured)
+let emailTransporter = null;
+if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+  emailTransporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '465'),
+    secure: process.env.SMTP_PORT === '587' ? false : true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  });
+  console.log('✉️ Email: Using Hostinger SMTP');
+} else if (process.env.RESEND_API_KEY) {
+  // Fallback to Resend if no SMTP configured
+  const { Resend } = require('resend');
+  emailTransporter = { type: 'resend', client: new Resend(process.env.RESEND_API_KEY) };
+  console.log('✉️ Email: Using Resend API');
+} else {
+  console.log('⚠️ Email: No email service configured');
+}
+
+// Unified email sender (works with SMTP or Resend)
+async function sendEmail({ from, to, subject, html }) {
+  if (!emailTransporter) {
+    console.log('⚠️ No email transport configured, skipping send');
+    return;
+  }
+  if (emailTransporter.type === 'resend') {
+    return await emailTransporter.client.emails.send({ from, to, subject, html });
+  } else {
+    return await emailTransporter.sendMail({ from, to, subject, html });
+  }
+}
+
+// NOTE: express.json() is applied per-route BELOW the webhook.
+// The webhook MUST receive raw body for Stripe signature verification.
 
 // In-memory delivery tokens (use Redis in production)
 const deliveryTokens = new Map();
@@ -38,7 +73,7 @@ const PROMO_CODES = {
   'NNAMDI': { discount: 0.25, description: '25% off — Founder discount' }   // $47 → $35.25
 };
 
-app.post('/api/validate-promo', (req, res) => {
+app.post('/api/validate-promo', express.json(), (req, res) => {
   const { code } = req.body;
   const upperCode = code?.toUpperCase().trim();
   
@@ -60,7 +95,7 @@ app.post('/api/validate-promo', (req, res) => {
 });
 
 // ==================== CHECKOUT (with promo support) ====================
-app.post('/api/create-checkout', async (req, res) => {
+app.post('/api/create-checkout', express.json(), async (req, res) => {
   if (!stripe) return res.status(500).json({ error: 'Stripe not configured' });
   
   const { tier, email, promoCode } = req.body;
@@ -125,7 +160,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     const tier = session.metadata.tier;
     const email = session.customer_email || session.customer_details?.email;
     const product = PRODUCTS[tier];
-    const baseUrl = 'https://obioma-care.vercel.app';
+    const baseUrl = 'https://obiomacare.com';
     
     const downloadToken = crypto.randomUUID();
     deliveryTokens.set(downloadToken, {
@@ -135,37 +170,26 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
       downloads: 0
     });
     
-    if (resend && email) {
+    if (emailTransporter && email) {
       try {
-        await resend.emails.send({
-          from: process.env.FROM_EMAIL || 'Obioma Care <admin@obiomacare.com>',
+        await sendEmail({
+          from: FROM_EMAIL,
           to: email,
           subject: `Your ${product.name} is ready!`,
-          html: `
-            <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-              <div style="text-align: center; margin-bottom: 32px;">
-                <div style="font-size: 2rem; margin-bottom: 8px;">🩺</div>
-                <h1 style="color: #1a365d; margin: 0; font-size: 1.5rem;">Obioma Care</h1>
-              </div>
-              
-              <h2 style="color: #1a365d;">Your ${product.name} is ready!</h2>
-              <p>Thanks for your purchase. Click below to access your files:</p>
-              
-              <div style="text-align: center; margin: 32px 0;">
-                <a href="${baseUrl}/download/${downloadToken}" 
-                   style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 1.125rem;">
-                   Download Now →
-                </a>
-              </div>
-              
-              <p style="color: #718096; font-size: 0.875rem;">This link expires in 24 hours. Download your files and save them to your device.</p>
-              
-              <div style="border-top: 1px solid #e2e8f0; margin-top: 32px; padding-top: 24px;">
-                <p style="color: #718096; margin-bottom: 16px;">Questions? Reply to this email — I read every one.</p>
-                <p style="color: #718096; margin: 0;">— Nnamdi, RN<br>Founder, Obioma Care</p>
-              </div>
-            </div>
-          `
+          html: emailTemplate({
+            title: `Your ${product.name}`,
+            heroImage: 'https://obiomacare.com/assets/shareable/nclex-priority-cheat-sheet.png',
+            heroAlt: 'NCLEX Priority Cheat Sheet',
+            content: `
+              <p style="margin-top:0;font-size:20px;font-weight:600;color:${BRAND_COLORS.navy};">Your ${product.name} is ready!</p>
+              <p>Thanks for your purchase. I'm excited for you to start training your clinical judgment.</p>
+              <p>Click below to access your files:</p>
+              <p style="text-align:center;margin:28px 0;">
+                <a href="${baseUrl}/download/${downloadToken}" style="display:inline-block;background:${BRAND_COLORS.coral};color:#ffffff;padding:16px 36px;text-decoration:none;border-radius:8px;font-weight:700;font-size:15px;">Download Now →</a>
+              </p>
+              <p style="color:${BRAND_COLORS.lightGray};font-size:13px;margin-bottom:0;">This link expires in 24 hours. Download your files and save them to your device.</p>
+            `
+          })
         });
         console.log(`✅ Delivered ${tier} to ${email}`);
       } catch (err) {
@@ -206,33 +230,138 @@ function saveLeads() {
 }
 
 // Email sequence definition
+// Shared branded email template
+const FROM_EMAIL = 'Obioma Care <admin@obiomacare.com>';
+const BRAND_COLORS = {
+  navy: '#1a365d',
+  coral: '#c53030',
+  gray: '#4a5568',
+  lightGray: '#718096',
+  bg: '#f7fafc'
+};
+
+function emailTemplate({ title, content, ctaUrl, ctaText, heroImage, heroAlt }) {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+</head>
+<body style="margin:0;padding:0;background-color:${BRAND_COLORS.bg};font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td align="center" style="padding: 32px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.05);">
+        
+        <!-- Header / Logo -->
+        <tr>
+          <td style="background:${BRAND_COLORS.navy};padding:28px 40px;text-align:center;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+              <tr>
+                <td style="padding-right:10px;">
+                  <img src="https://obiomacare.com/apple-touch-icon.png" alt="" width="36" height="36" style="display:block;border-radius:6px;">
+                </td>
+                <td style="vertical-align:middle;">
+                  <span style="color:#ffffff;font-size:22px;font-weight:700;letter-spacing:-0.5px;">Obioma.</span>
+                </td>
+              </tr>
+            </table>
+            <p style="margin:6px 0 0 0;color:rgba(255,255,255,0.7);font-size:12px;letter-spacing:1px;text-transform:uppercase;">Clinical Judgment, Mastered</p>
+          </td>
+        </tr>
+        
+        <!-- Hero Image (optional) -->
+        ${heroImage ? `
+        <tr>
+          <td style="padding:0;">
+            <img src="${heroImage}" alt="${heroAlt || ''}" width="600" style="display:block;width:100%;max-width:600px;height:auto;">
+          </td>
+        </tr>` : ''}
+        
+        <!-- Body Content -->
+        <tr>
+          <td style="padding:40px;color:${BRAND_COLORS.gray};font-size:16px;line-height:1.7;">
+            ${content}
+          </td>
+        </tr>
+        
+        <!-- CTA (optional) -->
+        ${ctaUrl && ctaText ? `
+        <tr>
+          <td style="padding:0 40px 32px 40px;text-align:center;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+              <tr>
+                <td style="background:${BRAND_COLORS.coral};border-radius:8px;text-align:center;">
+                  <a href="${ctaUrl}" style="display:inline-block;padding:16px 36px;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;border-radius:8px;">${ctaText}</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>` : ''}
+        
+        <!-- Divider -->
+        <tr>
+          <td style="padding:0 40px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr><td style="border-top:1px solid #e2e8f0;"></td></tr>
+            </table>
+          </td>
+        </tr>
+        
+        <!-- Footer -->
+        <tr>
+          <td style="padding:28px 40px;text-align:center;">
+            <p style="margin:0 0 8px 0;color:${BRAND_COLORS.lightGray};font-size:13px;">Questions? Just reply to this email — I read every one.</p>
+            <p style="margin:0 0 16px 0;color:${BRAND_COLORS.lightGray};font-size:13px;">— Nnamdi Okorafor, RN · Founder, Obioma Care</p>
+            <p style="margin:0;color:#a0aec0;font-size:11px;">
+              <a href="https://obiomacare.com" style="color:#a0aec0;text-decoration:underline;">obiomacare.com</a> · 
+              <a href="https://obiomacare.com/privacy.html" style="color:#a0aec0;text-decoration:underline;">Privacy</a> · 
+              <a href="https://obiomacare.com/terms.html" style="color:#a0aec0;text-decoration:underline;">Terms</a>
+            </p>
+          </td>
+        </tr>
+        
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+  `.trim();
+}
+
 const NURTURE_SEQUENCE = [
   {
     day: 0,
     subject: 'Your NCLEX Study Checklist is here (+ why most students get it wrong)',
     sendImmediately: true,
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">Hey ${lead.firstName || 'there'}!</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Your NCLEX Checklist',
+      heroImage: 'https://obiomacare.com/assets/shareable/nclex-priority-cheat-sheet.png',
+      heroAlt: 'NCLEX Priority Cheat Sheet',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hey ${lead.firstName || 'there'}!</p>
         <p>Thanks for downloading the NCLEX Study Checklist. Before you dive in, let me tell you something important:</p>
         <p>Most students study for the NGN NCLEX by memorizing more content.</p>
         <p>That's like trying to put out a fire by adding more wood.</p>
-        <p>The new NCLEX tests clinical <strong>JUDGMENT</strong> — not recall. Can you recognize cues? Analyze data? Prioritize under pressure? Take action when everything is urgent?</p>
+        <p>The new NCLEX tests clinical <strong>judgment</strong> — not recall. Can you recognize cues? Analyze data? Prioritize under pressure? Take action when everything is urgent?</p>
         <p>That's what this checklist trains.</p>
-        <p>Access your checklist here: <a href="${baseUrl}/free-nclex-checklist.html" style="color: #c53030; font-weight: 700;">NCLEX Study Checklist →</a></p>
         <p>Work through the first section. Then reply and tell me — did it feel different from how you've been studying?</p>
-        <p>I read every reply.</p>
-        <p>— Nnamdi, RN<br>Obioma Care</p>
-        <p style="margin-top: 24px;"><a href="${baseUrl}/#pricing" style="color: #c53030;">P.S. If you want 30+ more scenarios + video walkthroughs, the Complete System is here →</a></p>
-      </div>
-    `
+        <p style="margin-bottom:0;">I read every reply.</p>
+      `,
+      ctaUrl: `${baseUrl}/free-nclex-checklist.html`,
+      ctaText: 'Access Your Checklist →'
+    })
   },
   {
     day: 2,
     subject: 'The #1 mistake I see on every clinical floor',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">The #1 mistake I see on every clinical floor</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'The #1 Mistake',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">The #1 mistake I see on every clinical floor</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>I made this mistake as a new grad. My preceptor caught it. Now I see students make it every single day.</p>
         <p>Here's the mistake: <strong>Treating every abnormal lab/vital as equally urgent.</strong></p>
@@ -241,17 +370,18 @@ const NURTURE_SEQUENCE = [
         <p>Same number. Completely different action.</p>
         <p>The difference is context. And context is what clinical judgment is built on.</p>
         <p>This is why I built the prioritization decision trees in the Complete System. They force you to ask the right questions before you act.</p>
-        <p><a href="${baseUrl}" style="color: #c53030;">See the full prioritization framework →</a></p>
-        <p>— Nnamdi</p>
-      </div>
-    `
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'See the Full Prioritization Framework →'
+    })
   },
   {
     day: 4,
     subject: '"Room 4 is crashing" — a real ER story',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">"Room 4 is crashing" — a real ER story</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'A Real ER Story',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">"Room 4 is crashing" — a real ER story</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>3 AM. I'm the only ER nurse with 6 patients.</p>
         <p>The charge nurse yells: "Room 4 is crashing!"</p>
@@ -264,72 +394,76 @@ const NURTURE_SEQUENCE = [
         <p>Room 4. Because "crashing" means airway/breathing/circulation are failing RIGHT NOW.</p>
         <p>But here's what textbooks don't teach you: After I stabilize Room 4, I DON'T go to Room 2 next. I delegate Room 8's O2 titration to the tech, reassess Room 5 from the doorway, THEN see Room 2.</p>
         <p>That's clinical judgment. That's what the NGN tests. That's what I teach.</p>
-        <p><a href="${baseUrl}" style="color: #c53030;">Want the full framework? Complete System →</a></p>
-        <p>— Nnamdi</p>
-      </div>
-    `
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'Get the Complete System →'
+    })
   },
   {
     day: 7,
     subject: 'I finally understand prioritization',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">"I finally understand prioritization"</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Understand Prioritization',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">"I finally understand prioritization"</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>I don't have testimonials yet (this is a new product). But I can tell you what I've seen mentoring new grads:</p>
-        <p>The ones who struggle in their first year aren't the ones who didn't memorize enough. They're the ones who can't THINK through a scenario when the answer isn't in a textbook.</p>
+        <p>The ones who struggle in their first year aren't the ones who didn't memorize enough. They're the ones who can't <strong>think</strong> through a scenario when the answer isn't in a textbook.</p>
         <p>The Complete System changes that. Here's what's inside:</p>
-        <ul>
-          <li>✓ NGN Decision Framework</li>
-          <li>✓ 30+ practice scenarios with thought process</li>
-          <li>✓ 5 video walkthroughs of real cases</li>
-          <li>✓ SBAR templates that get results</li>
-          <li>✓ First-year survival guide</li>
-          <li>✓ Clinical day planner</li>
+        <ul style="padding-left:20px;">
+          <li style="margin-bottom:8px;">✓ NGN Decision Framework</li>
+          <li style="margin-bottom:8px;">✓ 30+ practice scenarios with thought process</li>
+          <li style="margin-bottom:8px;">✓ 5 video walkthroughs of real cases</li>
+          <li style="margin-bottom:8px;">✓ SBAR templates that get results</li>
+          <li style="margin-bottom:8px;">✓ First-year survival guide</li>
+          <li style="margin-bottom:8px;">✓ Clinical day planner</li>
         </ul>
-        <p><a href="${baseUrl}" style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">Get the Complete System for $67 →</a></p>
         <p>30-day guarantee. If it doesn't help you think through scenarios more clearly, I'll refund every penny.</p>
-        <p>— Nnamdi</p>
-      </div>
-    `
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'Get the Complete System for $67 →'
+    })
   },
   {
     day: 10,
     subject: '"I already bought an NCLEX review course"',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">"I already bought an NCLEX review course"</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Already Have a Review Course?',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">"I already bought an NCLEX review course"</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>If you already bought UWorld, Kaplan, or Archer — good. Those are excellent for question practice.</p>
         <p>But here's what they don't do:</p>
-        <p>They don't teach you the THINKING process. They give you questions and explanations. That's like giving someone fish instead of teaching them to fish.</p>
+        <p>They don't teach you the <strong>thinking process</strong>. They give you questions and explanations. That's like giving someone fish instead of teaching them to fish.</p>
         <p>The Clinical Judgment Mastery System is the thinking layer. It shows you HOW an experienced nurse approaches a scenario — not just what the right answer is.</p>
         <p>Use BOTH. Practice questions on UWorld. Learn the thinking framework here.</p>
-        <p><a href="${baseUrl}" style="color: #c53030;">Get the Complete System →</a></p>
-        <p>— Nnamdi</p>
-      </div>
-    `
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'Get the Complete System →'
+    })
   },
   {
     day: 12,
     subject: 'Price goes up Friday',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">Price goes up Friday</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Price Increase Friday',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Price goes up Friday</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>Quick note: The launch price of $67 ends Friday. After that, the Complete System goes to $97.</p>
         <p>If you've been thinking about it, now's the time.</p>
-        <p><a href="${baseUrl}" style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">Get it at $67 →</a></p>
-        <p>— Nnamdi</p>
-      </div>
-    `
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'Get it at $67 →'
+    })
   },
   {
     day: 14,
     subject: 'Last call: Clinical Judgment Mastery System',
-    template: (lead, baseUrl) => `
-      <div style="font-family: Inter, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
-        <h2 style="color: #1a365d;">Last call: Clinical Judgment Mastery System</h2>
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Last Call',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Last call: Clinical Judgment Mastery System</p>
         <p>Hey ${lead.firstName || 'there'},</p>
         <p>This is the last email in this sequence.</p>
         <p>If the Complete System isn't for you right now, no worries. Keep the free framework — it's yours.</p>
@@ -338,12 +472,12 @@ const NURTURE_SEQUENCE = [
         • Prioritization on the floor<br>
         • Feeling like you memorized everything but can't think through cases</p>
         <p>This was built for you. From real experience. Not a textbook.</p>
-        <p><a href="${baseUrl}" style="color: #c53030;">Last chance at $67 →</a></p>
         <p>Either way, good luck on the NCLEX and your first year. You've got this.</p>
-        <p>— Nnamdi, RN<br>Obioma Care</p>
-        <p>P.S. If you ever want to chat nursing, just reply. I read every email.</p>
-      </div>
-    `
+        <p style="margin-bottom:0;">P.S. If you ever want to chat nursing, just reply. I read every email.</p>
+      `,
+      ctaUrl: baseUrl,
+      ctaText: 'Last chance at $67 →'
+    })
   }
 ];
 
@@ -361,8 +495,8 @@ function shouldSendEmail(lead, sequenceDay) {
 }
 
 async function sendNurtureEmails() {
-  if (!resend) {
-    console.log('❌ Resend not configured, skipping nurture');
+  if (!emailTransporter) {
+    console.log('❌ Email not configured, skipping nurture');
     return { sent: 0, errors: 0 };
   }
   
@@ -378,8 +512,8 @@ async function sendNurtureEmails() {
       if (!shouldSendEmail(lead, emailDef.day)) continue;
       
       try {
-        await resend.emails.send({
-          from: process.env.FROM_EMAIL || 'Obioma Care <admin@obiomacare.com>',
+        await sendEmail({
+          from: FROM_EMAIL,
           to: lead.email,
           subject: emailDef.subject,
           html: emailDef.template(lead, baseUrl)
@@ -412,7 +546,7 @@ async function sendNurtureEmails() {
 // Protected by CRON_SECRET for Vercel Cron Jobs
 const CRON_SECRET = process.env.CRON_SECRET;
 
-app.get('/api/cron/nurture', async (req, res) => {
+app.get('/api/cron/nurture', express.json(), async (req, res) => {
   // Auth check for Vercel Cron
   const authHeader = req.headers.authorization;
   if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
@@ -424,7 +558,7 @@ app.get('/api/cron/nurture', async (req, res) => {
   res.json({ success: true, ...result, leadsTotal: leads.length });
 });
 
-app.post('/api/cron/nurture', async (req, res) => {
+app.post('/api/cron/nurture', express.json(), async (req, res) => {
   // Auth check for Vercel Cron
   const authHeader = req.headers.authorization;
   if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
@@ -435,7 +569,7 @@ app.post('/api/cron/nurture', async (req, res) => {
   const result = await sendNurtureEmails();
   res.json({ success: true, ...result, leadsTotal: leads.length });
 });
-app.post('/api/lead-magnet', async (req, res) => {
+app.post('/api/lead-magnet', express.json(), async (req, res) => {
   const { email, firstName } = req.body;
   const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
   
@@ -460,12 +594,12 @@ app.post('/api/lead-magnet', async (req, res) => {
   leads.push(lead);
   saveLeads();
   
-  if (resend) {
+  if (emailTransporter) {
     try {
       // Send welcome email using nurture sequence day 0
       const welcomeEmail = NURTURE_SEQUENCE.find(e => e.day === 0);
-      await resend.emails.send({
-        from: process.env.FROM_EMAIL || 'Obioma Care <admin@obiomacare.com>',
+      await sendEmail({
+        from: FROM_EMAIL,
         to: email,
         subject: welcomeEmail ? welcomeEmail.subject : 'Your Free NGN Clinical Judgment Framework',
         html: welcomeEmail ? welcomeEmail.template(lead, baseUrl) : `
@@ -522,7 +656,7 @@ app.get('/api/health', (req, res) => {
     status: 'ok', 
     timestamp: new Date().toISOString(),
     stripe: !!stripe,
-    resend: !!resend,
+    email: !!emailTransporter,
     version: '1.0.0'
   });
 });

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCLEX Case Study Walkthrough: Clinical Judgment in Action | Obioma Care</title>
+    <meta name="description" content="Watch a real NCLEX-style case study solved using the Clinical Judgment Measurement Model (CJMM). Step-by-step walkthrough showing Recognize Cues → Evaluate Outcomes.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .site-header { background: #1a365d; padding: 16px 24px; margin: -20px -20px 20px -20px; }
+        .site-header a { color: #fff; text-decoration: none; display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; }
+        .site-header img { width: 32px; height: 32px; }
+        .site-header span { color: #fc8181; }
+        :root { --primary: #1a365d; --accent: #c53030; --bg: #fffaf0; --step1: #e6fffa; --step2: #ebf8ff; --step3: #faf5ff; --step4: #fffaf0; --step5: #f0fff4; --step6: #fff5f5; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: #2d3748; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 0.5rem; }
+        h2 { color: var(--primary); font-size: 1.5rem; margin-top: 2.5rem; }
+        h3 { color: var(--primary); font-size: 1.2rem; margin-top: 1.5rem; }
+        .subtitle { color: #718096; font-size: 1.1rem; margin-bottom: 2rem; }
+        .cta-box { background: var(--bg); border-left: 4px solid var(--accent); padding: 20px; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+        .cta-box a { color: var(--accent); font-weight: 600; }
+        .step { padding: 20px; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid; }
+        .step h3 { margin-top: 0; }
+        .step1 { background: var(--step1); border-color: #38b2ac; }
+        .step2 { background: var(--step2); border-color: #4299e1; }
+        .step3 { background: var(--step3); border-color: #9f7aea; }
+        .step4 { background: var(--step4); border-color: #d69e2e; }
+        .step5 { background: var(--step5); border-color: #48bb78; }
+        .step6 { background: var(--step6); border-color: #f56565; }
+        .scenario-box { background: #f7fafc; padding: 20px; border-radius: 8px; margin: 1.5rem 0; border: 2px solid var(--primary); }
+        .scenario-box h4 { margin-top: 0; color: var(--primary); }
+        .think { background: #fff; padding: 15px; border-radius: 6px; margin: 10px 0; border-left: 3px solid var(--accent); }
+        .think strong { color: var(--accent); }
+        .answer { background: #e6fffa; padding: 15px; border-radius: 6px; margin: 10px 0; }
+        .wrong { background: #fed7d7; padding: 10px; border-radius: 6px; margin: 5px 0; text-decoration: line-through; opacity: 0.7; }
+        .right { background: #c6f6d5; padding: 10px; border-radius: 6px; margin: 5px 0; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: var(--primary); color: white; }
+        .vital { font-family: monospace; background: #edf2f7; padding: 2px 6px; border-radius: 3px; }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-922HP9B76M');
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <a href="/">
+            <img src="/assets/logo.svg" alt="Obioma Care">
+            Obioma<span>.</span>
+        </a>
+    </header>
+    <h1>NCLEX Case Study Walkthrough</h1>
+    <p class="subtitle">See the Clinical Judgment Measurement Model solve a real NGN-style case — step by step.</p>
+
+    <p>This is how the NGN NCLEX actually tests you. Not memorization. <strong>Clinical judgment.</strong></p>
+
+    <p>Below is a complete case study solved using the 6-step CJMM framework. Read the case, follow the steps, and see how a nurse thinks through a complex scenario.</p>
+
+    <div class="scenario-box">
+        <h4>🏥 CASE: Post-Op Patient on Med-Surg Unit</h4>
+        <p><strong>Patient:</strong> Mrs. Johnson, 68-year-old female, post-op day 2 after total knee replacement</p>
+        
+        <p><strong>Report from night shift:</strong></p>
+        <ul>
+            <li>Vitals stable overnight</li>
+            <li>PCA morphine used 4 times</li>
+            <li>Dressing clean, dry, intact</li>
+            <li>Refusing to ambulate — "I'm too tired"</li>
+        </ul>
+
+        <p><strong>Current assessment (0800):</strong></p>
+        <table>
+            <tr><th>Vital</th><th>Value</th><th>Normal Range</th></tr>
+            <tr><td>Temperature</td><td class="vital">38.2°C (100.8°F)</td><td>36.5-37.5°C</td></tr>
+            <tr><td>Heart Rate</td><td class="vital">104 bpm</td><td>60-100</td></tr>
+            <tr><td>Blood Pressure</td><td class="vital">98/62 mmHg</td><td>90-140/60-90</td></tr>
+            <tr><td>Respiratory Rate</td><td class="vital">22/min</td><td>12-20</td></tr>
+            <tr><td>O2 Saturation</td><td class="vital">94% on room air</td><td>95-100%</td></tr>
+            <tr><td>Pain (0-10)</td><td class="vital">6/10</td><td>0-3 acceptable</td></tr>
+        </table>
+
+        <p><strong>Additional data:</strong></p>
+        <ul>
+            <li> incision: red, warm, small amount of serosanguineous drainage</li>
+            <li>Lung sounds: diminished bilaterally, no crackles</li>
+            <li>Patient anxious, wants to know "why I feel so awful"</li>
+            <li>Last ambulated: yesterday afternoon (16 hours ago)</li>
+            <li>Urinary output: 180 mL last 8 hours (catheter removed 6 hours ago)</li>
+            <li>WBC: 14,200 (elevated)</li>
+        </ul>
+
+        <p><strong>Question: Which action should the nurse take FIRST?</strong></p>
+    </div>
+
+    <h2>Step-by-Step CJMM Analysis</h2>
+
+    <div class="step step1">
+        <h3>Step 1: Recognize Cues</h3>
+        <p>What data is RELEVANT vs. what is DISTRACTING?</p>
+        
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "Let me sort through everything. What's abnormal? What's expected post-op?"
+        </div>
+
+        <table>
+            <tr><th>🔴 ABNORMAL Cues</th><th>🟢 Expected/Normal</th></tr>
+            <tr><td>Temp 38.2°C (low-grade fever)</td><td>Post-op day 2, some pain expected</td></tr>
+            <tr><td>HR 104 (tachycardia)</td><td>Red, warm incision early post-op</td></tr>
+            <tr><td>BP 98/62 (low-normal)</td><td>Some serosanguineous drainage normal</td></tr>
+            <tr><td>RR 22 (tachypnea)</td><td>Anxiety about surgery</td></tr>
+            <tr><td>O2 sat 94% (slightly low)</td><td></td></tr>
+            <tr><td>Pain 6/10 (uncontrolled)</td><td></td></tr>
+            <tr><td>WBC 14,200 (elevated)</td><td></td></tr>
+            <tr><td>Urine output 180 mL/8hr (LOW)</td><td></td></tr>
+            <tr><td>Not ambulated for 16 hours</td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="step step2">
+        <h3>Step 2: Analyze Cues</h3>
+        <p>What PATTERNS do the abnormal cues form?</p>
+
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "Fever + tachycardia + tachypnea + low urine output + elevated WBC... This looks like systemic response to something. Infection? Sepsis? Let's think about the timing."
+        </div>
+
+        <p><strong>Pattern Recognition:</strong></p>
+        <ul>
+            <li>Temp ↑ + HR ↑ + RR ↑ + WBC ↑ = <strong>Systemic inflammatory response</strong></li>
+            <li>Low urine output (180 mL/8hr = 22.5 mL/hr) = <strong>Possible early sepsis</strong> (kidneys compensating)</li>
+            <li>BP 98/62 = <strong>Hypotension</strong> (baselines normally higher in 68yo)</li>
+            <li>O2 sat 94% = <strong>Early hypoxia</strong></li>
+            <li>Incision red, warm = <strong>Local infection possible source</strong></li>
+            <li>Not ambulated = <strong>Stasis, atelectasis risk</strong></li>
+        </ul>
+
+        <p><strong>Putting it together:</strong> Patient shows signs of <strong>early sepsis</strong> from possible surgical site infection. The tachycardia, tachypnea, fever, and low urine output are compensatory mechanisms. This is not "just post-op discomfort."</p>
+    </div>
+
+    <div class="step step3">
+        <h3>Step 3: Prioritize Hypotheses</h3>
+        <p>What's the MOST LIKELY and MOST URGENT problem?</p>
+
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "What could this be? Rank by urgency and likelihood."
+        </div>
+
+        <table>
+            <tr><th>Hypothesis</th><th>Likelihood</th><th>Urgency</th></tr>
+            <tr><td>Sepsis from surgical site infection</td><td>High</td><td><strong>🔴 CRITICAL</strong></td></tr>
+            <tr><td>Atelectasis from immobility</td><td>Moderate</td><td>🟡 Important</td></tr>
+            <tr><td>Dehydration</td><td>Low</td><td>🟢 Monitor</td></tr>
+            <tr><td>Normal post-op recovery</td><td>Very Low</td><td>⚪ Not applicable</td></tr>
+        </table>
+
+        <p><strong>Priority:</strong> <span style="color: var(--accent); font-weight: 600;">SEPSIS</span> — This patient meets SIRS criteria (Temp >38, HR >90, RR >20, WBC >12,000). With a possible infectious source (surgical site), sepsis is the priority.</p>
+    </div>
+
+    <div class="step step4">
+        <h3>Step 4: Generate Solutions</h3>
+        <p>What actions should the nurse take?</p>
+
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "If this is sepsis, what does the evidence say to do FIRST?"
+        </div>
+
+        <p><strong>Sepsis Bundle (Evidence-Based):</strong></p>
+        <ol>
+            <li><strong>Obtain blood cultures</strong> (before antibiotics)</li>
+            <li><strong>Start IV antibiotics</strong> (within 1 hour of recognition)</li>
+            <li><strong>Fluid resuscitation</strong> (30 mL/kg crystalloid)</li>
+            <li><strong>Monitor lactate</strong></li>
+            <li><strong>Notify provider</strong> (sepsis alert)</li>
+            <li><strong>Continue monitoring</strong> (vitals q15min)</li>
+        </ol>
+    </div>
+
+    <div class="step step5">
+        <h3>Step 5: Take Action</h3>
+        <p>Which action is the nurse's FIRST priority?</p>
+
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "The NCLEX wants to know what I do FIRST. Not what I do eventually — what I do RIGHT NOW."
+        </div>
+
+        <p><strong>Answer options:</strong></p>
+        <div class="wrong">A. Encourage patient to ambulate to prevent atelectasis</div>
+        <div class="wrong">B. Administer PRN pain medication</div>
+        <div class="wrong">C. Change the surgical dressing</div>
+        <div class="right">D. Notify the provider and initiate sepsis protocol</div>
+
+        <div class="answer">
+            <strong>Why D is correct:</strong><br>
+            This patient has SIRS + possible infectious source = sepsis until proven otherwise. The sepsis bundle requires provider notification and immediate intervention. Ambulation, pain medication, and dressing changes can wait. Sepsis cannot.
+        </div>
+    </div>
+
+    <div class="step step6">
+        <h3>Step 6: Evaluate Outcomes</h3>
+        <p>How do we know our actions worked?</p>
+
+        <div class="think">
+            <strong>🧠 Nurse Thinking:</strong><br>
+            "What should I expect to see if my interventions are effective?"
+        </div>
+
+        <table>
+            <tr><th>Expected Outcome</th><th>Timeline</th></tr>
+            <tr><td>Temperature returns to normal range</td><td>24-48 hours after antibiotics</td></tr>
+            <tr><td>Heart rate <100 bpm</td><td>Within 2-4 hours of fluid resuscitation</td></tr>
+            <tr><td>Blood pressure stabilizes (>90 systolic)</td><td>Within 1-2 hours</td></tr>
+            <tr><td>Urine output >0.5 mL/kg/hr</td><td>Within 2-3 hours</td></tr>
+            <tr><td>WBC trends downward</td><td>48-72 hours</td></tr>
+            <tr><td>Patient reports decreased pain</td><td>Within 1-2 hours</td></tr>
+        </table>
+
+        <p><strong>If outcomes are NOT met:</strong> Escalate care. Consider ICU transfer, vasopressors, central line placement.</p>
+    </div>
+
+    <h2>Key Takeaways</h2>
+
+    <div class="scenario-box">
+        <h4>🎯 What This Case Tests</h4>
+        <ul>
+            <li><strong>Pattern recognition:</strong> Can you see SIRS criteria when presented together?</li>
+            <li><strong>Prioritization:</strong> Can you identify the life-threatening problem vs. the discomfort?</li>
+            <li><strong>Evidence-based practice:</strong> Do you know the sepsis bundle?</li>
+            <li><strong>Clinical judgment:</strong> Not "what do you know?" but "how do you THINK?"</li>
+        </ul>
+    </div>
+
+    <p>The NGN NCLEX doesn't ask "What are the SIRS criteria?" It gives you a patient and asks "What do you do?"</p>
+
+    <p>That's why the CJMM framework matters. It trains you to <strong>think like a nurse</strong>, not memorize like a student.</p>
+
+    <div class="cta-box">
+        <strong>🩺 Want 20+ more case studies like this?</strong><br>
+        The Clinical Judgment Mastery System Complete ($67) includes:<br>
+        ✓ 25 full case studies with CJMM walkthroughs<br>
+        ✓ Vital sign interpretation drills<br>
+        ✓ Sepsis, DKA, MI, stroke, and more scenarios<br>
+        ✓ Video explanations of each step<br>
+        ✓ Practice questions that mirror the NGN format<br><br>
+        <a href="/" style="font-size: 1.1rem;">Get the Complete System for $67 →</a>
+    </div>
+
+    <p style="margin-top: 3rem; color: #718096; font-size: 0.9rem;">
+        Written by Nnamdi Okorafor, RN — 15 years med-surg and critical care experience.<br>
+        <a href="/">Obioma Care</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a>
+    </p>
+</body>
+</html>
