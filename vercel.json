@@ -15,6 +15,71 @@
       "has": [{ "type": "host", "value": "app.obiomacare.com" }],
       "destination": "https://obiomacare.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/content/child-struggles-math.html",
+      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/mastery-based-learning.html",
+      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/mastery-vs-grade-levels.html",
+      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/prerequisite-skills.html",
+      "destination": "/content/nclex-priority-abcde-method.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/learning-path-apps.html",
+      "destination": "/content/nclex-2-week-study-plan-complete.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/personalized-learning-path-guide.html",
+      "destination": "/content/nclex-30-day-study-plan.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/homeschool-curriculum-planner-comparison.html",
+      "destination": "/content/nclex-delegation-assignment-guide.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/what-is-mastery-based-learning.html",
+      "destination": "/content/why-nursing-students-struggle-nclex-next-gen.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/ai-tutors-for-kids-2026.html",
+      "destination": "/content/nclex-anxiety-management.html",
+      "permanent": true
+    },
+    {
+      "source": "/tools/learning-path-planner.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tools/prerequisite-checklist.html",
+      "destination": "/free-nclex-checklist.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare/obioma-vs-khan-academy.html",
+      "destination": "/content/obioma-vs-uworld-vs-archer.html",
+      "permanent": true
+    },
+    {
+      "source": "/compare/obioma-vs-ixl.html",
+      "destination": "/content/obioma-vs-uworld-vs-archer.html",
+      "permanent": true
     }
   ],
   "crons": [
