@@ -5,6 +5,20 @@ const nodemailer = require('nodemailer');
 const path = require('path');
 const crypto = require('crypto');
 
+// ==================== FIREBASE / FIRESTORE ====================
+let db = null;
+try {
+  const { Firestore } = require('@google-cloud/firestore');
+  const serviceAccountPath = path.join(__dirname, '..', 'firebase-service-account.json');
+  db = new Firestore({
+    projectId: 'kindred-x5pbk',
+    keyFilename: serviceAccountPath
+  });
+  console.log('🔥 Firestore initialized');
+} catch (err) {
+  console.error('🔥 Firestore init error:', err.message);
+}
+
 const app = express();
 
 // Initialize services
@@ -201,31 +215,51 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
   res.json({received: true});
 });
 
-const fs = require('fs');
+// ==================== LEAD STORAGE (Firestore) ====================
+const leads = []; // In-memory fallback
 
-// In-memory lead store (use database in production)
-const leads = [];
-const LEADS_FILE = path.join(__dirname, '..', 'data', 'leads.json');
-
-// Load leads from file if exists
-try {
-  if (fs.existsSync(LEADS_FILE)) {
-    const data = JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8'));
-    leads.push(...data);
-    console.log(`📋 Loaded ${leads.length} leads`);
+// Firestore helpers
+async function getLeads() {
+  if (!db) return leads;
+  try {
+    const snapshot = await db.collection('leads').get();
+    const firestoreLeads = [];
+    snapshot.forEach(doc => firestoreLeads.push({ id: doc.id, ...doc.data() }));
+    return firestoreLeads;
+  } catch (err) {
+    console.error('Firestore getLeads error:', err.message);
+    return leads;
   }
-} catch (err) {
-  console.error('Failed to load leads:', err);
 }
 
-// Save leads to file
-function saveLeads() {
+async function saveLead(lead) {
+  if (!db) {
+    leads.push(lead);
+    return lead;
+  }
   try {
-    const dir = path.dirname(LEADS_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2));
+    const docRef = db.collection('leads').doc(lead.email);
+    await docRef.set(lead, { merge: true });
+    return { id: docRef.id, ...lead };
   } catch (err) {
-    console.error('Failed to save leads:', err);
+    console.error('Firestore saveLead error:', err.message);
+    leads.push(lead);
+    return lead;
+  }
+}
+
+async function updateLead(email, updates) {
+  if (!db) {
+    const idx = leads.findIndex(l => l.email === email);
+    if (idx >= 0) Object.assign(leads[idx], updates);
+    return;
+  }
+  try {
+    await db.collection('leads').doc(email).update(updates);
+  } catch (err) {
+    console.error('Firestore updateLead error:', err.message);
+    const idx = leads.findIndex(l => l.email === email);
+    if (idx >= 0) Object.assign(leads[idx], updates);
   }
 }
 
@@ -504,7 +538,9 @@ async function sendNurtureEmails() {
   let sent = 0;
   let errors = 0;
   
-  for (const lead of leads) {
+  const allLeads = await getLeads();
+  
+  for (const lead of allLeads) {
     // Skip leads who purchased
     if (lead.purchased) continue;
     
@@ -520,9 +556,11 @@ async function sendNurtureEmails() {
         });
         
         // Mark as sent
-        if (!lead.emailsSent) lead.emailsSent = [];
-        lead.emailsSent.push(`email_${emailDef.day}`);
-        lead.lastEmailSent = new Date().toISOString();
+        const updatedEmailsSent = [...(lead.emailsSent || []), `email_${emailDef.day}`];
+        await updateLead(lead.email, {
+          emailsSent: updatedEmailsSent,
+          lastEmailSent: new Date().toISOString()
+        });
         sent++;
         
         console.log(`✅ Sent day ${emailDef.day} email to ${lead.email}`);
@@ -538,8 +576,7 @@ async function sendNurtureEmails() {
     if (sent >= 10) break;
   }
   
-  if (sent > 0) saveLeads();
-  return { sent, errors };
+  return { sent, errors, leadsTotal: allLeads.length };
 }
 
 // ==================== NURTURE CRON ====================
@@ -555,7 +592,7 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
   
   console.log('🔄 Running nurture sequence...');
   const result = await sendNurtureEmails();
-  res.json({ success: true, ...result, leadsTotal: leads.length });
+  res.json({ success: true, ...result });
 });
 
 app.post('/api/cron/nurture', express.json(), async (req, res) => {
@@ -567,7 +604,7 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
   
   console.log('🔄 Running nurture sequence...');
   const result = await sendNurtureEmails();
-  res.json({ success: true, ...result, leadsTotal: leads.length });
+  res.json({ success: true, ...result });
 });
 app.post('/api/lead-magnet', express.json(), async (req, res) => {
   const { email, firstName } = req.body;
@@ -578,7 +615,8 @@ app.post('/api/lead-magnet', express.json(), async (req, res) => {
   }
   
   // Check if lead already exists
-  const existingLead = leads.find(l => l.email === email);
+  const allLeads = await getLeads();
+  const existingLead = allLeads.find(l => l.email === email);
   if (existingLead) {
     return res.json({ success: true, message: 'You\'re already subscribed! Check your email.' });
   }
@@ -591,8 +629,7 @@ app.post('/api/lead-magnet', express.json(), async (req, res) => {
     emailsSent: [],
     purchased: false
   };
-  leads.push(lead);
-  saveLeads();
+  await saveLead(lead);
   
   if (emailTransporter) {
     try {
@@ -611,8 +648,7 @@ app.post('/api/lead-magnet', express.json(), async (req, res) => {
       });
       
       // Mark welcome email as sent
-      lead.emailsSent.push('email_0');
-      saveLeads();
+      await updateLead(email, { emailsSent: ['email_0'] });
       
       console.log(`🎯 Lead captured: ${email}`);
     } catch (err) {
@@ -650,13 +686,70 @@ app.get('/success', (req, res) => {
   res.redirect('/success.html');
 });
 
-// ==================== HEALTH CHECK ====================
-app.get('/api/health', (req, res) => {
+// ==================== DEBUG ====================
+app.get('/api/debug/files', async (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  const rootDir = path.join(__dirname, '..');
+  
+  let files = [];
+  try {
+    files = fs.readdirSync(rootDir);
+  } catch (e) {}
+  
+  // Try to read and parse the service account
+  let saParseResult = null;
+  let saError = null;
+  try {
+    const saPath = path.join(rootDir, 'firebase-service-account.json');
+    const saContent = fs.readFileSync(saPath, 'utf8');
+    saParseResult = JSON.parse(saContent);
+  } catch (e) {
+    saError = e.message;
+  }
+  
+  // Check private key format
+  let pkFormat = null;
+  if (saParseResult?.private_key) {
+    pkFormat = {
+      startsWithBegin: saParseResult.private_key.startsWith('-----BEGIN PRIVATE KEY-----'),
+      endsWithEnd: saParseResult.private_key.endsWith('-----END PRIVATE KEY-----'),
+      hasNewlines: saParseResult.private_key.includes('\n'),
+      length: saParseResult.private_key.length
+    };
+  }
+  
+  res.json({
+    dirname: __dirname,
+    rootDir,
+    rootFiles: files,
+    hasFirebaseJson: files.includes('firebase-service-account.json'),
+    saParseSuccess: !!saParseResult,
+    saProjectId: saParseResult?.project_id,
+    saError,
+    pkFormat
+  });
+});
+app.get('/api/health', async (req, res) => {
+  let leadsCount = leads.length;
+  let firebaseError = null;
+  try {
+    if (db) {
+      const snapshot = await db.collection('leads').get();
+      leadsCount = snapshot.size;
+    }
+  } catch (e) { firebaseError = e.message; }
+  
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
     stripe: !!stripe,
     email: !!emailTransporter,
+    firebase: !!db,
+    firebaseError,
+    nodeEnv: process.env.NODE_ENV,
+    dirname: __dirname,
+    leadsCount,
     version: '1.0.0'
   });
 });
