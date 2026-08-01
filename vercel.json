@@ -1,7 +1,21 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" }
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/auth/(.*)", "destination": "/api/index.js" },
+    { "source": "/download/(.*)", "destination": "/api/index.js" },
+    { "source": "/success", "destination": "/api/index.js" },
+    { "source": "/learners(.*)", "destination": "/api/index.js" },
+    { "source": "/parent/(.*)", "destination": "/api/index.js" },
+    { "source": "/assessment/(.*)", "destination": "/api/index.js" },
+    { "source": "/diagnostics/(.*)", "destination": "/api/index.js" },
+    { "source": "/gaps/(.*)", "destination": "/api/index.js" },
+    { "source": "/paths/(.*)", "destination": "/api/index.js" },
+    { "source": "/tutor/(.*)", "destination": "/api/index.js" },
+    { "source": "/stats", "destination": "/api/index.js" },
+    { "source": "/admin/(.*)", "destination": "/api/index.js" },
+    { "source": "/plans/(.*)", "destination": "/api/index.js" },
+    { "source": "/export", "destination": "/api/index.js" }
   ],
   "redirects": [
     {
