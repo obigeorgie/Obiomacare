@@ -599,11 +599,8 @@ function emailTemplate({ title, content, ctaUrl, ctaText, heroImage, heroAlt }) 
           <td style="background:${BRAND_COLORS.navy};padding:28px 40px;text-align:center;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
               <tr>
-                <td style="padding-right:10px;">
-                  <img src="https://obiomacare.com/apple-touch-icon.png" alt="" width="36" height="36" style="display:block;border-radius:6px;">
-                </td>
-                <td style="vertical-align:middle;">
-                  <span style="color:#ffffff;font-size:22px;font-weight:700;letter-spacing:-0.5px;">Obioma.</span>
+                <td>
+                  <img src="https://obiomacare.com/assets/logo-email.png" alt="Obioma" width="120" height="33" style="display:block;">
                 </td>
               </tr>
             </table>
