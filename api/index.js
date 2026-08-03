@@ -1136,3 +1136,4 @@ function downloadPageTemplate(product, tier, baseUrl) {
 
 // ==================== EXPORT FOR VERCEL ====================
 module.exports = app;
+// Email config updated Mon Aug  3 08:43:54 PM CST 2026
