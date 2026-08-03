@@ -780,7 +780,15 @@
             font-size: 24px; 
             font-weight: 800; 
             color: #fff; 
-            margin-bottom: 12px; 
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-brand img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
         }
         .footer-brand span { color: var(--coral); }
         .footer-desc { 
@@ -922,7 +930,7 @@
         <p class="hero-tagline">Clinical Judgment, Mastered.</p>
         <p class="hero-subtitle">The only NCLEX Next Gen prep that trains clinical judgment — not memorization. AI-powered case studies aligned with the NCSBN framework.</p>
         <div class="hero-cta">
-            <a href="https://app.obiomacare.com/anatomy" class="btn btn-primary btn-large">Explore the Anatomy Lab</a>
+            <a href="https://app.obiomacare.com/anatomy-lab" class="btn btn-primary btn-large">Explore the Anatomy Lab</a>
             <p class="hero-note">or <a href="/free-nclex-checklist.html" style="color: var(--coral);">download the free NCLEX Study Checklist</a> — 500+ nurses already have</p>
         </div>
         <div class="hero-stats">
@@ -1004,7 +1012,7 @@
                     <li>Built by nurses, for nurses</li>
                 </ul>
                 
-                <a href="https://app.obiomacare.com/anatomy" class="btn btn-primary" style="margin-top: 24px;">Try the Anatomy Lab</a>
+                <a href="https://app.obiomacare.com/anatomy-lab" class="btn btn-primary" style="margin-top: 24px;">Try the Anatomy Lab</a>
             </div>
             <div class="animate-on-scroll">
                 <div class="steps">
@@ -1263,7 +1271,7 @@
                     <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Markup & share — annotate and share study notes</li>
                 </ul>
                 
-                <a href="https://app.obiomacare.com/anatomy" class="btn btn-primary" style="margin-top: 24px;">Try the Anatomy Lab</a>
+                <a href="https://app.obiomacare.com/anatomy-lab" class="btn btn-primary" style="margin-top: 24px;">Try the Anatomy Lab</a>
             </div>
         </div>
     </div>
@@ -1491,7 +1499,10 @@ async function buyNow(tier) {
     <div class="container">
         <div class="footer-grid">
             <div>
-                <div class="footer-brand">Obioma<span>.</span></div>
+                <div class="footer-brand">
+                    <img src="/assets/logo-icon.svg" alt="Obioma" width="28" height="28" style="vertical-align: middle; margin-right: 8px;">
+                    <span>Obioma<span style="color: var(--coral);">.</span></span>
+                </div>
                 <p class="footer-desc">Clinical Judgment, Mastered. AI-powered NCLEX Next Gen preparation for nursing students worldwide.</p>
             </div>
             <div class="footer-col">
