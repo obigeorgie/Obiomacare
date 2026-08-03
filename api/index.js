@@ -36,7 +36,7 @@ app.use(cors({
 // Initialize services
 const stripe = process.env.STRIPE_SECRET_KEY ? Stripe(process.env.STRIPE_SECRET_KEY) : null;
 
-// Email transport: Hostinger SMTP (or fallback to Resend if configured)
+// Email transport: Hostinger SMTP only
 let emailTransporter = null;
 if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
   emailTransporter = nodemailer.createTransport({
@@ -49,26 +49,17 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
     }
   });
   console.log('✉️ Email: Using Hostinger SMTP');
-} else if (process.env.RESEND_API_KEY) {
-  // Fallback to Resend if no SMTP configured
-  const { Resend } = require('resend');
-  emailTransporter = { type: 'resend', client: new Resend(process.env.RESEND_API_KEY) };
-  console.log('✉️ Email: Using Resend API');
 } else {
-  console.log('⚠️ Email: No email service configured');
+  console.log('⚠️ Email: SMTP not configured - set SMTP_HOST, SMTP_USER, SMTP_PASS');
 }
 
-// Unified email sender (works with SMTP or Resend)
+// Unified email sender (Hostinger SMTP only)
 async function sendEmail({ from, to, subject, html }) {
   if (!emailTransporter) {
     console.log('⚠️ No email transport configured, skipping send');
     return;
   }
-  if (emailTransporter.type === 'resend') {
-    return await emailTransporter.client.emails.send({ from, to, subject, html });
-  } else {
-    return await emailTransporter.sendMail({ from, to, subject, html });
-  }
+  return await emailTransporter.sendMail({ from, to, subject, html });
 }
 
 // NOTE: express.json() is applied per-route BELOW the webhook.
@@ -1094,7 +1085,7 @@ function downloadPageTemplate(product, tier, baseUrl) {
         <span class="file-name">${f.name}</span>
         <span class="file-desc">${f.desc}</span>
       </div>
-      <a href="${baseUrl}/downloads/${f.file}" class="btn" download>Download</a>
+      <a href="${baseUrl}/products/${f.file}" class="btn" download>Download</a>
     </li>
   `).join('');
   
