@@ -82,14 +82,26 @@ async function main() {
   const urlsToSubmit = [
     'https://obiomacare.com/',
     'https://obiomacare.com/free-nclex-checklist.html',
-    'https://obiomacare.com/content/nclex-clinical-judgment-framework.html',
-    'https://obiomacare.com/content/nclex-prioritization-strategy.html',
-    'https://obiomacare.com/content/nclex-lab-values-cheat-sheet.html',
-    'https://obiomacare.com/content/30-day-nclex-study-plan.html',
-    'https://obiomacare.com/content/ngn-case-studies-examples.html',
-    'https://obiomacare.com/content/nclex-pharmacology-mnemonics.html',
-    'https://obiomacare.com/content/nclex-priority-abcde-method.html',
-    'https://obiomacare.com/content/nclex-delegation-assignment.html'
+    'https://obiomacare.com/content/index.html',
+    'https://obiomacare.com/content/nclex-lab-values-memorization-guide.html',
+    'https://obiomacare.com/content/nclex-abg-interpretation-guide.html',
+    'https://obiomacare.com/content/nclex-medication-suffixes.html',
+    'https://obiomacare.com/content/nclex-high-alert-medications.html',
+    'https://obiomacare.com/content/nclex-drug-calculations-guide.html',
+    'https://obiomacare.com/content/nclex-bow-tie-items.html',
+    'https://obiomacare.com/content/nclex-cardiac-disorders.html',
+    'https://obiomacare.com/content/nclex-maternity-study-guide.html',
+    'https://obiomacare.com/content/nclex-mental-health-nursing.html',
+    'https://obiomacare.com/content/nclex-respiratory-disorders.html',
+    'https://obiomacare.com/content/nclex-gi-disorders.html',
+    'https://obiomacare.com/content/nclex-renal-disorders.html',
+    'https://obiomacare.com/content/nclex-endocrine-disorders.html',
+    'https://obiomacare.com/content/nclex-neurological-disorders.html',
+    'https://obiomacare.com/content/nclex-pediatrics-study-guide.html',
+    'https://obiomacare.com/content/nclex-infection-control-precautions.html',
+    'https://obiomacare.com/content/nclex-wound-care-pressure-injuries.html',
+    'https://obiomacare.com/content/nclex-emergency-drugs.html',
+    'https://obiomacare.com/content/nclex-nutrition-therapeutic-diets.html'
   ];
 
   let submitted = 0;
