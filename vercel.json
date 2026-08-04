@@ -94,6 +94,16 @@
       "source": "/compare/obioma-vs-ixl.html",
       "destination": "/content/obioma-vs-uworld-vs-archer.html",
       "permanent": true
+    },
+    {
+      "source": "/content/30-day-nclex-study-plan.html",
+      "destination": "/content/nclex-30-day-study-plan.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/sata-questions-strategy.html",
+      "destination": "/content/nclex-sata-questions-strategy.html",
+      "permanent": true
     }
   ],
   "crons": [
