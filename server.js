@@ -1,13 +1,29 @@
 require('dotenv').config();
 const express = require('express');
 const Stripe = require('stripe');
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 const path = require('path');
 const crypto = require('crypto');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Email transport: Hostinger SMTP
+let emailTransporter = null;
+if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+  emailTransporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '465'),
+    secure: process.env.SMTP_PORT === '587' ? false : true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  });
+  console.log('✉️ Email: Using Hostinger SMTP');
+} else {
+  console.log('⚠️ Email: SMTP not configured — set SMTP_HOST, SMTP_USER, SMTP_PASS');
+}
 
 app.use(express.json());
 app.use(express.static('landing'));
@@ -113,13 +129,17 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     
     // Send delivery email
     try {
-      await resend.emails.send({
-        from: 'Obioma Care <admin@obiomacare.com>',
-        to: email,
-        subject: `Your ${product.name} is ready!`,
-        html: deliveryEmailTemplate(product, downloadToken, req.headers.origin)
-      });
-      console.log(`✅ Delivered ${tier} to ${email}`);
+      if (emailTransporter) {
+        await emailTransporter.sendMail({
+          from: 'Obioma Care <admin@obiomacare.com>',
+          to: email,
+          subject: `Your ${product.name} is ready!`,
+          html: deliveryEmailTemplate(product, downloadToken, req.headers.origin)
+        });
+        console.log(`✅ Delivered ${tier} to ${email}`);
+      } else {
+        console.log('⚠️ Email not configured, skipping delivery email');
+      }
     } catch (err) {
       console.error('Delivery email failed:', err);
     }
@@ -166,18 +186,22 @@ app.post('/api/lead-magnet', async (req, res) => {
   
   try {
     // Send free NGN framework PDF
-    await resend.emails.send({
-      from: 'Obioma Care <admin@obiomacare.com>',
-      to: email,
-      subject: 'Your Free NGN Clinical Judgment Framework',
-      html: leadMagnetTemplate(firstName),
-      attachments: [
-        {
-          filename: 'NGN-Clinical-Judgment-Framework-Preview.pdf',
-          content: Buffer.from('PDF content placeholder - replace with actual PDF generation')
-        }
-      ]
-    });
+    const attachmentPath = path.join(__dirname, 'public', 'downloads', 'ngn-framework.pdf');
+    const fs = require('fs');
+    const attachment = fs.existsSync(attachmentPath) ? { path: attachmentPath } : null;
+    
+    if (emailTransporter) {
+      await emailTransporter.sendMail({
+        from: 'Obioma Care <admin@obiomacare.com>',
+        to: email,
+        subject: 'Your Free NGN Clinical Judgment Framework',
+        html: leadMagnetTemplate(firstName),
+        attachments: attachment ? [{ filename: 'NGN-Clinical-Judgment-Framework-Preview.pdf', path: attachmentPath }] : undefined
+      });
+      console.log(`🎯 Lead magnet sent to ${email}`);
+    } else {
+      console.log('⚠️ Email not configured, skipping lead magnet');
+    }
     
     // Add to nurture sequence
     await addToNurtureSequence(email, firstName);
@@ -354,7 +378,7 @@ function successPageTemplate() {
 
 // ==================== AUTOMATION HELPERS ====================
 async function addToEmailList(email, tier) {
-  // TODO: Integrate with ConvertKit, Mailchimp, or Resend audiences
+  // TODO: Integrate with ConvertKit, Mailchimp, or Hostinger email lists
   console.log(`📧 Added ${email} to email list (tier: ${tier})`);
 }
 
