@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        color: white;
+      }
+      .badge {
+        background: #00d4aa;
+        color: #0a1628;
+        font-size: 28px;
+        font-weight: 800;
+        padding: 12px 32px;
+        border-radius: 50px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      h1 {
+        font-size: 72px;
+        font-weight: 900;
+        line-height: 1.1;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      h1 .highlight { color: #00d4aa; }
+      .sub {
+        font-size: 36px;
+        color: #8ab4c7;
+        text-align: center;
+        line-height: 1.4;
+        margin-bottom: 50px;
+      }
+      .example-box {
+        background: rgba(255,255,255,0.08);
+        border: 2px solid rgba(0,212,170,0.3);
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 860px;
+      }
+      .example-box .label {
+        font-size: 20px;
+        color: #00d4aa;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .example-box .old {
+        font-size: 26px;
+        color: #ff6b6b;
+        margin-bottom: 16px;
+        text-decoration: line-through;
+      }
+      .example-box .new {
+        font-size: 28px;
+        color: #fff;
+        line-height: 1.4;
+      }
+      .brand {
+        position: absolute;
+        bottom: 40px;
+        font-size: 24px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="badge">NCLEX Next Gen</div>
+    <h1>The New NCLEX Tests <span class="highlight">THINKING</span>,<br>Not Memorizing</h1>
+    <div class="sub">Stop studying harder. Start thinking differently.</div>
+    <div class="example-box">
+      <div class="label">Example Question</div>
+      <div class="old">"What is the normal potassium range?"</div>
+      <div class="new">"Your patient has K+ 5.8 and says they feel weird. What's your FIRST action?"</div>
+    </div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px 60px;
+        color: white;
+      }
+      .badge {
+        background: #ff4757;
+        color: white;
+        font-size: 32px;
+        font-weight: 900;
+        padding: 14px 40px;
+        border-radius: 12px;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+      h1 {
+        font-size: 72px;
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.1;
+        margin-bottom: 50px;
+      }
+      .vs-box {
+        display: flex;
+        gap: 30px;
+        width: 100%;
+        margin-bottom: 50px;
+      }
+      .side {
+        flex: 1;
+        background: rgba(255,255,255,0.08);
+        border-radius: 20px;
+        padding: 36px;
+        text-align: center;
+        border: 2px solid rgba(255,255,255,0.15);
+      }
+      .side .label {
+        font-size: 24px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+      }
+      .side.old .label { color: #ff6b6b; }
+      .side.new .label { color: #00d4aa; }
+      .side .example {
+        font-size: 26px;
+        line-height: 1.4;
+        color: #ddd;
+      }
+      .arrow {
+        font-size: 60px;
+        color: #ffd700;
+        align-self: center;
+      }
+      .cta {
+        font-size: 36px;
+        font-weight: 900;
+        color: #ffd700;
+        text-align: center;
+      }
+      .brand {
+        position: absolute;
+        bottom: 50px;
+        font-size: 28px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="badge">NCLEX 60 SEC</div>
+    <h1>Old NCLEX<br>vs<br>Next Gen</h1>
+    <div class="vs-box">
+      <div class="side old">
+        <div class="label">Old</div>
+        <div class="example">"Normal K+ range?"</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="side new">
+        <div class="label">New</div>
+        <div class="example">"K+ 5.8, BP 88/52. FIRST action?"</div>
+      </div>
+    </div>
+    <div class="cta">Learn Clinical Judgment → obiomacare.com</div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

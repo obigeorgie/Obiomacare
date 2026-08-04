@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        color: #1a1a2e;
+      }
+      h1 {
+        font-size: 56px;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 50px;
+        color: #1a1a2e;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 860px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 16px;
+        padding: 28px 36px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      }
+      .step-letter {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: white;
+        margin-right: 28px;
+        flex-shrink: 0;
+      }
+      .step-a { background: #e74c3c; }
+      .step-b { background: #e67e22; }
+      .step-c { background: #f1c40f; color: #1a1a2e; }
+      .step-d { background: #27ae60; }
+      .step-e { background: #3498db; }
+      .step-text {
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .tagline {
+        margin-top: 40px;
+        font-size: 28px;
+        color: #5a6c7d;
+        text-align: center;
+      }
+      .tagline strong { color: #e74c3c; }
+      .brand {
+        position: absolute;
+        bottom: 40px;
+        font-size: 24px;
+        color: #9aa5b1;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>The ABCDE Method</h1>
+    <div class="steps">
+      <div class="step">
+        <div class="step-letter step-a">A</div>
+        <div class="step-text">Airway</div>
+      </div>
+      <div class="step">
+        <div class="step-letter step-b">B</div>
+        <div class="step-text">Breathing</div>
+      </div>
+      <div class="step">
+        <div class="step-letter step-c">C</div>
+        <div class="step-text">Circulation</div>
+      </div>
+      <div class="step">
+        <div class="step-letter step-d">D</div>
+        <div class="step-text">Disability</div>
+      </div>
+      <div class="step">
+        <div class="step-letter step-e">E</div>
+        <div class="step-text">Exposure</div>
+      </div>
+    </div>
+    <div class="tagline">Train it until it's <strong>automatic</strong>.</div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

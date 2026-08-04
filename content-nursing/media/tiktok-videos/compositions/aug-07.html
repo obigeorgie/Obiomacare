@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 40%, #0d2137 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px 60px;
+        color: white;
+      }
+      .clock {
+        font-size: 120px;
+        font-weight: 900;
+        color: #ff4757;
+        margin-bottom: 30px;
+      }
+      h1 {
+        font-size: 64px;
+        font-weight: 900;
+        text-align: center;
+        line-height: 1.15;
+        margin-bottom: 40px;
+      }
+      h1 .highlight { color: #ff4757; }
+      .patients {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 50px;
+      }
+      .patient {
+        background: rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 28px 36px;
+        border-left: 6px solid #ff4757;
+        font-size: 30px;
+        font-weight: 700;
+      }
+      .cta {
+        font-size: 40px;
+        font-weight: 900;
+        color: #00d4aa;
+        text-align: center;
+      }
+      .brand {
+        position: absolute;
+        bottom: 50px;
+        font-size: 28px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">3:00 AM</div>
+    <h1>6 Patients.<br><span class="highlight">Who Do You See FIRST?</span></h1>
+    <div class="patients">
+      <div class="patient">1. Post-op appy, fever 102.3°F</div>
+      <div class="patient">2. Chest pain, troponin elevated</div>
+      <div class="patient">3. COPD, O2 sat 88% on 2L</div>
+    </div>
+    <div class="cta">The answer is in the Framework → obiomacare.com</div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

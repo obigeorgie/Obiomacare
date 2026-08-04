@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #1a0a0a 0%, #2d1810 50%, #1a0a0a 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        color: white;
+      }
+      .emergency-pulse {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, #ff3333 0%, transparent 70%);
+        border-radius: 50%;
+        margin-bottom: 40px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.2); opacity: 0.4; }
+      }
+      h1 {
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 1.1;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      h1 .highlight { color: #ff4444; }
+      .sub {
+        font-size: 32px;
+        color: #cc9988;
+        text-align: center;
+        line-height: 1.4;
+        margin-bottom: 40px;
+      }
+      .patients {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      .patient {
+        background: rgba(255,255,255,0.08);
+        border-radius: 16px;
+        padding: 24px;
+        width: 260px;
+        text-align: center;
+        border: 2px solid rgba(255,255,255,0.1);
+      }
+      .patient .num {
+        font-size: 48px;
+        font-weight: 900;
+        color: #ff4444;
+      }
+      .patient .desc {
+        font-size: 20px;
+        color: #cc9988;
+        margin-top: 8px;
+      }
+      .cta {
+        font-size: 28px;
+        color: #00d4aa;
+        font-weight: 700;
+      }
+      .brand {
+        position: absolute;
+        bottom: 40px;
+        font-size: 24px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="emergency-pulse"></div>
+    <h1>3 Patients. 1 Nurse.<br><span class="highlight">Who Do You See FIRST?</span></h1>
+    <div class="sub">The answer isn't in your notes. It's in your clinical judgment.</div>
+    <div class="patients">
+      <div class="patient">
+        <div class="num">1</div>
+        <div class="desc">Post-op appy, fever 102.3</div>
+      </div>
+      <div class="patient">
+        <div class="num">2</div>
+        <div class="desc">Chest pain, troponin elevated, vitals stable</div>
+      </div>
+      <div class="patient">
+        <div class="num">3</div>
+        <div class="desc">COPD, O2 sat 88% on 2L</div>
+      </div>
+    </div>
+    <div class="cta">Learn the Framework → Link in Bio</div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px;
+        color: white;
+      }
+      .arrow-up {
+        font-size: 120px;
+        color: #00d4aa;
+        margin-bottom: 30px;
+      }
+      h1 {
+        font-size: 64px;
+        font-weight: 900;
+        line-height: 1.15;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      h1 .fail { color: #ff6b6b; }
+      h1 .success { color: #00d4aa; }
+      .story {
+        font-size: 30px;
+        color: #a8d5e5;
+        text-align: center;
+        line-height: 1.5;
+        margin-bottom: 40px;
+        max-width: 860px;
+      }
+      .stats {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat .number {
+        font-size: 56px;
+        font-weight: 900;
+        color: #00d4aa;
+      }
+      .stat .label {
+        font-size: 22px;
+        color: #8ab4c7;
+        margin-top: 4px;
+      }
+      .cta {
+        background: #00d4aa;
+        color: #0a1628;
+        font-size: 28px;
+        font-weight: 800;
+        padding: 18px 48px;
+        border-radius: 50px;
+      }
+      .brand {
+        position: absolute;
+        bottom: 40px;
+        font-size: 24px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="arrow-up">↗</div>
+    <h1>I <span class="fail">Failed</span> My First Practice NCLEX.<br>Then I Built The <span class="success">Framework</span> I Wish I Had.</h1>
+    <div class="story">15 years of ER experience distilled into 30+ real scenarios, video walkthroughs, and decision trees.</div>
+    <div class="stats">
+      <div class="stat"><div class="number">30+</div><div class="label">Scenarios</div></div>
+      <div class="stat"><div class="number">15</div><div class="label">Years Experience</div></div>
+      <div class="stat"><div class="number">$47</div><div class="label">Full System</div></div>
+    </div>
+    <div class="cta">Get The Framework →</div>
+    <div class="brand">obiomacare.com</div>
+  </body>
+</html>

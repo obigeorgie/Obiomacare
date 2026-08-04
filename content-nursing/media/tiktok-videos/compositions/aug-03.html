@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 40%, #0d2137 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 80px 60px;
+        color: white;
+      }
+      .pov-badge {
+        background: #ff4757;
+        color: white;
+        font-size: 36px;
+        font-weight: 900;
+        padding: 16px 48px;
+        border-radius: 16px;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+      }
+      .scene-text {
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.3;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .scene-text .highlight {
+        color: #00d4aa;
+      }
+      .freeze-text {
+        font-size: 80px;
+        font-weight: 900;
+        color: #ff4757;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+      }
+      .solution {
+        background: rgba(0,212,170,0.15);
+        border: 3px solid #00d4aa;
+        border-radius: 24px;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .solution-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #00d4aa;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .solution-text {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .cta {
+        font-size: 40px;
+        font-weight: 900;
+        color: #ffd700;
+        text-align: center;
+      }
+      .brand {
+        position: absolute;
+        bottom: 50px;
+        font-size: 28px;
+        color: rgba(255,255,255,0.5);
+        font-weight: 700;
+      }
+      .clip {
+        position: absolute;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <audio data-track-index="0" data-start="0" src="aug-03-narration.wav"></audio>
+      <div id="pov" class="clip" data-start="0" data-duration="15" data-track-index="1">
+        <div class="pov-badge">POV</div>
+        <div class="scene-text">
+          You're in your first code and the attending asks<br>
+          <span class="highlight">"What's your role?"</span>
+        </div>
+        <div id="freeze" class="freeze-text">FREEZE?</div>
+        <div id="solution" class="solution">
+          <div class="solution-title">You need the</div>
+          <div class="solution-text">Clinical Judgment Framework</div>
+        </div>
+        <div id="cta" class="cta">15 years of ER experience<br>→ 30+ scenarios → $47</div>
+        <div class="brand">obiomacare.com</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      
+      tl.to("#pov", { opacity: 1, duration: 0.5 }, 0)
+        .from(".pov-badge", { scale: 0, rotation: -10, duration: 0.6, ease: "back.out(1.7)" }, 0.2)
+        .from(".scene-text", { opacity: 0, y: 60, duration: 0.8, ease: "power2.out" }, 0.8)
+        .from("#freeze", { scale: 0.5, opacity: 0, duration: 0.5, ease: "back.out(2)" }, 3.5)
+        .to("#freeze", { scale: 1.1, duration: 0.3, yoyo: true, repeat: 3 }, 4)
+        .from("#solution", { opacity: 0, y: 80, duration: 0.8, ease: "power2.out" }, 5.5)
+        .from("#cta", { opacity: 0, y: 50, duration: 0.7, ease: "power2.out" }, 7)
+        .to("#cta", { scale: 1.05, duration: 0.4, yoyo: true, repeat: -1 }, 8);
+        
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
