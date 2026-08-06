@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 
 <script type="application/ld+json">
@@ -280,6 +289,113 @@
         • Symptoms: Severe agitation, hallucinations, autonomic instability (tachycardia, fever, HTN), seizures<br>
         • Requires ICU-level care, continuous monitoring<br>
         • <strong>CIWA-Ar score ≥15 = severe withdrawal</strong>
+      </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Acute Psychiatric Crisis</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Ms. Taylor, 24-year-old female</strong>, is brought to the ED by police after attempting to jump from a bridge. She is agitated, pacing, and repeatedly states, "I can't do this anymore. Nobody would miss me." She has a history of bipolar disorder and stopped taking her lithium 2 weeks ago. She has not slept in 4 days.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Mental Status</span>
+        <span class="case-tab">History</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 142/88, HR 118, RR 22, Temp 37.2°C</p>
+      <p><strong>Mental Status:</strong> Agitated, pressured speech, flight of ideas, poor eye contact. Threatens to "walk out" if not released. Has multiple superficial lacerations on forearms (horizontal, non-lethal pattern). No active psychosis.</p>
+      <p><strong>History:</strong> Bipolar I disorder, last manic episode 8 months ago. Lithium 900mg daily (non-adherent). No substance use. Lives alone. No family support locally. Previous suicide attempt at age 19 (overdose).</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> What is the <strong>highest priority</strong> nursing concern?</p>
+        <ul>
+          <li>A. Medication non-adherence leading to mood instability</li>
+          <li>B. Acute risk of suicide and need for safety precautions</li>
+          <li>C. Sleep deprivation causing psychotic symptoms</li>
+          <li>D. Lack of family support affecting discharge planning</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Acute risk of suicide and need for safety precautions</strong></p>
+          <p>Safety is ALWAYS the priority in psychiatric emergencies. This patient has active suicidal ideation with a plan (jumping from bridge), means (height), and intent ("I can't do this anymore"). Previous attempt increases risk. Immediate 1:1 observation, removal of all potential ligatures/sharp objects, and placement in a safe room are required. While medication adherence and sleep are important, they are secondary to preventing immediate self-harm.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The patient demands to leave, stating, "I have rights. You can't hold me here." Which response is <strong>most appropriate</strong>?</p>
+        <ul>
+          <li>A. "You're right. I'll get your discharge papers ready"</li>
+          <li>B. "I understand you want to leave, but I'm concerned about your safety. Let's talk about what's going on"</li>
+          <li>C. "You're on a legal hold and cannot leave. Sit down"</li>
+          <li>D. "If you leave, I'll have to call the police"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. "I understand you want to leave, but I'm concerned about your safety. Let's talk about what's going on"</strong></p>
+          <p>Therapeutic communication uses empathy, sets boundaries without being punitive, and invites dialogue. Option A is unsafe — patient is actively suicidal. Option C is authoritarian and will escalate agitation. Option D is threatening. The nurse should validate feelings while maintaining safety. If the patient attempts to leave, an involuntary hold may be necessary, but the first approach is always therapeutic communication.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The provider orders lithium 600mg PO, risperidone 2mg PO, and lorazepam 1mg IM PRN agitation. Which medication should the nurse question?</p>
+        <ul>
+          <li>A. Lithium — patient was non-adherent, may need lower dose to restart</li>
+          <li>B. Risperidone — antipsychotic may worsen mania</li>
+          <li>C. Lorazepam — benzodiazepines are contraindicated in bipolar disorder</li>
+          <li>D. No medications need to be questioned</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Lithium — patient was non-adherent, may need lower dose to restart</strong></p>
+          <p>Restarting lithium at 600mg after 2 weeks of non-adherence could cause toxicity because the patient may have lost tolerance. Lithium levels should be checked before reinitiating, and the dose may need to be lower or titrated. Risperidone is appropriate for acute mania. Lorazepam is appropriate PRN for agitation in bipolar disorder (not contraindicated). However, the provider may have intentionally ordered this dose — the nurse should clarify, not necessarily refuse.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> Ms. Taylor is admitted to the psychiatric unit. She is placed on suicide precautions. Which intervention is <strong>most appropriate</strong>?</p>
+        <ul>
+          <li>A. Allow her to keep her phone and charger for distraction</li>
+          <li>B. Check on her every 15 minutes with visual observation</li>
+          <li>C. Place her in a private room at the end of the hall</li>
+          <li>D. Remove her clothing and provide a hospital gown only</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Check on her every 15 minutes with visual observation</strong></p>
+          <p>Standard suicide precautions include q15min checks with visual observation (not just door checks). A charger cord is a ligature risk and should be removed. A room at the end of the hall reduces staff visibility — place near the nurses' station. Clothing is typically allowed unless it has strings, belts, or sharp items. The gown-only approach is unnecessarily restrictive unless the patient has attempted self-harm with clothing.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> On day 3, Ms. Taylor is calmer and requests to have her shoelaces back. She states, "I'm feeling much better. I just had a bad day." What is the nurse's <strong>best</strong> response?</p>
+        <ul>
+          <li>A. "That's great! I'll return your belongings"</li>
+          <li>B. "I'm glad you're feeling better, but we need to keep safety precautions in place per protocol"</li>
+          <li>C. "Have you talked to your doctor about this?"</li>
+          <li>D. "You tried to kill yourself 3 days ago. You're not getting anything back"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. "I'm glad you're feeling better, but we need to keep safety precautions in place per protocol"</strong></p>
+          <p>A rapid improvement in mood can actually indicate increased suicide risk — the patient may have decided on a plan and feels relief. Alternatively, it could be genuine improvement. Either way, safety precautions should not be discontinued based on patient self-report alone. The treatment team makes that decision. Option A is unsafe. Option C passes responsibility. Option D is judgmental and non-therapeutic.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> Ms. Taylor is being discharged on day 7. Which discharge instruction is <strong>highest priority</strong>?</p>
+        <ul>
+          <li>A. "Take your lithium exactly as prescribed — never stop abruptly"</li>
+          <li>B. "Avoid alcohol and recreational drugs"</li>
+          <li>C. "Call 911 if you have thoughts of harming yourself"</li>
+          <li>D. "Attend all follow-up appointments with your psychiatrist"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. "Call 911 if you have thoughts of harming yourself"</strong></p>
+          <p>While ALL of these are important discharge instructions, the highest priority is ensuring the patient knows what to do in a crisis. Providing a crisis plan with specific phone numbers (911, crisis hotline, psychiatrist) empowers the patient to seek help before acting on suicidal thoughts. Medication adherence (A), substance avoidance (B), and follow-up (D) are critical for long-term management, but crisis safety planning is the immediate priority for a patient with recent suicidal ideation.</p>
+        </div>
       </div>
     </div>
 

@@ -47,6 +47,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 
 <script type="application/ld+json">
@@ -232,6 +241,113 @@
         <tr><td><strong>Risk factors</strong></td><td>Prior C-section, multiparity, advanced maternal age</td><td>Hypertension, trauma, smoking, cocaine use</td></tr>
         <tr><td><strong>Management</strong></td><td>C-section if near term; bed rest if preterm</td><td>Emergency delivery if severe; monitor if mild</td></tr>
       </table>
+    </div>
+
+    <h2>🧩 NGN Case Study: Preeclampsia with Severe Features</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mrs. Lee, 32-year-old G2P1 at 34 weeks gestation</strong>, presents to the OB triage unit with a severe headache that started 6 hours ago and won't go away with acetaminophen. She also reports seeing "spots" in her vision and swelling in her hands and face.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">Labs</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 168/110, HR 92, RR 18, Temp 37.0°C, SpO₂ 98%</p>
+      <p><strong>Physical Assessment:</strong> Alert and oriented. 3+ pitting edema bilateral lower extremities and hands. Facial edema present. Deep tendon reflexes 3+ with 2 beats of clonus at ankles. Epigastric tenderness on palpation. FHR 140s with moderate variability.</p>
+      <p><strong>Labs:</strong> Platelets 98,000, Creatinine 1.3, AST 78, ALT 85, LDH 450, Urine protein 3+ on dipstick</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Which finding confirms the diagnosis of <strong>preeclampsia with severe features</strong>?</p>
+        <ul>
+          <li>A. Blood pressure 168/110 at 34 weeks</li>
+          <li>B. Proteinuria 3+</li>
+          <li>C. Platelet count 98,000</li>
+          <li>D. All of the above</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: D. All of the above</strong></p>
+          <p>Preeclampsia is defined as BP ≥140/90 after 20 weeks with proteinuria OR signs of end-organ damage. Severe features include: BP ≥160/110, thrombocytopenia (&lt;100,000), elevated liver enzymes (AST/ALT), renal insufficiency (Cr &gt;1.1), pulmonary edema, new-onset cerebral/visual symptoms, or epigastric pain. This patient has ALL of these: severe BP, proteinuria, low platelets, elevated LFTs, elevated creatinine, visual disturbances (spots), and epigastric pain (indicates liver capsule stretch).</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The clonus and hyperreflexia indicate which <strong>imminent complication</strong>?</p>
+        <ul>
+          <li>A. Placental abruption</li>
+          <li>B. Eclampsia (seizure)</li>
+          <li>C. Disseminated intravascular coagulation (DIC)</li>
+          <li>D. HELLP syndrome</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Eclampsia (seizure)</strong></p>
+          <p>Hyperreflexia and clonus are signs of neuromuscular irritability from cerebral edema and are the hallmark warning signs of impending eclampsia (seizure). The seizure threshold is lowered in preeclampsia due to cerebral vasospasm and edema. Magnesium sulfate is the anticonvulsant of choice to prevent eclampsia. While HELLP and DIC are risks in preeclampsia, clonus specifically predicts seizure activity.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> Magnesium sulfate is ordered: 4g IV loading dose, then 2g/hr continuous infusion. Which <strong>safety</strong> measure is highest priority?</p>
+        <ul>
+          <li>A. Ensure calcium gluconate is at the bedside</li>
+          <li>B. Monitor deep tendon reflexes hourly</li>
+          <li>C. Check magnesium level every 6 hours</li>
+          <li>D. Maintain strict intake and output</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Ensure calcium gluconate is at the bedside</strong></p>
+          <p>Calcium gluconate is the antidote for magnesium sulfate toxicity. Magnesium toxicity signs: loss of DTRs (first sign), respiratory depression, cardiac arrest. While monitoring DTRs (B) is important, having the antidote immediately available is the highest safety priority. DTRs should be checked q1-2h, magnesium levels are not always checked routinely, and I&O monitoring is important but secondary to antidote availability.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The provider discusses delivery timing. Mrs. Lee is 34 weeks. Which statement about management is <strong>correct</strong>?</p>
+        <ul>
+          <li>A. Delivery should be delayed until 37 weeks if mother and fetus are stable</li>
+          <li>B. Immediate delivery is indicated regardless of gestational age</li>
+          <li>C. Steroids for fetal lung maturity should be given, then deliver at 34 weeks</li>
+          <li>D. Preeclampsia with severe features requires delivery after maternal stabilization</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: D. Preeclampsia with severe features requires delivery after maternal stabilization</strong></p>
+          <p>Definitive treatment for preeclampsia is delivery. With severe features at ≥34 weeks, delivery is indicated after maternal stabilization (control BP with labetalol or hydralazine, start magnesium). At 34 weeks, steroids are not typically given (benefit is for &lt;34 weeks). Waiting until 37 weeks (A) is NOT appropriate with severe features. Immediate delivery without stabilization (B) could be dangerous if BP is uncontrolled.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> Mrs. Lee begins having a seizure (eclampsia). What is the <strong>priority</strong> nursing action?</p>
+        <ul>
+          <li>A. Turn patient on her left side and administer oxygen</li>
+          <li>B. Push additional magnesium sulfate 2g IV</li>
+          <li>C. Call for immediate cesarean section</li>
+          <li>D. Insert a Foley catheter to monitor output</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Turn patient on her left side and administer oxygen</strong></p>
+          <p>During an eclamptic seizure, first ensure safety: turn on left side (prevents aspiration of vomit, improves uteroplacental perfusion), pad side rails, administer O₂, and do NOT restrain. After the seizure, give additional magnesium if ordered. The priority during the active seizure is maternal-fetal safety, not medication administration. C-section is considered after the seizure is controlled and mother is stabilized.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> Mrs. Lee delivers a healthy infant via cesarean. On post-op day 2, her BP is 148/94. She asks when she can go home. What is the nurse's <strong>best</strong> response?</p>
+        <ul>
+          <li>A. "You can go home today since your BP is improving"</li>
+          <li>B. "You need to stay until your BP is normal without medications"</li>
+          <li>C. "Preeclampsia can worsen after delivery — we need to monitor you for at least 48-72 hours postpartum"</li>
+          <li>D. "Your baby needs to be observed in the NICU, so you'll stay until discharge"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. "Preeclampsia can worsen after delivery — we need to monitor you for at least 48-72 hours postpartum"</strong></p>
+          <p>Postpartum preeclampsia/eclampsia can occur up to 6 weeks after delivery, with the highest risk in the first 48-72 hours. BP often worsens before improving. Magnesium is typically continued for 24 hours postpartum. Patients need continued BP monitoring and education on warning signs (headache, vision changes, epigastric pain) before discharge. BP does not need to be normal without meds to discharge — many patients need antihypertensives postpartum.</p>
+        </div>
+      </div>
     </div>
 
     <div class="cta">
