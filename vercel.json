@@ -1,6 +1,18 @@
 {
   "version": 2,
   "rewrites": [
+    { "source": "/content/(.*)", "destination": "/landing/content/$1" },
+    { "source": "/downloads/(.*)", "destination": "/landing/downloads/$1" },
+    { "source": "/free-framework/(.*)", "destination": "/landing/free-framework/$1" },
+    { "source": "/compare/(.*)", "destination": "/landing/compare/$1" },
+    { "source": "/products/(.*)", "destination": "/landing/products/$1" },
+    { "source": "/assets/(.*)", "destination": "/landing/assets/$1" },
+    { "source": "/images/(.*)", "destination": "/landing/images/$1" },
+    { "source": "/free-nclex-checklist.html", "destination": "/landing/free-nclex-checklist.html" },
+    { "source": "/neuro-cheat-sheet.html", "destination": "/landing/neuro-cheat-sheet.html" },
+    { "source": "/privacy.html", "destination": "/landing/privacy.html" },
+    { "source": "/404.html", "destination": "/landing/404.html" },
+    { "source": "/ab-dashboard.html", "destination": "/landing/ab-dashboard.html" },
     { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/auth/(.*)", "destination": "/api/index.js" },
     { "source": "/download/(.*)", "destination": "/api/index.js" },
