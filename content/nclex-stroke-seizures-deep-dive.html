@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -209,6 +218,175 @@
           <td>Titrate slowly</td>
         </tr>
       </table>
+    </div>
+
+    <h2>🧩 NGN Case Study: Acute Ischemic Stroke & tPA</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. David Kim, 72-year-old male</strong>, is brought to the emergency department by his wife. She states he "suddenly couldn't talk right" and his "right side went weak" about 45 minutes ago while they were having breakfast. He has a history of hypertension, atrial fibrillation (not on anticoagulation due to previous GI bleed), and hyperlipidemia. He was last known well at 07:15 when his wife saw him reading the newspaper normally. Current time is 08:15.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 188/104 mmHg</li>
+          <li>HR: 88 bpm, irregularly irregular</li>
+          <li>RR: 18 breaths/min</li>
+          <li>Temp: 36.6°C (97.9°F)</li>
+          <li>SpO₂: 96% on room air</li>
+          <li>Weight: 82 kg</li>
+          <li>Appearance: Alert, anxious, aphasic</li>
+          <li>NIHSS Score: 14 (moderate-severe stroke)</li>
+          <li>Facial droop: Present on right</li>
+          <li>Arm drift: Right arm falls rapidly</li>
+          <li>Leg strength: Right leg 2/5, left 5/5</li>
+          <li>Speech: Expressive aphasia — unable to name objects, follows simple commands</li>
+          <li>Visual fields: Right homonymous hemianopsia</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Wife reports patient ran out of his amlodipine and atorvastatin 2 weeks ago. He was supposed to start apixaban after his GI bleed resolved 6 months ago but "never got around to it." No headache, no trauma, no seizure activity witnessed. No recent surgery. No family history of stroke. Non-smoker. Occasional alcohol use.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>Glucose: 142 mg/dL</li>
+          <li>Platelets: 245 × 10⁹/L</li>
+          <li>INR: 1.0</li>
+          <li>PTT: 32 seconds</li>
+          <li>Creatinine: 1.1 mg/dL</li>
+          <li>Hgb: 13.8 g/dL</li>
+          <li>WBC: 7.8 × 10⁹/L</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>CT head without contrast (STAT)</li>
+          <li>CT angiography head/neck</li>
+          <li>Telemetric monitoring</li>
+          <li>IV access × 2, labs sent</li>
+          <li>If CT negative for hemorrhage: alteplase (tPA) 0.9 mg/kg IV (max 90 mg) — 10% bolus over 1 min, remainder over 60 min</li>
+          <li>BP goal <185/110 before tPA; <180/105 after tPA</li>
+          <li>Neuro checks q15 min × 2 hr, q30 min × 6 hr, q1h × 16 hr</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which findings support the diagnosis of acute ischemic stroke (rather than hemorrhagic) at this point? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Sudden onset focal neurological deficits</li>
+        <li>Absence of severe headache</li>
+        <li>Atrial fibrillation with subtherapeutic anticoagulation</li>
+        <li>NIHSS score of 14</li>
+        <li>Normal INR of 1.0</li>
+        <li>Right-sided weakness with aphasia</li>
+      </ol>
+      <div class="answer" id="sq1-ans">
+        <strong>Correct: A, B, C, E, F</strong><br>
+        Sudden focal deficits (A) are classic for both ischemic and hemorrhagic stroke. Absence of severe headache (B) favors ischemic (hemorrhagic typically presents with "thunderclap" headache). A-fib without anticoagulation (C) is a major risk factor for cardioembolic ischemic stroke. Normal INR (E) means no anticoagulation effect. Right weakness + aphasia (F) suggests left MCA territory ischemia. NIHSS (D) quantifies severity but doesn't differentiate stroke type — CT is required.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The CT scan shows no hemorrhage. The neurologist confirms the patient is a candidate for IV tPA. What is the DEADLINE for administering tPA from last known well?</p>
+      <ol class="ngn-options" type="A">
+        <li>3 hours</li>
+        <li>4.5 hours</li>
+        <li>6 hours</li>
+        <li>24 hours</li>
+      </ol>
+      <div class="answer" id="sq2-ans">
+        <strong>Correct: B</strong><br>
+        IV alteplase (tPA) is FDA-approved for acute ischemic stroke within 3 hours of symptom onset. The AHA/ASA guidelines extend this to 4.5 hours in eligible patients (age <80, NIHSS <25, not on anticoagulants, no prior stroke + diabetes). This patient meets extended criteria (age 72, NIHSS 14, INR 1.0). Mechanical thrombectomy has up to 24-hour windows in selected patients.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The BP is 188/104. Which is the nurse's BEST action BEFORE tPA administration?</p>
+      <ol class="ngn-options" type="A">
+        <li>Administer labetalol 10 mg IV push to lower BP below 180/105</li>
+        <li>Administer labetalol to lower BP below 185/110</li>
+        <li>Hold tPA until BP normalizes with oral medications</li>
+        <li>Proceed with tPA — blood pressure is acceptable</li>
+      </ol>
+      <div class="answer" id="sq3-ans">
+        <strong>Correct: B</strong><br>
+        tPA requires BP <185/110 BEFORE administration and <180/105 AFTER. Labetalol 10-20 mg IV, hydralazine 10-20 mg IV, or nicardipine infusion are options. Do NOT delay tPA excessively — the clock is ticking. Goal is rapid BP control to meet tPA criteria while minimizing door-to-needle time.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The tPA infusion is running. Which action is MOST important during and after the infusion?</p>
+      <ol class="ngn-options" type="A">
+        <li>Keep the head of bed flat to maximize cerebral perfusion</li>
+        <li>Monitor for signs of bleeding, especially neurological deterioration</li>
+        <li>Administer aspirin 325 mg immediately to prevent clot progression</li>
+        <li>Insert a Foley catheter to monitor urine output</li>
+      </ol>
+      <div class="answer" id="sq4-ans">
+        <strong>Correct: B</strong><br>
+        The major risk of tPA is hemorrhagic transformation. Monitor closely for sudden headache, nausea, vomiting, decreased LOC, or new neuro deficits — these are red flags for intracranial bleeding. Stop tPA immediately and obtain STAT CT if suspected. Head of bed at 30° (not flat, A) is standard. Aspirin (C) is delayed 24 hours post-tPA until repeat CT confirms no hemorrhage. Foley (D) is not a priority during tPA.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> Twenty minutes into the tPA infusion, the patient suddenly becomes very drowsy and his right-sided weakness worsens. What is the nurse's FIRST action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Complete the tPA infusion and notify the provider</li>
+        <li>Stop the tPA infusion immediately and call the stroke team</li>
+        <li>Increase the tPA rate to finish faster</li>
+        <li>Recheck the blood pressure</li>
+      </ol>
+      <div class="answer" id="sq5-ans">
+        <strong>Correct: B</strong><br>
+        Sudden neurological deterioration during tPA = suspected intracranial hemorrhage until proven otherwise. STOP the infusion immediately, call the stroke team/neurologist, and obtain emergent CT head. Do NOT complete the infusion (A) — this could worsen bleeding. BP check (D) is important but secondary to stopping the thrombolytic.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> The patient completes tPA uneventfully. Twenty-four hours later, repeat CT shows no hemorrhage. Which statement by the patient indicates understanding of secondary stroke prevention?</p>
+      <ol class="ngn-options" type="A">
+        <li>"I don't need blood thinners because the tPA broke up the clot."</li>
+        <li>"I'll start my apixaban as prescribed and keep all my follow-up appointments."</li>
+        <li>"I can stop taking my blood pressure pills once I'm feeling better."</li>
+        <li>"Stroke won't happen again now that I've had tPA."</li>
+      </ol>
+      <div class="answer" id="sq6-ans">
+        <strong>Correct: B</strong><br>
+        This patient has atrial fibrillation — a major risk factor for recurrent cardioembolic stroke. Anticoagulation (apixaban) is essential for secondary prevention. BP control, statin therapy, and lifestyle modifications are also critical. tPA treats the ACUTE stroke but does NOT prevent recurrence. Stopping medications (C) or declining anticoagulation (A) puts the patient at high risk for another stroke.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('sq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Time is brain</strong> — tPA window: 4.5 hours from last known well</li>
+        <li><strong>BP must be <185/110 before tPA</strong> — Use labetalol, hydralazine, or nicardipine</li>
+        <li><strong>Monitor for bleeding</strong> — Sudden neuro decline = stop tPA, STAT CT</li>
+        <li><strong>No aspirin for 24 hours</strong> — Must confirm no hemorrhage on repeat CT</li>
+        <li><strong>AFib needs anticoagulation</strong> — tPA doesn't replace long-term stroke prevention</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

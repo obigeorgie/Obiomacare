@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -217,6 +226,175 @@
       <div class="trap">
         <strong>NCLEX Trap:</strong> Transplant patients are immunosuppressed — AVOID live vaccines. Report fever >100.4°F immediately (may be only sign of infection). Monitor for CMV (fever, leukopenia, elevated LFTs) and BK virus (nephropathy). Do NOT give NSAIDs (nephrotoxic + interfere with immunosuppressants).
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Hemodialysis Access Complication</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Ms. Maria Rodriguez, 54-year-old female</strong>, presents to the dialysis clinic for her routine Monday/Wednesday/Friday hemodialysis session. She has ESRD secondary to diabetic nephropathy and has been on HD for 3 years via a left upper arm arteriovenous graft (AVG). She reports her arm has been "swelling more than usual" and the skin over the graft feels "warm and tight." She also reports chills last night but denies fever.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 158/92 mmHg (pre-dialysis)</li>
+          <li>HR: 96 bpm</li>
+          <li>RR: 18 breaths/min</li>
+          <li>Temp: 37.6°C (99.7°F)</li>
+          <li>Weight: 64.2 kg (dry weight 62.0 kg)</li>
+          <li>Left arm AVG: Erythema, warmth, and tenderness along entire graft course</li>
+          <li>AVG thrill: Palpable but diminished compared to baseline</li>
+          <li>AVG bruit: Audible but high-pitched and discontinuous</li>
+          <li>Edema: Left hand and forearm pitting edema, fingers slightly dusky</li>
+          <li>Access puncture sites: Healing well, no drainage</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient missed her last dialysis session on Friday because she "didn't feel like coming." She reports poor adherence with fluid restrictions — "I had soup and ice cream over the weekend." She takes amlodipine 10 mg daily, sevelamer 800 mg TID with meals, and epoetin alfa 4,000 units IV TIW. She has a history of AVG stenosis requiring angioplasty 8 months ago.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>BUN: 78 mg/dL</li>
+          <li>Creatinine: 9.8 mg/dL</li>
+          <li>Potassium: 5.9 mEq/L</li>
+          <li>Phosphorus: 7.2 mg/dL</li>
+          <li>Hgb: 9.8 g/dL</li>
+          <li>Platelets: 198 × 10⁹/L</li>
+          <li>WBC: 11.2 × 10⁹/L</li>
+          <li>INR: 1.1</li>
+          <li>Albumin: 3.2 g/dL</li>
+          <li>Blood cultures: Pending (2 sets drawn)</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>Hold hemodialysis until access infection evaluated</li>
+          <li>Vancomycin 1 g IV loading dose (dose after blood cultures drawn)</li>
+          <li>Ceftazidime 2 g IV q8h</li>
+          <li>Doppler ultrasound of AVG</li>
+          <li>Vascular surgery consult</li>
+          <li>Transfer to ED for temporary dialysis catheter placement</li>
+          <li>Strict I&O, daily weights</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which findings are MOST concerning for an infected AVG? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Erythema and warmth along the graft</li>
+        <li>Diminished thrill and high-pitched bruit</li>
+        <li>Left hand edema and dusky fingers</li>
+        <li>Temperature 37.6°C</li>
+        <li>Missed dialysis session</li>
+        <li>AVG stenosis history</li>
+      </ol>
+      <div class="answer" id="diq1-ans">
+        <strong>Correct: A, B, C, D</strong><br>
+        Local signs of infection: erythema, warmth, tenderness (A). Diminished thrill + high-pitched/discontinuous bruit (B) suggest graft thrombosis or stenosis — can occur with infection/inflammation. Hand edema and duskiness (C) suggest venous outflow obstruction (stenosis, thrombosis) or steal syndrome. Low-grade fever (D) supports infection. Missed session (E) and history (F) are risk factors but not current signs.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the potassium is 5.9 mEq/L and the patient missed her last dialysis. What is the GREATEST immediate risk?</p>
+      <ol class="ngn-options" type="A">
+        <li>Hypotension during dialysis</li>
+        <li>Cardiac arrhythmia from hyperkalemia</li>
+        <li>Pulmonary edema from fluid overload</li>
+        <li>Metabolic acidosis</li>
+      </ol>
+      <div class="answer" id="diq2-ans">
+        <strong>Correct: B</strong><br>
+        K⁺ 5.9 is dangerously elevated. Hyperkalemia can cause life-threatening arrhythmias (peaked T waves → widened QRS → sine wave → VF/arrest). This is the most immediate life threat. While pulmonary edema (C) and acidosis (D) are concerns, they are less immediately dangerous than hyperkalemia. The patient needs emergent dialysis via temporary access.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The provider orders blood cultures before antibiotics. Why are blood cultures drawn BEFORE starting antibiotics?</p>
+      <ol class="ngn-options" type="A">
+        <li>To determine the exact antibiotic dose needed</li>
+        <li>To identify the causative organism and ensure appropriate antibiotic selection</li>
+        <li>To confirm the patient has an infection before starting unnecessary antibiotics</li>
+        <li>To check antibiotic levels in the blood</li>
+      </ol>
+      <div class="answer" id="diq3-ans">
+        <strong>Correct: B</strong><br>
+        Blood cultures identify the specific organism and its antibiotic sensitivities, allowing de-escalation to targeted therapy. In vascular access infections, Staph aureus (including MRSA) and gram-negative organisms are common. Empiric vancomycin + ceftazidime covers both. Cultures should be drawn BEFORE antibiotics to maximize yield — once antibiotics are given, cultures may be falsely negative.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The patient asks why she can't just use her AVG for dialysis today. What is the nurse's BEST response?</p>
+      <ol class="ngn-options" type="A">
+        <li>"Using the infected graft could spread bacteria into your bloodstream and cause sepsis."</li>
+        <li>"The graft is probably clotted and won't work for dialysis anyway."</li>
+        <li>"We need to save the graft for later when you're really sick."</li>
+        <li>"The dialysis machine would be damaged by the infection."</li>
+      </ol>
+      <div class="answer" id="diq4-ans">
+        <strong>Correct: A</strong><br>
+        Cannulating an infected vascular access can introduce bacteria directly into the bloodstream, causing bacteremia and sepsis. This is why HD is held when access infection is suspected. The patient needs temporary access (tunnelled catheter or central line) until the infection is treated. The other responses are either inaccurate or don't explain the clinical reasoning.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> The patient is transferred to the ED for temporary catheter placement. Which assessment finding would require the nurse to intervene IMMEDIATELY during transfer?</p>
+      <ol class="ngn-options" type="A">
+        <li>Patient reports anxiety about the catheter procedure</li>
+        <li>Telemetry shows peaked T waves on ECG</li>
+        <li>Blood pressure increases to 168/98 mmHg</li>
+        <li>Patient asks for pain medication</li>
+      </ol>
+      <div class="answer" id="diq5-ans">
+        <strong>Correct: B</strong><br>
+        Peaked T waves are the first ECG sign of hyperkalemia and can rapidly progress to widened QRS, sine wave, and cardiac arrest. This requires immediate intervention — calcium gluconate to stabilize cardiac membranes, insulin/glucose to shift K⁺ intracellularly, and emergent dialysis. This takes priority over anxiety (A), hypertension (C), or pain (D).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> Two weeks later, the infection has resolved and the patient returns to dialysis via a new tunneled catheter. Which teaching point is MOST important for preventing future access infections?</p>
+      <ol class="ngn-options" type="A">
+        <li>"Apply antibiotic ointment to the catheter site daily at home."</li>
+        <li>"Never touch the catheter dressing or let it get wet."</li>
+        <li>"Take prophylactic antibiotics before every dialysis session."</li>
+        <li>"Check your access temperature and appearance daily and report changes immediately."</li>
+      </ol>
+      <div class="answer" id="diq6-ans">
+        <strong>Correct: D</strong><br>
+        Patient education and early recognition of infection signs (erythema, warmth, tenderness, fever) are key to preventing access loss. Dressings should be changed by trained staff (B) — patients should NOT manipulate dressings. Antibiotic ointment (A) and prophylactic antibiotics (C) are not standard practice and can promote resistance. Early detection = early treatment = access salvage.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('diq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>AVG infection signs: E-W-T-R</strong> — Erythema, Warmth, Tenderness, Reduced thrill</li>
+        <li><strong>Never cannulate infected access</strong> — Risk of bacteremia and sepsis</li>
+        <li><strong>K⁺ >5.5 = ECG monitoring</strong> — Peaked T → widened QRS → sine wave → arrest</li>
+        <li><strong>Cultures BEFORE antibiotics</strong> — Maximizes identification of causative organism</li>
+        <li><strong>Hyperkalemia first aid: C-I-K-D</strong> — Calcium, Insulin/Glucose, Kayexalate, Dialysis</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

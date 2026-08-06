@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -244,6 +253,157 @@
       <div class="priority">
         <strong>Controller vs Reliever:</strong> Controllers (ICS, LABA+ICS combo) are taken DAILY to prevent inflammation. Relievers (SABA) are used as needed for acute symptoms. Patient education: Do NOT overuse SABA (>2x/week indicates poor control).
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Acute Asthma Exacerbation</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Ms. Priya Sharma, 16-year-old female</strong>, arrives in the emergency department with her mother. She reports sudden onset of severe wheezing and chest tightness after playing soccer in cold weather. She has a history of moderate persistent asthma and uses an albuterol inhaler "a few times a week." Mother reports Priya has been using her inhaler "constantly" for the past 2 hours with little relief. Priya is unable to speak in full sentences.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 132/78 mmHg</li>
+          <li>HR: 118 bpm</li>
+          <li>RR: 32 breaths/min, labored</li>
+          <li>Temp: 37.0°C (98.6°F)</li>
+          <li>SpO₂: 88% on room air</li>
+          <li>Height/Weight: 162 cm, 52 kg</li>
+          <li>Appearance: Tripod positioning, using accessory muscles, diaphoretic</li>
+          <li>Lungs: Diminished breath sounds bilaterally, prolonged expiratory phase, no wheezing audible</li>
+          <li>Peak Expiratory Flow (PEF): 120 L/min (predicted 450 L/min = 27%)</li>
+          <li>Speech: One-word responses only</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient reports forgetting her daily controller medication (fluticasone/salmeterol) for the past week because she "felt fine." She used her albuterol inhaler approximately 12 puffs in the past 2 hours. No fever, no recent illness. No known allergies. No hospitalizations for asthma previously.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>Oxygen 2L NC, titrate to maintain SpO₂ >92%</li>
+          <li>Albuterol 2.5 mg + ipratropium 0.5 mg nebulizer every 20 min × 3 doses</li>
+          <li>Methylprednisolone 125 mg IV now</li>
+          <li>Magnesium sulfate 2 g IV over 20 minutes</li>
+          <li>Chest X-ray</li>
+          <li>Continuous pulse oximetry</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which assessment findings indicate this is a LIFE-THREATENING asthma exacerbation? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Peak flow 27% of predicted</li>
+        <li>SpO₂ 88% on room air</li>
+        <li>Absence of audible wheezing</li>
+        <li>HR 118 bpm</li>
+        <li>Inability to speak in full sentences</li>
+        <li>Use of accessory muscles</li>
+      </ol>
+      <div class="answer" id="cq1-ans">
+        <strong>Correct: A, B, C, E</strong><br>
+        Absence of wheezing in severe asthma is a SILENT CHEST — indicates insufficient air movement to produce sound (ominous sign). PEF <30% predicted, SpO₂ <90%, and inability to speak are all signs of severe/life-threatening asthma. HR 118 and accessory muscle use indicate severity but are not specific to life-threatening status.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes diminished breath sounds with no wheezing. What does this finding MOST likely indicate?</p>
+      <ol class="ngn-options" type="A">
+        <li>The bronchospasm is resolving and the patient is improving</li>
+        <li>There is insufficient air movement to produce wheezing — a silent chest</li>
+        <li>The patient has developed a pneumothorax</li>
+        <li>The albuterol has successfully opened the airways</li>
+      </ol>
+      <div class="answer" id="cq2-ans">
+        <strong>Correct: B</strong><br>
+        A silent chest in severe asthma is an ominous sign indicating minimal air movement due to severe bronchospasm and mucus plugging. This requires immediate escalation (possible intubation). It does NOT indicate improvement. While pneumothorax can cause absent breath sounds, the bilateral diminished sounds with severe asthma point to silent chest.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> Which nursing diagnosis should be the nurse's TOP priority?</p>
+      <ol class="ngn-options" type="A">
+        <li>Impaired gas exchange related to bronchospasm and mucus plugging</li>
+        <li>Ineffective health management related to nonadherence with controller medication</li>
+        <li>Anxiety related to difficulty breathing</li>
+        <li>Risk for infection related to corticosteroid use</li>
+      </ol>
+      <div class="answer" id="cq3-ans">
+        <strong>Correct: A</strong><br>
+        SpO₂ 88% with silent chest = life-threatening airway compromise. Impaired gas exchange is the priority. While nonadherence (B) contributed to the exacerbation, it is not the immediate priority. Anxiety (C) is secondary to hypoxia. Infection risk (D) is a long-term concern, not immediate.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The nurse is preparing to administer the ordered treatments. Which action should be performed FIRST?</p>
+      <ol class="ngn-options" type="A">
+        <li>Administer methylprednisolone 125 mg IV</li>
+        <li>Apply oxygen and administer albuterol/ipratropium nebulizer</li>
+        <li>Give magnesium sulfate 2 g IV</li>
+        <li>Draw blood for CBC and basic metabolic panel</li>
+      </ol>
+      <div class="answer" id="cq4-ans">
+        <strong>Correct: B</strong><br>
+        Oxygen + bronchodilator is the immediate priority. The patient is hypoxemic (SpO₂ 88%) with severe bronchospasm. Albuterol is the fastest-acting bronchodilator. Steroids (A) take hours to work. Magnesium (C) is adjunctive. Labs (D) can wait.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> After 3 back-to-back nebulizer treatments, the client's SpO₂ is 91% on 4L NC, she can speak in short phrases, and wheezing is now audible bilaterally. Which is the nurse's BEST next action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Call the rapid response team — the patient is worsening</li>
+        <li>Continue monitoring — the patient is showing signs of improvement</li>
+        <li>Prepare for emergent intubation</li>
+        <li>Decrease oxygen to 2L NC</li>
+      </ol>
+      <div class="answer" id="cq5-ans">
+        <strong>Correct: B</strong><br>
+        Audible wheezing returning is actually a POSITIVE sign — indicates air is now moving through previously obstructed airways. SpO₂ improved from 88% to 91%, and she can now speak in phrases. These are signs of response to treatment. Continue current therapy and monitor closely.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> At discharge, which statement by the patient indicates a need for FURTHER teaching?</p>
+      <ol class="ngn-options" type="A">
+        <li>"I will take my controller inhaler every day even when I feel fine."</li>
+        <li>"I should use my rescue inhaler before exercise in cold weather."</li>
+        <li>"If my peak flow drops below 50%, I'll call my doctor."</li>
+        <li>"I only need my controller medicine when I'm having symptoms."</li>
+      </ol>
+      <div class="answer" id="cq6-ans">
+        <strong>Correct: D</strong><br>
+        Controller medications (inhaled corticosteroids) must be taken DAILY to reduce airway inflammation and prevent exacerbations. They are NOT rescue medications. Stopping when "feeling fine" leads to exactly this situation — severe exacerbation. Green zone peak flow is >80%, yellow 50-80%, red <50%.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('cq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Silent chest = dangerous</strong> — No wheezing means NO air movement. Call for help.</li>
+        <li><strong>Peak flow <30% = severe</strong> — Predicted values matter for objective assessment</li>
+        <li><strong>Wheezing returning = improving</strong> — Counterintuitive but true in severe asthma</li>
+        <li><strong>Controllers are preventive</strong> — NOT PRN. Daily use reduces inflammation.</li>
+        <li><strong>Oxygen + bronchodilator first</strong> — In hypoxemic patients, always address ABCs</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

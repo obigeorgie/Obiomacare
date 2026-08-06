@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -299,6 +308,177 @@
       <div class="priority">
         <strong>Key Nursing Actions:</strong> Verify antibiotic indication and appropriateness. Check for allergies. Monitor for adverse effects. Ensure proper administration timing (especially time-dependent vs concentration-dependent antibiotics). Educate patients on completing the full course.
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Sepsis & Antibiotic Therapy</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. Robert Hayes, 68-year-old male</strong>, is admitted from a skilled nursing facility with fever, confusion, and decreased urine output. Staff report he has a Foley catheter placed 10 days ago for urinary retention due to enlarged prostate. He has a history of type 2 diabetes, BPH, and chronic kidney disease (baseline creatinine 1.8). He is allergic to penicillin (rash).</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 88/54 mmHg</li>
+          <li>HR: 118 bpm</li>
+          <li>RR: 28 breaths/min</li>
+          <li>Temp: 38.9°C (102°F)</li>
+          <li>SpO₂: 91% on 2L NC</li>
+          <li>Weight: 78 kg</li>
+          <li>Skin: Warm, flushed, dry mucous membranes</li>
+          <li>Neuro: Confused to time and place, irritable</li>
+          <li>Abdomen: Suprapubic tenderness, Foley catheter in place with cloudy, foul-smelling urine</li>
+          <li>Peripheral IV: 20-gauge in left forearm, patent</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient's family reports he has been increasingly sleepy and confused over the past 2 days. SNF staff noted foul-smelling urine yesterday but did not notify provider. Patient has not eaten in 24 hours. Last known well status was 3 days ago when he was alert and oriented. Code status: Full code.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>WBC: 18.2 × 10⁹/L (neutrophils 88%)</li>
+          <li>Hgb: 10.8 g/dL</li>
+          <li>Platelets: 142 × 10⁹/L</li>
+          <li>Creatinine: 3.2 mg/dL (baseline 1.8)</li>
+          <li>BUN: 58 mg/dL</li>
+          <li>Sodium: 138 mEq/L</li>
+          <li>Potassium: 4.8 mEq/L</li>
+          <li>Lactate: 4.8 mmol/L</li>
+          <li>Glucose: 212 mg/dL</li>
+          <li>Urinalysis: >100 WBC/hpf, positive nitrites, positive leukocyte esterase</li>
+          <li>Blood cultures: Pending (2 sets drawn)</li>
+          <li>Urinary culture: Pending</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>0.9% NS 30 mL/kg IV bolus (2.3L over 3 hours)</li>
+          <li>Cefepime 2 g IV q8h</li>
+          <li>Vancomycin loading dose per pharmacy (dose adjusted for renal function)</li>
+          <li>Blood cultures × 2 (already drawn)</li>
+          <li>Remove Foley catheter</li>
+          <li>Strict I&O, hourly vitals</li>
+          <li>Lactate recheck in 6 hours</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which findings meet the criteria for SEPSIS? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Temperature 38.9°C</li>
+        <li>Heart rate 118 bpm</li>
+        <li>Respiratory rate 28 breaths/min</li>
+        <li>Systolic BP 88 mmHg</li>
+        <li>Lactate 4.8 mmol/L</li>
+        <li>Creatinine 3.2 mg/dL</li>
+      </ol>
+      <div class="answer" id="aq1-ans">
+        <strong>Correct: A, B, C, D, E, F</strong><br>
+        Sepsis = suspected infection + organ dysfunction. This patient has qSOFA criteria (RR≥22, altered mentation, SBP≤100) and SOFA criteria (lactate >2, creatinine elevation indicating AKI, thrombocytopenia). All findings represent the septic response.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the lactate is 4.8 mmol/L. What does this finding indicate?</p>
+      <ol class="ngn-options" type="A">
+        <li>The patient has liver failure and cannot clear lactate</li>
+        <li>There is tissue hypoperfusion and anaerobic metabolism due to sepsis</li>
+        <li>The elevated lactate is due to the patient's diabetes</li>
+        <li>This is a normal finding in elderly patients with infection</li>
+      </ol>
+      <div class="answer" id="aq2-ans">
+        <strong>Correct: B</strong><br>
+        Elevated lactate (>2 mmol/L) in sepsis indicates tissue hypoperfusion and anaerobic metabolism. It is a marker of severity and part of the criteria for septic shock (lactate >2 despite adequate fluid resuscitation). Lactate should decrease with successful resuscitation.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The nurse is prioritizing interventions for the first hour. Which action is the HIGHEST priority?</p>
+      <ol class="ngn-options" type="A">
+        <li>Draw repeat blood cultures</li>
+        <li>Administer IV fluid bolus and start antibiotics</li>
+        <li>Remove the Foley catheter</li>
+        <li>Insert a central line</li>
+      </ol>
+      <div class="answer" id="aq3-ans">
+        <strong>Correct: B</strong><br>
+        The Sepsis Hour-1 Bundle requires: measure lactate, obtain blood cultures (already done), administer broad-spectrum antibiotics within 1 hour, and begin rapid fluid resuscitation (30 mL/kg) for hypotension or lactate ≥4. Fluids and antibiotics are time-critical. Foley removal (C) and central line (D) can follow.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The pharmacist calls to clarify the vancomycin dosing. The patient has a penicillin allergy (rash). Which is the nurse's BEST response?</p>
+      <ol class="ngn-options" type="A">
+        <li>"Hold the vancomycin — we need to desensitize the patient to penicillin first."</li>
+        <li>"Vancomycin is safe to give — it is not a penicillin and cross-reactivity is minimal."</li>
+        <li>"Substitute aztreonam for the cefepime since the patient is penicillin-allergic."</li>
+        <li>"The patient needs skin testing before any antibiotics are given."</li>
+      </ol>
+      <div class="answer" id="aq4-ans">
+        <strong>Correct: B</strong><br>
+        Vancomycin is a glycopeptide, not a beta-lactam. There is NO cross-reactivity with penicillin. The patient can safely receive vancomycin. Cefepime is a cephalosporin — while some cross-reactivity exists with penicillin (especially first-generation), cefepime is generally safe with penicillin rash allergy. Aztreonam (C) is unnecessary. Skin testing (D) delays critical antibiotic therapy.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> After 2 hours, the patient has received 1.5L of NS. His BP is now 102/64, HR 104, and he is more alert. Urine output is 80 mL in the past 2 hours. Which is the nurse's BEST next action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Continue the remaining fluid bolus and monitor</li>
+        <li>Stop fluids — the patient is fluid overloaded</li>
+        <li>Increase the fluid rate to push more volume faster</li>
+        <li>Call the provider to discuss fluid restriction</li>
+      </ol>
+      <div class="answer" id="aq5-ans">
+        <strong>Correct: A</strong><br>
+        The patient is responding to fluids (BP improved, more alert) but has not yet received the full 30 mL/kg bolus (2.3L total; received 1.5L). Continue remaining fluids and reassess. Urine output of 40 mL/hr is adequate but not robust. Complete the ordered bolus unless signs of fluid overload develop (crackles, JVD, dyspnea).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> On day 3, the patient is hemodynamically stable and cultures show E. coli sensitive to cefepime. Which statement by the nurse to the patient indicates understanding of CAUTI prevention?</p>
+      <ol class="ngn-options" type="A">
+        <li>"You should ask for a Foley catheter whenever you're too weak to get to the bathroom."</li>
+        <li>"Daily chlorhexidine baths will prevent all future urinary infections."</li>
+        <li>"Avoid unnecessary urinary catheters — they're a major source of infection."</li>
+        <li>"Once you get a CAUTI, you're immune to future E. coli infections."</li>
+      </ol>
+      <div class="answer" id="aq6-ans">
+        <strong>Correct: C</strong><br>
+        The #1 prevention for CAUTI is avoiding unnecessary urinary catheterization. If a catheter is needed, remove it as soon as possible. Chlorhexidine baths (B) reduce CLABSI, not CAUTI. Foleys should NOT be used for convenience (A). Previous infection does NOT confer immunity (D).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('aq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Sepsis Hour-1 Bundle</strong> — Lactate, cultures, antibiotics, fluids. Every minute counts.</li>
+        <li><strong>Lactate >2 = organ dysfunction</strong> — Indicates anaerobic metabolism from hypoperfusion</li>
+        <li><strong>30 mL/kg fluid bolus</strong> — Standard for hypotension or lactate ≥4 in sepsis</li>
+        <li><strong>Vancomycin ≠ penicillin</strong> — No cross-reactivity. Safe in penicillin allergy.</li>
+        <li><strong>CAUTI prevention</strong> — Avoid Foleys. Remove ASAP. #1 healthcare-associated infection.</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

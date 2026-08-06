@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -260,6 +269,177 @@
       <div class="priority">
         <strong>Management:</strong> Pancreatic enzyme replacement (take with meals), fat-soluble vitamin supplementation (A, D, E, K), analgesics, alcohol cessation, insulin if diabetic.
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Hepatic Encephalopathy & Ascites</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. James Carter, 58-year-old male</strong>, is admitted with worsening confusion and abdominal distention over the past week. His wife reports he has been "sleepy during the day but awake all night," has had trouble writing his name, and is increasingly irritable. He has a 20-year history of alcohol use disorder and was diagnosed with cirrhosis 3 years ago. He takes furosemide 40 mg daily and spironolactone 100 mg daily at home.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 98/62 mmHg</li>
+          <li>HR: 96 bpm, regular</li>
+          <li>RR: 18 breaths/min</li>
+          <li>Temp: 37.2°C (99.0°F)</li>
+          <li>SpO₂: 94% on room air</li>
+          <li>Weight: 78 kg (usual weight 68 kg)</li>
+          <li>Appearance: Jaundiced sclera, spider angiomas on chest, palmar erythema</li>
+          <li>Abdomen: Markedly distended, shifting dullness on percussion, fluid wave positive</li>
+          <li>Neuro: Oriented to person and place but not time, asterixis (hand flapping) present, unable to draw a clock correctly</li>
+          <li>Skin: Multiple ecchymoses, capillary refill 3 seconds</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient's wife reports he stopped taking his diuretics 2 weeks ago because he "didn't think they were helping." She also reports he had a "stomach bug" with 2 days of loose stools last week. He has been eating poorly. Last alcohol use was 3 years ago at diagnosis. No history of GI bleeding. No fever until today.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>AST: 142 U/L</li>
+          <li>ALT: 68 U/L</li>
+          <li>Total bilirubin: 4.8 mg/dL</li>
+          <li>Albumin: 2.4 g/dL</li>
+          <li>INR: 1.8</li>
+          <li>Ammonia: 98 mcg/dL (normal <50)</li>
+          <li>Sodium: 128 mEq/L</li>
+          <li>Potassium: 3.2 mEq/L</li>
+          <li>Creatinine: 1.6 mg/dL</li>
+          <li>WBC: 8.4 × 10⁹/L</li>
+          <li>Platelets: 88 × 10⁹/L</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>Paracentesis — diagnostic and therapeutic (4-6L)</li>
+          <li>Lactulose 30 mL PO TID, titrate to 3-4 soft stools/day</li>
+          <li>Rifaximin 550 mg PO BID</li>
+          <li>Albumin 25 g IV if >5L removed</li>
+          <li>Restart furosemide 40 mg and spironolactone 100 mg PO daily</li>
+          <li>Fluid restriction: 1.5L/day</li>
+          <li>Low-sodium diet</li>
+          <li>Liver ultrasound with Doppler</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which findings are consistent with hepatic encephalopathy (HE)? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Day-night sleep reversal</li>
+        <li>Asterixis (hand flapping)</li>
+        <li>Inability to draw a clock</li>
+        <li>Jaundiced sclera</li>
+        <li>Irritability and confusion</li>
+        <li>Spider angiomas</li>
+      </ol>
+      <div class="answer" id="lq1-ans">
+        <strong>Correct: A, B, C, E</strong><br>
+        HE findings include neuropsychiatric changes: sleep-wake reversal (A), asterixis (B — specific to metabolic encephalopathies), constructional apraxia (C — can't draw clock/write), confusion/personality changes (E). Jaundice (D) and spider angiomas (F) are signs of chronic liver disease/cirrhosis but NOT specific to HE.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the AST is more than double the ALT. What does this pattern suggest?</p>
+      <ol class="ngn-options" type="A">
+        <li>Acute viral hepatitis</li>
+        <li>Alcoholic liver disease</li>
+        <li>Non-alcoholic fatty liver disease</li>
+        <li>Acetaminophen toxicity</li>
+      </ol>
+      <div class="answer" id="lq2-ans">
+        <strong>Correct: B</strong><br>
+        AST:ALT ratio >2:1 is highly suggestive of alcoholic liver disease. Alcohol is toxic to mitochondria (AST is mitochondrial and cytosolic; ALT is cytosolic only), so AST rises more than ALT. In viral hepatitis (A) and NAFLD (C), ALT > AST. In acetaminophen toxicity (D), AST and ALT are massively elevated (>1000) with ratio near 1:1.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> What is the MOST likely precipitant of this episode of hepatic encephalopathy?</p>
+      <ol class="ngn-options" type="A">
+        <li>Nonadherence with diuretics causing fluid retention</li>
+        <li>Electrolyte imbalance from diarrhea</li>
+        <li>GI bleeding from esophageal varices</li>
+        <li>Progression of cirrhosis to hepatocellular carcinoma</li>
+      </ol>
+      <div class="answer" id="lq3-ans">
+        <strong>Correct: B</strong><br>
+        The patient had 2 days of diarrhea (electrolyte loss, especially K⁺), stopped diuretics (causing fluid/electrolyte shifts), and has hypokalemia (3.2). Hypokalemia is a major precipitant of HE because K⁺ deficiency causes intracellular K⁺ to shift out, and H⁺/NH₄⁺ to shift into cells, increasing ammonia delivery to the brain. While nonadherence (A) contributed, the electrolyte disturbance is the direct precipitant.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The provider orders lactulose 30 mL TID. Which statement by the nurse to the patient is MOST accurate?</p>
+      <ol class="ngn-options" type="A">
+        <li>"Lactulose works by killing bacteria in your gut that produce ammonia."</li>
+        <li>"Lactulose traps ammonia in your stool by making your colon more acidic."</li>
+        <li>"Lactulose reduces ammonia production by your liver cells."</li>
+        <li>"Lactulose works best if you take it with a large glass of water."</li>
+      </ol>
+      <div class="answer" id="lq4-ans">
+        <strong>Correct: B</strong><br>
+        Lactulose is a non-absorbable disaccharide. Colonic bacteria metabolize it to lactic acid and acetic acid, lowering colonic pH. In acidic environment, ammonia (NH₃) converts to ammonium (NH₄⁺), which is trapped in stool and excreted. Rifaximin (antibiotic) kills ammonia-producing bacteria. Lactulose does NOT act on liver cells (C) and water does not affect its mechanism (D).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> During paracentesis, 5L of clear yellow fluid is removed. The patient's BP drops to 84/50. What is the nurse's BEST immediate action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Call the provider and request albumin replacement</li>
+        <li>Position the patient supine and elevate legs</li>
+        <li>Increase the IV fluid rate to compensate</li>
+        <li>Stop the procedure and apply pressure</li>
+      </ol>
+      <div class="answer" id="lq5-ans">
+        <strong>Correct: A</strong><br>
+        Large-volume paracentesis (>5L) can cause circulatory dysfunction (post-paracentesis circulatory dysfunction) due to rapid fluid shifts. Guidelines recommend albumin 6-8 g per liter removed when >5L is removed. While positioning (B) helps, albumin is the specific treatment. IV fluids (C) can worsen ascites. The procedure can continue (D is not the priority).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> On day 3, the patient is alert and oriented, ammonia is 52, and he is having 3 soft stools daily. Which dietary instruction is MOST appropriate at discharge?</p>
+      <ol class="ngn-options" type="A">
+        <li>"You should follow a high-protein diet to help your liver regenerate."</li>
+        <li>"Limit sodium to 2 grams per day and avoid alcohol completely."</li>
+        <li>"Drink at least 3 liters of water daily to prevent dehydration."</li>
+        <li>"Avoid all protein since it worsens hepatic encephalopathy."</li>
+      </ol>
+      <div class="answer" id="lq6-ans">
+        <strong>Correct: B</strong><br>
+        Sodium restriction (2g/day) is essential for ascites management. Absolute alcohol abstinence is critical — even small amounts worsen cirrhosis. Protein restriction (D) is no longer recommended in HE — patients need adequate protein to prevent muscle wasting (muscle metabolizes ammonia). Fluid restriction (not increased intake, C) is typically needed in hyponatremia/ascites.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('lq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>AST:ALT >2:1 = alcohol</strong> — Classic pattern for alcoholic liver disease</li>
+        <li><strong>HE precipitants: P-D-G-H-E-L-P-S</strong> — Protein excess, Drugs, GI bleed, Hypokalemia, Electrolytes, Liver failure, Paracentesis, Sepsis/Sedatives</li>
+        <li><strong>Lactulose acidifies colon</strong> — Traps NH₃ as NH₄⁺ in stool</li>
+        <li><strong>Albumin for >5L removed</strong> — Prevents post-paracentesis circulatory dysfunction</li>
+        <li><strong>Do NOT restrict protein</strong> — Modern guidelines: adequate protein prevents muscle wasting</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -198,6 +207,160 @@
       </ul>
       <p><strong>Procedures requiring prophylaxis:</strong> Dental (manipulation of gingival tissue), respiratory tract (tonsillectomy), infected skin/soft tissue</p>
       <p><strong>Single dose amoxicillin 2g PO</strong> (or ampicillin/cefazolin if unable to take PO)</p>
+    </div>
+
+    <h2>🧩 NGN Case Study: Ductal-Dependent Congenital Heart Defect</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Baby Emma, 4-day-old female</strong>, is brought to the emergency department by her parents. They report she has become increasingly "blue around the mouth" during feedings over the past day and seems to "work hard to breathe." She was born at term via spontaneous vaginal delivery and discharged home at 24 hours. Prenatal care was uncomplicated. Parents are first-time parents.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 62/38 mmHg (right arm)</li>
+          <li>HR: 172 bpm</li>
+          <li>RR: 68 breaths/min, labored with nasal flaring and retractions</li>
+          <li>Temp: 36.8°C (98.2°F) axillary</li>
+          <li>SpO₂: 72% on room air</li>
+          <li>Weight: 3.2 kg (birth weight 3.4 kg)</li>
+          <li>Appearance: Cyanotic lips and nail beds, diaphoretic, lethargic</li>
+          <li>Lungs: Clear bilaterally with good air entry</li>
+          <li>Heart: Single S2 sound, no murmur audible</li>
+          <li>Peripheries: Weak pulses, capillary refill 4 seconds</li>
+          <li>Femoral pulses: Weak and delayed compared to brachial</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Parents report Emma fed poorly at home, taking only 1-2 ounces per feeding (down from 2-3 oz). She has been sleeping more than usual and is difficult to arouse. No fever. No vomiting. No sick contacts. Mother had negative Group B strep screen. Baby passed newborn screening before discharge.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>Oxygen 100% via non-rebreather mask</li>
+          <li>IV access, D10 maintenance fluids</li>
+          <li>Prostaglandin E1 (PGE1) infusion 0.05 mcg/kg/min</li>
+          <li>Chest X-ray</li>
+          <li>4-extremity blood pressures</li>
+          <li>Echocardiogram (stat)</li>
+          <li>ABG, complete metabolic panel, CBC, blood culture</li>
+          <li>Cardiology consult</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Which findings suggest a DUCTAL-DEPENDENT cardiac lesion? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Cyanosis appearing at 4 days of age</li>
+        <li>Single S2 heart sound</li>
+        <li>Differential cyanosis (lower SpO₂ than upper)</li>
+        <li>Weak femoral pulses with delayed capillary refill</li>
+        <li>Tachypnea with feeding</li>
+        <li>Clear lung sounds</li>
+      </ol>
+      <div class="answer" id="pedq1-ans">
+        <strong>Correct: A, B, D, E, F</strong><br>
+        Cyanosis appearing after ductal closure (24-72 hours) is classic for ductal-dependent lesions. Single S2 suggests only one great vessel (seen in Tetralogy of Fallot, truncus arteriosus, pulmonary atresia). Weak femoral pulses suggest coarctation of the aorta or hypoplastic left heart. Tachypnea with feeding and clear lungs suggest pulmonary blood flow obstruction (not pulmonary edema). Differential cyanosis (C) is specific to PPHN or transposition with PDA, but we don't have upper vs lower SpO₂ data here.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes a single S2 sound and no murmur. Which defect is MOST likely?</p>
+      <ol class="ngn-options" type="A">
+        <li>Atrial septal defect (ASD)</li>
+        <li>Tetralogy of Fallot (TOF)</li>
+        <li>Patent ductus arteriosus (PDA)</li>
+        <li>Ventricular septal defect (VSD)</li>
+      </ol>
+      <div class="answer" id="pedq2-ans">
+        <strong>Correct: B</strong><br>
+        Tetralogy of Fallot classically presents with cyanosis at 2-4 months (earlier if severe), a single S2 (A2 only — P2 is soft/absent due to pulmonary stenosis), and may have NO murmur if pulmonary atresia is present. ASD (A) and VSD (D) typically cause acyanotic presentations with murmurs. PDA (C) causes a continuous machinery murmur.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The provider orders PGE1 infusion. What is the PRIMARY purpose of this medication?</p>
+      <ol class="ngn-options" type="A">
+        <li>To increase cardiac contractility and improve perfusion</li>
+        <li>To keep the patent ductus arteriosus open and maintain pulmonary/systemic blood flow</li>
+        <li>To reduce pulmonary vascular resistance and improve oxygenation</li>
+        <li>To sedate the infant and reduce oxygen consumption</li>
+      </ol>
+      <div class="answer" id="pedq3-ans">
+        <strong>Correct: B</strong><br>
+        PGE1 (alprostadil) keeps the ductus arteriosus patent. In ductal-dependent lesions, the PDA is the ONLY source of pulmonary blood flow (TOF, pulmonary atresia, tricuspid atresia) or systemic blood flow (coarctation, interrupted aortic arch, hypoplastic left heart). Keeping it open is LIFE-SAVING while awaiting definitive repair.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> The nurse is preparing to start the PGE1 infusion. Which action is the HIGHEST priority?</p>
+      <ol class="ngn-options" type="A">
+        <li>Ensure the infant is NPO and prepare for intubation</li>
+        <li>Verify the concentration and program the infusion pump correctly</li>
+        <li>Place the infant in knee-chest position</li>
+        <li>Start supplemental oxygen at 2L NC</li>
+      </ol>
+      <div class="answer" id="pedq4-ans">
+        <strong>Correct: B</strong><br>
+        PGE1 is a HIGH-ALERT medication with a narrow therapeutic window (0.01-0.1 mcg/kg/min). Dosing errors can cause severe hypotension, apnea, or inadequate ductal patency. Verify concentration, dose calculation, and pump programming. While apnea monitoring (A) and positioning (C) are important, medication safety comes first. Oxygen (D) has already been ordered.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> Thirty minutes after starting PGE1, the infant's SpO₂ improves to 85% but she develops apnea lasting 15 seconds. What is the nurse's BEST immediate action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Stop the PGE1 infusion immediately</li>
+        <li>Stimulate the infant and prepare for possible intubation</li>
+        <li>Increase the PGE1 dose to improve oxygenation further</li>
+        <li>Call the provider to request a different medication</li>
+      </ol>
+      <div class="answer" id="pedq5-ans">
+        <strong>Correct: B</strong><br>
+        Apnea is a known side effect of PGE1 (especially at higher doses and in very young infants). Stimulate the infant (rub back, reposition). If apnea continues or recurs, intubation may be needed. Do NOT stop PGE1 — this could close the ductus and cause cardiovascular collapse. The provider should be notified, but stimulation and airway management are the immediate priorities.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> The cardiologist confirms Tetralogy of Fallot. The nurse is preparing the parents for transfer to a pediatric cardiac center. Which statement by the mother indicates understanding?</p>
+      <ol class="ngn-options" type="A">
+        <li>"My baby will need surgery right away to fix the hole in her heart."</li>
+        <li>"She may need a temporary shunt until she's big enough for full repair."</li>
+        <li>"Once she has surgery, she'll never need any more cardiac procedures."</li>
+        <li>"This happened because I didn't take good enough care of myself during pregnancy."</li>
+      </ol>
+      <div class="answer" id="pedq6-ans">
+        <strong>Correct: B</strong><br>
+        TOF repair is typically done at 3-6 months. In the interim, a palliative shunt (Blalock-Taussig) may be placed to increase pulmonary blood flow. Full repair involves closing the VSD and relieving pulmonary stenosis. Some children need subsequent procedures (pulmonary valve replacement in adolescence/adulthood). CHD is NOT caused by maternal behavior — reassure parents it is not their fault.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('pedq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Cyanosis at 2-4 days = ductal closure</strong> — Think ductal-dependent CHD</li>
+        <li><strong>PGE1 keeps PDA open</strong> — Life-saving in ductal-dependent lesions</li>
+        <li><strong>Apnea is a known side effect</strong> — Monitor closely, don't stop infusion</li>
+        <li><strong>Single S2 + cyanosis = TOF</strong> — Pulmonary stenosis masks P2 sound</li>
+        <li><strong>Knee-chest position helps</strong> — Increases SVR, reduces right-to-left shunt</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>
