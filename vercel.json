@@ -21,6 +21,7 @@
     { "src": "/neuro-cheat-sheet", "dest": "/neuro-cheat-sheet.html" },
     { "src": "/privacy", "dest": "/privacy.html" },
     { "src": "/404", "dest": "/404.html" },
+    { "src": "/content/(.*)\\.html", "dest": "/content/$1.html" },
     { "src": "/content/(.*)", "dest": "/content/$1.html" },
     { "src": "/downloads/(.*)", "dest": "/downloads/$1" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
