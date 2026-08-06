@@ -1032,7 +1032,21 @@ app.get('/api/debug/files', async (req, res) => {
     pkFormat
   });
 });
-app.get('/api/health', async (req, res) => {
+app.get('/api/health', (req, res) => {
+  // Fast health check — no external service calls
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    stripe: !!stripe,
+    email: !!emailTransporter,
+    firebase: !!db,
+    nodeEnv: process.env.NODE_ENV,
+    version: '1.0.0'
+  });
+});
+
+// Lightweight health check for detailed status (separate endpoint)
+app.get('/api/health/detailed', async (req, res) => {
   let leadsCount = leads.length;
   let firebaseError = null;
   try {
@@ -1130,6 +1144,15 @@ function downloadPageTemplate(product, tier, baseUrl) {
     </html>
   `;
 }
+
+// 404 handler — returns proper 404 status for unmatched routes
+app.use((req, res) => {
+  res.status(404).json({ 
+    error: 'Not Found',
+    path: req.path,
+    message: 'The requested resource was not found.'
+  });
+});
 
 // ==================== EXPORT FOR VERCEL ====================
 module.exports = app;
