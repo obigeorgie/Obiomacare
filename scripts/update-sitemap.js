@@ -1,28 +1,24 @@
 const fs = require('fs');
-const path = require('path');
 const baseUrl = 'https://obiomacare.com';
 
 let urls = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
-  { loc: '/free-nclex-checklist.html', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/neuro-cheat-sheet.html', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/privacy.html', priority: '0.3', changefreq: 'yearly' },
+  { loc: '/free-nclex-checklist', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/neuro-cheat-sheet', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/privacy', priority: '0.3', changefreq: 'yearly' },
+  { loc: '/content/', priority: '0.8', changefreq: 'weekly' },
 ];
 
 // Collect all content files from both directories
-const contentDirs = ['content', 'landing/content'];
 const allFiles = new Set();
-
-for (const dir of contentDirs) {
+for (const dir of ['content', 'landing/content']) {
   if (!fs.existsSync(dir)) continue;
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
-  for (const f of files) {
-    allFiles.add(f);
-  }
+  for (const f of files) allFiles.add(f);
 }
 
 for (const file of Array.from(allFiles).sort()) {
-  urls.push({ loc: '/content/' + file, priority: '0.8', changefreq: 'monthly' });
+  urls.push({ loc: '/content/' + file.replace('.html', ''), priority: '0.8', changefreq: 'monthly' });
 }
 
 const today = new Date().toISOString().split('T')[0];
