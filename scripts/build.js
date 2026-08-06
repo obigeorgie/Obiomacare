@@ -31,11 +31,7 @@ for (const entry of rootContentFiles) {
   }
 }
 
-// Copy api/ to dist/api for serverless functions
-fs.mkdirSync('dist/api', { recursive: true });
-const apiFiles = fs.readdirSync('api');
-for (const file of apiFiles) {
-  fs.copyFileSync(path.join('api', file), path.join('dist/api', file));
-}
+// NOTE: Do NOT copy api/ to dist/. Vercel serves root api/ as serverless functions.
+// Copying api/ to dist/ causes Vercel to serve the raw JS files as static content.
 
 console.log('✅ Build complete: landing/ + content/ → dist/');
