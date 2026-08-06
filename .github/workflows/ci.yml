@@ -1,0 +1,56 @@
+name: CI — Build & Lint Check
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - '**'
+      - '!master'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Check for syntax errors in API
+        run: node -c api/index.js
+
+      - name: Check for syntax errors in tutor
+        run: node -c api/tutor.js
+
+      - name: Validate sitemap exists
+        run: test -f landing/sitemap.xml && echo "Sitemap OK" || (echo "Sitemap missing!" && exit 1)
+
+      - name: Check content pages are linked in sitemap
+        run: |
+          MISSING=0
+          for f in content/*.html; do
+            fname=$(basename "$f")
+            if ! grep -q "$fname" landing/sitemap.xml; then
+              echo "WARNING: $fname not in sitemap"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+          if [ $MISSING -gt 0 ]; then
+            echo "$MISSING content pages missing from sitemap"
+            exit 1
+          fi
+          echo "All content pages found in sitemap"
