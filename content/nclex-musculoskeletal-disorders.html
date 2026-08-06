@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -224,6 +233,113 @@
       </div>
       <div class="trap">
         <strong>🚨 NCLEX Trap:</strong> Do NOT start allopurinol during an acute gout attack — it can worsen the attack. Treat the acute flare FIRST, then start allopurinol once resolved. Patients on allopurinol should continue it during acute attacks (don't stop).
+      </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Total Hip Replacement Post-Op</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mrs. Rodriguez, 72-year-old female</strong>, is post-op day 1 after a right total hip arthroplasty (THA) for osteoarthritis. She has a history of hypertension and takes lisinopril. Her surgery was uncomplicated, and she received spinal anesthesia with sedation.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">Orders</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 138/82, HR 88, RR 18, Temp 37.4°C, SpO₂ 96% on 2L NC</p>
+      <p><strong>Physical Assessment:</strong> Alert and oriented. Right hip incision clean, dry, intact with a mild hematoma. Drains: 80 mL serosanguineous in past 8 hours. Right lower extremity: toes warm, capillary refill &lt;2 seconds, sensation intact. Able to wiggle toes. Denies chest pain or shortness of breath.</p>
+      <p><strong>Orders:</strong> Weight-bearing as tolerated (WBAT) on right leg. PT consult for ambulation. DVT prophylaxis: enoxaparin 40mg SQ daily. PCA morphine for pain. TED hose and SCDs.</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> The nurse is assessing for DVT. Which finding is the <strong>earliest indicator</strong> of a developing DVT?</p>
+        <ul>
+          <li>A. Calf swelling and warmth</li>
+          <li>B. Sudden onset chest pain and dyspnea</li>
+          <li>C. Unilateral calf pain with dorsiflexion (Homans' sign)</li>
+          <li>D. Low-grade fever and tachycardia</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Calf swelling and warmth</strong></p>
+          <p>Unilateral calf swelling, warmth, and erythema are the earliest clinical signs of DVT. Homans' sign (C) is unreliable and no longer recommended — it can dislodge a clot. Chest pain and dyspnea (B) indicate pulmonary embolism (PE), a complication of DVT, not DVT itself. Fever (D) is non-specific. Post-op patients should have calf circumference measured and compared bilaterally daily.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The physical therapist arrives for the first ambulation. Which instruction is <strong>most important</strong> to prevent hip dislocation with a posterior approach THA?</p>
+        <ul>
+          <li>A. "Do not flex your hip more than 90 degrees"</li>
+          <li>B. "Keep your legs crossed to maintain hip alignment"</li>
+          <li>C. "Sleep on your operative side for the first week"</li>
+          <li>D. "Use a high toilet seat and avoid low chairs"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. "Do not flex your hip more than 90 degrees"</strong></p>
+          <p>For posterior approach THA, the hip precautions are: NO hip flexion &gt;90°, NO adduction past midline (don't cross legs), NO internal rotation. These positions place stress on the posterior capsule and can cause dislocation. A high toilet seat (D) helps with the 90° rule but is less fundamental than the flexion restriction itself. Crossing legs (B) is contraindicated. Sleeping on the operative side (C) depends on surgeon preference but is not a universal precaution.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> Mrs. Rodriguez reports her pain is 8/10. The PCA shows she has pressed the button 6 times in the past hour but received only 2 doses. What is the nurse's <strong>priority</strong> action?</p>
+        <ul>
+          <li>A. Increase the PCA basal rate</li>
+          <li>B. Assess for factors contributing to inadequate pain control</li>
+          <li>C. Give a PRN bolus of morphine 4mg IV push</li>
+          <li>D. Switch to oral oxycodone</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Assess for factors contributing to inadequate pain control</strong></p>
+          <p>The patient is pressing the button frequently but receiving few doses — this suggests the lockout interval may be too long, or she's not understanding how to use the PCA. Before changing the dose, assess: Is she pressing the button correctly? Is she waiting long enough between presses? Is the catheter patent? Is she experiencing breakthrough pain from positioning? Once the cause is identified, collaborate with the provider for appropriate adjustments. Don't independently increase the basal rate (A) — that's a provider order.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> On post-op day 2, Mrs. Rodriguez's Hgb drops from 12.2 to 8.5. She is asymptomatic, HR 92, BP 128/78. What is the <strong>most appropriate</strong> nursing action?</p>
+        <ul>
+          <li>A. Prepare for immediate blood transfusion</li>
+          <li>B. Continue monitoring — post-op Hgb drop is expected</li>
+          <li>C. Notify the provider and monitor for signs of active bleeding</li>
+          <li>D. Increase IV fluids to hemodilute and improve circulation</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Notify the provider and monitor for signs of active bleeding</strong></p>
+          <p>A drop from 12.2 to 8.5 is significant (3.7 g/dL) and requires notification even if asymptomatic. Post-op patients can have hemodilution from IV fluids, but a drop this large warrants evaluation for active bleeding (check incision, drain output, stool guaiac, vital signs). Transfusion (A) may be needed but is a provider decision. Simply monitoring (B) is unsafe. Increasing fluids (D) further dilutes Hgb and doesn't address the cause.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> Mrs. Rodriguez is being discharged home. Which home safety instruction is <strong>highest priority</strong>?</p>
+        <ul>
+          <li>A. "Remove throw rugs and install grab bars in the bathroom"</li>
+          <li>B. "Keep your TED hose on at all times except when bathing"</li>
+          <li>C. "Take your pain medication exactly as prescribed"</li>
+          <li>D. "Call your surgeon if you develop a fever over 101°F"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. "Remove throw rugs and install grab bars in the bathroom"</strong></p>
+          <p>Falls are the leading cause of post-THA complications (dislocation, periprosthetic fracture). Removing fall hazards (throw rugs, clutter), installing grab bars, and ensuring adequate lighting are the highest priority home modifications. While DVT prophylaxis (B), pain management (C), and infection monitoring (D) are all important, fall prevention takes priority because a fall can cause catastrophic failure of the prosthesis requiring revision surgery.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> At 6-week follow-up, which finding indicates a <strong>complication</strong> requiring immediate provider notification?</p>
+        <ul>
+          <li>A. Patient is walking with a cane and has mild hip stiffness in the morning</li>
+          <li>B. Incision is well-healed but there is a small area of numbness near the scar</li>
+          <li>C. Patient reports sudden "giving way" sensation and inability to bear weight</li>
+          <li>D. Patient has gained 3 pounds since discharge</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Patient reports sudden "giving way" sensation and inability to bear weight</strong></p>
+          <p>A "giving way" sensation with inability to bear weight suggests prosthesis loosening, dislocation, or periprosthetic fracture — all emergencies requiring immediate evaluation. Morning stiffness (A) is normal during recovery. Numbness near incision (B) is common due to nerve disruption during surgery. Mild weight gain (D) is not concerning. Any sudden change in function, instability, or inability to bear weight after THA is a red flag.</p>
+        </div>
       </div>
     </div>
 
