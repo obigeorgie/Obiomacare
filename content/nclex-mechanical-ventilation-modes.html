@@ -20,6 +20,15 @@
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>:root{--navy-900:#0a1628;--navy-800:#0f1d32;--coral:#FF6B5B;--text-primary:#e2e8f0;--text-secondary:#94a3b8;--text-muted:#64748b;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--navy-900);color:var(--text-primary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}header{background:rgba(10,22,40,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 0;position:sticky;top:0;z-index:100}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:18px}.logo img{width:28px;height:28px}article{padding:48px 0}h1{font-size:40px;font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-1px}h2{font-size:28px;font-weight:700;margin:48px 0 16px;color:var(--coral)}h3{font-size:20px;font-weight:600;margin:32px 0 12px}.subtitle{font-size:18px;color:var(--text-secondary);margin-bottom:32px}.meta{font-size:14px;color:var(--text-muted);margin-bottom:32px}.meta a{color:var(--coral);text-decoration:none}p{margin-bottom:20px;font-size:17px}.highlight{background:var(--navy-800);border-left:4px solid var(--coral);padding:24px;margin:32px 0;border-radius:0 8px 8px 0}.highlight p:last-child{margin-bottom:0}ul,ol{margin-bottom:24px;padding-left:24px}li{margin-bottom:12px;font-size:17px}strong{color:#fff}table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}th,td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.1)}th{background:rgba(255,255,255,0.05);font-weight:600;color:var(--coral)}.step-box{background:var(--navy-800);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:24px 0}.step-box h3{color:var(--coral);margin-top:0}.cta-box{background:linear-gradient(135deg,rgba(255,107,91,0.15) 0%,rgba(255,107,91,0.05) 100%);border:1px solid rgba(255,107,91,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 32px;background:var(--coral);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin-top:16px;transition:all .3s}.btn:hover{background:#E85D4E}.nclex-tip{background:var(--navy-800);border-left:4px solid var(--warning);padding:20px;margin:24px 0;border-radius:0 8px 8px 0}.nclex-tip p:last-child{margin-bottom:0}footer{border-top:1px solid rgba(255,255,255,0.1);padding:32px 0;text-align:center;color:var(--text-muted);font-size:14px}@media(max-width:768px){h1{font-size:28px}h2{font-size:22px}table{font-size:13px}}
+.case-study{background:var(--navy-800);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:24px 0}
+.case-study h3{color:var(--coral);margin-top:0}
+.case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+.case-tab{background:rgba(255,255,255,0.05);padding:8px 16px;border-radius:20px;font-size:14px;color:var(--text-secondary)}
+.question{background:rgba(255,255,255,0.03);padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--coral)}
+.reveal-btn{background:var(--coral);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+.answer{display:none;margin-top:12px;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px}
+.answer.show{display:block}
+.hint{color:var(--warning);font-size:14px;margin-top:8px;font-style:italic}
 </style>
 </head>
 <body>
@@ -210,6 +219,113 @@
 <li>Contraindications: spinal instability, increased ICP, pregnancy, hemodynamic instability</li>
 <li>Complications: facial edema, pressure injuries, tube dislodgement</li>
 </ul>
+
+    <h2>🧩 NGN Case Study: Ventilator Alarm Response</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. Chen, 68-year-old male</strong>, is intubated and on mechanical ventilation in the ICU following COPD exacerbation and pneumonia. He is on AC/VC mode: TV 500, RR 14, FiO₂ 40%, PEEP 5. He is mildly sedated with propofol. The ventilator alarms.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Ventilator Data</span>
+        <span class="case-tab">Physical Assessment</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 138/82, HR 95, RR 24 (patient-initiated breaths above set rate), SpO₂ 88%</p>
+      <p><strong>Ventilator:</strong> High pressure alarm sounding. Peak pressure 55 cmH₂O (baseline 28). Plateau pressure 18. Tidal volume delivered 320 mL.</p>
+      <p><strong>Physical Assessment:</strong> Patient appears anxious, biting on tube, trying to sit up. Diminished breath sounds bilaterally. No wheezing. Chest rise appears asymmetrical. Trachea midline.</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> What is the <strong>most likely cause</strong> of the high pressure alarm?</p>
+        <ul>
+          <li>A. Worsening pneumonia with increased secretions</li>
+          <li>B. Patient-ventilator asynchrony/biting the tube</li>
+          <li>C. Pneumothorax</li>
+          <li>D. Mucus plug causing atelectasis</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Patient-ventilator asynchrony/biting the tube</strong></p>
+          <p>The key clue is the NORMAL plateau pressure (18) with elevated peak pressure (55). This indicates increased AIRWAY resistance, not compliance issues. The patient is biting the tube (causing obstruction) and fighting the ventilator. Plateau pressure reflects alveolar pressure/compliance — if it were elevated too, we'd suspect pneumothorax, ARDS, or mucus plug. With normal plateau and high peak, the problem is in the airway/tubing.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The nurse disconnects the ventilator and manually bags the patient with 100% O₂. Breath sounds are equal bilaterally and the patient settles. After reconnecting, the high pressure alarm continues. What is the <strong>next priority</strong> action?</p>
+        <ul>
+          <li>A. Increase the propofol sedation drip</li>
+          <li>B. Suction the endotracheal tube</li>
+          <li>C. Check for kinks in the ventilator tubing</li>
+          <li>D. Prepare for emergency chest tube insertion</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Check for kinks in the ventilator tubing</strong></p>
+          <p>Since manual bagging worked fine (equal breath sounds, patient improved), the patient's lungs and airway are patent. The problem is likely in the ventilator circuit — kinked tubing, water in the tubing, or a blocked HME filter. The NCLEX prioritizes "check the tubing first" because it's the quickest fix and most common cause of ventilator alarms. Suctioning and sedation are appropriate interventions but not the FIRST step when manual ventilation works normally.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The tubing is clear. The nurse suctioned moderate thick yellow secretions. The patient's SpO₂ is now 94% but his RR is 28 and he's using accessory muscles. Which intervention should the nurse implement <strong>first</strong>?</p>
+        <ul>
+          <li>A. Increase the tidal volume to 600 mL</li>
+          <li>B. Increase FiO₂ to 60%</li>
+          <li>C. Assess patient-ventilator synchrony and adjust sensitivity</li>
+          <li>D. Administer a PRN bolus of propofol</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Assess patient-ventilator synchrony and adjust sensitivity</strong></p>
+          <p>The patient is tachypneic and using accessory muscles despite the ventilator — this indicates he's "fighting" the vent (dyssynchrony). The trigger sensitivity may be set too high, or the flow rate may be inadequate for his demand. Adjusting synchrony will reduce his work of breathing. Simply increasing TV or FiO₂ doesn't address the underlying problem of dyssynchrony. Sedation may be needed but first optimize the ventilator settings.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The RT changes the ventilator to PS (pressure support) mode: PS 10, PEEP 5, FiO₂ 40%. Two hours later, the ABG shows: pH 7.48, PaCO₂ 30, PaO₂ 85, HCO₃ 22. What is the nurse's <strong>priority</strong> response?</p>
+        <ul>
+          <li>A. Decrease pressure support to reduce minute ventilation</li>
+          <li>B. Increase FiO₂ to maintain PaO₂ >100</li>
+          <li>C. Continue current settings — ABG is acceptable</li>
+          <li>D. Prepare for spontaneous breathing trial</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Decrease pressure support to reduce minute ventilation</strong></p>
+          <p>The patient is hyperventilating (pH 7.48, PaCO₂ 30) — he's receiving too much support. In PS mode, the patient controls the rate and tidal volume, but too much PS can lead to respiratory alkalosis. Decreasing PS will allow the patient to do more work and normalize PaCO₂. PaO₂ of 85 is acceptable on 40% FiO₂. An SBT is premature with an abnormal ABG.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> On day 5, the patient meets weaning criteria. The provider orders a spontaneous breathing trial (SBT). Which parameter indicates the SBT is <strong>successful</strong>?</p>
+        <ul>
+          <li>A. Respiratory rate 28, SpO₂ 90%, no distress</li>
+          <li>B. Respiratory rate 22, SpO₂ 96%, mild use of accessory muscles</li>
+          <li>C. Respiratory rate 18, SpO₂ 94%, comfortable, no diaphoresis</li>
+          <li>D. Respiratory rate 14, SpO₂ 98%, slightly drowsy</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Respiratory rate 18, SpO₂ 94%, comfortable, no diaphoresis</strong></p>
+          <p>Successful SBT criteria: RR &lt;30, SpO₂ &gt;90%, no increased work of breathing, no diaphoresis, no arrhythmias, stable hemodynamics. Option C meets all criteria. Option A has tachypnea (28). Option B has accessory muscle use (indicates distress). Option D has drowsiness which could indicate CO₂ retention/hypercapnia — check ABG before extubation.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> The patient passes the SBT and is extubated to nasal cannula 4L. Thirty minutes later, his voice is hoarse and he has a mild barking cough. What is the <strong>most likely cause</strong>?</p>
+        <ul>
+          <li>A. Aspiration pneumonia</li>
+          <li>B. Post-extubation stridor from laryngeal edema</li>
+          <li>C. Exacerbation of underlying COPD</li>
+          <li>D. Development of pulmonary embolism</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Post-extubation stridor from laryngeal edema</strong></p>
+          <p>Hoarseness and barking cough immediately after extubation strongly suggest laryngeal edema from endotracheal tube trauma. This is common, especially if the tube was in place for several days. Treatment: racemic epinephrine nebulizer, IV steroids (dexamethasone), cool humidified O₂. Monitor closely — may need reintubation if stridor worsens. The timing (30 min post-extubation) makes aspiration, COPD exacerbation, and PE less likely.</p>
+        </div>
+      </div>
+    </div>
 
 <div class="cta-box">
 <h3>Ready for Critical Care Scenarios?</h3>

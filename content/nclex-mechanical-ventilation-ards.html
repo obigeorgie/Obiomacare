@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -220,6 +229,115 @@
       </div>
       <div class="trap">
         <strong>🚨 NCLEX Trap:</strong> The #1 most effective VAP prevention intervention is keeping the head of the bed elevated 30–45°. This prevents aspiration of gastric contents. Oral care with chlorhexidine is also high-yield.
+      </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: ARDS & Prone Positioning</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mrs. Rodriguez, 45-year-old female</strong>, was admitted 48 hours ago with severe sepsis from necrotizing pneumonia. She was intubated yesterday for hypoxic respiratory failure and is now on mechanical ventilation: AC/VC, TV 400 (6 mL/kg IBW), PEEP 12, FiO₂ 80%, RR 20. Despite these settings, her SpO₂ remains 86-88%.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">ABG</span>
+        <span class="case-tab">Chest X-Ray</span>
+        <span class="case-tab">Ventilator Settings</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 98/62, HR 118, Temp 38.8°C, SpO₂ 87%</p>
+      <p><strong>ABG:</strong> pH 7.32, PaCO₂ 48, PaO₂ 58, HCO₃ 24, SaO₂ 86%</p>
+      <p><strong>Chest X-Ray:</strong> Bilateral diffuse opacities ("white out"), no cardiomegaly, no pleural effusions</p>
+      <p><strong>Ventilator:</strong> Plateau pressure 32 cmH₂O, driving pressure 20 cmH₂O</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Based on the clinical picture, what is the <strong>most likely diagnosis</strong>?</p>
+        <ul>
+          <li>A. Cardiogenic pulmonary edema</li>
+          <li>B. Acute Respiratory Distress Syndrome (ARDS)</li>
+          <li>C. Pneumothorax</li>
+          <li>D. Pulmonary embolism</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Acute Respiratory Distress Syndrome (ARDS)</strong></p>
+          <p>The Berlin Criteria for ARDS: acute onset, bilateral infiltrates on CXR, respiratory failure not fully explained by cardiac failure (no cardiomegaly/effusion), PaO₂/FiO₂ ratio ≤ 300. This patient's P/F ratio = 58 ÷ 0.80 = 72.5 (severe ARDS). The sepsis from pneumonia is a known trigger. Plateau pressure of 32 is also elevated, indicating stiff, noncompliant lungs.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The provider orders prone positioning for 16 hours. The nurse should first verify which <strong>safety requirement</strong> is met?</p>
+        <ul>
+          <li>A. Patient has arterial line for continuous BP monitoring</li>
+          <li>B. Patient has Foley catheter in place</li>
+          <li>C. Endotracheal tube is securely taped and suction is available</li>
+          <li>D. Family has provided informed consent</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Endotracheal tube is securely taped and suction is available</strong></p>
+          <p>Prone positioning carries risk of accidental extubation during the turn. The ETT must be VERY secure, and suction must be immediately available. While all options are reasonable, ETT security is the most critical safety requirement — losing the airway in an ARDS patient would be catastrophic. Prone positioning is a standard ICU intervention and does not require specific informed consent beyond general ICU consent.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> During prone positioning, the patient's SpO₂ improves to 93%. However, her BP drops to 78/50. What is the nurse's <strong>priority</strong> action?</p>
+        <ul>
+          <li>A. Return the patient to supine position immediately</li>
+          <li>B. Administer a fluid bolus of 500 mL LR</li>
+          <li>C. Increase the PEEP to improve oxygenation</li>
+          <li>D. Start norepinephrine infusion</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Return the patient to supine position immediately</strong></p>
+          <p>Prone positioning can compress the vena cava and reduce venous return, causing hypotension. In a patient who was already hypotensive (98/62), prone positioning may have worsened hemodynamics. The priority is to return to supine to restore cardiac preload and reassess. Fluid bolus and vasopressors may be needed AFTER returning supine if BP doesn't improve. Never increase PEEP in a hypotensive patient — it further reduces venous return.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The patient is returned to supine. BP improves to 92/60 with a fluid bolus. SpO₂ drops back to 87%. The provider discusses ECMO. Which statement about ECMO is <strong>correct</strong>?</p>
+        <ul>
+          <li>A. ECMO allows the lungs to rest while oxygenation is maintained</li>
+          <li>B. ECMO is contraindicated in patients with sepsis</li>
+          <li>C. The nurse should heparinize the patient before cannulation</li>
+          <li>D. ECMO eliminates the need for mechanical ventilation</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. ECMO allows the lungs to rest while oxygenation is maintained</strong></p>
+          <p>ECMO (extracorporeal membrane oxygenation) provides gas exchange outside the body, allowing the lungs to "rest" while healing from ARDS. Ventilation is continued at very low settings to prevent atelectasis. Sepsis is not an absolute contraindication — the underlying infection must be controlled. Heparinization is managed by the ECMO team, not the bedside nurse independently. ECMO does NOT eliminate the need for ventilation — "lung rest" ventilation is still provided.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The patient is not a candidate for ECMO. The provider increases PEEP to 14 and FiO₂ to 90%. The plateau pressure is now 34. Which adjustment is <strong>most appropriate</strong>?</p>
+        <ul>
+          <li>A. Accept the plateau pressure — oxygenation takes priority</li>
+          <li>B. Decrease tidal volume to 350 mL to keep plateau &lt;30</li>
+          <li>C. Increase tidal volume to improve minute ventilation</li>
+          <li>D. Switch to pressure control ventilation</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Decrease tidal volume to 350 mL to keep plateau &lt;30</strong></p>
+          <p>In ARDS, the goal is to keep plateau pressure ≤ 30 cmH₂O to prevent ventilator-induced lung injury (VILI). If increasing PEEP raises the plateau above 30, the tidal volume must be decreased (lung-protective strategy: 4-6 mL/kg IBW). Current TV 400 with plateau 34 → decrease TV. Pressure control is an option but doesn't directly address the plateau pressure issue.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> On day 10, the patient's P/F ratio improves to 220. The provider orders an SBT. Which finding during the trial would indicate readiness for extubation?</p>
+        <ul>
+          <li>A. RR 24, SpO₂ 92% on 40% FiO₂, minimal secretions</li>
+          <li>B. RR 28, SpO₂ 89% on 50% FiO₂, moderate secretions</li>
+          <li>C. RR 18, SpO₂ 96% on 30% FiO₂, strong cough, awake and following commands</li>
+          <li>D. RR 20, SpO₂ 94% on 60% FiO₂, weak cough, drowsy</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. RR 18, SpO₂ 96% on 30% FiO₂, strong cough, awake and following commands</strong></p>
+          <p>Extubation readiness requires adequate oxygenation (SpO₂ &gt;90% on ≤40% FiO₂), adequate ventilation (RR &lt;30), adequate airway protection (strong cough, awake, following commands), and minimal secretions. Option C meets all criteria. Option A has borderline SpO₂. Option B has tachypnea and low SpO₂. Option D requires too much FiO₂ and the patient is drowsy with weak cough — high aspiration risk.</p>
+        </div>
       </div>
     </div>
 
