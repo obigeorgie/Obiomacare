@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -206,6 +215,113 @@
       </div>
       <div class="trap">
         <strong>🚨 NCLEX Trap:</strong> Kernig's sign = pain with knee extension when hip flexed. Brudzinski's sign = hip/knee flexion with neck flexion. These indicate meningeal irritation. In infants, look for bulging fontanelle, high-pitched cry, poor feeding, irritability.
+      </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Head Trauma & Increased ICP</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. Garcia, 28-year-old male</strong>, was brought to the ED after a motorcycle crash. He was not wearing a helmet. Witnesses report he was thrown approximately 20 feet. He was unconscious at the scene and remains unresponsive.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">CT Head</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 178/92, HR 52, RR 10 (irregular), Temp 37.8°C, SpO₂ 89% on 15L NRB</p>
+      <p><strong>Physical Assessment:</strong> GCS 7 (E1, V2, M4). Right pupil 6mm, sluggish; left pupil 3mm, reactive. Decorticate posturing to painful stimuli. Battle's sign and raccoon eyes present. CSF draining from left ear. No other obvious injuries.</p>
+      <p><strong>CT Head:</strong> Right temporal-parietal epidural hematoma with 8mm midline shift</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Which vital sign pattern indicates <strong>Cushing's triad</strong>?</p>
+        <ul>
+          <li>A. BP 178/92, HR 52, RR 10</li>
+          <li>B. BP 88/50, HR 128, RR 28</li>
+          <li>C. BP 120/80, HR 72, RR 16</li>
+          <li>D. BP 150/90, HR 110, RR 24</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. BP 178/92, HR 52, RR 10</strong></p>
+          <p>Cushing's triad = hypertension (systolic) + bradycardia + irregular respirations. It's a late sign of severely increased intracranial pressure (ICP). The widened pulse pressure (178-92 = 86) with bradycardia indicates the brainstem is attempting to maintain perfusion. This requires IMMEDIATE intervention — mannitol, hyperventilation, and emergent neurosurgical decompression. The irregular respirations suggest brainstem compression.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The right pupil is 6mm and sluggish while the left is 3mm and reactive. What does this indicate?</p>
+        <ul>
+          <li>A. Direct traumatic injury to the right eye</li>
+          <li>B. Third cranial nerve (oculomotor) compression on the right</li>
+          <li>C. Optic nerve transection bilaterally</li>
+          <li>D. Normal variation in pupil size</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Third cranial nerve (oculomotor) compression on the right</strong></p>
+          <p>Anisocoria (unequal pupils) with a dilated, sluggish pupil on the side of the hematoma indicates CN III (oculomotor nerve) compression from uncal herniation. The temporal lobe uncus herniates through the tentorial incisura, compressing CN III. This is a neurosurgical emergency. The "blown pupil" is on the same side as the mass lesion (ipsilateral) — a classic finding that localizes the lesion to the right hemisphere.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The neurosurgeon is 30 minutes away. Which intervention should the nurse implement <strong>first</strong>?</p>
+        <ul>
+          <li>A. Mannitol 1g/kg IV bolus</li>
+          <li>B. Hyperventilate to PaCO₂ 25-30 mmHg</li>
+          <li>C. Elevate head of bed to 30 degrees</li>
+          <li>D. Insert an arterial line for continuous BP monitoring</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Elevate head of bed to 30 degrees</strong></p>
+          <p>While all options are appropriate for increased ICP, elevating the HOB to 30° is the FASTEST intervention that promotes venous drainage and reduces ICP. It takes seconds and has no contraindications. Mannitol requires IV access and monitoring. Hyperventilation is a temporary bridge but causes cerebral vasoconstriction that can worsen ischemia — it's not first-line. Arterial line insertion takes time and is not the immediate priority.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> Mannitol is ordered. Which nursing consideration is <strong>highest priority</strong>?</p>
+        <ul>
+          <li>A. Monitor for rebound increased ICP when mannitol wears off</li>
+          <li>B. Ensure an indwelling urinary catheter is in place</li>
+          <li>C. Administer through a filter needle because it crystallizes</li>
+          <li>D. Monitor serum osmolality and discontinue if &gt;320 mOsm/kg</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: D. Monitor serum osmolality and discontinue if &gt;320 mOsm/kg</strong></p>
+          <p>Mannitol is an osmotic diuretic that draws fluid from brain tissue into the vasculature. However, it can cause renal failure and electrolyte imbalances. The most critical safety parameter is serum osmolality — mannitol should be held if osmolality exceeds 320 mOsm/kg (some protocols say 340). While rebound ICP (A), catheter placement (B), and crystallization (C) are all valid concerns, osmolality monitoring is the highest priority because it prevents acute kidney injury and cardiovascular collapse from hyperosmolar states.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The patient returns from craniotomy for evacuation of the epidural hematoma. He is intubated and sedated. His BP is 190/100. What is the nurse's <strong>priority</strong> response?</p>
+        <ul>
+          <li>A. Allow hypertension — it's protective for cerebral perfusion</li>
+          <li>B. Give labetalol 10mg IV to prevent bleeding at surgical site</li>
+          <li>C. Check for pain, bladder distension, or other causes first</li>
+          <li>D. Increase sedation to lower BP</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Check for pain, bladder distension, or other causes first</strong></p>
+          <p>Post-craniotomy, hypertension can cause bleeding at the surgical site. However, before giving antihypertensives, assess for reversible causes of hypertension: pain (check sedation adequacy), bladder distension, hypoxia, or increased ICP. Treating the cause is better than treating the number. That said, if SBP &gt;160-180 persists after addressing causes, antihypertensives may be needed. Cerebral perfusion pressure (CPP = MAP - ICP) must be maintained at 60-70 mmHg, so overly aggressive BP lowering is harmful.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> On post-op day 2, the patient is extubated and following commands. His GCS is 13. Which finding would indicate a complication requiring <strong>immediate</strong> notification of the neurosurgeon?</p>
+        <ul>
+          <li>A. Patient asks repeated questions about the accident</li>
+          <li>B. Temperature 38.2°C with clear lung sounds</li>
+          <li>C. New onset right-sided weakness</li>
+          <li>D. Patient refuses to eat breakfast</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. New onset right-sided weakness</strong></p>
+          <p>New focal neurological deficit (right-sided weakness) after craniotomy suggests cerebral edema, rebleeding, stroke, or seizure. This requires immediate neurosurgical evaluation — possibly urgent CT head. Post-traumatic amnesia (A) is expected. Low-grade fever (B) is common post-op. Poor appetite (D) is not emergent. Any change in neuro status is the most important finding to report after brain surgery.</p>
+        </div>
       </div>
     </div>
 

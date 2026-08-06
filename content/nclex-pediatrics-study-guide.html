@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -153,6 +162,113 @@
         <tr><td>School-age</td><td>MVC, sports injuries, bike accidents</td><td>Helmets, booster seat until 4'9", sports safety equipment</td></tr>
         <tr><td>Adolescent</td><td>MVC, substance use, suicide, STIs</td><td>Seat belts, no texting while driving, mental health awareness, safe sex</td></tr>
       </table>
+    </div>
+
+    <h2>🧩 NGN Case Study: Pediatric Dehydration</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Emma, 18-month-old female</strong>, is brought to the pediatric ED by her mother. She has had diarrhea and vomiting for 3 days. Her mother reports she has had "only a few wet diapers" and hasn't been drinking much. She attends daycare where several children have had similar symptoms.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">Weight History</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> Weight 10.5 kg (down from 11.2 kg 1 week ago), HR 155, RR 38, Temp 37.6°C, BP 82/50</p>
+      <p><strong>Physical Assessment:</strong> Irritable but consolable. Eyes slightly sunken. Dry mucous membranes. Tears present when crying. Capillary refill 3 seconds. Skin turgor slightly decreased. Fontanelle slightly depressed. Lungs clear, heart regular but tachycardic. Abdomen soft, hyperactive bowel sounds.</p>
+      <p><strong>Weight Change:</strong> 11.2 kg → 10.5 kg = <strong>0.7 kg loss (6.3% of body weight)</strong></p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Based on the clinical findings, what is the <strong>severity</strong> of this child's dehydration?</p>
+        <ul>
+          <li>A. Mild (&lt;3% weight loss)</li>
+          <li>B. Moderate (5-10% weight loss)</li>
+          <li>C. Severe (&gt;10% weight loss)</li>
+          <li>D. The child is not dehydrated — weight loss is normal with illness</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Moderate (5-10% weight loss)</strong></p>
+          <p>6.3% weight loss places this child in the moderate dehydration category. Clinical signs supporting moderate dehydration: sunken eyes, dry mucous membranes, slightly decreased skin turgor, capillary refill 3 seconds (normal &lt;2 sec), tachycardia. Tears are still present (absent tears indicate severe). The irritability is common in moderate dehydration. Severe dehydration would show lethargy, absent tears, very delayed capillary refill (&gt;4 sec), and signs of shock.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The provider orders oral rehydration therapy (ORT) with Pedialyte. The mother asks, "Can't you just give her IV fluids? It would be faster." What is the nurse's <strong>best</strong> response?</p>
+        <ul>
+          <li>A. "IV fluids are only for children who are severely dehydrated or vomiting everything"</li>
+          <li>B. "ORT is just as effective as IV fluids for moderate dehydration and avoids needles"</li>
+          <li>C. "The doctor prefers oral fluids because they cost less"</li>
+          <li>D. "We can start an IV if you insist, but insurance may not cover it"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. "ORT is just as effective as IV fluids for moderate dehydration and avoids needles"</strong></p>
+          <p>Evidence-based guidelines (AAP, WHO) recommend ORT as first-line for mild-moderate dehydration. It's as effective as IV hydration, less invasive, and can be continued at home. The child is consolable and not vomiting everything (hyperactive bowel sounds suggest she's absorbing some). IV fluids are reserved for severe dehydration, shock, or when ORT fails. Emphasize that ORT is the standard of care and evidence-based, not just about cost or convenience.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The mother begins ORT. Emma drinks 60 mL in the first 15 minutes, then vomits everything. She remains irritable. What is the nurse's <strong>priority</strong> action?</p>
+        <ul>
+          <li>A. Switch to IV fluid replacement</li>
+          <li>B. Wait 30 minutes and restart with smaller, more frequent amounts</li>
+          <li>C. Give an antiemetic and continue ORT</li>
+          <li>D. Insert an NG tube for enteral rehydration</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Wait 30 minutes and restart with smaller, more frequent amounts</strong></p>
+          <p>A single vomiting episode does not mean ORT has failed. The standard approach is to wait 10-15 minutes, then restart with 5 mL (1 teaspoon) every 1-2 minutes. Small, frequent amounts are better tolerated than larger volumes. IV fluids are not yet indicated. Antiemetics (ondansetron) can be used in children ≥6 months but are not the first step — try smaller volumes first. NG tube is reserved for children who cannot tolerate any oral intake.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> Emma tolerates ORT after smaller volumes. She has 2 wet diapers over 4 hours. Her HR is 130, BP 88/56. Which finding indicates the treatment is <strong>working</strong>?</p>
+        <ul>
+          <li>A. Wet diapers are small but present</li>
+          <li>B. Heart rate decreased from 155 to 130</li>
+          <li>C. Blood pressure improved from 82/50 to 88/56</li>
+          <li>D. All of the above</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: D. All of the above</strong></p>
+          <p>All are positive indicators of rehydration: urine output (even small amounts) means kidneys are perfused; decreasing HR means less compensatory tachycardia; improving BP means better circulating volume. The goal is HR &lt;130, BP stable, and regular wet diapers. These improvements indicate the ORT is effective and the child can likely be discharged home with continued ORT instructions.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The mother asks about giving Emma her regular formula when they get home. What is the nurse's <strong>best</strong> instruction?</p>
+        <ul>
+          <li>A. "Continue Pedialyte for 24 hours, then slowly reintroduce formula"</li>
+          <li>B. "Give only clear liquids for the next 3 days"</li>
+          <li>C. "Resume her regular formula and diet as tolerated"</li>
+          <li>D. "Dilute her formula to half strength for 2 days"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. "Resume her regular formula and diet as tolerated"</strong></p>
+          <p>Current AAP guidelines recommend early refeeding — resume the child's normal diet as soon as rehydration is achieved. The BRAT diet (bananas, rice, applesauce, toast) and clear liquids alone are outdated recommendations. Early return to normal diet provides needed calories and nutrients for recovery. Pedialyte can be used for ongoing losses but should not replace regular nutrition. Diluted formula provides inadequate calories.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> Before discharge, which instruction is <strong>highest priority</strong> for the mother?</p>
+        <ul>
+          <li>A. "Call your pediatrician if Emma has no wet diaper for 8 hours"</li>
+          <li>B. "Give Emma an extra bottle of Pedialyte each day for a week"</li>
+          <li>C. "Keep Emma home from daycare for 2 weeks"</li>
+          <li>D. "Check Emma's temperature every 2 hours for 24 hours"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. "Call your pediatrician if Emma has no wet diaper for 8 hours"</strong></p>
+          <p>No wet diaper for 8 hours indicates worsening dehydration and requires medical re-evaluation. This is a clear, objective warning sign that parents can recognize. Extra Pedialyte (B) is not necessary once rehydrated. Daycare exclusion (C) depends on facility policy but is not a medical priority. Temperature checks every 2 hours (D) are excessive — monitor for fever but not that frequently.</p>
+        </div>
+      </div>
     </div>
 
     <h2>Related Content</h2>
