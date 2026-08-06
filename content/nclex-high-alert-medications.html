@@ -46,6 +46,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -174,6 +183,113 @@
       <li><strong>Limit access:</strong> High-alert meds stored separately with visual alerts</li>
       <li><strong>Patient education:</strong> Teach patients about their high-alert medications</li>
     </ol>
+
+    <h2>🧩 NGN Case Study: Insulin Error & Hypoglycemia</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. Davis, 58-year-old male</strong>, is admitted for uncontrolled Type 2 diabetes (A1C 10.2%). He is on a basal-bolus insulin regimen: glargine 20 units at bedtime, lispro with meals (sliding scale). His breakfast tray arrives at 8:00 AM. The nurse administers 8 units of lispro at 7:45 AM.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Blood Glucose</span>
+        <span class="case-tab">Medications</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 134/78, HR 82, RR 16, Temp 36.6°C</p>
+      <p><strong>Blood Glucose:</strong> Fasting 142 mg/dL (7:30 AM). The breakfast tray is placed on the over-bed table but the patient states he's "not hungry yet."</p>
+      <p><strong>Medications:</strong> Lispro 8 units given at 7:45 AM. Glargine 20 units due at HS. Metformin 1000mg BID (held for procedure).</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> The nurse gave lispro at 7:45 AM but the patient hasn't eaten. What is the <strong>most likely</strong> complication?</p>
+        <ul>
+          <li>A. Hyperglycemia from inadequate insulin coverage</li>
+          <li>B. Hypoglycemia from insulin given without food</li>
+          <li>C. Diabetic ketoacidosis from missed metformin dose</li>
+          <li>D. No complication — lispro can be given before or after meals</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Hypoglycemia from insulin given without food</strong></p>
+          <p>Lispro is a rapid-acting insulin with onset 15 minutes, peak 1 hour. Giving it without food will cause hypoglycemia within 30-60 minutes. The "right time" for mealtime insulin is WITH the meal or immediately before — never give rapid-acting insulin if the patient is NPO or refusing to eat. This is a high-alert medication error that requires immediate intervention (provide carbohydrates, monitor glucose closely).</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> At 8:30 AM, the patient is diaphoretic, confused, and states he feels "shaky." His glucose is 48 mg/dL. What is the nurse's <strong>first</strong> action?</p>
+        <ul>
+          <li>A. Give 1 mg glucagon IM</li>
+          <li>B. Give 15g fast-acting carbohydrates (glucose tablets or juice)</li>
+          <li>C. Call the provider for new insulin orders</li>
+          <li>D. Recheck glucose in 15 minutes</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Give 15g fast-acting carbohydrates (glucose tablets or juice)</strong></p>
+          <p>For conscious patients with hypoglycemia, the "15-15 rule" applies: give 15g fast-acting carbs, recheck in 15 minutes, repeat if still &lt;70. Glucagon (A) is for unconscious patients or when oral intake is impossible. The patient is conscious but confused — oral treatment is appropriate. Calling the provider (C) delays treatment. Rechecking (D) without treating first is inappropriate.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> After treatment, the patient's glucose is 78 mg/dL at 8:50 AM. He wants to eat his breakfast now. What is the nurse's <strong>best</strong> action?</p>
+        <ul>
+          <li>A. Allow him to eat — his glucose is now in normal range</li>
+          <li>B. Give him a snack with protein and carbs, then reassess</li>
+          <li>C. Hold his breakfast and keep him NPO until next scheduled glucose check</li>
+          <li>D. Call the provider before allowing any food intake</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Give him a snack with protein and carbs, then reassess</strong></p>
+          <p>After hypoglycemia treatment, the patient needs a snack with complex carbs and protein to prevent recurrent hypoglycemia (the insulin is still active). The breakfast tray is appropriate, but the nurse should ensure he eats and monitor for rebound hypoglycemia. Simply allowing him to eat (A) is okay but doesn't address the need for monitoring. Keeping him NPO (C) is dangerous — he needs nutrition. Provider call (D) is unnecessary for this expected situation.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> Which system-level intervention would <strong>best prevent</strong> this type of insulin error?</p>
+        <ul>
+          <li>A. Require a second nurse to verify all insulin doses</li>
+          <li>B. Use a "meal ticket" system — insulin not given until tray is at bedside</li>
+          <li>C. Switch all patients to long-acting insulin only</li>
+          <li>D. Eliminate sliding scale insulin from all protocols</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Use a "meal ticket" system — insulin not given until tray is at bedside</strong></p>
+          <p>The root cause was insulin given before food availability. A meal ticket system ensures mealtime insulin is only given when the tray is present or the patient is eating. Independent double-check (A) verifies the dose but not the timing. Switching to basal-only (C) is not appropriate for many patients. Eliminating sliding scale (D) may be appropriate for some but doesn't address the timing issue.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The patient's evening glargine dose is due. He is scheduled for a colonoscopy at 8:00 AM tomorrow (NPO after midnight). What is the nurse's <strong>best</strong> action regarding glargine?</p>
+        <ul>
+          <li>A. Hold glargine — he's NPO after midnight</li>
+          <li>B. Give the usual 20 units at bedtime</li>
+          <li>C. Give a reduced dose of 10 units at bedtime</li>
+          <li>D. Switch to regular insulin for better control</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Give the usual 20 units at bedtime</strong></p>
+          <p>Basal insulin (glargine, detemir, NPH) should NOT be held for NPO status — it prevents ketosis and maintains baseline glucose. The patient still needs basal insulin even when not eating. Only mealtime (bolus) insulin is held when NPO. Reducing the dose (C) may be appropriate if there are concerns about hypoglycemia, but the standard is to continue basal insulin. Regular insulin (D) is not appropriate for basal coverage.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> At discharge, which patient statement indicates <strong>effective</strong> understanding of insulin safety?</p>
+        <ul>
+          <li>A. "I'll take my mealtime insulin right before I eat"</li>
+          <li>B. "I can skip my insulin if I'm not eating a full meal"</li>
+          <li>C. "I'll keep my insulin in the freezer so it stays fresh"</li>
+          <li>D. "I only need to check my glucose when I feel symptomatic"</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. "I'll take my mealtime insulin right before I eat"</strong></p>
+          <p>Taking rapid-acting insulin with meals is the correct and safe practice. Skipping insulin (B) leads to hyperglycemia and DKA risk. Insulin should be refrigerated, NOT frozen (C) — freezing destroys the protein. Glucose should be checked as prescribed (usually before meals and HS), not just when symptomatic (D).</p>
+        </div>
+      </div>
+    </div>
 
     <div class="cta">
       <h3>🎯 Test Your Knowledge</h3>

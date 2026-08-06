@@ -111,6 +111,16 @@ app.post('/api/validate-promo', express.json(), (req, res) => {
   });
 });
 
+// Shared branded email template constants (must be defined before use)
+const FROM_EMAIL = 'Obioma Care <admin@obiomacare.com>';
+const BRAND_COLORS = {
+  navy: '#1a365d',
+  coral: '#c53030',
+  gray: '#4a5568',
+  lightGray: '#718096',
+  bg: '#f7fafc'
+};
+
 // ==================== AUTH ====================
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -569,15 +579,6 @@ async function updateLead(email, updates) {
 }
 
 // Email sequence definition
-// Shared branded email template
-const FROM_EMAIL = 'Obioma Care <admin@obiomacare.com>';
-const BRAND_COLORS = {
-  navy: '#1a365d',
-  coral: '#c53030',
-  gray: '#4a5568',
-  lightGray: '#718096',
-  bg: '#f7fafc'
-};
 
 function emailTemplate({ title, content, ctaUrl, ctaText, heroImage, heroAlt }) {
   return `
@@ -908,6 +909,52 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
   const result = await sendNurtureEmails();
   res.json({ success: true, ...result });
 });
+// ==================== NEWSLETTER ====================
+app.post('/api/newsletter', express.json(), async (req, res) => {
+  const { email } = req.body;
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({ error: 'Valid email required' });
+  }
+  try {
+    const lead = {
+      email: email.toLowerCase().trim(),
+      firstName: '',
+      subscribedAt: new Date().toISOString(),
+      emailsSent: [],
+      purchased: false,
+      source: 'newsletter'
+    };
+    await saveLead(lead);
+    res.json({ success: true, message: 'Subscribed!' });
+  } catch (err) {
+    console.error('Newsletter error:', err);
+    res.status(500).json({ error: 'Subscription failed' });
+  }
+});
+
+// ==================== CONTACT ====================
+app.post('/api/contact', express.json(), async (req, res) => {
+  const { email, name, message } = req.body;
+  if (!email || !email.includes('@') || !message || message.trim().length < 5) {
+    return res.status(400).json({ error: 'Valid email and message (5+ chars) required' });
+  }
+  try {
+    if (emailTransporter) {
+      await sendEmail({
+        from: FROM_EMAIL,
+        to: 'admin@obiomacare.com',
+        subject: `Contact Form: ${name || 'No name'}`,
+        html: `<p><strong>From:</strong> ${name || 'Anonymous'} &lt;${email}&gt;</p><p><strong>Message:</strong></p><p>${message.replace(/</g, '&lt;')}</p>`
+      });
+    }
+    res.json({ success: true, message: 'Message sent!' });
+  } catch (err) {
+    console.error('Contact error:', err);
+    res.status(500).json({ error: 'Failed to send message' });
+  }
+});
+
+// ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', express.json(), async (req, res) => {
   const { email, firstName } = req.body;
   const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';

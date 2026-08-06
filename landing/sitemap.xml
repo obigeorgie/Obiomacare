@@ -2,116 +2,416 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://obiomacare.com/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://obiomacare.com/free-nclex-checklist</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-lab-values-cheat-sheet.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/free-framework</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/privacy.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/terms.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/index.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-clinical-judgment-framework.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-abg-interpretation-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-sata-questions-strategy.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-antibiotics-infectious-diseases.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-prioritization-strategy.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-bow-tie-items.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/30-day-nclex-study-plan.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-burns-integumentary-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/ngn-case-studies-examples.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-burns-wound-care-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-pharmacology-mnemonics.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-cardiac-devices-cath-lab.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-pharmacology-drug-classes.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-cardiac-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-priority-abcde-method.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-community-health-epidemiology.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-delegation-assignment.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-copd-asthma-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-anxiety-management.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-cultural-competence-diversity.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-2-week-plan.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-diabetes-thyroid-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-30-day-study-plan.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-dialysis-renal-replacement.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/emergency-drugs-reference.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-drug-calculations-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/why-nursing-students-struggle-nclex-next-gen.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-emergency-drugs.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/what-is-next-generation-nclex.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-emergency-trauma-triage.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/pediatric-milestones-reference.html</loc>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://obiomacare.com/content/nclex-endocrine-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-fluids-electrolytes-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-genetics-genomics.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-gerontology-study-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-gi-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-gi-surgery-ostomies-bariatric.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-heart-failure-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-hematology-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-high-alert-medications.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-immune-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-infection-control-precautions.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-iv-therapy-calculations.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-lab-values-memorization-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-leadership-management.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-liver-pancreas-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-maternity-study-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-mechanical-ventilation-ards.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-mechanical-ventilation-modes.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-medication-suffixes.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-mental-health-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-musculoskeletal-disorders-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-musculoskeletal-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-neurological-degenerative-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-neurological-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-newborn-complications-nicu.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-nursing-fundamentals-master.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-nursing-fundamentals.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-nursing-informatics-technology.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-nutrition-therapeutic-diets.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-obstetric-complications.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-oncology-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-oncology-pharmacology-advanced.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-orthopedic-surgery-joint-replacement.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-palliative-care-hospice.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-pediatric-cardiac-congenital.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-pediatrics-study-guide.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-perioperative-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-professional-issues-ethics.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-psychiatric-medications.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-rehabilitation-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-renal-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-research-evidence-based-practice.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-respiratory-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-sensory-disorders.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-stroke-seizures-deep-dive.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-therapeutic-communication.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-trauma-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-wound-care-pressure-injuries.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

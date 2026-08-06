@@ -7,7 +7,5 @@ ai-ugc/generated/
 firebase-service-account.json
 venv/
 dist/
-dist/
 __pycache__/
 *.pyc
-__pycache__/

@@ -47,6 +47,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 </head>
 <body>
@@ -218,6 +227,113 @@
       <strong>? mL = (Desired Dose / Have Dose) × (Quantity / 1) × (Other conversions needed)</strong><br><br>
       <em>Example: Give 750 mg of drug. Available: 1.5 g per 10 mL</em><br>
       ? mL = (750 mg / 1) × (1 g / 1000 mg) × (10 mL / 1.5 g) = <strong>5 mL</strong>
+    </div>
+
+    <h2>🧩 NGN Case Study: Pediatric Medication Calculation</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Sophie, 4-year-old female</strong>, weighs 18 kg and is admitted for a respiratory infection. She requires multiple medications. The nurse must calculate safe doses and verify orders.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Weight</span>
+        <span class="case-tab">Allergies</span>
+        <span class="case-tab">Vital Signs</span>
+      </div>
+
+      <p><strong>Weight:</strong> 18 kg</p>
+      <p><strong>Allergies:</strong> None known</p>
+      <p><strong>Vital Signs:</strong> BP 92/58, HR 110, RR 28, Temp 38.2°C, SpO₂ 93%</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> The provider orders acetaminophen 240mg PO q6h PRN fever. The safe pediatric dose is 10-15 mg/kg/dose. Is this order <strong>safe</strong>?</p>
+        <ul>
+          <li>A. Yes — 240mg is within the safe range for 18 kg</li>
+          <li>B. No — maximum safe dose is 180mg</li>
+          <li>C. No — minimum safe dose is 270mg</li>
+          <li>D. Cannot determine without knowing the concentration</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Yes — 240mg is within the safe range for 18 kg</strong></p>
+          <p>Calculation: 18 kg × 10 mg/kg = 180 mg (minimum); 18 kg × 15 mg/kg = 270 mg (maximum). Safe range = 180-270 mg per dose. 240 mg is within range. Maximum daily dose = 75 mg/kg/day = 1,350 mg/day for 18 kg. With q6h dosing, maximum 4 doses/day = 960 mg (also safe). The concentration is needed to calculate volume, but the dose itself is safe.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> Amoxicillin is ordered: 400mg PO BID. The available suspension is 250mg/5mL. How many mL should the nurse administer <strong>per dose</strong>?</p>
+        <ul>
+          <li>A. 5 mL</li>
+          <li>B. 8 mL</li>
+          <li>C. 10 mL</li>
+          <li>D. 16 mL</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. 8 mL</strong></p>
+          <p>Using the ratio method: (Desired / Have) × Volume = (400 mg / 250 mg) × 5 mL = 1.6 × 5 = 8 mL. Dimensional analysis: 400 mg × (5 mL / 250 mg) = 8 mL. This is a standard pediatric antibiotic dose. The nurse should verify that 400mg BID is appropriate for the infection being treated (standard for otitis media is 80-90 mg/kg/day divided BID = 720-810 mg/day; 800 mg/day fits).</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The provider orders IV fluids: D5½NS at 60 mL/hr. The nurse realizes the standard pediatric maintenance rate is 1,500 mL/day for this weight. Is the ordered rate <strong>appropriate</strong>?</p>
+        <ul>
+          <li>A. Yes — 60 mL/hr × 24 hr = 1,440 mL, which is close to 1,500 mL</li>
+          <li>B. No — the rate should be 62.5 mL/hr for exact maintenance</li>
+          <li>C. No — D5½NS is hypotonic and inappropriate for maintenance</li>
+          <li>D. Cannot determine without knowing the child's hydration status</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Yes — 60 mL/hr × 24 hr = 1,440 mL, which is close to 1,500 mL</strong></p>
+          <p>Using the Holliday-Segar method: For first 10 kg = 100 mL/kg/day = 1,000 mL; for next 10 kg = 50 mL/kg/day = 400 mL (for 8 kg) = 400 mL. Total = 1,400 mL/day. Hourly rate = 1,400 / 24 ≈ 58.3 mL/hr. The ordered 60 mL/hr is reasonable. D5½NS (C) is actually standard maintenance fluid for children (provides glucose and some sodium). Exact precision to 62.5 mL/hr (B) is unnecessary in practice.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The provider orders morphine 1.8mg IV q4h PRN pain. The safe pediatric dose is 0.1 mg/kg/dose. The available concentration is 2mg/mL. How many mL should the nurse draw up?</p>
+        <ul>
+          <li>A. 0.5 mL</li>
+          <li>B. 0.9 mL</li>
+          <li>C. 1.0 mL</li>
+          <li>D. 1.8 mL</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. 0.9 mL</strong></p>
+          <p>First, verify safety: 18 kg × 0.1 mg/kg = 1.8 mg maximum safe dose per dose. The ordered 1.8 mg is at the upper limit of safe. Volume calculation: 1.8 mg ÷ 2 mg/mL = 0.9 mL. This is a very small volume — the nurse should use a 1 mL tuberculin syringe for accuracy. Double-checking with another nurse is recommended for high-alert medications like morphine in pediatric patients.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> Sophie requires ceftriaxone 900mg IV daily. The vial is 1g (1,000mg) reconstituted in 10mL sterile water (100mg/mL). How many mL should the nurse withdraw?</p>
+        <ul>
+          <li>A. 9 mL</li>
+          <li>B. 9.5 mL</li>
+          <li>C. 10 mL</li>
+          <li>D. 0.9 mL</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. 9 mL</strong></p>
+          <p>Concentration = 1,000 mg / 10 mL = 100 mg/mL. Volume = 900 mg ÷ 100 mg/mL = 9 mL. This is a reasonable volume for IV administration. Ceftriaxone should be infused over 30 minutes. The nurse should verify the daily dose is appropriate: 50 mg/kg/day × 18 kg = 900 mg/day (standard dosing). For meningitis, the dose would be 100 mg/kg/day divided q12h.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> The nurse administers all medications correctly. Two hours later, Sophie is sleepy but arousable. Her RR is 22. Which action is <strong>most appropriate</strong>?</p>
+        <ul>
+          <li>A. Continue to monitor — these are expected findings after morphine</li>
+          <li>B. Administer naloxone immediately</li>
+          <li>C. Stop all PRN medications</li>
+          <li>D. Call the provider for a morphine dose reduction</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A. Continue to monitor — these are expected findings after morphine</strong></p>
+          <p>Sedation and mild respiratory depression are expected side effects of morphine. RR of 22 is still within normal range for a 4-year-old. The child is arousable — this is not overdose. Naloxone (B) is reserved for significant respiratory depression (RR &lt;8 in adults, age-dependent in children) or unresponsiveness. Stopping all PRNs (C) is excessive. Dose reduction (D) may be considered if sedation is excessive but is not the immediate action.</p>
+        </div>
+      </div>
     </div>
 
     <div class="cta">
