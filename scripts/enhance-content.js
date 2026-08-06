@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const CONTENT_DIR = 'public/content';
+const CONTENT_DIRS = ['content', 'landing/content'];
 
 // Topic mappings for breadcrumbs
 const topicMap = {
@@ -96,15 +96,27 @@ function generateBreadcrumb(filename, title) {
 `;
 }
 
-function generateRelatedArticles(currentFile) {
-  const allFiles = fs.readdirSync(CONTENT_DIR)
-    .filter(f => f.endsWith('.html') && f !== currentFile)
-    .sort(() => 0.5 - Math.random()) // shuffle
+function getAllContentFiles() {
+  const files = [];
+  for (const dir of CONTENT_DIRS) {
+    if (!fs.existsSync(dir)) continue;
+    const entries = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
+    for (const f of entries) {
+      files.push({ dir, file: f });
+    }
+  }
+  return files;
+}
+
+function generateRelatedArticles(currentFile, allFiles) {
+  const others = allFiles
+    .filter(f => f.file !== currentFile)
+    .sort(() => 0.5 - Math.random())
     .slice(0, 6);
 
   let html = '<h2>Related Articles</h2>\n<ul>\n';
-  for (const file of allFiles) {
-    const content = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf8');
+  for (const { dir, file } of others) {
+    const content = fs.readFileSync(path.join(dir, file), 'utf8');
     const title = getTitle(content);
     html += `  <li><a href="/content/${file}" style="color:var(--coral);">${title}</a></li>\n`;
   }
@@ -112,14 +124,14 @@ function generateRelatedArticles(currentFile) {
   return html;
 }
 
-function processFile(filename) {
-  const filepath = path.join(CONTENT_DIR, filename);
+function processFile(dir, filename, allFiles) {
+  const filepath = path.join(dir, filename);
   let content = fs.readFileSync(filepath, 'utf8');
 
   // Skip if already has breadcrumb
   if (content.includes('aria-label="breadcrumb"')) {
-    console.log(`  ⏭️  Skipped (already has breadcrumb): ${filename}`);
-    return;
+    console.log(`  ⏭️  Skipped: ${dir}/${filename}`);
+    return false;
   }
 
   const title = getTitle(content);
@@ -132,14 +144,13 @@ function processFile(filename) {
   );
 
   // Replace existing Related Articles section or add before footer
-  const relatedSection = generateRelatedArticles(filename);
+  const relatedSection = generateRelatedArticles(filename, allFiles);
   if (content.includes('<h2>Related Articles</h2>')) {
     content = content.replace(
       /<h2>Related Articles<\/h2>[\s\S]*?<\/ul>/,
       relatedSection.trim()
     );
   } else {
-    // Add before footer
     content = content.replace(
       '<footer>',
       relatedSection + '<footer>'
@@ -147,23 +158,21 @@ function processFile(filename) {
   }
 
   fs.writeFileSync(filepath, content);
-  console.log(`  ✅ Updated: ${filename}`);
+  console.log(`  ✅ Updated: ${dir}/${filename}`);
+  return true;
 }
 
 // Main
-const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.html'));
-console.log(`Processing ${files.length} content pages...\n`);
+const allFiles = getAllContentFiles();
+console.log(`Found ${allFiles.length} content pages across ${CONTENT_DIRS.length} directories\n`);
 
 let updated = 0;
 let skipped = 0;
-for (const file of files) {
-  const filepath = path.join(CONTENT_DIR, file);
-  const content = fs.readFileSync(filepath, 'utf8');
-  if (content.includes('aria-label="breadcrumb"')) {
-    skipped++;
-  } else {
-    processFile(file);
+for (const { dir, file } of allFiles) {
+  if (processFile(dir, file, allFiles)) {
     updated++;
+  } else {
+    skipped++;
   }
 }
 
