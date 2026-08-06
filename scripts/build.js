@@ -15,21 +15,48 @@ function copyDir(src, dest) {
   }
 }
 
-// Copy root content/ files into landing/content/ so vercel.json rewrites work
-// Rewrite: /content/(.*) -> /landing/content/$1
+// Copy root content/ to public/content/ — Vercel serves public/ at root
+fs.mkdirSync('public/content', { recursive: true });
 const rootContentFiles = fs.readdirSync('content', { withFileTypes: true });
 let copied = 0;
 for (const entry of rootContentFiles) {
   const srcPath = path.join('content', entry.name);
-  const destPath = path.join('landing', 'content', entry.name);
+  const destPath = path.join('public', 'content', entry.name);
   if (entry.isDirectory()) {
     copyDir(srcPath, destPath);
     copied++;
   } else {
-    fs.mkdirSync(path.dirname(destPath), { recursive: true });
     fs.copyFileSync(srcPath, destPath);
     copied++;
   }
 }
 
-console.log(`✅ Build complete: ${copied} files from content/ merged into landing/content/`);
+// Also copy landing/ assets to public/ so they're available at root
+const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html', 
+  'privacy.html', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
+  'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'obioma-logo.svg', 'obioma-seo.png'];
+for (const file of landingFiles) {
+  const src = path.join('landing', file);
+  const dest = path.join('public', file);
+  if (fs.existsSync(src)) {
+    if (fs.statSync(src).isDirectory()) {
+      copyDir(src, dest);
+    } else {
+      fs.copyFileSync(src, dest);
+    }
+  }
+}
+
+// Copy subdirectories
+copyDir('landing/assets', 'public/assets');
+copyDir('landing/images', 'public/images');
+copyDir('landing/downloads', 'public/downloads');
+copyDir('landing/free-framework', 'public/free-framework');
+copyDir('landing/compare', 'public/compare');
+copyDir('landing/products', 'public/products');
+copyDir('landing/quiz', 'public/quiz');
+
+// Copy landing/content/ to public/content/ (merge)
+copyDir('landing/content', 'public/content');
+
+console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);
