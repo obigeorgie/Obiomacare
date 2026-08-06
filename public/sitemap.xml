@@ -25,12 +25,6 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/404.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.1</priority>
-  </url>
-  <url>
     <loc>https://obiomacare.com/content/30-day-nclex-study-plan.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -97,19 +91,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-2-week-study-plan-complete.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://obiomacare.com/content/nclex-30-day-study-plan.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://obiomacare.com/content/nclex-abcde-prioritization-method.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -163,12 +145,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://obiomacare.com/content/nclex-case-study-sepsis-walkthrough.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://obiomacare.com/content/nclex-clinical-judgment-5-steps.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -200,12 +176,6 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/nclex-cultural-competence-diversity.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://obiomacare.com/content/nclex-delegation-assignment-guide.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -313,6 +283,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://obiomacare.com/content/nclex-iv-therapy-calculations.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://obiomacare.com/content/nclex-lab-values-cheat-sheet.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -320,12 +296,6 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/nclex-lab-values-memorization-guide.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://obiomacare.com/content/nclex-lab-values-reference.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -356,6 +326,12 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/nclex-mechanical-ventilation-ards.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-mechanical-ventilation-modes.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -398,6 +374,12 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/nclex-newborn-complications-nicu.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://obiomacare.com/content/nclex-nursing-fundamentals-master.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -464,12 +446,6 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/nclex-perioperative-nursing.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://obiomacare.com/content/nclex-pharmacology-drug-classes-guide.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -565,6 +541,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://obiomacare.com/content/nclex-trauma-nursing.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://obiomacare.com/content/nclex-wound-care-pressure-injuries.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -572,12 +554,6 @@
   </url>
   <url>
     <loc>https://obiomacare.com/content/ngn-case-studies-examples.html</loc>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://obiomacare.com/content/obioma-vs-uworld-vs-archer.html</loc>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
