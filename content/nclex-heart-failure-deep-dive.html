@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -215,6 +224,171 @@
           <li>Assess for suction events (alarm sounds)</li>
         </ul>
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Acute Decompensated Heart Failure</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mrs. Eleanor Vance, 78-year-old female</strong>, arrives in the emergency department via EMS with severe shortness of breath. Her daughter reports she has been sleeping in a recliner for the past week because she "can't breathe lying flat." She has a history of HFrEF (EF 30%), hypertension, type 2 diabetes, and atrial fibrillation.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Provider Orders</span>
+        <span class="case-tab">Medications</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 186/104 mmHg</li>
+          <li>HR: 118 bpm (irregularly irregular)</li>
+          <li>RR: 32 breaths/min, labored</li>
+          <li>SpO₂: 84% on room air</li>
+          <li>Temp: 37.1°C (98.8°F)</li>
+          <li>Weight: 68 kg (baseline 61 kg one month ago)</li>
+          <li>Lungs: Bilateral crackles to mid-lung fields, pink frothy sputum</li>
+          <li>Heart: S3 gallop, no murmur</li>
+          <li>Extremities: 2+ pitting edema bilateral lower extremities, cool and clammy</li>
+          <li>JVD: 6 cm at 45°</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient is anxious, sitting upright, tripod positioning. States she ran out of her furosemide 3 days ago because she "couldn't get to the pharmacy." Daughter confirms patient has been eating canned soups and frozen dinners (high sodium). Patient takes all other medications as prescribed: metoprolol succinate, lisinopril, spironolactone, apixaban.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>Oxygen to maintain SpO₂ > 92%</li>
+          <li>IV access, continuous cardiac monitoring</li>
+          <li>Furosemide 80 mg IV push now, then 40 mg/hr IV infusion</li>
+          <li>Nitroglycerin IV infusion titrate 5-200 mcg/min per protocol</li>
+          <li>Strict intake & output, daily weights</li>
+          <li>Basic metabolic panel, BNP, troponin, CBC</li>
+          <li>Chest X-ray</li>
+          <li>NPO except medications</li>
+        </ol>
+      </div>
+
+      <div class="condition-box">
+        <h3>💊 Home Medications</h3>
+        <ul>
+          <li>Metoprolol succinate 50 mg daily</li>
+          <li>Lisinopril 20 mg daily</li>
+          <li>Spironolactone 25 mg daily</li>
+          <li>Apixaban 5 mg BID</li>
+          <li>Furosemide 40 mg daily (out for 3 days)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> After reviewing the client data, which findings require immediate follow-up by the nurse? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Weight gain of 7 kg over one month</li>
+        <li>SpO₂ of 84% on room air</li>
+        <li>Blood pressure of 186/104 mmHg</li>
+        <li>Temperature of 37.1°C</li>
+        <li>Pink frothy sputum</li>
+        <li>HR of 118 bpm irregularly irregular</li>
+      </ol>
+      <div class="answer" id="q1-ans">
+        <strong>Correct: A, B, C, E, F</strong><br>
+        D is normal. All other findings indicate acute decompensated heart failure with pulmonary edema, severe hypertension, tachycardia with afib, and significant fluid overload.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> Which pathophysiological process best explains the client's pink frothy sputum?</p>
+      <ol class="ngn-options" type="A">
+        <li>Right-sided heart failure causing hepatic congestion</li>
+        <li>Increased pulmonary capillary hydrostatic pressure causing alveolar flooding</li>
+        <li>Community-acquired pneumonia with hemoptysis</li>
+        <li>Pulmonary embolism causing infarction</li>
+      </ol>
+      <div class="answer" id="q2-ans">
+        <strong>Correct: B</strong><br>
+        Pink frothy sputum is classic for acute pulmonary edema. Left-sided heart failure causes increased pulmonary capillary pressure → fluid shifts into alveoli → mixes with air → pink frothy appearance.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The nurse is prioritizing client problems. Which problem should be addressed FIRST?</p>
+      <ol class="ngn-options" type="A">
+        <li>Fluid volume excess related to medication nonadherence</li>
+        <li>Ineffective airway clearance related to pulmonary edema</li>
+        <li>Activity intolerance related to decreased cardiac output</li>
+        <li>Knowledge deficit related to sodium restriction</li>
+      </ol>
+      <div class="answer" id="q3-ans">
+        <strong>Correct: B</strong><br>
+        ABCs first — the client has SpO₂ 84% with pulmonary edema. Airway and breathing take priority over fluid management, activity, or education. Address oxygenation first, then fluid volume.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> Which intervention should the nurse implement FIRST?</p>
+      <ol class="ngn-options" type="A">
+        <li>Administer furosemide 80 mg IV push</li>
+        <li>Apply high-flow oxygen via non-rebreather mask</li>
+        <li>Insert Foley catheter for strict I&O</li>
+        <li>Draw labs including BNP and troponin</li>
+      </ol>
+      <div class="answer" id="q4-ans">
+        <strong>Correct: B</strong><br>
+        Oxygenation is the immediate priority. SpO₂ of 84% is life-threatening. Apply oxygen FIRST, then proceed with other interventions. High Fowler's positioning should also be implemented immediately.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> Two hours after admission, the client's SpO₂ is 94% on 6L NC, BP is 162/94, and she reports she "feels a little better." The nurse notes she has had 800 mL of urine output since admission. Which is the nurse's BEST next action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Continue current plan of care and monitor</li>
+        <li>Request provider to increase furosemide infusion</li>
+        <li>Decrease oxygen and transition to nasal cannula at 2L</li>
+        <li>Call the rapid response team</li>
+      </ol>
+      <div class="answer" id="q5-ans">
+        <strong>Correct: A</strong><br>
+        The client is improving: SpO₂ ↑, BP trending down, diuresing well (800 mL in 2 hours). Continue current therapy and monitor. No need to escalate or call rapid response. Oxygen can be weaned gradually once SpO₂ stabilizes > 92% on lower flow.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> On day 3, the client is ready for discharge. Which statement by the client indicates a need for FURTHER teaching?</p>
+      <ol class="ngn-options" type="A">
+        <li>"I will weigh myself every morning and call if I gain 2 pounds in one day."</li>
+        <li>"I can have a can of chicken noodle soup when I'm too tired to cook."</li>
+        <li>"I'll set up automatic refills so I don't run out of my water pill again."</li>
+        <li>"I should sleep with my head elevated if I get short of breath at night."</li>
+      </ol>
+      <div class="answer" id="q6-ans">
+        <strong>Correct: B</strong><br>
+        Canned soup is extremely high in sodium (~800-1200 mg per can). Heart failure patients need sodium restriction (typically < 2g/day). This statement indicates the client needs further education about low-sodium food choices.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('q6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>ABCs always first</strong> — Oxygenation before diuresis in acute pulmonary edema</li>
+        <li><strong>Weight = fluid</strong> — 7 kg gain ≈ 7L fluid retention</li>
+        <li><strong>Medication adherence matters</strong> — Running out of diuretics is a common cause of decompensation</li>
+        <li><strong>Diet education is ongoing</strong> — Hidden sodium in processed foods</li>
+        <li><strong>Pink frothy sputum = emergency</strong> — Classic sign of alveolar flooding</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>

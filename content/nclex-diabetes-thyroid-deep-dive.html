@@ -49,6 +49,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -243,6 +252,178 @@
       <div class="trap">
         <strong>NCLEX Trap:</strong> Myxedema coma mortality is HIGH (30-60%). Hypothermia is a hallmark — do NOT rapidly rewarm. Give hydrocortisone BEFORE levothyroxine if adrenal insufficiency possible (thyroid hormone increases metabolism → can precipitate adrenal crisis).
       </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Diabetic Ketoacidosis</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Ms. Aaliyah Johnson, 22-year-old female</strong>, is brought to the emergency department by her roommate. Roommate reports Aaliyah has been vomiting for the past 12 hours, has "fruity breath," and has been "breathing really fast and deep." Aaliyah was diagnosed with Type 1 diabetes at age 14. She admits she has not taken her insulin for the past 2 days because she "ran out and didn't have money for the refill." She also reports having flu-like symptoms and a sore throat for the past 3 days.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 88/56 mmHg</li>
+          <li>HR: 124 bpm, regular</li>
+          <li>RR: 36 breaths/min, deep and labored (Kussmaul)</li>
+          <li>Temp: 37.8°C (100°F)</li>
+          <li>SpO₂: 97% on room air</li>
+          <li>Weight: 58 kg (usual weight 64 kg)</li>
+          <li>Skin: Dry mucous membranes, poor skin turgor, flushed</li>
+          <li>Neuro: Alert and oriented x3, anxious</li>
+          <li>Abdomen: Diffuse tenderness, hyperactive bowel sounds</li>
+          <li>Respiratory: Clear bilaterally, deep rapid respirations</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient reports polyuria and polydipsia for the past week. Has been unable to keep food or fluids down for 12 hours. Last insulin dose (lispro and glargine) was 2 days ago. No known drug allergies. Non-smoker. No alcohol or illicit drug use. Family history of autoimmune thyroid disease.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>Blood glucose: 682 mg/dL</li>
+          <li>Serum pH: 7.18</li>
+          <li>HCO₃⁻: 12 mEq/L</li>
+          <li>Anion gap: 22</li>
+          <li>Serum ketones: Positive (large)</li>
+          <li>Serum osmolality: 318 mOsm/kg</li>
+          <li>Sodium: 132 mEq/L (corrected Na⁺: 141)</li>
+          <li>Potassium: 5.8 mEq/L</li>
+          <li>Chloride: 98 mEq/L</li>
+          <li>BUN: 38 mg/dL</li>
+          <li>Creatinine: 1.4 mg/dL</li>
+          <li>WBC: 15.4 × 10⁹/L</li>
+          <li>Hgb: 14.2 g/dL</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>0.9% Sodium Chloride 1L IV over 1 hour</li>
+          <li>Regular insulin 6 units IV push, then 6 units/hr continuous infusion</li>
+          <li>Basic metabolic panel q2h</li>
+          <li>Urinalysis with culture</li>
+          <li>Chest X-ray</li>
+          <li>Strict intake & output, hourly vital signs</li>
+          <li>Cardiac monitoring</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Based on the clinical presentation, which findings confirm the diagnosis of DKA rather than HHS? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Blood glucose 682 mg/dL</li>
+        <li>pH 7.18</li>
+        <li>Positive serum ketones</li>
+        <li>Age 22 with Type 1 diabetes</li>
+        <li>Anion gap 22</li>
+        <li>Kussmaul respirations</li>
+      </ol>
+      <div class="answer" id="dq1-ans">
+        <strong>Correct: B, C, E, F</strong><br>
+        A (glucose >600) could be HHS. D (young age/T1DM) suggests DKA but doesn't confirm it. The definitive DKA findings are: metabolic acidosis (pH <7.30, B), ketosis (C), elevated anion gap (E), and Kussmaul respirations (compensatory for acidosis, F).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the potassium level is 5.8 mEq/L. Which is the BEST interpretation of this finding?</p>
+      <ol class="ngn-options" type="A">
+        <li>The client has adequate total body potassium and does not need replacement</li>
+        <li>The potassium is elevated due to acidosis shifting K⁺ out of cells, but total body K⁺ is depleted</li>
+        <li>The client is in renal failure and cannot excrete potassium</li>
+        <li>Insulin should be held until potassium normalizes</li>
+      </ol>
+      <div class="answer" id="dq2-ans">
+        <strong>Correct: B</strong><br>
+        In DKA, acidosis causes intracellular K⁺ to shift extracellularly, creating a falsely "normal" or elevated serum K⁺ despite severe total body depletion. Once insulin and fluids are given, K⁺ re-enters cells and levels drop rapidly. The client WILL need K⁺ replacement once levels fall. Insulin should NOT be held unless K⁺ <3.3.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The nurse is prioritizing interventions. Which action should be performed FIRST?</p>
+      <ol class="ngn-options" type="A">
+        <li>Begin regular insulin infusion at 6 units/hr</li>
+        <li>Administer 0.9% NS 1L over 1 hour</li>
+        <li>Insert Foley catheter for strict I&O monitoring</li>
+        <li>Draw repeat basic metabolic panel</li>
+      </ol>
+      <div class="answer" id="dq3-ans">
+        <strong>Correct: B</strong><br>
+        The client is hypotensive (88/56) with tachycardia, dry mucous membranes, and 6 kg weight loss — indicating severe hypovolemia. Fluid resuscitation must precede insulin administration. Insulin before fluids can worsen hypotension by driving glucose and water into cells. Fluids FIRST, then insulin.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> Four hours after treatment initiation, the client's glucose is 280 mg/dL, potassium is 3.6 mEq/L, and pH is 7.28. Which is the nurse's BEST next action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Continue current insulin infusion and add dextrose to IV fluids</li>
+        <li>Stop insulin infusion since glucose is nearly normal</li>
+        <li>Increase insulin infusion to achieve faster glucose reduction</li>
+        <li>Switch to subcutaneous insulin now that glucose is controlled</li>
+      </ol>
+      <div class="answer" id="dq4-ans">
+        <strong>Correct: A</strong><br>
+        Do NOT stop insulin when glucose normalizes — must continue until anion gap closes (indicates ketosis resolved). Adding dextrose (D5) to fluids allows continued insulin administration without hypoglycemia. SC insulin should not be started until patient is eating and anion gap is normal.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> The nurse is reviewing the morning labs on day 2. Which finding requires IMMEDIATE follow-up?</p>
+      <ol class="ngn-options" type="A">
+        <li>Glucose 145 mg/dL</li>
+        <li>Potassium 3.1 mEq/L</li>
+        <li>pH 7.34</li>
+        <li>Anion gap 14</li>
+      </ol>
+      <div class="answer" id="dq5-ans">
+        <strong>Correct: B</strong><br>
+        Potassium of 3.1 mEq/L is dangerously low and can cause life-threatening arrhythmias. In DKA, K⁺ replacement is critical — add KCl to IV fluids immediately and monitor closely. The other values show continued improvement (glucose normalized, pH near normal, anion gap closing).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> The client is ready for discharge on day 3. Which statement by the client indicates a need for FURTHER teaching?</p>
+      <ol class="ngn-options" type="A">
+        <li>"I will check my blood sugar 4 times a day and keep a log."</li>
+        <li>"If my blood sugar is over 250 for two readings, I'll check for ketones."</li>
+        <li>"I can skip my insulin when I'm not eating much due to illness."</li>
+        <li>"I'll set up automatic refills so I never run out of insulin again."</li>
+      </ol>
+      <div class="answer" id="dq6-ans">
+        <strong>Correct: C</strong><br>
+        NEVER skip insulin during illness — this is exactly how DKA develops (insulin deficiency + stress hormones). During illness, patients may need MORE insulin, not less (sick day rules: check glucose more often, check ketones if glucose >250, never stop basal insulin, stay hydrated, seek care if vomiting or ketones present).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Fluids FIRST, then insulin</strong> — Hypovolemia takes priority over hyperglycemia</li>
+        <li><strong>Potassium is tricky</strong> — Looks high, but total body is LOW; monitor closely during treatment</li>
+        <li><strong>Don't stop insulin at 200</strong> — Continue until anion gap normalizes (ketosis resolved)</li>
+        <li><strong>Add dextrose when needed</strong> — D5 allows continued insulin without hypoglycemia</li>
+        <li><strong>Never skip insulin when sick</strong> — #1 cause of DKA in known diabetics</li>
+      </ul>
     </div>
 
     <h2>🎯 Related Content</h2>
