@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { storeLog, storeDocument } = require('../lib/firestore-helper');
 
 // Postiz API config
 const API_KEY = 'pos_80nVwWb8TIdMFTDV3Q8Z0Wpzu61bGiUy8iADDCMB';
@@ -17,7 +18,7 @@ async function schedulePost(post) {
   const integrationId = INTEGRATIONS[post.platform];
   if (!integrationId) {
     console.log(`⚠️ Skipping unknown platform: ${post.platform}`);
-    return { skipped: true };
+    return { skipped: true, reason: 'unknown_platform' };
   }
 
   const dateStr = `${post.date}T${post.time}:00Z`;
@@ -41,13 +42,10 @@ async function schedulePost(post) {
   // Split threads into multiple posts for X
   let values = [];
   if (post.platform === 'x_threads') {
-    // Try numbered split first (1/ 2/ etc.)
     let parts = post.content.split(/\n?\d+\//).filter(p => p.trim());
-    // If no number markers, split by double newlines
     if (parts.length <= 1) {
       parts = post.content.split(/\n\n+/).filter(p => p.trim());
     }
-    // If still too long chunks, split by single newlines
     if (parts.some(p => p.length > 280)) {
       parts = post.content.split(/\n/).filter(p => p.trim());
     }
@@ -64,10 +62,10 @@ async function schedulePost(post) {
     }];
   }
 
-  // Skip platforms that require media (Instagram, TikTok) - no images available
+  // Skip platforms that require media (Instagram, TikTok)
   if (post.platform === 'instagram_posts' || post.platform === 'tiktok_scripts') {
     console.log(`⚠️ ${post.platform} on ${post.date} ${post.time} — skipped (requires image/video media)`);
-    return { skipped: true };
+    return { skipped: true, reason: 'requires_media' };
   }
 
   const payload = {
@@ -100,23 +98,43 @@ async function schedulePost(post) {
 
     const result = await response.json();
     console.log(`✅ ${post.platform} on ${post.date} ${post.time} → ${result.id || 'scheduled'}`);
+    
+    // Store successful post in Firestore
+    await storeDocument('scheduled_posts', `post_${post.date}_${post.platform}_${post.time}`, {
+      platform: post.platform,
+      date: post.date,
+      time: post.time,
+      content: post.content.substring(0, 500),
+      postizId: result.id,
+      status: 'scheduled',
+      scheduledAt: new Date().toISOString()
+    });
+    
     return { success: true, id: result.id };
   } catch (err) {
     console.log(`❌ ${post.platform} on ${post.date} ${post.time}: ${err.message}`);
+    
+    // Store failed post in Firestore
+    await storeDocument('scheduled_posts', `post_${post.date}_${post.platform}_${post.time}`, {
+      platform: post.platform,
+      date: post.date,
+      time: post.time,
+      status: 'failed',
+      error: err.message,
+      attemptedAt: new Date().toISOString()
+    });
+    
     return { success: false, error: err.message };
   }
 }
 
 async function main() {
+  const runId = new Date().toISOString().replace(/[:.]/g, '-');
   const schedulePath = path.join(__dirname, 'social-schedule.json');
   const posts = JSON.parse(fs.readFileSync(schedulePath, 'utf-8'));
 
-  const today = '2026-08-04';
-  const postsToSchedule = posts.filter(p => {
-    // Only schedule X threads that failed before (too long)
-    // X posts already succeeded, Instagram/TikTok need media
-    return p.platform === 'x_threads' && p.date >= today;
-  });
+  const today = new Date().toISOString().split('T')[0];
+  const postsToSchedule = posts.filter(p => p.date >= today);
 
   console.log(`Found ${postsToSchedule.length} posts to schedule (from ${today} onwards)\n`);
 
@@ -130,11 +148,21 @@ async function main() {
     else if (result.skipped) skipped++;
     else failed++;
 
-    // Rate limit: small delay between requests
     await new Promise(r => setTimeout(r, 500));
   }
 
+  const summary = { runId, total: postsToSchedule.length, success, failed, skipped, date: today };
+  
+  // Store run summary in Firestore
+  await storeLog('schedule-posts', failed === 0 ? 'success' : 'partial', summary);
+  await storeDocument('postiz_runs', `run_${runId}`, summary);
+  
   console.log(`\n🏁 Done: ${success} scheduled, ${failed} failed, ${skipped} skipped`);
+  console.log('💾 Results stored in Firestore');
 }
 
-main().catch(console.error);
+main().catch(async err => {
+  console.error('Fatal error:', err);
+  await storeLog('schedule-posts', 'failed', { error: err.message });
+  process.exit(1);
+});

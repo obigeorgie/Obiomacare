@@ -1,10 +1,25 @@
 #!/usr/bin/env python3
 """
 Create a shareable NCLEX Lab Values infographic
+Stores metadata in Firestore
 """
 
 from PIL import Image, ImageDraw, ImageFont
 import os
+import sys
+from datetime import datetime
+
+# Add venv path for firebase-admin
+venv_site = '/root/.openclaw/workspace/obioma-care/venv/lib/python3.12/site-packages'
+if venv_site not in sys.path:
+    sys.path.insert(0, venv_site)
+
+from firebase_admin import credentials, initialize_app, firestore
+
+# Init Firestore
+cred = credentials.Certificate('/root/.openclaw/workspace/obioma-care/firebase-service-account.json')
+app = initialize_app(cred, name='lab-values-image')
+db = firestore.client(app)
 
 os.makedirs('/root/.openclaw/workspace/obioma-care/public/assets/shareable', exist_ok=True)
 
@@ -15,7 +30,7 @@ def create_lab_values_image():
     accent_color = (255, 107, 91)
     text_color = (226, 232, 240)
     secondary_color = (148, 163, 184)
-    warning_color = (239, 68, 68)  # Red for critical
+    warning_color = (239, 68, 68)
     
     img = Image.new('RGB', (width, height), bg_color)
     draw = ImageDraw.Draw(img)
@@ -33,7 +48,6 @@ def create_lab_values_image():
     
     y = 50
     
-    # Title
     draw.text((width//2, y), "NCLEX LAB VALUES", font=title_font, fill=accent_color, anchor="mm")
     y += 70
     draw.text((width//2, y), "Every Value You MUST Memorize", font=body_font, fill=secondary_color, anchor="mm")
@@ -42,7 +56,6 @@ def create_lab_values_image():
     draw.line([(80, y), (width-80, y)], fill=accent_color, width=2)
     y += 40
     
-    # Lab values data: (name, normal_range, critical_low, critical_high, unit)
     labs = [
         ("SODIUM", "136-145", "<120", ">160", "mEq/L"),
         ("POTASSIUM", "3.5-5.0", "<2.5", ">6.5", "mEq/L"),
@@ -61,26 +74,17 @@ def create_lab_values_image():
     ]
     
     for name, normal, crit_low, crit_high, unit in labs:
-        # Background box
         draw.rounded_rectangle([(60, y-5), (width-60, y+55)], radius=8, fill=(15, 29, 50))
-        
-        # Name
         draw.text((80, y+25), name, font=body_font, fill=text_color, anchor="lm")
-        
-        # Normal range
         normal_text = f"Normal: {normal} {unit}".strip()
         draw.text((400, y+25), normal_text, font=small_font, fill=secondary_color, anchor="lm")
-        
-        # Critical indicator
         if crit_low != "—" or crit_high != "—":
             crit_text = f"⚠️ {crit_low} / {crit_high}".replace("— / ", "").replace(" / —", "")
             draw.text((750, y+25), crit_text, font=small_font, fill=warning_color, anchor="lm")
-        
         y += 70
     
     y += 30
     
-    # Key tips
     draw.text((width//2, y), "MEMORY TIPS", font=header_font, fill=accent_color, anchor="mm")
     y += 60
     
@@ -99,7 +103,6 @@ def create_lab_values_image():
     
     y += 40
     
-    # Footer
     draw.line([(80, y), (width-80, y)], fill=accent_color, width=2)
     y += 30
     draw.text((width//2, y), "Full printable version at", font=small_font, fill=secondary_color, anchor="mm")
@@ -110,7 +113,27 @@ def create_lab_values_image():
     
     output_path = '/root/.openclaw/workspace/obioma-care/public/assets/shareable/nclex-lab-values-infographic.png'
     img.save(output_path, quality=95)
+    
+    # Store metadata in Firestore
+    run_id = datetime.now().isoformat().replace(":", "-").replace(".", "-")
+    db.collection('generated_images').document(f'lab_values_{run_id}').set({
+        'runId': run_id,
+        'type': 'lab_values_infographic',
+        'filename': 'nclex-lab-values-infographic.png',
+        'path': output_path,
+        'dimensions': {'width': width, 'height': height},
+        'generatedAt': datetime.now().isoformat(),
+        'source': 'create_lab_values_image.py'
+    })
+    db.collection('generated_images').document('latest').set({
+        'runId': run_id,
+        'type': 'lab_values_infographic',
+        'filename': 'nclex-lab-values-infographic.png',
+        'generatedAt': datetime.now().isoformat()
+    })
+    
     print(f"Created: {output_path}")
+    print(f"💾 Metadata stored in Firestore")
     return output_path
 
 if __name__ == "__main__":

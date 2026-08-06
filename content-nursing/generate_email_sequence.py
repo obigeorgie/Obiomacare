@@ -4,7 +4,24 @@ Obioma Nursing Email Nurture Sequence
 Triggered by: Free checklist download or lead capture
 Goal: Convert to Complete System ($67)
 Duration: 7 emails over 14 days
+Stores sequences in Firestore
 """
+
+import json
+import sys
+from datetime import datetime
+
+# Add venv path for firebase-admin
+venv_site = '/root/.openclaw/workspace/obioma-care/venv/lib/python3.12/site-packages'
+if venv_site not in sys.path:
+    sys.path.insert(0, venv_site)
+
+from firebase_admin import credentials, initialize_app, firestore
+
+# Init Firestore
+cred = credentials.Certificate('/root/.openclaw/workspace/obioma-care/firebase-service-account.json')
+app = initialize_app(cred, name='email-sequence')
+db = firestore.client(app)
 
 EMAILS = [
     {
@@ -234,9 +251,31 @@ P.S. If you ever want to chat nursing, just reply. I read every email."""
 ]
 
 if __name__ == "__main__":
-    import json
-    with open("/root/.openclaw/workspace/obioma-care/content-nursing/email-sequence.json", "w") as f:
+    # Save locally
+    output_path = "/root/.openclaw/workspace/obioma-care/content-nursing/email-sequence.json"
+    with open(output_path, "w") as f:
         json.dump(EMAILS, f, indent=2)
-    print(f"Generated {len(EMAILS)} emails")
+    print(f"Generated {len(EMAILS)} emails → {output_path}")
+    
+    # Store in Firestore
+    run_id = datetime.now().isoformat().replace(":", "-").replace(".", "-")
+    doc_ref = db.collection('email_sequences').document(f'run_{run_id}')
+    doc_ref.set({
+        'runId': run_id,
+        'type': 'nurture_sequence',
+        'emailCount': len(EMAILS),
+        'emails': EMAILS,
+        'generatedAt': datetime.now().isoformat(),
+        'source': 'generate_email_sequence.py'
+    })
+    print(f"💾 Stored in Firestore: email_sequences/run_{run_id}")
+    
+    # Also store latest reference
+    db.collection('email_sequences').document('latest').set({
+        'runId': run_id,
+        'emailCount': len(EMAILS),
+        'generatedAt': datetime.now().isoformat()
+    })
+    
     for e in EMAILS:
         print(f"Day {e['day']}: {e['subject']}")

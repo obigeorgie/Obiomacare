@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
 """
 Obioma Care — NCLEX Clinical Judgment Facebook Ad Campaign (Simplified)
+Stores campaign results in Firestore
 """
 import os
 import json
+import sys
 import requests
 from datetime import datetime, timedelta
+
+# Add venv path for firebase-admin
+venv_site = '/root/.openclaw/workspace/obioma-care/venv/lib/python3.12/site-packages'
+if venv_site not in sys.path:
+    sys.path.insert(0, venv_site)
+
+from firebase_admin import credentials, initialize_app, firestore
+
+# Init Firestore
+cred = credentials.Certificate('/root/.openclaw/workspace/obioma-care/firebase-service-account.json')
+app = initialize_app(cred, name='facebook-campaign')
+db = firestore.client(app)
 
 ACCESS_TOKEN = os.getenv("FACEBOOK_ACCESS_TOKEN", "EAAcY9Q9edZB0BSPPZCRnZAYNBtzeMyZBnBqAwWmSnwbY7Y4O0bekQCPyGxiDGYMJVlg51do1OgNVXDUmz6nuHybgLiBGbN99GyD61ZCLXf1YYIVKsmFOXYppMxTGCP8Q3foxQReclZCukyDHPSvBZAUrxWJzviVgCrsKWNuu3OAmhqntf7cy8xe2VFh4HnWhEtzCd8utvZC50PfaAAiqE80ZD")
 AD_ACCOUNT_ID = "823605304813059"
@@ -114,14 +128,28 @@ def create_ad(ad_set_id, name, headline, body):
     return fb_api(f"/act_{AD_ACCOUNT_ID}/ads", "POST", data=ad_data)
 
 if __name__ == "__main__":
+    run_id = datetime.now().isoformat().replace(":", "-").replace(".", "-")
+    results = {
+        "runId": run_id,
+        "campaignId": None,
+        "adSets": [],
+        "ads": [],
+        "errors": [],
+        "status": "running"
+    }
+    
     print("🚀 Creating NCLEX Clinical Judgment Campaign...")
     
     campaign = create_campaign()
     if "error" in campaign:
         print(f"❌ Campaign failed: {campaign['error']}")
+        results["errors"].append({"stage": "campaign", "error": campaign["error"]})
+        results["status"] = "failed"
+        db.collection('facebook_campaigns').document(f'run_{run_id}').set(results)
         exit(1)
     
     campaign_id = campaign["id"]
+    results["campaignId"] = campaign_id
     print(f"✅ Campaign: {campaign_id}")
     
     # Verified interest IDs from API search
@@ -133,16 +161,16 @@ if __name__ == "__main__":
         ("Nursing School — 18-30", 15, 18, 30, [NURSE_EDUCATION, TEST_PREP]),
     ]
     
-    ad_set_ids = []
     for name, budget, age_min, age_max, interest_ids in ad_sets:
         print(f"\n📌 Creating ad set: {name}...")
         result = create_ad_set(campaign_id, name, budget, age_min, age_max, interest_ids)
         if "error" in result:
             print(f"  ⚠️ Failed: {result['error']}")
+            results["errors"].append({"stage": "adset", "name": name, "error": result["error"]})
         else:
             ad_set_id = result["id"]
             print(f"  ✅ Ad Set: {ad_set_id}")
-            ad_set_ids.append((ad_set_id, name))
+            results["adSets"].append({"id": ad_set_id, "name": name})
     
     ad_variants = [
         {
@@ -155,17 +183,35 @@ if __name__ == "__main__":
         },
     ]
     
-    for ad_set_id, ad_set_name in ad_set_ids:
+    for ad_set in results["adSets"]:
+        ad_set_id = ad_set["id"]
+        ad_set_name = ad_set["name"]
         for i, variant in enumerate(ad_variants):
             ad_name = f"{ad_set_name} — Ad {i+1}"
             print(f"\n📝 Creating ad: {ad_name}...")
             result = create_ad(ad_set_id, ad_name, variant["headline"], variant["body"])
             if result and "error" in result:
                 print(f"  ⚠️ Failed: {result['error']}")
+                results["errors"].append({"stage": "ad", "name": ad_name, "error": result["error"]})
             elif result:
                 print(f"  ✅ Ad: {result.get('id')}")
+                results["ads"].append({"id": result.get('id'), "name": ad_name})
+    
+    results["status"] = "completed"
+    results["completedAt"] = datetime.now().isoformat()
+    
+    # Store in Firestore
+    db.collection('facebook_campaigns').document(f'run_{run_id}').set(results)
+    db.collection('facebook_campaigns').document('latest').set({
+        'runId': run_id,
+        'campaignId': campaign_id,
+        'adSetCount': len(results['adSets']),
+        'adCount': len(results['ads']),
+        'createdAt': datetime.now().isoformat()
+    })
     
     print(f"\n🎉 Campaign created!")
     print(f"Campaign ID: {campaign_id}")
     print(f"Status: PAUSED (review in Ads Manager before activating)")
+    print(f"💾 Stored in Firestore: facebook_campaigns/run_{run_id}")
     print(f"https://business.facebook.com/adsmanager/manage/campaigns?act={AD_ACCOUNT_ID}")

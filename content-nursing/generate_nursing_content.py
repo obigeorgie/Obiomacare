@@ -1,9 +1,24 @@
 #!/usr/bin/env python3
 """
 Obioma Nursing Content Engine — Generates NCLEX/clinical judgment content
+Stores generated schedules in Firestore
 """
 import json
+import os
+import sys
 from datetime import datetime, timedelta
+
+# Add venv path for firebase-admin
+venv_site = '/root/.openclaw/workspace/obioma-care/venv/lib/python3.12/site-packages'
+if venv_site not in sys.path:
+    sys.path.insert(0, venv_site)
+
+from firebase_admin import credentials, initialize_app, firestore
+
+# Init Firestore
+cred = credentials.Certificate('/root/.openclaw/workspace/obioma-care/firebase-service-account.json')
+app = initialize_app(cred, name='content-engine')
+db = firestore.client(app)
 
 CONTENT_BANK = {
     "x_threads": [
@@ -164,8 +179,32 @@ def generate_schedule(start_date=None):
 
 if __name__ == "__main__":
     schedule = generate_schedule()
-    with open("/root/.openclaw/workspace/obioma-care/content-nursing/social-schedule.json", "w") as f:
+    
+    # Save locally
+    output_path = "/root/.openclaw/workspace/obioma-care/content-nursing/social-schedule.json"
+    with open(output_path, "w") as f:
         json.dump(schedule, f, indent=2)
-    print(f"Generated {len(schedule)} posts")
+    print(f"Generated {len(schedule)} posts → {output_path}")
+    
+    # Store in Firestore
+    run_id = datetime.now().isoformat().replace(":", "-").replace(".", "-")
+    doc_ref = db.collection('content_schedules').document(f'run_{run_id}')
+    doc_ref.set({
+        'runId': run_id,
+        'type': 'social_schedule',
+        'postCount': len(schedule),
+        'schedule': schedule,
+        'generatedAt': datetime.now().isoformat(),
+        'source': 'generate_nursing_content.py'
+    })
+    print(f"💾 Stored in Firestore: content_schedules/run_{run_id}")
+    
+    # Also store latest reference
+    db.collection('content_schedules').document('latest').set({
+        'runId': run_id,
+        'postCount': len(schedule),
+        'generatedAt': datetime.now().isoformat()
+    })
+    
     for post in schedule[:5]:
         print(f"{post['date']} {post['time']} | {post['platform']}")

@@ -1,0 +1,1416 @@
+{
+  "project": "kindred-x5pbk",
+  "backupDate": "2026-08-05T22:37:47.571Z",
+  "files": [
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/create_facebook_campaign.py",
+      "storagePath": "backups/obioma-care/content-nursing/create_facebook_campaign.py",
+      "size": 6551,
+      "modified": "2026-07-31T23:05:39.300Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/email-sequence.json",
+      "storagePath": "backups/obioma-care/content-nursing/email-sequence.json",
+      "size": 6807,
+      "modified": "2026-07-31T22:53:37.308Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/generate_email_sequence.py",
+      "storagePath": "backups/obioma-care/content-nursing/generate_email_sequence.py",
+      "size": 7099,
+      "modified": "2026-07-31T22:53:31.754Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/generate_nursing_content.py",
+      "storagePath": "backups/obioma-care/content-nursing/generate_nursing_content.py",
+      "size": 10728,
+      "modified": "2026-07-31T22:51:21.111Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-02.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-02.png",
+      "size": 421182,
+      "modified": "2026-08-04T09:47:55.457Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-04.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-04.png",
+      "size": 133411,
+      "modified": "2026-08-04T09:48:16.638Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-06.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-06.png",
+      "size": 513466,
+      "modified": "2026-08-04T09:48:18.129Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-08.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-08.png",
+      "size": 54159,
+      "modified": "2026-08-04T09:48:19.438Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-10.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-10.png",
+      "size": 339620,
+      "modified": "2026-08-04T09:48:21.159Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/aug-12.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/aug-12.png",
+      "size": 62744,
+      "modified": "2026-08-04T09:48:22.837Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-02.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-02.html",
+      "size": 2654,
+      "modified": "2026-08-04T09:42:28.259Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-04.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-04.html",
+      "size": 2981,
+      "modified": "2026-08-04T09:44:49.560Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-06.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-06.html",
+      "size": 2608,
+      "modified": "2026-08-04T09:44:49.560Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-08.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-08.html",
+      "size": 2888,
+      "modified": "2026-08-04T09:44:49.560Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-10.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-10.html",
+      "size": 2659,
+      "modified": "2026-08-04T09:44:49.560Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/instagram-images/compositions/aug-12.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/instagram-images/compositions/aug-12.html",
+      "size": 3097,
+      "modified": "2026-08-04T09:44:49.560Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/AGENTS.md",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/AGENTS.md",
+      "size": 7166,
+      "modified": "2026-08-04T09:39:20.864Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/CLAUDE.md",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/CLAUDE.md",
+      "size": 7166,
+      "modified": "2026-08-04T09:39:20.865Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-03.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-03.mp4",
+      "size": 283386,
+      "modified": "2026-08-04T10:09:59.874Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-03.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-03.png",
+      "size": 30377,
+      "modified": "2026-08-04T10:09:17.696Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-05.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-05.mp4",
+      "size": 632565,
+      "modified": "2026-08-04T10:10:15.811Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-05.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-05.png",
+      "size": 102301,
+      "modified": "2026-08-04T10:09:19.596Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-07.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-07.mp4",
+      "size": 594014,
+      "modified": "2026-08-04T10:10:28.244Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-07.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-07.png",
+      "size": 131945,
+      "modified": "2026-08-04T10:09:21.506Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-09.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-09.mp4",
+      "size": 665697,
+      "modified": "2026-08-04T10:10:42.088Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-09.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-09.png",
+      "size": 141287,
+      "modified": "2026-08-04T10:09:23.716Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-11.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-11.mp4",
+      "size": 494719,
+      "modified": "2026-08-04T10:10:50.180Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/aug-11.png",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/aug-11.png",
+      "size": 139814,
+      "modified": "2026-08-04T10:09:25.448Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03-narration.wav",
+      "size": 591916,
+      "modified": "2026-08-04T09:53:45.693Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03-script.txt",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03-script.txt",
+      "size": 233,
+      "modified": "2026-08-04T09:51:00.695Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-03.html",
+      "size": 4115,
+      "modified": "2026-08-04T09:54:11.398Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05-narration.wav",
+      "size": 840748,
+      "modified": "2026-08-04T10:06:21.155Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05-script.txt",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05-script.txt",
+      "size": 312,
+      "modified": "2026-08-04T10:05:31.491Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-05.html",
+      "size": 2728,
+      "modified": "2026-08-04T10:05:03.086Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07-narration.wav",
+      "size": 615468,
+      "modified": "2026-08-04T10:07:58.183Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07-script.txt",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07-script.txt",
+      "size": 228,
+      "modified": "2026-08-04T10:07:29.239Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-07.html",
+      "size": 2142,
+      "modified": "2026-08-04T10:05:03.086Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09-narration.wav",
+      "size": 698412,
+      "modified": "2026-08-04T10:08:20.772Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09-script.txt",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09-script.txt",
+      "size": 246,
+      "modified": "2026-08-04T10:07:29.239Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-09.html",
+      "size": 2665,
+      "modified": "2026-08-04T10:05:03.086Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11-narration.wav",
+      "size": 457772,
+      "modified": "2026-08-04T10:08:38.312Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11-script.txt",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11-script.txt",
+      "size": 171,
+      "modified": "2026-08-04T10:07:29.239Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/compositions/aug-11.html",
+      "size": 2669,
+      "modified": "2026-08-04T10:05:03.086Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/hyperframes.json",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/hyperframes.json",
+      "size": 318,
+      "modified": "2026-08-04T09:39:20.863Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/index.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/index.html",
+      "size": 1370,
+      "modified": "2026-08-04T09:39:20.862Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/meta.json",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/meta.json",
+      "size": 97,
+      "modified": "2026-08-04T09:39:20.863Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/package.json",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/package.json",
+      "size": 298,
+      "modified": "2026-08-04T09:39:20.864Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/aug-03-narration.wav",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/aug-03-narration.wav",
+      "size": 591916,
+      "modified": "2026-08-04T09:55:17.716Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/hyperframes.json",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/hyperframes.json",
+      "size": 318,
+      "modified": "2026-08-04T09:55:17.713Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/index.html",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/index.html",
+      "size": 4115,
+      "modified": "2026-08-04T09:55:17.714Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/meta.json",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03/meta.json",
+      "size": 97,
+      "modified": "2026-08-04T09:55:17.713Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03.mp4",
+      "storagePath": "backups/obioma-care/content-nursing/media/tiktok-videos/tiktok-aug-03.mp4",
+      "size": 2392158,
+      "modified": "2026-08-04T09:57:50.639Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/neuro-email-sequence.json",
+      "storagePath": "backups/obioma-care/content-nursing/neuro-email-sequence.json",
+      "size": 5717,
+      "modified": "2026-08-05T16:57:30.671Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/schedule-posts.js",
+      "storagePath": "backups/obioma-care/content-nursing/schedule-posts.js",
+      "size": 4269,
+      "modified": "2026-08-04T09:16:04.070Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/social-schedule.json",
+      "storagePath": "backups/obioma-care/content-nursing/social-schedule.json",
+      "size": 11001,
+      "modified": "2026-07-31T22:51:29.127Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/test-upload.js",
+      "storagePath": "backups/obioma-care/content-nursing/test-upload.js",
+      "size": 3033,
+      "modified": "2026-08-04T10:39:26.846Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/content-nursing/upload-media.js",
+      "storagePath": "backups/obioma-care/content-nursing/upload-media.js",
+      "size": 5059,
+      "modified": "2026-08-04T10:40:39.042Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/leads/nursing-leads-master.md",
+      "storagePath": "backups/obioma-care/leads/nursing-leads-master.md",
+      "size": 7430,
+      "modified": "2026-08-05T17:59:25.114Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/leads/outreach-templates.md",
+      "storagePath": "backups/obioma-care/leads/outreach-templates.md",
+      "size": 7196,
+      "modified": "2026-08-05T18:00:06.772Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/README.md",
+      "storagePath": "backups/obioma-care/marketing/README.md",
+      "size": 2838,
+      "modified": "2026-08-05T14:10:51.725Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/backlink-outreach/email-templates.md",
+      "storagePath": "backups/obioma-care/marketing/backlink-outreach/email-templates.md",
+      "size": 7600,
+      "modified": "2026-08-05T14:08:30.566Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/backlink-outreach/prospects.csv",
+      "storagePath": "backups/obioma-care/marketing/backlink-outreach/prospects.csv",
+      "size": 1748,
+      "modified": "2026-08-05T14:09:42.347Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/batch-6-growth-plan.md",
+      "storagePath": "backups/obioma-care/marketing/batch-6-growth-plan.md",
+      "size": 14202,
+      "modified": "2026-08-05T13:49:32.416Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/email-campaigns/batch-6-announcement.html",
+      "storagePath": "backups/obioma-care/marketing/email-campaigns/batch-6-announcement.html",
+      "size": 5887,
+      "modified": "2026-08-05T14:05:05.268Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/lead-magnets/nclex-neuro-assessment-cheat-sheet.html",
+      "storagePath": "backups/obioma-care/marketing/lead-magnets/nclex-neuro-assessment-cheat-sheet.html",
+      "size": 8497,
+      "modified": "2026-08-05T14:03:34.838Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/lead-magnets/nclex-neuro-assessment-cheat-sheet.md",
+      "storagePath": "backups/obioma-care/marketing/lead-magnets/nclex-neuro-assessment-cheat-sheet.md",
+      "size": 6176,
+      "modified": "2026-08-05T14:00:39.981Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/marketing/social-posts/postiz-schedule.md",
+      "storagePath": "backups/obioma-care/marketing/social-posts/postiz-schedule.md",
+      "size": 7890,
+      "modified": "2026-08-05T14:06:46.522Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/README.md",
+      "storagePath": "backups/obioma-care/products/README.md",
+      "size": 4202,
+      "modified": "2026-07-23T01:50:22.910Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/case-walkthroughs.md",
+      "storagePath": "backups/obioma-care/products/case-walkthroughs.md",
+      "size": 10674,
+      "modified": "2026-07-23T01:42:21.546Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/case-walkthroughs.pdf",
+      "storagePath": "backups/obioma-care/products/case-walkthroughs.pdf",
+      "size": 156195,
+      "modified": "2026-08-03T07:33:50.182Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/clinical-day-planner.md",
+      "storagePath": "backups/obioma-care/products/clinical-day-planner.md",
+      "size": 4351,
+      "modified": "2026-07-23T01:46:21.585Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/clinical-day-planner.pdf",
+      "storagePath": "backups/obioma-care/products/clinical-day-planner.pdf",
+      "size": 127899,
+      "modified": "2026-08-03T07:33:58.932Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/content-outline.md",
+      "storagePath": "backups/obioma-care/products/content-outline.md",
+      "size": 3773,
+      "modified": "2026-07-23T00:14:44.995Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/ngn-framework.md",
+      "storagePath": "backups/obioma-care/products/ngn-framework.md",
+      "size": 10374,
+      "modified": "2026-07-23T01:36:24.059Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/ngn-framework.pdf",
+      "storagePath": "backups/obioma-care/products/ngn-framework.pdf",
+      "size": 177583,
+      "modified": "2026-08-03T07:33:44.887Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/prioritization-trees.md",
+      "storagePath": "backups/obioma-care/products/prioritization-trees.md",
+      "size": 12052,
+      "modified": "2026-07-23T01:38:20.536Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/prioritization-trees.pdf",
+      "storagePath": "backups/obioma-care/products/prioritization-trees.pdf",
+      "size": 116514,
+      "modified": "2026-08-03T07:33:47.475Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/sbar-templates.md",
+      "storagePath": "backups/obioma-care/products/sbar-templates.md",
+      "size": 7565,
+      "modified": "2026-07-23T01:42:21.546Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/sbar-templates.pdf",
+      "storagePath": "backups/obioma-care/products/sbar-templates.pdf",
+      "size": 103738,
+      "modified": "2026-08-03T07:33:53.101Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/survival-guide.md",
+      "storagePath": "backups/obioma-care/products/survival-guide.md",
+      "size": 8214,
+      "modified": "2026-07-23T01:42:21.546Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/survival-guide.pdf",
+      "storagePath": "backups/obioma-care/products/survival-guide.pdf",
+      "size": 161232,
+      "modified": "2026-08-03T07:33:56.258Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/products/video-scripts.md",
+      "storagePath": "backups/obioma-care/products/video-scripts.md",
+      "size": 11123,
+      "modified": "2026-07-23T01:44:15.249Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/email-funnel/nurture-sequence.md",
+      "storagePath": "backups/obioma-care/email-funnel/nurture-sequence.md",
+      "size": 5355,
+      "modified": "2026-07-23T00:14:44.995Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/.force-redeploy",
+      "storagePath": "backups/obioma-care/landing/.force-redeploy",
+      "size": 0,
+      "modified": "2026-07-30T22:17:55.798Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/.gitignore",
+      "storagePath": "backups/obioma-care/landing/.gitignore",
+      "size": 8,
+      "modified": "2026-08-03T06:15:42.619Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/.vercel/README.txt",
+      "storagePath": "backups/obioma-care/landing/.vercel/README.txt",
+      "size": 520,
+      "modified": "2026-08-03T06:15:42.618Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/.vercel/project.json",
+      "storagePath": "backups/obioma-care/landing/.vercel/project.json",
+      "size": 112,
+      "modified": "2026-08-03T06:15:42.618Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/404.html",
+      "storagePath": "backups/obioma-care/landing/404.html",
+      "size": 1326,
+      "modified": "2026-07-23T13:25:32.685Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/ab-dashboard.html",
+      "storagePath": "backups/obioma-care/landing/ab-dashboard.html",
+      "size": 16423,
+      "modified": "2026-07-25T20:16:16.173Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/ab_test.js",
+      "storagePath": "backups/obioma-care/landing/ab_test.js",
+      "size": 22094,
+      "modified": "2026-07-25T20:16:16.170Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/apple-touch-icon.png",
+      "storagePath": "backups/obioma-care/landing/apple-touch-icon.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:16:20.463Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/logo-email.png",
+      "storagePath": "backups/obioma-care/landing/assets/logo-email.png",
+      "size": 10367,
+      "modified": "2026-08-03T13:14:27.920Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/logo-full.svg",
+      "storagePath": "backups/obioma-care/landing/assets/logo-full.svg",
+      "size": 1562,
+      "modified": "2026-08-03T13:16:20.138Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/logo-icon.svg",
+      "storagePath": "backups/obioma-care/landing/assets/logo-icon.svg",
+      "size": 840,
+      "modified": "2026-08-03T13:15:37.892Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/logo.svg",
+      "storagePath": "backups/obioma-care/landing/assets/logo.svg",
+      "size": 840,
+      "modified": "2026-08-03T13:18:10.393Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/nclex-5-step-guide.pdf",
+      "storagePath": "backups/obioma-care/landing/assets/nclex-5-step-guide.pdf",
+      "size": 14916,
+      "modified": "2026-07-24T11:11:46.889Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/obioma-explainer-thumb.jpg",
+      "storagePath": "backups/obioma-care/landing/assets/obioma-explainer-thumb.jpg",
+      "size": 105869,
+      "modified": "2026-07-25T20:09:08.826Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/obioma-explainer.mp4",
+      "storagePath": "backups/obioma-care/landing/assets/obioma-explainer.mp4",
+      "size": 492871,
+      "modified": "2026-07-25T20:09:08.824Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/shareable/nclex-lab-values-infographic.png",
+      "storagePath": "backups/obioma-care/landing/assets/shareable/nclex-lab-values-infographic.png",
+      "size": 178119,
+      "modified": "2026-07-25T22:18:54.665Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/assets/shareable/nclex-priority-cheat-sheet.png",
+      "storagePath": "backups/obioma-care/landing/assets/shareable/nclex-priority-cheat-sheet.png",
+      "size": 149952,
+      "modified": "2026-07-25T22:16:29.684Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/compare/obioma-vs-ixl.html",
+      "storagePath": "backups/obioma-care/landing/compare/obioma-vs-ixl.html",
+      "size": 11674,
+      "modified": "2026-07-18T15:55:02.139Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/compare/obioma-vs-khan-academy.html",
+      "storagePath": "backups/obioma-care/landing/compare/obioma-vs-khan-academy.html",
+      "size": 11950,
+      "modified": "2026-07-18T15:55:02.139Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/30-day-nclex-study-plan.html",
+      "storagePath": "backups/obioma-care/landing/content/30-day-nclex-study-plan.html",
+      "size": 11138,
+      "modified": "2026-07-30T22:57:08.717Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/ai-tutors-for-kids-2026.html",
+      "storagePath": "backups/obioma-care/landing/content/ai-tutors-for-kids-2026.html",
+      "size": 12229,
+      "modified": "2026-07-25T22:08:31.300Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/child-struggles-math.html",
+      "storagePath": "backups/obioma-care/landing/content/child-struggles-math.html",
+      "size": 12638,
+      "modified": "2026-07-25T22:08:31.303Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/emergency-drugs-reference.html",
+      "storagePath": "backups/obioma-care/landing/content/emergency-drugs-reference.html",
+      "size": 25206,
+      "modified": "2026-07-25T22:54:16.234Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/homeschool-curriculum-planner-comparison.html",
+      "storagePath": "backups/obioma-care/landing/content/homeschool-curriculum-planner-comparison.html",
+      "size": 13112,
+      "modified": "2026-07-25T22:08:31.305Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/index.html",
+      "storagePath": "backups/obioma-care/landing/content/index.html",
+      "size": 18614,
+      "modified": "2026-07-25T23:08:32.796Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/learning-path-apps.html",
+      "storagePath": "backups/obioma-care/landing/content/learning-path-apps.html",
+      "size": 12656,
+      "modified": "2026-07-25T22:08:31.307Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/mastery-based-learning.html",
+      "storagePath": "backups/obioma-care/landing/content/mastery-based-learning.html",
+      "size": 16044,
+      "modified": "2026-07-25T22:08:31.309Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/mastery-vs-grade-levels.html",
+      "storagePath": "backups/obioma-care/landing/content/mastery-vs-grade-levels.html",
+      "size": 12612,
+      "modified": "2026-07-25T22:08:31.311Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/math-prerequisites-importance.html",
+      "storagePath": "backups/obioma-care/landing/content/math-prerequisites-importance.html",
+      "size": 13197,
+      "modified": "2026-07-25T22:08:31.313Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-2-week-plan.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-2-week-plan.html",
+      "size": 13076,
+      "modified": "2026-07-25T22:09:00.447Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-30-day-study-plan.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-30-day-study-plan.html",
+      "size": 11514,
+      "modified": "2026-07-25T22:08:31.317Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-anxiety-management.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-anxiety-management.html",
+      "size": 8670,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-clinical-judgment-5-steps.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-clinical-judgment-5-steps.html",
+      "size": 6608,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-clinical-judgment-framework-master.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-clinical-judgment-framework-master.html",
+      "size": 10320,
+      "modified": "2026-07-31T22:52:17.152Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-clinical-judgment-framework.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-clinical-judgment-framework.html",
+      "size": 9339,
+      "modified": "2026-07-30T22:54:20.881Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-delegation-assignment.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-delegation-assignment.html",
+      "size": 14271,
+      "modified": "2026-07-25T22:08:31.342Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-lab-values-cheat-sheet.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-lab-values-cheat-sheet.html",
+      "size": 14151,
+      "modified": "2026-07-25T22:09:00.469Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-lab-values.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-lab-values.html",
+      "size": 14292,
+      "modified": "2026-07-25T22:08:31.349Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-pharmacology-drug-classes.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-pharmacology-drug-classes.html",
+      "size": 20739,
+      "modified": "2026-07-25T22:08:31.352Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-pharmacology-mnemonics.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-pharmacology-mnemonics.html",
+      "size": 17661,
+      "modified": "2026-07-25T22:50:51.167Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-prioritization-strategy-master.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-prioritization-strategy-master.html",
+      "size": 7652,
+      "modified": "2026-07-31T22:52:55.488Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-prioritization-strategy.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-prioritization-strategy.html",
+      "size": 9580,
+      "modified": "2026-07-30T22:56:08.186Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-priority-abcde-method.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-priority-abcde-method.html",
+      "size": 15397,
+      "modified": "2026-07-25T22:08:31.354Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/nclex-sata-questions-strategy.html",
+      "storagePath": "backups/obioma-care/landing/content/nclex-sata-questions-strategy.html",
+      "size": 9093,
+      "modified": "2026-07-30T22:55:10.278Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/ngn-case-studies-examples.html",
+      "storagePath": "backups/obioma-care/landing/content/ngn-case-studies-examples.html",
+      "size": 10624,
+      "modified": "2026-07-30T22:58:06.249Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/pediatric-milestones-reference.html",
+      "storagePath": "backups/obioma-care/landing/content/pediatric-milestones-reference.html",
+      "size": 22057,
+      "modified": "2026-07-25T23:08:24.383Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/personalized-learning-path-guide.html",
+      "storagePath": "backups/obioma-care/landing/content/personalized-learning-path-guide.html",
+      "size": 13482,
+      "modified": "2026-07-25T22:08:31.356Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/prerequisite-skills.html",
+      "storagePath": "backups/obioma-care/landing/content/prerequisite-skills.html",
+      "size": 12670,
+      "modified": "2026-07-25T22:08:31.359Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/sata-questions-strategy.html",
+      "storagePath": "backups/obioma-care/landing/content/sata-questions-strategy.html",
+      "size": 7198,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/social-media-content-bank.md",
+      "storagePath": "backups/obioma-care/landing/content/social-media-content-bank.md",
+      "size": 15131,
+      "modified": "2026-07-25T20:50:15.181Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/what-is-mastery-based-learning.html",
+      "storagePath": "backups/obioma-care/landing/content/what-is-mastery-based-learning.html",
+      "size": 13506,
+      "modified": "2026-07-25T22:08:31.364Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/what-is-next-generation-nclex.html",
+      "storagePath": "backups/obioma-care/landing/content/what-is-next-generation-nclex.html",
+      "size": 14226,
+      "modified": "2026-07-25T22:08:31.366Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/content/why-nursing-students-struggle-nclex-next-gen.html",
+      "storagePath": "backups/obioma-care/landing/content/why-nursing-students-struggle-nclex-next-gen.html",
+      "size": 9804,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/case-walkthroughs.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/case-walkthroughs.pdf",
+      "size": 59176,
+      "modified": "2026-07-23T11:29:40.078Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/clinical-day-planner.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/clinical-day-planner.pdf",
+      "size": 44572,
+      "modified": "2026-07-23T11:29:40.641Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/content-outline.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/content-outline.pdf",
+      "size": 42045,
+      "modified": "2026-07-23T11:29:41.156Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/nclex-clinical-judgment-guide.html",
+      "storagePath": "backups/obioma-care/landing/downloads/nclex-clinical-judgment-guide.html",
+      "size": 13469,
+      "modified": "2026-07-24T14:23:21.665Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/ngn-framework.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/ngn-framework.pdf",
+      "size": 61024,
+      "modified": "2026-07-23T11:29:41.905Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/prioritization-trees.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/prioritization-trees.pdf",
+      "size": 51619,
+      "modified": "2026-07-23T11:29:42.723Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/sbar-templates.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/sbar-templates.pdf",
+      "size": 42018,
+      "modified": "2026-07-23T11:29:43.843Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/survival-guide.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/survival-guide.pdf",
+      "size": 52712,
+      "modified": "2026-07-23T11:29:44.505Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/downloads/video-scripts.pdf",
+      "storagePath": "backups/obioma-care/landing/downloads/video-scripts.pdf",
+      "size": 49255,
+      "modified": "2026-07-23T11:29:45.187Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/favicon.ico",
+      "storagePath": "backups/obioma-care/landing/favicon.ico",
+      "size": 4286,
+      "modified": "2026-07-25T20:16:28.804Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/favicon.svg",
+      "storagePath": "backups/obioma-care/landing/favicon.svg",
+      "size": 1366,
+      "modified": "2026-07-25T20:16:28.804Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/free-framework/index.html",
+      "storagePath": "backups/obioma-care/landing/free-framework/index.html",
+      "size": 6239,
+      "modified": "2026-07-23T13:25:32.685Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/free-nclex-checklist.html",
+      "storagePath": "backups/obioma-care/landing/free-nclex-checklist.html",
+      "size": 9665,
+      "modified": "2026-07-25T20:58:13.468Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/icon-192.png",
+      "storagePath": "backups/obioma-care/landing/icon-192.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:16:20.887Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/icon-512.png",
+      "storagePath": "backups/obioma-care/landing/icon-512.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:16:21.183Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/images/abcde-method-infographic.png",
+      "storagePath": "backups/obioma-care/landing/images/abcde-method-infographic.png",
+      "size": 104394,
+      "modified": "2026-07-25T23:06:22.554Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/index.html",
+      "storagePath": "backups/obioma-care/landing/index.html",
+      "size": 73901,
+      "modified": "2026-08-03T16:44:45.755Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/obioma-logo.svg",
+      "storagePath": "backups/obioma-care/landing/obioma-logo.svg",
+      "size": 2160,
+      "modified": "2026-07-25T20:16:28.811Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/obioma-seo.png",
+      "storagePath": "backups/obioma-care/landing/obioma-seo.png",
+      "size": 46440,
+      "modified": "2026-07-25T20:16:28.814Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/quiz/index.html",
+      "storagePath": "backups/obioma-care/landing/quiz/index.html",
+      "size": 7335,
+      "modified": "2026-07-25T22:48:12.454Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/quiz/lab-values.html",
+      "storagePath": "backups/obioma-care/landing/quiz/lab-values.html",
+      "size": 34693,
+      "modified": "2026-07-25T22:47:32.850Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/robots.txt",
+      "storagePath": "backups/obioma-care/landing/robots.txt",
+      "size": 68,
+      "modified": "2026-07-25T20:16:28.819Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/sitemap.xml",
+      "storagePath": "backups/obioma-care/landing/sitemap.xml",
+      "size": 3791,
+      "modified": "2026-08-03T08:23:47.780Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/success/index.html",
+      "storagePath": "backups/obioma-care/landing/success/index.html",
+      "size": 3533,
+      "modified": "2026-07-23T13:25:32.685Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/tools/learning-path-planner.html",
+      "storagePath": "backups/obioma-care/landing/tools/learning-path-planner.html",
+      "size": 12358,
+      "modified": "2026-07-18T15:55:02.133Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/landing/tools/prerequisite-checklist.html",
+      "storagePath": "backups/obioma-care/landing/tools/prerequisite-checklist.html",
+      "size": 12003,
+      "modified": "2026-07-18T15:55:02.133Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/404.html",
+      "storagePath": "backups/obioma-care/public/404.html",
+      "size": 1326,
+      "modified": "2026-07-23T13:25:32.685Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/ab-dashboard.html",
+      "storagePath": "backups/obioma-care/public/ab-dashboard.html",
+      "size": 16423,
+      "modified": "2026-07-25T20:16:16.172Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/ab_test.js",
+      "storagePath": "backups/obioma-care/public/ab_test.js",
+      "size": 22094,
+      "modified": "2026-07-25T20:16:16.168Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/apple-touch-icon.png",
+      "storagePath": "backups/obioma-care/public/apple-touch-icon.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:56:23.459Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/logo-email.png",
+      "storagePath": "backups/obioma-care/public/assets/logo-email.png",
+      "size": 10367,
+      "modified": "2026-08-03T13:55:14.822Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/logo-full.svg",
+      "storagePath": "backups/obioma-care/public/assets/logo-full.svg",
+      "size": 1562,
+      "modified": "2026-08-03T13:55:14.827Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/logo-icon.svg",
+      "storagePath": "backups/obioma-care/public/assets/logo-icon.svg",
+      "size": 840,
+      "modified": "2026-08-03T13:55:14.825Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/logo.svg",
+      "storagePath": "backups/obioma-care/public/assets/logo.svg",
+      "size": 840,
+      "modified": "2026-08-03T13:55:14.828Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/nclex-5-step-guide.pdf",
+      "storagePath": "backups/obioma-care/public/assets/nclex-5-step-guide.pdf",
+      "size": 14916,
+      "modified": "2026-07-24T11:11:46.889Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/obioma-explainer-thumb.jpg",
+      "storagePath": "backups/obioma-care/public/assets/obioma-explainer-thumb.jpg",
+      "size": 105869,
+      "modified": "2026-07-25T20:09:08.826Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/obioma-explainer.mp4",
+      "storagePath": "backups/obioma-care/public/assets/obioma-explainer.mp4",
+      "size": 492871,
+      "modified": "2026-07-25T20:09:08.824Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/shareable/nclex-lab-values-infographic.png",
+      "storagePath": "backups/obioma-care/public/assets/shareable/nclex-lab-values-infographic.png",
+      "size": 178119,
+      "modified": "2026-07-25T22:18:54.665Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/assets/shareable/nclex-priority-cheat-sheet.png",
+      "storagePath": "backups/obioma-care/public/assets/shareable/nclex-priority-cheat-sheet.png",
+      "size": 149952,
+      "modified": "2026-07-25T22:16:29.684Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/emergency-drugs-reference.html",
+      "storagePath": "backups/obioma-care/public/content/emergency-drugs-reference.html",
+      "size": 25206,
+      "modified": "2026-07-25T22:54:16.234Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/index.html",
+      "storagePath": "backups/obioma-care/public/content/index.html",
+      "size": 18614,
+      "modified": "2026-07-25T23:08:32.796Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/math-prerequisites-importance.html",
+      "storagePath": "backups/obioma-care/public/content/math-prerequisites-importance.html",
+      "size": 13197,
+      "modified": "2026-07-25T22:08:31.313Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-2-week-plan.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-2-week-plan.html",
+      "size": 13076,
+      "modified": "2026-07-25T22:09:00.447Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-2-week-study-plan-complete.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-2-week-study-plan-complete.html",
+      "size": 12956,
+      "modified": "2026-07-28T16:40:26.033Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-30-day-study-plan.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-30-day-study-plan.html",
+      "size": 11514,
+      "modified": "2026-07-25T22:08:31.317Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-abcde-prioritization-method.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-abcde-prioritization-method.html",
+      "size": 10330,
+      "modified": "2026-07-28T16:40:26.040Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-anxiety-management.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-anxiety-management.html",
+      "size": 8670,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-case-study-sepsis-walkthrough.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-case-study-sepsis-walkthrough.html",
+      "size": 14340,
+      "modified": "2026-07-28T16:40:26.046Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-clinical-judgment-5-steps.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-clinical-judgment-5-steps.html",
+      "size": 6608,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-delegation-assignment-guide.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-delegation-assignment-guide.html",
+      "size": 13193,
+      "modified": "2026-07-28T16:40:26.053Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-delegation-assignment.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-delegation-assignment.html",
+      "size": 14271,
+      "modified": "2026-07-25T22:08:31.342Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-lab-values-cheat-sheet.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-lab-values-cheat-sheet.html",
+      "size": 14151,
+      "modified": "2026-07-25T22:09:00.469Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-lab-values-reference.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-lab-values-reference.html",
+      "size": 16521,
+      "modified": "2026-07-28T16:40:26.059Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-lab-values.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-lab-values.html",
+      "size": 14292,
+      "modified": "2026-07-25T22:08:31.349Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-pharmacology-drug-classes-guide.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-pharmacology-drug-classes-guide.html",
+      "size": 14780,
+      "modified": "2026-07-28T16:40:26.066Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-pharmacology-drug-classes.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-pharmacology-drug-classes.html",
+      "size": 20739,
+      "modified": "2026-07-25T22:08:31.352Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-pharmacology-mnemonics.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-pharmacology-mnemonics.html",
+      "size": 17661,
+      "modified": "2026-07-25T22:50:51.167Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-priority-abcde-method.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-priority-abcde-method.html",
+      "size": 15397,
+      "modified": "2026-07-25T22:08:31.354Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/nclex-sata-questions-strategy.html",
+      "storagePath": "backups/obioma-care/public/content/nclex-sata-questions-strategy.html",
+      "size": 12597,
+      "modified": "2026-07-28T16:40:26.074Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/obioma-vs-uworld-vs-archer.html",
+      "storagePath": "backups/obioma-care/public/content/obioma-vs-uworld-vs-archer.html",
+      "size": 11180,
+      "modified": "2026-07-28T16:40:26.081Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/pediatric-milestones-reference.html",
+      "storagePath": "backups/obioma-care/public/content/pediatric-milestones-reference.html",
+      "size": 22057,
+      "modified": "2026-07-25T23:08:24.383Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/sata-questions-strategy.html",
+      "storagePath": "backups/obioma-care/public/content/sata-questions-strategy.html",
+      "size": 7198,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/social-media-content-bank.md",
+      "storagePath": "backups/obioma-care/public/content/social-media-content-bank.md",
+      "size": 15131,
+      "modified": "2026-07-25T20:50:15.181Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/what-is-next-generation-nclex.html",
+      "storagePath": "backups/obioma-care/public/content/what-is-next-generation-nclex.html",
+      "size": 14226,
+      "modified": "2026-07-25T22:08:31.366Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/content/why-nursing-students-struggle-nclex-next-gen.html",
+      "storagePath": "backups/obioma-care/public/content/why-nursing-students-struggle-nclex-next-gen.html",
+      "size": 9804,
+      "modified": "2026-07-25T22:08:46.914Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/case-walkthroughs.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/case-walkthroughs.pdf",
+      "size": 156841,
+      "modified": "2026-08-03T08:14:18.263Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/clinical-day-planner.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/clinical-day-planner.pdf",
+      "size": 127853,
+      "modified": "2026-08-03T08:14:18.273Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/content-outline.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/content-outline.pdf",
+      "size": 42045,
+      "modified": "2026-07-23T11:29:41.156Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/nclex-clinical-judgment-guide.html",
+      "storagePath": "backups/obioma-care/public/downloads/nclex-clinical-judgment-guide.html",
+      "size": 13469,
+      "modified": "2026-07-24T14:23:21.665Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/neuro-assessment-cheat-sheet.html",
+      "storagePath": "backups/obioma-care/public/downloads/neuro-assessment-cheat-sheet.html",
+      "size": 8497,
+      "modified": "2026-08-05T15:55:23.121Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/ngn-framework.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/ngn-framework.pdf",
+      "size": 177427,
+      "modified": "2026-08-03T08:14:18.258Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/prioritization-trees.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/prioritization-trees.pdf",
+      "size": 115591,
+      "modified": "2026-08-03T08:14:18.261Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/sbar-templates.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/sbar-templates.pdf",
+      "size": 103045,
+      "modified": "2026-08-03T08:14:18.265Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/survival-guide.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/survival-guide.pdf",
+      "size": 160957,
+      "modified": "2026-08-03T08:14:18.268Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/downloads/video-scripts.pdf",
+      "storagePath": "backups/obioma-care/public/downloads/video-scripts.pdf",
+      "size": 49255,
+      "modified": "2026-07-23T11:29:45.187Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/favicon.ico",
+      "storagePath": "backups/obioma-care/public/favicon.ico",
+      "size": 4286,
+      "modified": "2026-07-25T20:16:28.802Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/favicon.svg",
+      "storagePath": "backups/obioma-care/public/favicon.svg",
+      "size": 598,
+      "modified": "2026-07-28T00:09:50.445Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/free-framework/index.html",
+      "storagePath": "backups/obioma-care/public/free-framework/index.html",
+      "size": 6239,
+      "modified": "2026-07-23T13:25:32.685Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/free-nclex-checklist.html",
+      "storagePath": "backups/obioma-care/public/free-nclex-checklist.html",
+      "size": 9665,
+      "modified": "2026-07-25T20:58:13.468Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/icon-192.png",
+      "storagePath": "backups/obioma-care/public/icon-192.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:55:14.830Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/icon-512.png",
+      "storagePath": "backups/obioma-care/public/icon-512.png",
+      "size": 1704,
+      "modified": "2026-08-03T13:55:14.831Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/images/abcde-method-infographic.png",
+      "storagePath": "backups/obioma-care/public/images/abcde-method-infographic.png",
+      "size": 104394,
+      "modified": "2026-07-25T23:06:22.554Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/index.html",
+      "storagePath": "backups/obioma-care/public/index.html",
+      "size": 74184,
+      "modified": "2026-08-04T15:44:40.767Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/neuro-cheat-sheet.html",
+      "storagePath": "backups/obioma-care/public/neuro-cheat-sheet.html",
+      "size": 7754,
+      "modified": "2026-08-05T15:57:27.062Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/obioma-logo.svg",
+      "storagePath": "backups/obioma-care/public/obioma-logo.svg",
+      "size": 1562,
+      "modified": "2026-08-03T13:57:10.581Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/obioma-seo.png",
+      "storagePath": "backups/obioma-care/public/obioma-seo.png",
+      "size": 13250,
+      "modified": "2026-07-28T00:09:25.375Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/privacy.html",
+      "storagePath": "backups/obioma-care/public/privacy.html",
+      "size": 5732,
+      "modified": "2026-07-28T15:11:27.015Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/Clinical-Day-Planner.pdf",
+      "storagePath": "backups/obioma-care/public/products/Clinical-Day-Planner.pdf",
+      "size": 127853,
+      "modified": "2026-08-03T07:41:26.296Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/First-Year-Survival-Guide.pdf",
+      "storagePath": "backups/obioma-care/public/products/First-Year-Survival-Guide.pdf",
+      "size": 160957,
+      "modified": "2026-08-03T07:41:24.488Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/NGN-Clinical-Judgment-Framework.pdf",
+      "storagePath": "backups/obioma-care/public/products/NGN-Clinical-Judgment-Framework.pdf",
+      "size": 177427,
+      "modified": "2026-08-03T07:41:17.287Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/Prioritization-Decision-Trees.pdf",
+      "storagePath": "backups/obioma-care/public/products/Prioritization-Decision-Trees.pdf",
+      "size": 115591,
+      "modified": "2026-08-03T07:41:18.998Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/Real-Case-Walkthroughs.pdf",
+      "storagePath": "backups/obioma-care/public/products/Real-Case-Walkthroughs.pdf",
+      "size": 156841,
+      "modified": "2026-08-03T07:41:20.908Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/products/SBAR-Templates.pdf",
+      "storagePath": "backups/obioma-care/public/products/SBAR-Templates.pdf",
+      "size": 103045,
+      "modified": "2026-08-03T07:41:22.727Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/quiz/index.html",
+      "storagePath": "backups/obioma-care/public/quiz/index.html",
+      "size": 7335,
+      "modified": "2026-07-25T22:48:12.454Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/quiz/lab-values.html",
+      "storagePath": "backups/obioma-care/public/quiz/lab-values.html",
+      "size": 35473,
+      "modified": "2026-07-26T01:49:29.969Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/robots.txt",
+      "storagePath": "backups/obioma-care/public/robots.txt",
+      "size": 68,
+      "modified": "2026-07-25T20:16:28.816Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/sitemap.xml",
+      "storagePath": "backups/obioma-care/public/sitemap.xml",
+      "size": 15683,
+      "modified": "2026-08-05T13:02:42.338Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/success/index.html",
+      "storagePath": "backups/obioma-care/public/success/index.html",
+      "size": 3533,
+      "modified": "2026-07-28T02:23:42.701Z"
+    },
+    {
+      "localPath": "/root/.openclaw/workspace/obioma-care/public/terms.html",
+      "storagePath": "backups/obioma-care/public/terms.html",
+      "size": 6450,
+      "modified": "2026-07-28T15:10:37.604Z"
+    }
+  ]
+}

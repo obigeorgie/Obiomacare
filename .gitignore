@@ -5,3 +5,9 @@ node_modules/
 ai-ugc/generated/
 .env*
 firebase-service-account.json
+venv/
+dist/
+dist/
+__pycache__/
+*.pyc
+__pycache__/

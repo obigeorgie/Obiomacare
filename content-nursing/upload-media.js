@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { storeLog, storeDocument } = require('../lib/firestore-helper');
 
 const API_KEY = 'pos_80nVwWb8TIdMFTDV3Q8Z0Wpzu61bGiUy8iADDCMB';
 const API_URL = 'https://api.postiz.com';
@@ -110,10 +111,11 @@ async function schedulePost(post, media) {
 }
 
 async function main() {
+  const runId = new Date().toISOString().replace(/[:.]/g, '-');
   const schedulePath = path.join(__dirname, 'social-schedule.json');
   const posts = JSON.parse(fs.readFileSync(schedulePath, 'utf-8'));
 
-  const today = '2026-08-04';
+  const today = new Date().toISOString().split('T')[0];
   const postsToUpload = posts.filter(p => {
     const key = `${p.date}T${p.time}`;
     return MEDIA_MAP[key] && p.date >= today;
@@ -123,6 +125,7 @@ async function main() {
 
   let success = 0;
   let failed = 0;
+  const results = [];
 
   for (const post of postsToUpload) {
     const key = `${post.date}T${post.time}`;
@@ -132,25 +135,74 @@ async function main() {
     console.log(`   File: ${mediaInfo.file}`);
 
     try {
-      // Step 1: Upload media
       process.stdout.write('   Uploading... ');
       const uploaded = await uploadFile(mediaInfo.file);
       console.log(`✅ ${uploaded.id}`);
 
-      // Step 2: Schedule post
       process.stdout.write('   Scheduling... ');
       const result = await schedulePost(post, uploaded);
       console.log(`✅ ${result.id || 'scheduled'}`);
+      
       success++;
+      results.push({
+        platform: post.platform,
+        date: post.date,
+        time: post.time,
+        mediaFile: mediaInfo.file,
+        mediaId: uploaded.id,
+        postId: result.id,
+        status: 'success'
+      });
+      
+      // Store successful upload in Firestore
+      await storeDocument('media_uploads', `upload_${post.date}_${post.platform}_${post.time}`, {
+        platform: post.platform,
+        date: post.date,
+        time: post.time,
+        mediaFile: mediaInfo.file,
+        mediaId: uploaded.id,
+        postId: result.id,
+        status: 'success',
+        uploadedAt: new Date().toISOString()
+      });
     } catch (err) {
       console.log(`❌ ${err.message.substring(0, 200)}`);
       failed++;
+      results.push({
+        platform: post.platform,
+        date: post.date,
+        time: post.time,
+        mediaFile: mediaInfo.file,
+        status: 'failed',
+        error: err.message
+      });
+      
+      // Store failed upload in Firestore
+      await storeDocument('media_uploads', `upload_${post.date}_${post.platform}_${post.time}`, {
+        platform: post.platform,
+        date: post.date,
+        time: post.time,
+        mediaFile: mediaInfo.file,
+        status: 'failed',
+        error: err.message,
+        attemptedAt: new Date().toISOString()
+      });
     }
 
     await new Promise(r => setTimeout(r, 800));
   }
 
+  // Store run summary
+  const summary = { runId, total: postsToUpload.length, success, failed, date: today, results };
+  await storeLog('upload-media', failed === 0 ? 'success' : 'partial', summary);
+  await storeDocument('media_upload_runs', `run_${runId}`, summary);
+
   console.log(`\n🏁 Done: ${success} uploaded & scheduled, ${failed} failed`);
+  console.log('💾 Results stored in Firestore');
 }
 
-main().catch(console.error);
+main().catch(async err => {
+  console.error(err);
+  await storeLog('upload-media', 'failed', { error: err.message });
+  process.exit(1);
+});

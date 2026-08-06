@@ -27,6 +27,7 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
 
 app.use(express.json());
 app.use(express.static('landing'));
+app.use(express.static('public'));
 
 // In-memory delivery tokens (use Redis in production)
 const deliveryTokens = new Map();
@@ -178,35 +179,56 @@ app.get('/download/:token', async (req, res) => {
 
 // ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', async (req, res) => {
-  const { email, firstName } = req.body;
+  const { email, firstName, leadMagnet } = req.body;
   
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
   }
   
+  // Determine which lead magnet to send
+  const magnetType = leadMagnet || 'ngn-framework';
+  
+  const leadMagnets = {
+    'ngn-framework': {
+      subject: 'Your Free NGN Clinical Judgment Framework',
+      template: (name) => leadMagnetTemplate(name),
+      attachment: { filename: 'NGN-Clinical-Judgment-Framework-Preview.pdf', path: path.join(__dirname, 'public', 'downloads', 'ngn-framework.pdf') }
+    },
+    'neuro-cheat-sheet': {
+      subject: 'Your NCLEX Neuro Assessment Cheat Sheet 🧠',
+      template: (name) => neuroCheatSheetEmailTemplate(name),
+      attachment: { filename: 'NCLEX-Neuro-Assessment-Cheat-Sheet.pdf', path: path.join(__dirname, 'public', 'downloads', 'neuro-assessment-cheat-sheet.html') }
+    }
+  };
+  
+  const magnet = leadMagnets[magnetType];
+  if (!magnet) {
+    return res.status(400).json({ error: 'Unknown lead magnet type' });
+  }
+  
   try {
-    // Send free NGN framework PDF
-    const attachmentPath = path.join(__dirname, 'public', 'downloads', 'ngn-framework.pdf');
     const fs = require('fs');
-    const attachment = fs.existsSync(attachmentPath) ? { path: attachmentPath } : null;
+    const attachment = fs.existsSync(magnet.attachment.path) ? {
+      filename: magnet.attachment.filename,
+      path: magnet.attachment.path
+    } : null;
     
     if (emailTransporter) {
       await emailTransporter.sendMail({
         from: 'Obioma Care <admin@obiomacare.com>',
         to: email,
-        subject: 'Your Free NGN Clinical Judgment Framework',
-        html: leadMagnetTemplate(firstName),
-        attachments: attachment ? [{ filename: 'NGN-Clinical-Judgment-Framework-Preview.pdf', path: attachmentPath }] : undefined
+        subject: magnet.subject,
+        html: magnet.template(firstName),
+        attachments: attachment ? [attachment] : undefined
       });
-      console.log(`🎯 Lead magnet sent to ${email}`);
+      console.log(`🎯 Lead magnet "${magnetType}" sent to ${email}`);
     } else {
       console.log('⚠️ Email not configured, skipping lead magnet');
     }
     
     // Add to nurture sequence
-    await addToNurtureSequence(email, firstName);
+    await addToNurtureSequence(email, firstName, magnetType);
     
-    console.log(`🎯 Lead captured: ${email}`);
     res.json({ success: true, message: 'Check your email!' });
   } catch (err) {
     console.error('Lead magnet error:', err);
@@ -297,6 +319,52 @@ function leadMagnetTemplate(firstName) {
   `;
 }
 
+function neuroCheatSheetEmailTemplate(firstName) {
+  return `
+    <div style="font-family: Inter, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <div style="font-size: 2rem; margin-bottom: 8px;">🧠</div>
+        <h1 style="color: #1a365d; margin: 0;">Obioma Care</h1>
+      </div>
+      
+      <h2 style="color: #1a365d;">Hey ${firstName || 'there'}!</h2>
+      <p>Here's your <strong>NCLEX Neuro Assessment Cheat Sheet</strong> — the same one I wish I had when I was studying for the NCLEX.</p>
+      
+      <div style="background: #f0f9ff; padding: 24px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0284c7;">
+        <h3 style="margin-top: 0; color: #0c4a6e;">📋 What's Inside:</h3>
+        <ul style="padding-left: 20px; margin: 0;">
+          <li>Glasgow Coma Scale scoring + NCLEX traps</li>
+          <li>12 Cranial Nerves (OOOTTAFVGVAH mnemonic)</li>
+          <li>Stroke: BE FAST recognition + tPA window</li>
+          <li>Seizure first aid Do's & Don'ts</li>
+          <li>Increased ICP: Early vs Late signs</li>
+          <li>Parkinson's vs Alzheimer's vs ALS</li>
+          <li>Myasthenia Gravis vs Cholinergic Crisis</li>
+        </ul>
+      </div>
+      
+      <p><strong>🖨️ Pro tip:</strong> Print this and keep it in your clinical bag. I referenced my cheat sheets daily during rotations.</p>
+      
+      <p>Your cheat sheet is attached. Over the next few days, I'll send you:</p>
+      <ul>
+        <li><strong>Day 1:</strong> The #1 mistake students make on neuro NCLEX questions</li>
+        <li><strong>Day 3:</strong> How to think through neuro scenarios using clinical judgment</li>
+        <li><strong>Day 5:</strong> The cranial nerve assessment trick that saves time</li>
+      </ul>
+      
+      <div style="text-align: center; margin: 32px 0;">
+        <a href="https://obiomacare.com/content" style="display: inline-block; background: #c53030; color: white; padding: 16px 32px; text-decoration: none; border-radius: 8px; font-weight: 700;">Browse All 60 Free NCLEX Guides →</a>
+      </div>
+      
+      <p>Talk soon,<br>Nnamdi, RN</p>
+      
+      <div style="border-top: 1px solid #e2e8f0; margin-top: 32px; padding-top: 24px; color: #718096; font-size: 0.875rem;">
+        <p>You're receiving this because you downloaded the free Neuro Assessment Cheat Sheet from obiomacare.com.</p>
+      </div>
+    </div>
+  `;
+}
+
 function downloadPageTemplate(product, token) {
   return `
     <!DOCTYPE html>
@@ -376,19 +444,172 @@ function successPageTemplate() {
   `;
 }
 
-// ==================== AUTOMATION HELPERS ====================
-async function addToEmailList(email, tier) {
-  // TODO: Integrate with ConvertKit, Mailchimp, or Hostinger email lists
-  console.log(`📧 Added ${email} to email list (tier: ${tier})`);
+// ==================== NURTURE SEQUENCE (Firestore-backed) ====================
+const { initFirestore, storeDocument } = require('./lib/firestore-helper');
+const db = initFirestore();
+
+const EMAIL_SEQUENCES = {
+  'ngn-framework': require('./content-nursing/email-sequence.json'),
+  'neuro-cheat-sheet': require('./content-nursing/neuro-email-sequence.json')
+};
+
+// Load subscribers from Firestore
+let subscribers = [];
+let subscribersLoaded = false;
+
+async function loadSubscribers() {
+  if (subscribersLoaded) return;
+  try {
+    const snapshot = await db.collection('subscribers').get();
+    subscribers = snapshot.docs.map(d => d.data());
+    subscribersLoaded = true;
+    console.log(`📋 Loaded ${subscribers.length} subscribers from Firestore`);
+  } catch (err) {
+    console.log('⚠️ Could not load subscribers from Firestore:', err.message);
+    subscribers = [];
+  }
 }
 
-async function addToNurtureSequence(email, firstName) {
-  // TODO: Set up automated nurture sequence
-  // Day 1: The mistake email
-  // Day 3: ER story
-  // Day 5: SBAR tips
-  // Day 7: Product pitch
-  console.log(`🎯 Added ${email} to nurture sequence`);
+async function saveSubscriber(subscriber) {
+  try {
+    const docId = subscriber.email.replace(/[^a-zA-Z0-9]/g, '-');
+    await db.collection('subscribers').doc(docId).set(subscriber, { merge: true });
+  } catch (err) {
+    console.error('Failed to save subscriber to Firestore:', err.message);
+  }
+}
+
+function personalizeEmail(body, firstName) {
+  return body.replace(/\{\{firstName\}\}/g, firstName || 'there');
+}
+
+function scheduleEmail(subscriber, emailData, delayMs) {
+  setTimeout(async () => {
+    if (!emailTransporter) {
+      console.log(`⚠️ Email not configured, skipping sequence email to ${subscriber.email}`);
+      return;
+    }
+    
+    try {
+      const personalizedBody = personalizeEmail(emailData.body, subscriber.firstName);
+      
+      await emailTransporter.sendMail({
+        from: 'Nnamdi, RN <admin@obiomacare.com>',
+        to: subscriber.email,
+        subject: emailData.subject,
+        text: personalizedBody,
+        html: `<div style="font-family: Inter, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #2d3748; white-space: pre-wrap;">${personalizedBody.replace(/\n/g, '<br>')}</div>`
+      });
+      
+      subscriber.emailsSent = subscriber.emailsSent || [];
+      subscriber.emailsSent.push({
+        day: emailData.day,
+        subject: emailData.subject,
+        sentAt: new Date().toISOString()
+      });
+      
+      await saveSubscriber(subscriber);
+      await storeDocument('email_logs', `send_${Date.now()}`, {
+        email: subscriber.email,
+        day: emailData.day,
+        subject: emailData.subject,
+        leadMagnet: subscriber.leadMagnet,
+        status: 'sent',
+        sentAt: new Date().toISOString()
+      });
+      
+      console.log(`✅ Day ${emailData.day} email sent to ${subscriber.email}`);
+    } catch (err) {
+      console.error(`❌ Failed to send Day ${emailData.day} email to ${subscriber.email}:`, err);
+      await storeDocument('email_logs', `send_${Date.now()}`, {
+        email: subscriber.email,
+        day: emailData.day,
+        subject: emailData.subject,
+        status: 'failed',
+        error: err.message,
+        sentAt: new Date().toISOString()
+      });
+    }
+  }, delayMs);
+}
+
+async function addToNurtureSequence(email, firstName, leadMagnet) {
+  await loadSubscribers();
+  
+  // Check if already subscribed
+  const existing = subscribers.find(s => s.email === email);
+  if (existing) {
+    console.log(`📧 ${email} already in nurture sequence`);
+    return;
+  }
+  
+  const magnetType = leadMagnet || 'ngn-framework';
+  const sequence = EMAIL_SEQUENCES[magnetType];
+  if (!sequence) {
+    console.log(`⚠️ Unknown lead magnet "${magnetType}", using default`);
+  }
+  
+  const subscriber = {
+    email,
+    firstName: firstName || '',
+    leadMagnet: magnetType,
+    joinedAt: new Date().toISOString(),
+    emailsSent: [],
+    source: 'api'
+  };
+  
+  subscribers.push(subscriber);
+  await saveSubscriber(subscriber);
+  
+  const signupTime = Date.now();
+  const emailSequence = sequence || EMAIL_SEQUENCES['ngn-framework'];
+  
+  // Schedule all emails in the sequence
+  for (const emailData of emailSequence) {
+    const delayMs = (emailData.day * 24 * 60 * 60 * 1000);
+    const timeUntilSend = Math.max(0, delayMs - (Date.now() - signupTime));
+    
+    scheduleEmail(subscriber, emailData, timeUntilSend);
+    console.log(`📅 Scheduled Day ${emailData.day} email for ${email} in ${Math.round(timeUntilSend / 3600000)}h`);
+  }
+  
+  console.log(`🎯 Added ${email} to ${magnetType} nurture sequence (${emailSequence.length} emails)`);
+}
+
+// Resume scheduled emails on server restart
+async function resumeScheduledEmails() {
+  await loadSubscribers();
+  
+  for (const subscriber of subscribers) {
+    const signupTime = new Date(subscriber.joinedAt).getTime();
+    const magnetType = subscriber.leadMagnet || 'ngn-framework';
+    const emailSequence = EMAIL_SEQUENCES[magnetType] || EMAIL_SEQUENCES['ngn-framework'];
+    
+    for (const emailData of emailSequence) {
+      const sent = subscriber.emailsSent?.find(e => e.day === emailData.day);
+      if (sent) continue;
+      
+      const scheduledTime = signupTime + (emailData.day * 24 * 60 * 60 * 1000);
+      const timeUntilSend = Math.max(0, scheduledTime - Date.now());
+      
+      scheduleEmail(subscriber, emailData, timeUntilSend);
+      console.log(`🔄 Resumed Day ${emailData.day} email for ${subscriber.email}`);
+    }
+  }
+}
+
+// Resume on startup
+(async () => {
+  await loadSubscribers();
+  if (subscribers.length > 0) {
+    console.log(`🔄 Resuming ${subscribers.length} subscribers' email sequences...`);
+    await resumeScheduledEmails();
+  }
+})();
+
+// ==================== AUTOMATION HELPERS ====================
+async function addToEmailList(email, tier) {
+  console.log(`📧 Added ${email} to email list (tier: ${tier})`);
 }
 
 // ==================== HEALTH CHECK ====================

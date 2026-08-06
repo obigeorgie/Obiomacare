@@ -2,11 +2,13 @@
 /**
  * AI UGC Content Generator for Obioma Care
  * Generates social media posts, ad creatives, and video scripts
+ * Stores all generated content in Firestore
  * Usage: node ai-ugc/generate.js --type=post --topic=prioritization --count=5
  */
 
 const fs = require('fs');
 const path = require('path');
+const { storeDocument, storeLog } = require('../lib/firestore-helper');
 
 // Content templates and frameworks
 const CONTENT_FRAMEWORKS = {
@@ -158,7 +160,7 @@ switch(type) {
     process.exit(1);
 }
 
-// Save output
+// Save locally
 const outputDir = path.join(__dirname, 'generated');
 if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, {recursive: true});
 
@@ -166,6 +168,26 @@ const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 const filename = `${type}-${topic}-${timestamp}.json`;
 fs.writeFileSync(path.join(outputDir, filename), JSON.stringify(output, null, 2));
 
-console.log('Generated:');
+// Store in Firestore
+(async () => {
+  try {
+    const docId = `${type}_${topic}_${timestamp}`;
+    await storeDocument('ai_generated_content', docId, {
+      type,
+      topic,
+      count,
+      filename,
+      content: output,
+      generatedAt: new Date().toISOString()
+    });
+    await storeLog('ai-ugc-generate', 'success', { type, topic, count, filename, docId });
+    console.log('\n💾 Stored in Firestore: ai_generated_content/' + docId);
+  } catch (err) {
+    console.error('Firestore storage failed:', err.message);
+    await storeLog('ai-ugc-generate', 'failed', { error: err.message, type, topic, count });
+  }
+})();
+
+console.log('\nGenerated:');
 console.log(JSON.stringify(output, null, 2));
-console.log(`\n💾 Saved to: ai-ugc/generated/${filename}`);
+console.log(`\n💾 Saved locally: ai-ugc/generated/${filename}`);
