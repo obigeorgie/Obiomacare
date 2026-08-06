@@ -15,24 +15,21 @@ function copyDir(src, dest) {
   }
 }
 
-// Copy landing/ to dist/ (for reference/backup)
-copyDir('landing', 'dist');
-
 // Copy root content/ files into landing/content/ so vercel.json rewrites work
 // Rewrite: /content/(.*) -> /landing/content/$1
 const rootContentFiles = fs.readdirSync('content', { withFileTypes: true });
+let copied = 0;
 for (const entry of rootContentFiles) {
   const srcPath = path.join('content', entry.name);
   const destPath = path.join('landing', 'content', entry.name);
   if (entry.isDirectory()) {
     copyDir(srcPath, destPath);
+    copied++;
   } else {
     fs.mkdirSync(path.dirname(destPath), { recursive: true });
     fs.copyFileSync(srcPath, destPath);
+    copied++;
   }
 }
 
-// NOTE: Do NOT copy api/ to dist/. Vercel serves root api/ as serverless functions.
-// Copying api/ to dist/ causes Vercel to serve the raw JS files as static content.
-
-console.log('✅ Build complete: content/ merged into landing/content/');
+console.log(`✅ Build complete: ${copied} files from content/ merged into landing/content/`);
