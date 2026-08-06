@@ -48,6 +48,15 @@
     .cta{background:var(--navy);color:#fff;padding:32px;border-radius:12px;text-align:center;margin:40px 0;}
     .cta a{background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block;margin-top:12px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid #e5e7eb;margin-top:60px;}
+    .case-study{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin:24px 0}
+    .case-study h3{color:var(--navy);margin-top:0}
+    .case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+    .case-tab{background:#e0f2fe;padding:8px 16px;border-radius:20px;font-size:14px;color:var(--navy)}
+    .question{background:#fff;border:1px solid #e5e7eb;padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--navy)}
+    .reveal-btn{background:var(--navy);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+    .answer{display:none;margin-top:12px;padding:16px;background:#f8fafc;border-radius:8px}
+    .answer.show{display:block}
+    .hint{color:#f59e0b;font-size:14px;margin-top:8px;font-style:italic}
   </style>
 
 <script type="application/ld+json">
@@ -220,6 +229,115 @@
         • mL/hr = Total mL ÷ Total hours<br>
         • <strong>Example:</strong> 1000 mL over 8 hours = 125 mL/hr<br>
         • Always round to nearest whole number for pumps
+      </div>
+    </div>
+
+    <h2>🧩 NGN Case Study: Post-Op Electrolyte Crisis</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Mr. Patel, 58-year-old male</strong>, is post-op day 3 after exploratory laparotomy for small bowel obstruction. He has a history of hypertension and chronic kidney disease (baseline creatinine 1.8). He has been NPO with NG tube to low intermittent suction. IV fluids are D5½NS at 125 mL/hr. The nurse notes he has become increasingly lethargic and weak.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">Labs</span>
+        <span class="case-tab">Current Orders</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 102/64, HR 112, RR 18, Temp 37.2°C, SpO₂ 96% on room air</p>
+      <p><strong>Physical Assessment:</strong> Lethargic but arousable. Dry mucous membranes, poor skin turgor. NG draining 400 mL/shift of bilious fluid. Abdomen soft, incision clean/dry/intact. No bowel sounds. 1+ pedal edema. Lungs clear.</p>
+      <p><strong>Labs:</strong> Na⁺ 128 mEq/L, K⁺ 3.1 mEq/L, Cl⁻ 92 mEq/L, HCO₃ 24 mEq/L, Ca²⁺ 8.2 mg/dL, Mg²⁺ 1.4 mg/dL, Phos 2.8 mg/dL, Creatinine 2.1, BUN 48</p>
+      <p><strong>Current Orders:</strong> D5½NS at 125 mL/hr, NG to low intermittent suction, clear liquid diet when bowel sounds return, daily labs</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Which lab value combination poses the <strong>greatest immediate risk</strong> to this patient?</p>
+        <ul>
+          <li>A. Sodium 128 mEq/L</li>
+          <li>B. Potassium 3.1 mEq/L</li>
+          <li>C. Creatinine 2.1 mg/dL</li>
+          <li>D. Calcium 8.2 mg/dL</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Potassium 3.1 mEq/L</strong></p>
+          <p>While hyponatremia (128) and elevated creatinine are concerning, potassium of 3.1 mEq/L is critically low and can cause life-threatening arrhythmias. In a patient with tachycardia (HR 112) and recent abdominal surgery, hypokalemia increases risk of atrial fibrillation and cardiac arrest. This requires immediate potassium replacement with cardiac monitoring.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the patient has been receiving D5½NS at 125 mL/hr for 3 days with NG suction. What is the <strong>primary cause</strong> of his hyponatremia?</p>
+        <ul>
+          <li>A. Excess sodium loss through NG tube</li>
+          <li>B. Dilutional hyponatremia from hypotonic fluid</li>
+          <li>C. Syndrome of inappropriate ADH (SIADH)</li>
+          <li>D. Adrenal insufficiency from surgery stress</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Dilutional hyponatremia from hypotonic fluid</strong></p>
+          <p>D5½NS is a hypotonic solution. The dextrose is metabolized quickly, leaving free water that dilutes serum sodium. Combined with post-operative ADH secretion (which causes water retention), this leads to dilutional hyponatremia. While NG suction causes some sodium loss, the primary driver is the hypotonic IV fluid. The correct replacement would be NS or LR, not D5½NS, in a patient with hyponatremia.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The provider orders potassium chloride 40 mEq IV to be added to the next liter of IV fluid. What is the nurse's <strong>priority</strong> action before administration?</p>
+        <ul>
+          <li>A. Check that the patient has a patent peripheral IV</li>
+          <li>B. Verify the KCl is diluted in 1000 mL and the bag is properly labeled</li>
+          <li>C. Ensure cardiac monitoring is in place</li>
+          <li>D. Assess the patient's current urine output</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Ensure cardiac monitoring is in place</strong></p>
+          <p>While ALL of these are important safety checks, cardiac monitoring is the highest priority because hypokalemia and its correction both carry arrhythmia risk. The patient already has tachycardia (112) and low potassium (3.1). Potassium administration can cause arrhythmias if given too rapidly or if the patient has underlying cardiac issues. Cardiac monitoring must be continuous during IV potassium replacement.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The patient's magnesium is also low at 1.4 mg/dL. Which statement about magnesium and potassium is <strong>correct</strong>?</p>
+        <ul>
+          <li>A. Magnesium replacement should be delayed until potassium normalizes</li>
+          <li>B. Hypomagnesemia makes potassium replacement ineffective</li>
+          <li>C. Magnesium and potassium can be mixed in the same IV bag</li>
+          <li>D. Oral magnesium is preferred over IV in post-op patients</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Hypomagnesemia makes potassium replacement ineffective</strong></p>
+          <p>Magnesium is a cofactor for the Na⁺/K⁺-ATPase pump. Without adequate magnesium, potassium cannot be effectively transported into cells, and potassium replacement will be ineffective. This is a classic NCLEX concept: <strong>always check and replace magnesium before or with potassium</strong>. Magnesium can be given IV (usually over 15-60 minutes with cardiac monitoring). Oral is not preferred in NPO/post-op patients.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The provider changes the IV fluid to NS at 100 mL/hr and adds KCl 20 mEq/L and MgSO₄ 2g to each liter. What is the <strong>maximum</strong> safe infusion rate for this potassium-containing solution?</p>
+        <ul>
+          <li>A. 125 mL/hr (same as current rate)</li>
+          <li>B. No more than 10 mEq/hr of potassium</li>
+          <li>C. No more than 20 mEq/hr of potassium through a peripheral line</li>
+          <li>D. Infuse as rapidly as needed to correct the deficit</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. No more than 10 mEq/hr of potassium</strong></p>
+          <p>The standard maximum rate for peripheral IV potassium is <strong>10 mEq/hr</strong> (with cardiac monitoring). Central lines can tolerate up to 20 mEq/hr in critical situations, but never exceed 10 mEq/hr peripherally. With 20 mEq in 1000 mL running at 100 mL/hr, the patient receives 2 mEq/hr — well within safe limits. Never infuse potassium rapidly; cardiac arrest can occur.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> After 24 hours of corrected fluids and electrolyte replacement, which finding indicates the treatment is <strong>effective</strong>?</p>
+        <ul>
+          <li>A. Patient requests solid food</li>
+          <li>B. Urine output increases from 30 mL/hr to 60 mL/hr</li>
+          <li>C. NG tube output decreases to 100 mL/shift</li>
+          <li>D. Patient ambulates to bathroom with assistance</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Urine output increases from 30 mL/hr to 60 mL/hr</strong></p>
+          <p>Urine output is the best indicator of renal perfusion and fluid status. The patient had prerenal azotemia (elevated BUN/Cr ratio, dry mucous membranes) from hypovolemia. Improved urine output (&gt;0.5 mL/kg/hr or ~30-50 mL/hr for adults) indicates restored renal perfusion and adequate hydration. While decreased NG output and increased activity are positive, urine output is the most objective measure of fluid resuscitation effectiveness.</p>
+        </div>
       </div>
     </div>
 
