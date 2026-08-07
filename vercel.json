@@ -29,6 +29,7 @@
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/images/(.*)", "dest": "/images/$1" },
     { "src": "/compare/(.*)", "dest": "/compare/$1.html" },
+    { "src": "/free-framework$", "dest": "/free-framework/index.html" },
     { "src": "/free-framework/(.*)", "dest": "/free-framework/$1" },
     { "src": "/products/(.*)", "dest": "/products/$1" },
     { "src": "/quiz/(.*)", "dest": "/quiz/$1" },
