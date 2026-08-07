@@ -20,6 +20,15 @@
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>:root{--navy-900:#0a1628;--navy-800:#0f1d32;--coral:#FF6B5B;--text-primary:#e2e8f0;--text-secondary:#94a3b8;--text-muted:#64748b;--success:#22c55e;--warning:#f59e0b;--danger:#ef4444}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:var(--navy-900);color:var(--text-primary);line-height:1.7}.container{max-width:800px;margin:0 auto;padding:0 24px}header{background:rgba(10,22,40,0.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05);padding:16px 0;position:sticky;top:0;z-index:100}.header-inner{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-primary);font-weight:700;font-size:18px}.logo img{width:28px;height:28px}article{padding:48px 0}h1{font-size:40px;font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-1px}h2{font-size:28px;font-weight:700;margin:48px 0 16px;color:var(--coral)}h3{font-size:20px;font-weight:600;margin:32px 0 12px}.subtitle{font-size:18px;color:var(--text-secondary);margin-bottom:32px}.meta{font-size:14px;color:var(--text-muted);margin-bottom:32px}.meta a{color:var(--coral);text-decoration:none}p{margin-bottom:20px;font-size:17px}.highlight{background:var(--navy-800);border-left:4px solid var(--coral);padding:24px;margin:32px 0;border-radius:0 8px 8px 0}.highlight p:last-child{margin-bottom:0}ul,ol{margin-bottom:24px;padding-left:24px}li{margin-bottom:12px;font-size:17px}strong{color:#fff}table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}th,td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.1)}th{background:rgba(255,255,255,0.05);font-weight:600;color:var(--coral)}.step-box{background:var(--navy-800);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:24px 0}.step-box h3{color:var(--coral);margin-top:0}.cta-box{background:linear-gradient(135deg,rgba(255,107,91,0.15) 0%,rgba(255,107,91,0.05) 100%);border:1px solid rgba(255,107,91,0.3);border-radius:16px;padding:32px;text-align:center;margin:48px 0}.btn{display:inline-block;padding:14px 32px;background:var(--coral);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin-top:16px;transition:all .3s}.btn:hover{background:#E85D4E}.nclex-tip{background:var(--navy-800);border-left:4px solid var(--warning);padding:20px;margin:24px 0;border-radius:0 8px 8px 0}.nclex-tip p:last-child{margin-bottom:0}footer{border-top:1px solid rgba(255,255,255,0.1);padding:32px 0;text-align:center;color:var(--text-muted);font-size:14px}@media(max-width:768px){h1{font-size:28px}h2{font-size:22px}table{font-size:13px}}
+.case-study{background:var(--navy-800);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin:24px 0}
+.case-study h3{color:var(--coral);margin-top:0}
+.case-tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+.case-tab{background:rgba(255,255,255,0.05);padding:8px 16px;border-radius:20px;font-size:14px;color:var(--text-secondary)}
+.question{background:rgba(255,255,255,0.03);padding:20px;border-radius:8px;margin:16px 0;border-left:4px solid var(--coral)}
+.reveal-btn{background:var(--coral);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600;margin-top:12px}
+.answer{display:none;margin-top:12px;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px}
+.answer.show{display:block}
+.hint{color:var(--warning);font-size:14px;margin-top:8px;font-style:italic}
 </style>
 </head>
 <body>
@@ -285,6 +294,120 @@ A patient can have BOTH.</p>
 <li>High association with <strong>bowel injury</strong> and <strong>lumbar spine fracture</strong></li>
 <li>CT abdomen even if stable</li>
 </ul>
+
+    <h2>🧩 NGN Case Study: Multi-System Trauma</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>James, 28-year-old male</strong>, is brought to the ED by ambulance after a high-speed motorcycle crash. He was wearing a helmet. He was thrown approximately 20 feet. EMS reports he was alert at the scene but became increasingly confused during transport. He has a large scalp laceration with active bleeding, and his left leg appears deformed.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Physical Assessment</span>
+        <span class="case-tab">Labs</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <p><strong>Vital Signs:</strong> BP 92/58, HR 128, RR 28, SpO₂ 89% on room air, Temp 35.8°C (96.4°F)</p>
+      <p><strong>Physical Assessment:</strong> Alert but confused (GCS 13: E4 V4 M5). 5cm scalp laceration oozing blood. Left thigh with obvious deformity and swelling. Equal breath sounds bilaterally but diminished at bases. Abdomen soft, non-distended, no seatbelt sign. Pelvis stable. Moves all extremities.</p>
+      <p><strong>Labs:</strong> Hgb 9.2 g/dL, Hct 27%, Type & cross sent, Lactate 4.8 mmol/L, ABG: pH 7.28, PaCO₂ 32, HCO₃ 18</p>
+      <p><strong>Provider Orders:</strong> 2 large-bore IVs, warmed LR bolus, CT head/c-spine/abdomen/pelvis, X-ray left femur, tetanus, consult orthopedics</p>
+
+      <div class="question">
+        <p><strong>Question 1 — Recognize Cues:</strong> Based on the vital signs and assessment, which finding requires the nurse's <strong>immediate</strong> intervention before proceeding with the secondary survey?</p>
+        <ul>
+          <li>A. Scalp laceration with active bleeding</li>
+          <li>B. SpO₂ 89% on room air</li>
+          <li>C. Left femur deformity</li>
+          <li>D. Lactate 4.8 mmol/L</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. SpO₂ 89% on room air</strong></p>
+          <p>The primary survey follows ABCDE. The patient's oxygen saturation is critically low at 89%. Airway is patent (talking), but breathing is compromised. This must be addressed immediately with supplemental oxygen (15L non-rebreather) before proceeding. While the scalp laceration and femur fracture are important, they are not immediately life-threatening in the same way as hypoxemia.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 2 — Analyze Cues:</strong> The nurse applies supplemental oxygen and the patient's SpO₂ improves to 96%. The nurse notes the patient's blood pressure has dropped to 84/50 despite 2L of warmed LR. Which is the <strong>most likely</strong> cause of his deteriorating hemodynamics?</p>
+        <ul>
+          <li>A. Neurogenic shock from spinal cord injury</li>
+          <li>B. Hypovolemic shock from internal/external bleeding</li>
+          <li>C. Cardiogenic shock from myocardial contusion</li>
+          <li>D. Septic shock from wound contamination</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Hypovolemic shock from internal/external bleeding</strong></p>
+          <p>The patient has a scalp laceration (external bleeding) and a deformed femur (can lose 1-2L into the thigh). His tachycardia (128), hypotension (84/50), cool temperature (35.8°C), and low Hgb (9.2) all point to hypovolemic shock from hemorrhage. Neurogenic shock would present with warm, dry skin and bradycardia — this patient is tachycardic. Cardiogenic shock is less likely with a soft, non-distended abdomen and stable pelvis (though not ruled out yet).</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 3 — Prioritize Hypotheses:</strong> The trauma team is preparing the patient for CT scan. The nurse should prioritize which intervention <strong>before</strong> transport?</p>
+        <ul>
+          <li>A. Splint the left femur</li>
+          <li>B. Insert a urinary catheter</li>
+          <li>C. Ensure two large-bore IVs are patent with blood products available</li>
+          <li>D. Administer pain medication</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C. Ensure two large-bore IVs are patent with blood products available</strong></p>
+          <p>The patient is hemodynamically unstable (BP 84/50, HR 128) and has signs of ongoing hemorrhage. Before transporting to CT, the nurse must ensure adequate IV access and that blood products are available/infusing. Patients can deteriorate rapidly during transport. Splinting the femur is important but secondary to hemorrhage control. Pain medication could mask neuro changes and drop BP further.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 4 — Generate Solutions:</strong> The CT reveals a small epidural hematoma and a displaced mid-shaft femur fracture. The patient becomes increasingly agitated and his pupils are now unequal (R 5mm, L 3mm). What is the nurse's <strong>priority</strong> action?</p>
+        <ul>
+          <li>A. Prepare for immediate OR for femur fixation</li>
+          <li>B. Notify provider of change in neuro status</li>
+          <li>C. Administer sedation to control agitation</li>
+          <li>D. Recheck blood glucose</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Notify provider of change in neuro status</strong></p>
+          <p>Unequal pupils with increasing agitation in a head trauma patient indicates expanding intracranial hematoma with rising ICP. This is a neurosurgical emergency requiring immediate intervention (likely decompressive craniotomy). While preparing for OR is important, the nurse must first communicate the change to the provider. Sedation could mask neuro deterioration. Glucose check is important but not the priority with unequal pupils.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 5 — Take Action:</strong> The patient is scheduled for emergent craniotomy and ORIF of the femur. Which of the following should the nurse include in the pre-operative checklist? <strong>Select all that apply.</strong></p>
+        <ul>
+          <li>A. Type and crossmatch for 6 units PRBCs</li>
+          <li>B. Verify informed consent for both procedures</li>
+          <li>C. Remove the cervical collar for skin prep</li>
+          <li>D. Ensure Foley catheter is inserted</li>
+          <li>E. Administer prophylactic antibiotics within 60 minutes of incision</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: A, B, D, E</strong></p>
+          <p><strong>A:</strong> Yes — patient is already anemic (Hgb 9.2) with ongoing blood loss. Blood must be available.<br>
+          <strong>B:</strong> Yes — informed consent is required. In emergent trauma, implied consent or emergency consent protocols apply if patient cannot consent and no surrogate is available.<br>
+          <strong>C:</strong> No — C-spine precautions must be maintained until cleared radiographically. The collar is NOT removed for skin prep.<br>
+          <strong>D:</strong> Yes — Foley is needed for accurate I&O monitoring, especially with hemodynamic instability and intraoperative fluids.<br>
+          <strong>E:</strong> Yes — Surgical Care Improvement Project (SCIP) requires prophylactic antibiotics within 60 minutes before incision.</p>
+        </div>
+      </div>
+
+      <div class="question">
+        <p><strong>Question 6 — Evaluate Outcomes:</strong> Post-operatively, the patient is in the ICU. His ICP monitor reads 22 mmHg. Which nursing intervention is <strong>most appropriate</strong>?</p>
+        <ul>
+          <li>A. Position head of bed at 15°</li>
+          <li>B. Administer mannitol 0.25 g/kg IV</li>
+          <li>C. Suction the endotracheal tube vigorously</li>
+          <li>D. Cluster all care activities to minimize stimulation</li>
+        </ul>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B. Administer mannitol 0.25 g/kg IV</strong></p>
+          <p>Normal ICP is &lt;15 mmHg. An ICP of 22 mmHg is elevated and requires intervention. Mannitol is an osmotic diuretic that reduces cerebral edema. Head of bed should be at <strong>30°</strong> (not 15°) to promote venous drainage. Vigorous suctioning increases ICP — pre-oxygenate, suction briefly. Clustering care is incorrect — space out activities to minimize ICP spikes.</p>
+        </div>
+      </div>
+    </div>
 
 <div class="cta-box">
 <h3>Ready for Emergency Scenarios?</h3>
