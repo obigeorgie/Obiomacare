@@ -486,10 +486,45 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const tier = session.metadata.tier;
+    const tier = session.metadata?.tier;
     const email = session.customer_email || session.customer_details?.email;
+    const stripeCustomerId = session.customer;
     const product = PRODUCTS[tier];
     const baseUrl = 'https://obiomacare.com';
+    
+    // Update lead in Firestore with purchase info
+    if (email && db) {
+      try {
+        await db.collection('leads').doc(email).update({
+          purchased: true,
+          tier: tier || 'none',
+          stripeCustomerId: stripeCustomerId || null,
+          purchasedAt: new Date().toISOString()
+        });
+        console.log(`✅ Updated lead ${email} with purchase`);
+      } catch (err) {
+        console.error(`Failed to update lead ${email}:`, err.message);
+      }
+    }
+    
+    // Update user in Firestore if they have an account
+    if (email && db) {
+      try {
+        const userSnapshot = await db.collection('users').where('email', '==', email).get();
+        if (!userSnapshot.empty) {
+          userSnapshot.forEach(doc => {
+            doc.ref.update({
+              tier: tier || 'none',
+              stripeCustomerId: stripeCustomerId || null,
+              purchasedAt: new Date().toISOString()
+            });
+          });
+          console.log(`✅ Updated user ${email} with tier ${tier}`);
+        }
+      } catch (err) {
+        console.error(`Failed to update user ${email}:`, err.message);
+      }
+    }
     
     const downloadToken = crypto.randomUUID();
     deliveryTokens.set(downloadToken, {
@@ -894,7 +929,26 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
   }
   
   console.log('🔄 Running nurture sequence...');
+  const startTime = Date.now();
   const result = await sendNurtureEmails();
+  
+  // Log to Firestore
+  if (db) {
+    try {
+      await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
+        job: 'nurture',
+        status: result.errors > 0 ? 'partial' : 'success',
+        sent: result.sent,
+        errors: result.errors,
+        leadsTotal: result.leadsTotal,
+        durationMs: Date.now() - startTime,
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      console.error('Failed to log cron run:', err.message);
+    }
+  }
+  
   res.json({ success: true, ...result });
 });
 
@@ -906,7 +960,26 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
   }
   
   console.log('🔄 Running nurture sequence...');
+  const startTime = Date.now();
   const result = await sendNurtureEmails();
+  
+  // Log to Firestore
+  if (db) {
+    try {
+      await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
+        job: 'nurture',
+        status: result.errors > 0 ? 'partial' : 'success',
+        sent: result.sent,
+        errors: result.errors,
+        leadsTotal: result.leadsTotal,
+        durationMs: Date.now() - startTime,
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      console.error('Failed to log cron run:', err.message);
+    }
+  }
+  
   res.json({ success: true, ...result });
 });
 // ==================== NEWSLETTER ====================
