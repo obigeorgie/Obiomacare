@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const CONTENT_DIRS = ['content', 'landing/content'];
+const CONTENT_DIRS = ['content'];
 
 // Topic mappings for breadcrumbs
 const topicMap = {

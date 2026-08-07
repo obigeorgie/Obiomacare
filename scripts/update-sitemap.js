@@ -11,7 +11,7 @@ let urls = [
 
 // Collect all content files from both directories
 const allFiles = new Set();
-for (const dir of ['content', 'landing/content']) {
+for (const dir of ['content']) {
   if (!fs.existsSync(dir)) continue;
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.html'));
   for (const f of files) allFiles.add(f);

@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-922HP9B76M', { send_page_view: true, cookie_flags: 'SameSite=None;Secure' });
+</script>
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1045171501242922');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
+/></noscript>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diabetes & Thyroid Deep Dive NCLEX Study Guide | Obioma Care</title>
   <meta name="description" content="Complete NCLEX study guide on diabetes and thyroid disorders. Covers DKA, HHS, insulin therapy, thyroid storm, myxedema coma, and nursing management.">
+<meta property="og:title" content="Diabetes & Thyroid Deep Dive NCLEX Study Guide | Obioma Care">
+<meta property="og:description" content="Complete NCLEX study guide on diabetes and thyroid disorders. Covers DKA, HHS, insulin therapy, thyroid storm, myxedema coma, and nursing management.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://obiomacare.com/content/nclex-diabetes-thyroid-deep-dive.html">
+<meta property="og:site_name" content="Obioma Care">
+<meta property="article:published_time" content="2026-08-05">
+<meta property="og:image" content="https://obiomacare.com/obioma-seo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diabetes & Thyroid Deep Dive NCLEX Study Guide | Obioma Care">
+<meta name="twitter:description" content="Complete NCLEX study guide on diabetes and thyroid disorders. Covers DKA, HHS, insulin therapy, thyroid storm, myxedema coma, and nursing management.">
+<meta name="twitter:image" content="https://obiomacare.com/obioma-seo.png">
   <link rel="canonical" href="https://obiomacare.com/content/nclex-diabetes-thyroid-deep-dive.html">
   <script type="application/ld+json">
   {
@@ -38,6 +74,15 @@
     table{width:100%;border-collapse:collapse;margin:16px 0;}
     th,td{border:1px solid var(--border);padding:12px;text-align:left;}
     th{background:var(--sky);font-weight:600;}
+    .case-study{background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:24px;margin:24px 0;}
+    .case-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+    .case-tab{background:#fed7aa;padding:8px 16px;border-radius:6px;font-weight:600;font-size:0.9rem;}
+    .ngn-question{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px;margin:16px 0;border-radius:8px;}
+    .ngn-options{margin:12px 0 12px 24px;}
+    .ngn-options li{margin-bottom:6px;}
+    .answer{background:#f0fdf4;border:2px dashed #22c55e;padding:16px;margin:16px 0;border-radius:8px;display:none;}
+    .answer.visible{display:block;}
+    .reveal-btn{background:var(--navy);color:#fff;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;margin-top:8px;}
     footer{text-align:center;padding:40px;color:#666;border-top:1px solid var(--border);margin-top:60px;}
     @media print{.cta,footer{display:none;}}
   </style>
@@ -189,6 +234,53 @@
       </div>
     </div>
 
+    <div class="condition-box">
+      <h3>🧮 Insulin Calculations (High-Yield for NCLEX)</h3>
+      <div class="priority">
+        <strong>1. Insulin-to-Carbohydrate Ratio (ICR)</strong>
+        <p>How many grams of carbs 1 unit of insulin covers.</p>
+        <ul>
+          <li><strong>500 Rule:</strong> 500 ÷ Total Daily Dose (TDD) = grams of carbs per 1 unit</li>
+          <li>Example: TDD = 50 units → 500 ÷ 50 = <strong>10 g carbs per 1 unit</strong></li>
+          <li>Meal has 60g carbs → 60 ÷ 10 = <strong>6 units bolus</strong></li>
+        </ul>
+      </div>
+      <div class="priority">
+        <strong>2. Correction Factor (Insulin Sensitivity Factor)</strong>
+        <p>How much 1 unit of insulin lowers blood glucose.</p>
+        <ul>
+          <li><strong>1800 Rule (rapid-acting):</strong> 1800 ÷ TDD = mg/dL drop per 1 unit</li>
+          <li><strong>1500 Rule (regular insulin):</strong> 1500 ÷ TDD = mg/dL drop per 1 unit</li>
+          <li>Example: TDD = 50 units, rapid-acting → 1800 ÷ 50 = <strong>36 mg/dL per unit</strong></li>
+          <li>Current glucose 220, target 120 → 220 - 120 = 100 → 100 ÷ 36 = <strong>2.8 → round to 3 units correction</strong></li>
+        </ul>
+      </div>
+      <div class="priority">
+        <strong>3. Total Bolus Dose = Meal Coverage + Correction</strong>
+        <p>Example: 60g carbs (ICR 1:10) + glucose 220 (target 120, CF 1:36)</p>
+        <ul>
+          <li>Meal: 60 ÷ 10 = <strong>6 units</strong></li>
+          <li>Correction: (220 - 120) ÷ 36 = <strong>2.8 → 3 units</strong></li>
+          <li><strong>Total bolus = 9 units</strong></li>
+        </ul>
+      </div>
+      <div class="trap">
+        <strong>NCLEX Trap:</strong> Do NOT correct if glucose is at or below target. Do NOT give correction bolus within 3-4 hours of previous rapid-acting insulin (stacking risk). Always round to nearest whole unit on NCLEX unless told otherwise.
+      </div>
+      <div class="priority">
+        <strong>4. Basal Insulin Calculation</strong>
+        <ul>
+          <li>Basal typically = <strong>40-50% of TDD</strong></li>
+          <li>Example: TDD = 50 units → Basal = 20-25 units (usually given as single daily glargine or split detemir)</li>
+          <li>Bolus = remaining 50-60% of TDD divided across meals</li>
+        </ul>
+      </div>
+      <div class="mnemonic">
+        <strong>Memory Trick: "CARBS"</strong><br>
+        <strong>C</strong>ount carbs → <strong>A</strong>pply ICR (500 rule) → <strong>R</strong>eview glucose → <strong>B</strong>olus correction (1800 rule) → <strong>S</strong>um total dose
+      </div>
+    </div>
+
     <h2>🦋 Thyroid Disorders</h2>
 
     <div class="condition-box">
@@ -234,28 +326,198 @@
       </div>
     </div>
 
+    <h2>🧩 NGN Case Study: Diabetic Ketoacidosis</h2>
+
+    <div class="case-study">
+      <h3>Client Scenario</h3>
+      <p><strong>Ms. Aaliyah Johnson, 22-year-old female</strong>, is brought to the emergency department by her roommate. Roommate reports Aaliyah has been vomiting for the past 12 hours, has "fruity breath," and has been "breathing really fast and deep." Aaliyah was diagnosed with Type 1 diabetes at age 14. She admits she has not taken her insulin for the past 2 days because she "ran out and didn't have money for the refill." She also reports having flu-like symptoms and a sore throat for the past 3 days.</p>
+
+      <div class="case-tabs">
+        <span class="case-tab">Vital Signs</span>
+        <span class="case-tab">Nurse's Notes</span>
+        <span class="case-tab">Lab Results</span>
+        <span class="case-tab">Provider Orders</span>
+      </div>
+
+      <div class="condition-box">
+        <h3>📊 Vital Signs & Assessment</h3>
+        <ul>
+          <li>BP: 88/56 mmHg</li>
+          <li>HR: 124 bpm, regular</li>
+          <li>RR: 36 breaths/min, deep and labored (Kussmaul)</li>
+          <li>Temp: 37.8°C (100°F)</li>
+          <li>SpO₂: 97% on room air</li>
+          <li>Weight: 58 kg (usual weight 64 kg)</li>
+          <li>Skin: Dry mucous membranes, poor skin turgor, flushed</li>
+          <li>Neuro: Alert and oriented x3, anxious</li>
+          <li>Abdomen: Diffuse tenderness, hyperactive bowel sounds</li>
+          <li>Respiratory: Clear bilaterally, deep rapid respirations</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📝 Nurse's Notes</h3>
+        <p>Patient reports polyuria and polydipsia for the past week. Has been unable to keep food or fluids down for 12 hours. Last insulin dose (lispro and glargine) was 2 days ago. No known drug allergies. Non-smoker. No alcohol or illicit drug use. Family history of autoimmune thyroid disease.</p>
+      </div>
+
+      <div class="condition-box">
+        <h3>🔬 Lab Results</h3>
+        <ul>
+          <li>Blood glucose: 682 mg/dL</li>
+          <li>Serum pH: 7.18</li>
+          <li>HCO₃⁻: 12 mEq/L</li>
+          <li>Anion gap: 22</li>
+          <li>Serum ketones: Positive (large)</li>
+          <li>Serum osmolality: 318 mOsm/kg</li>
+          <li>Sodium: 132 mEq/L (corrected Na⁺: 141)</li>
+          <li>Potassium: 5.8 mEq/L</li>
+          <li>Chloride: 98 mEq/L</li>
+          <li>BUN: 38 mg/dL</li>
+          <li>Creatinine: 1.4 mg/dL</li>
+          <li>WBC: 15.4 × 10⁹/L</li>
+          <li>Hgb: 14.2 g/dL</li>
+        </ul>
+      </div>
+
+      <div class="condition-box">
+        <h3>📋 Provider Orders</h3>
+        <ol>
+          <li>0.9% Sodium Chloride 1L IV over 1 hour</li>
+          <li>Regular insulin 6 units IV push, then 6 units/hr continuous infusion</li>
+          <li>Basic metabolic panel q2h</li>
+          <li>Urinalysis with culture</li>
+          <li>Chest X-ray</li>
+          <li>Strict intake & output, hourly vital signs</li>
+          <li>Cardiac monitoring</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Clinical Judgment Questions</h3>
+
+    <div class="ngn-question">
+      <p><strong>Question 1 — Recognize Cues:</strong> Based on the clinical presentation, which findings confirm the diagnosis of DKA rather than HHS? <em>(Select all that apply)</em></p>
+      <ol class="ngn-options" type="A">
+        <li>Blood glucose 682 mg/dL</li>
+        <li>pH 7.18</li>
+        <li>Positive serum ketones</li>
+        <li>Age 22 with Type 1 diabetes</li>
+        <li>Anion gap 22</li>
+        <li>Kussmaul respirations</li>
+      </ol>
+      <div class="answer" id="dq1-ans">
+        <strong>Correct: B, C, E, F</strong><br>
+        A (glucose >600) could be HHS. D (young age/T1DM) suggests DKA but doesn't confirm it. The definitive DKA findings are: metabolic acidosis (pH <7.30, B), ketosis (C), elevated anion gap (E), and Kussmaul respirations (compensatory for acidosis, F).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq1-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 2 — Analyze Cues:</strong> The nurse notes the potassium level is 5.8 mEq/L. Which is the BEST interpretation of this finding?</p>
+      <ol class="ngn-options" type="A">
+        <li>The client has adequate total body potassium and does not need replacement</li>
+        <li>The potassium is elevated due to acidosis shifting K⁺ out of cells, but total body K⁺ is depleted</li>
+        <li>The client is in renal failure and cannot excrete potassium</li>
+        <li>Insulin should be held until potassium normalizes</li>
+      </ol>
+      <div class="answer" id="dq2-ans">
+        <strong>Correct: B</strong><br>
+        In DKA, acidosis causes intracellular K⁺ to shift extracellularly, creating a falsely "normal" or elevated serum K⁺ despite severe total body depletion. Once insulin and fluids are given, K⁺ re-enters cells and levels drop rapidly. The client WILL need K⁺ replacement once levels fall. Insulin should NOT be held unless K⁺ <3.3.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq2-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 3 — Prioritize Hypotheses:</strong> The nurse is prioritizing interventions. Which action should be performed FIRST?</p>
+      <ol class="ngn-options" type="A">
+        <li>Begin regular insulin infusion at 6 units/hr</li>
+        <li>Administer 0.9% NS 1L over 1 hour</li>
+        <li>Insert Foley catheter for strict I&O monitoring</li>
+        <li>Draw repeat basic metabolic panel</li>
+      </ol>
+      <div class="answer" id="dq3-ans">
+        <strong>Correct: B</strong><br>
+        The client is hypotensive (88/56) with tachycardia, dry mucous membranes, and 6 kg weight loss — indicating severe hypovolemia. Fluid resuscitation must precede insulin administration. Insulin before fluids can worsen hypotension by driving glucose and water into cells. Fluids FIRST, then insulin.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq3-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 4 — Generate Solutions:</strong> Four hours after treatment initiation, the client's glucose is 280 mg/dL, potassium is 3.6 mEq/L, and pH is 7.28. Which is the nurse's BEST next action?</p>
+      <ol class="ngn-options" type="A">
+        <li>Continue current insulin infusion and add dextrose to IV fluids</li>
+        <li>Stop insulin infusion since glucose is nearly normal</li>
+        <li>Increase insulin infusion to achieve faster glucose reduction</li>
+        <li>Switch to subcutaneous insulin now that glucose is controlled</li>
+      </ol>
+      <div class="answer" id="dq4-ans">
+        <strong>Correct: A</strong><br>
+        Do NOT stop insulin when glucose normalizes — must continue until anion gap closes (indicates ketosis resolved). Adding dextrose (D5) to fluids allows continued insulin administration without hypoglycemia. SC insulin should not be started until patient is eating and anion gap is normal.
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq4-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 5 — Take Action:</strong> The nurse is reviewing the morning labs on day 2. Which finding requires IMMEDIATE follow-up?</p>
+      <ol class="ngn-options" type="A">
+        <li>Glucose 145 mg/dL</li>
+        <li>Potassium 3.1 mEq/L</li>
+        <li>pH 7.34</li>
+        <li>Anion gap 14</li>
+      </ol>
+      <div class="answer" id="dq5-ans">
+        <strong>Correct: B</strong><br>
+        Potassium of 3.1 mEq/L is dangerously low and can cause life-threatening arrhythmias. In DKA, K⁺ replacement is critical — add KCl to IV fluids immediately and monitor closely. The other values show continued improvement (glucose normalized, pH near normal, anion gap closing).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq5-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="ngn-question">
+      <p><strong>Question 6 — Evaluate Outcomes:</strong> The client is ready for discharge on day 3. Which statement by the client indicates a need for FURTHER teaching?</p>
+      <ol class="ngn-options" type="A">
+        <li>"I will check my blood sugar 4 times a day and keep a log."</li>
+        <li>"If my blood sugar is over 250 for two readings, I'll check for ketones."</li>
+        <li>"I can skip my insulin when I'm not eating much due to illness."</li>
+        <li>"I'll set up automatic refills so I never run out of insulin again."</li>
+      </ol>
+      <div class="answer" id="dq6-ans">
+        <strong>Correct: C</strong><br>
+        NEVER skip insulin during illness — this is exactly how DKA develops (insulin deficiency + stress hormones). During illness, patients may need MORE insulin, not less (sick day rules: check glucose more often, check ketones if glucose >250, never stop basal insulin, stay hydrated, seek care if vomiting or ketones present).
+      </div>
+      <button class="reveal-btn" onclick="document.getElementById('dq6-ans').classList.toggle('visible')">Reveal Answer</button>
+    </div>
+
+    <div class="mnemonic">
+      <strong>🧠 Case Study Learning Points:</strong>
+      <ul>
+        <li><strong>Fluids FIRST, then insulin</strong> — Hypovolemia takes priority over hyperglycemia</li>
+        <li><strong>Potassium is tricky</strong> — Looks high, but total body is LOW; monitor closely during treatment</li>
+        <li><strong>Don't stop insulin at 200</strong> — Continue until anion gap normalizes (ketosis resolved)</li>
+        <li><strong>Add dextrose when needed</strong> — D5 allows continued insulin without hypoglycemia</li>
+        <li><strong>Never skip insulin when sick</strong> — #1 cause of DKA in known diabetics</li>
+      </ul>
+    </div>
+
     <h2>🎯 Related Content</h2>
     <ul>
       <li><a href="/content/nclex-endocrine-disorders.html">Endocrine Disorders</a></li>
       <li><a href="/content/nclex-fluids-electrolytes-deep-dive.html">Fluids & Electrolytes</a></li>
       <li><a href="/content/nclex-abg-interpretation-guide.html">ABG Interpretation</a></li>
       <li><a href="/content/nclex-pharmacology-drug-classes.html">Drug Classes</a></li>
+      <li><a href="/content/nclex-renal-urinary-system.html">Renal & Urinary System</a> — for diabetic nephropathy complications</li>
     </ul>
 
-    <div class="cta">
-      <h3>🎯 Master Clinical Judgment</h3>
-      <p>Practice diabetes and thyroid case studies with the NCSBN Clinical Judgment Framework. Recognize emergencies, prioritize interventions, manage insulin therapy.</p>
-      <a href="https://app.obiomacare.com">Start Practicing →</a>
-    </div>
+    <h2>📋 Quick Reference Downloads</h2>
+    <ul>
+      <li><a href="/downloads/dka-vs-hhs-cheat-sheet.html">DKA vs HHS Quick Reference</a> — Lab values, management, resolution criteria</li>
+    </ul>
 
     <h2>Related Articles</h2>
 <ul>
-  <li><a href="/content/nclex-renal-disorders.html" style="color:var(--coral);">NCLEX Renal Disorders: CKD, AKI, Dialysis Guide</a></li>
-  <li><a href="/content/nclex-bow-tie-items.html" style="color:var(--coral);">NCLEX Bow-Tie Items: Strategy + Examples for NGN</a></li>
-  <li><a href="/content/nclex-fluids-electrolytes-deep-dive.html" style="color:var(--coral);">NCLEX Fluids & Electrolytes: Deep Dive Study Guide</a></li>
-  <li><a href="/content/nclex-neurological-degenerative-deep-dive.html" style="color:var(--coral);">Neurological Deep Dive: MS, Parkinson's, ALS & Myasthenia Gravis</a></li>
-  <li><a href="/content/why-nursing-students-struggle-nclex-next-gen.html" style="color:var(--coral);">The Real Reason 40% of Nursing Students Struggle With NCLEX Next Gen</a></li>
-  <li><a href="/content/nclex-maternity-study-guide.html" style="color:var(--coral);">NCLEX Maternity Study Guide: OB Nursing for the Exam</a></li>
+<li><a href="/content/nclex-endocrine-disorders.html" style="color:var(--coral);">Endocrine Disorders</a></li>
+<li><a href="/content/nclex-fluids-electrolytes-deep-dive.html" style="color:var(--coral);">Fluids Electrolytes Deep Dive</a></li>
+<li><a href="/content/nclex-pharmacology-drug-classes.html" style="color:var(--coral);">Pharmacology Drug Classes</a></li>
+<li><a href="/content/nclex-nutrition-therapeutic-diets.html" style="color:var(--coral);">Nutrition Therapeutic Diets</a></li>
 </ul>
 <footer>
       <p><strong>Obioma Care</strong> — Clinical Judgment for Nursing Students</p>

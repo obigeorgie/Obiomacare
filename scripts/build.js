@@ -57,7 +57,5 @@ copyDir('landing/compare', 'public/compare');
 copyDir('landing/products', 'public/products');
 copyDir('landing/quiz', 'public/quiz');
 
-// Copy landing/content/ to public/content/ (merge)
-copyDir('landing/content', 'public/content');
 
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);
