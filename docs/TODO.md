@@ -18,7 +18,7 @@
 - [x] `POST /api/create-checkout` — Stripe checkout creation
 
 ### Analytics & Tracking
-- [x] Added GA4 (`G-922HP9B76M`) to all 64 content + 7 landing pages
+- [x] Added GA4 (`G-922HP9B76M`) to all 67 content + 7 landing pages
 - [x] Added Facebook Pixel (`1045171501242922`) to all pages
 - [x] Created `/success.html` with purchase event tracking
 - [x] Connected Vercel Web Analytics + Speed Insights
@@ -36,32 +36,53 @@
 
 ### CI/CD
 - [x] Created GitHub Actions workflows (deploy.yml, ci.yml)
-- [x] Pushed 47 commits to `https://github.com/obigeorgie/Obiomacare.git`
+- [x] Pushed 50 commits to `https://github.com/obigeorgie/Obiomacare.git`
+
+## ✅ Completed (2026-08-08)
+
+### Documentation
+- [x] Created `AGENTS.md` — project agent guide with health check, commands, troubleshooting
+- [x] Created `docs/TODO.md` — task tracking
+- [x] Created `docs/DECISIONS.md` — 11 settled architectural decisions
+- [x] Created `docs/links.md` — canonical URLs, endpoints, dashboards
+- [x] Created `docs/SESSION-LOG.md` — session history
+- [x] Created `KIMICLAW-BOOTSTRAP.md` — session bootstrap prompt
+- [x] Updated `.env.example` — comprehensive environment variables
+
+### Batch 4 Content (COMPLETED)
+- [x] `nclex-fluids-electrolytes-master.html` (14.7 KB) — Osmolality, acid-base, IV calculations, electrolyte emergencies, NGN case study
+- [x] `nclex-mechanical-ventilation-master.html` (13.6 KB) — Vent modes, ARDS, PEEP, weaning, ETT care, alarms, NGN case study
+- [x] `nclex-trauma-nursing-master.html` (13.9 KB) — ABCDE triage, shock, burns, spinal injury, head trauma, NGN case study
+- [x] Sitemap updated to 69 URLs
+
+### Stripe Test (PARTIALLY VERIFIED)
+- [x] TEST99 promo code validates correctly
+- [x] Checkout URL generates successfully
+- [x] Success page exists with GA4 + FB Pixel purchase tracking
+- [x] Download PDFs accessible
+- [x] Webhook handler configured for `checkout.session.completed`
+- [x] API health check passes (stripe: true)
+- [ ] **PENDING**: Actual payment completion (requires real card)
 
 ---
 
 ## 🔄 In Progress
 
-- [ ] Verify Stripe end-to-end with real `TEST99` purchase
 - [ ] Add GitHub Action secrets: `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
 
 ---
 
 ## 📋 Next Up
 
-### High Priority
-- [ ] Submit sitemap to Google Search Console
-- [ ] Real Stripe test purchase (verify email delivery + download)
-- [ ] Verify GA4/FB Pixel receive real purchase events
+### High Priority (Requires Manual Action)
+- [ ] **Submit sitemap to Google Search Console** — Go to https://search.google.com/search-console, add property `obiomacare.com`, submit sitemap URL: `https://obiomacare.com/sitemap.xml`
+- [ ] **Real Stripe test purchase** — Use code `TEST99` at checkout, pay ~$0.94, verify email arrives with download link, confirm Firestore lead updated
+- [ ] **Verify GA4/FB Pixel receive real purchase events** — Check GA4 Real-Time reports and FB Events Manager after test purchase
 
 ### Medium Priority
-- [ ] Batch 4 content creation:
-  - [ ] NCLEX Fundamentals deep-dive
-  - [ ] Fluids & Electrolytes comprehensive guide
-  - [ ] Mechanical Ventilation guide
-  - [ ] Trauma Nursing guide
 - [ ] Add more promo codes (beyond TEST99)
 - [ ] Set up email nurture sequence monitoring
+- [ ] Create Batch 5 content (see content-roadmap.md)
 
 ### Low Priority
 - [ ] Add unit tests for API endpoints
@@ -81,4 +102,4 @@
 
 ---
 
-*Last updated: 2026-08-07*
+*Last updated: 2026-08-08*
