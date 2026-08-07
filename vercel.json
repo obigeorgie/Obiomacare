@@ -20,6 +20,7 @@
     { "src": "/free-nclex-checklist", "dest": "/free-nclex-checklist.html" },
     { "src": "/neuro-cheat-sheet", "dest": "/neuro-cheat-sheet.html" },
     { "src": "/privacy", "dest": "/privacy.html" },
+    { "src": "/terms", "dest": "/terms.html" },
     { "src": "/404", "dest": "/404.html" },
     { "src": "/content/$", "dest": "/content/index.html" },
     { "src": "/content/(.*)\\.html", "dest": "/content/$1.html" },

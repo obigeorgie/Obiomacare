@@ -34,7 +34,7 @@ for (const entry of rootContentFiles) {
 
 // Also copy landing/ assets to public/ so they're available at root
 const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html', 
-  'privacy.html', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
+  'privacy.html', 'terms.html', 'sitemap.xml', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'obioma-logo.svg', 'obioma-seo.png'];
 for (const file of landingFiles) {
   const src = path.join('landing', file);
