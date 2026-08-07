@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purchase Confirmed — Obioma Care</title>
+<meta name="description" content="Thank you for your purchase! Your Clinical Judgment Mastery System is ready.">
+<link rel="canonical" href="https://obiomacare.com/success.html">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-922HP9B76M', { send_page_view: true, cookie_flags: 'SameSite=None;Secure' });
+</script>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1045171501242922');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
+/></noscript>
+
+<style>
+:root{--navy:#1a365d;--coral:#c53030;--bg:#fffaf0;--text:#374151;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:40px 20px;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.container{max-width:600px;width:100%;background:#fff;padding:48px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;}
+h1{color:var(--navy);font-size:1.75rem;margin-bottom:12px;}
+.check{font-size:4rem;margin-bottom:16px;}
+.subtitle{color:#718096;margin-bottom:32px;font-size:1.05rem;}
+.btn{display:inline-block;background:var(--coral);color:#fff;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;margin:8px;}
+.btn-secondary{background:var(--navy);}
+.note{background:#fef3c7;padding:16px;border-radius:8px;margin-top:24px;font-size:0.9rem;color:#92400e;}
+footer{margin-top:40px;padding-top:24px;border-top:1px solid #e2e8f0;color:#718096;font-size:0.875rem;}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="check">🎉</div>
+  <h1>You're In!</h1>
+  <p class="subtitle">Your Clinical Judgment Mastery System is being prepared. Check your email in the next 2 minutes for your download link.</p>
+
+  <a href="/" class="btn btn-secondary">← Back to Homepage</a>
+  <a href="https://obiomacare.com/content/nclex-clinical-judgment-guide.html" class="btn">Start Reading the Framework →</a>
+
+  <div class="note">
+    📧 <strong>Didn't get the email?</strong> Check your spam/promotions folder. Still nothing? Email <a href="mailto:admin@obiomacare.com">admin@obiomacare.com</a> and I'll resend it manually.
+  </div>
+
+  <footer>
+    <p>Questions? Just reply to your delivery email — I read every one.</p>
+    <p>— Nnamdi Okorafor, RN · <a href="/">Obioma Care</a></p>
+  </footer>
+</div>
+
+<script>
+// Parse URL params for purchase tracking
+const params = new URLSearchParams(window.location.search);
+const sessionId = params.get('session_id');
+const tier = params.get('tier') || 'core';
+const value = tier === 'complete' ? 67 : 47;
+
+// Fire GA4 purchase event
+gtag('event', 'purchase', {
+  transaction_id: sessionId || 'unknown',
+  value: value,
+  currency: 'USD',
+  items: [{
+    item_id: tier,
+    item_name: tier === 'complete' ? 'Clinical Judgment Complete Mastery' : 'Clinical Judgment Core System',
+    item_category: 'Digital Product',
+    quantity: 1,
+    price: value
+  }]
+});
+
+// Fire Facebook Purchase event
+fbq('track', 'Purchase', {
+  content_ids: [tier],
+  content_type: 'product',
+  value: value,
+  currency: 'USD'
+});
+
+console.log('Purchase tracked:', { sessionId, tier, value });
+</script>
+</body>
+</html>
