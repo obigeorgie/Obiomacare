@@ -82,6 +82,21 @@ const PRODUCTS = {
   }
 };
 
+// ==================== ANALYTICS LOGGING ====================
+// Server-side event logging for attribution tracking
+async function logEvent(eventType, data) {
+  if (!db) return;
+  try {
+    await db.collection('analytics_events').add({
+      event: eventType,
+      timestamp: new Date().toISOString(),
+      ...data
+    });
+  } catch (err) {
+    console.error('Analytics log failed:', err.message);
+  }
+}
+
 // ==================== PROMO CODES ====================
 // Test promo codes for end-to-end testing
 const PROMO_CODES = {
@@ -268,13 +283,23 @@ app.post('/auth/update-profile', authMiddleware, express.json(), async (req, res
 app.post('/api/create-checkout', express.json(), async (req, res) => {
   if (!stripe) return res.status(500).json({ error: 'Stripe not configured' });
   
-  const { tier, email, promoCode } = req.body;
+  const { tier, email, promoCode, utm } = req.body;
   const product = PRODUCTS[tier];
   
   if (!product) return res.status(400).json({ error: 'Invalid product tier' });
 
   try {
     const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
+    
+    // Log checkout initiation with UTM attribution
+    logEvent('checkout_initiated', {
+      tier,
+      email: email || null,
+      promoCode: promoCode || null,
+      utm: utm || null,
+      ip: req.headers['x-forwarded-for'] || req.ip,
+      userAgent: req.headers['user-agent']
+    });
     
     // Check promo code
     let discounts = [];
@@ -301,7 +326,14 @@ app.post('/api/create-checkout', express.json(), async (req, res) => {
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/`,
       customer_email: email,
-      metadata: { tier, product: product.name, promoCode: promoCode || 'none' },
+      metadata: { 
+        tier, 
+        product: product.name, 
+        promoCode: promoCode || 'none',
+        utm_source: utm?.utm_source || '',
+        utm_medium: utm?.utm_medium || '',
+        utm_campaign: utm?.utm_campaign || ''
+      },
       ...(discounts.length > 0 && { discounts })
     });
 
@@ -417,6 +449,20 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     const stripeCustomerId = session.customer;
     const product = PRODUCTS[tier];
     const baseUrl = 'https://obiomacare.com';
+    
+    // Log purchase with UTM attribution
+    logEvent('purchase_completed', {
+      email: email || null,
+      tier,
+      amount: tier === 'complete' ? 67 : 47,
+      stripeSessionId: session.id,
+      utm: {
+        source: session.metadata?.utm_source || '',
+        medium: session.metadata?.utm_medium || '',
+        campaign: session.metadata?.utm_campaign || ''
+      },
+      promoCode: session.metadata?.promoCode || null
+    });
     
     // Update lead in Firestore with purchase info
     if (email && db) {
@@ -910,18 +956,26 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
 });
 // ==================== NEWSLETTER ====================
 app.post('/api/newsletter', express.json(), async (req, res) => {
-  const { email } = req.body;
+  const { email, utm } = req.body;
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
   }
   try {
+    // Log newsletter signup with UTM attribution
+    logEvent('newsletter_signup', {
+      email,
+      utm: utm || null,
+      ip: req.headers['x-forwarded-for'] || req.ip
+    });
+    
     const lead = {
       email: email.toLowerCase().trim(),
       firstName: '',
       subscribedAt: new Date().toISOString(),
       emailsSent: [],
       purchased: false,
-      source: 'newsletter'
+      source: 'newsletter',
+      utm: utm || null
     };
     await saveLead(lead);
     res.json({ success: true, message: 'Subscribed!' });
@@ -955,12 +1009,20 @@ app.post('/api/contact', express.json(), async (req, res) => {
 
 // ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', express.json(), async (req, res) => {
-  const { email, firstName } = req.body;
+  const { email, firstName, utm } = req.body;
   const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
   
   if (!email || !email.includes('@')) {
     return res.status(400).json({ error: 'Valid email required' });
   }
+  
+  // Log lead capture with UTM attribution
+  logEvent('lead_captured', {
+    email,
+    source: 'lead-magnet',
+    utm: utm || null,
+    ip: req.headers['x-forwarded-for'] || req.ip
+  });
   
   // Check if lead already exists
   const allLeads = await getLeads();
@@ -975,7 +1037,9 @@ app.post('/api/lead-magnet', express.json(), async (req, res) => {
     firstName: firstName || '',
     subscribedAt: new Date().toISOString(),
     emailsSent: [],
-    purchased: false
+    purchased: false,
+    source: 'nclex-checklist',
+    utm: utm || null
   };
   await saveLead(lead);
   

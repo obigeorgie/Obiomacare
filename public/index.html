@@ -903,6 +903,7 @@
     /></noscript>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script src="/assets/utm-tracker.js"></script>
 </head>
 <body>
 
@@ -1332,14 +1333,25 @@
 
 <script>
 async function buyNow(tier) {
+    const product = { id: tier, name: tier === 'core' ? 'Core System' : 'Complete Mastery', price: tier === 'core' ? 47 : 67 };
+    
+    // Track add_to_cart before checkout
+    if (window.ObiomaAnalytics) {
+        window.ObiomaAnalytics.trackAddToCart(product);
+    } else {
+        gtag && gtag('event', 'add_to_cart', { currency: 'USD', value: product.price, items: [{ item_id: product.id, item_name: product.name, price: product.price }] });
+        fbq && fbq('track', 'AddToCart', { content_ids: [product.id], content_type: 'product', value: product.price, currency: 'USD' });
+    }
+    
     gtag && gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
     fbq && fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
     
     try {
+        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier }) : { tier };
         const res = await fetch('/api/create-checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ tier })
+            body: JSON.stringify(body)
         });
         const data = await res.json();
         if (data.url) window.location.href = data.url;
@@ -1572,6 +1584,30 @@ document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
 });
 
+// Track view_item when pricing section is visible (once)
+const pricingObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const products = [
+                { id: 'core', name: 'Core System', price: 47 },
+                { id: 'complete', name: 'Complete Mastery', price: 67 }
+            ];
+            products.forEach(p => {
+                if (window.ObiomaAnalytics) {
+                    window.ObiomaAnalytics.trackViewItem(p);
+                } else {
+                    gtag && gtag('event', 'view_item', { currency: 'USD', value: p.price, items: [{ item_id: p.id, item_name: p.name, price: p.price }] });
+                    fbq && fbq('track', 'ViewContent', { content_ids: [p.id], content_type: 'product', value: p.price, currency: 'USD' });
+                }
+            });
+            pricingObserver.disconnect();
+        }
+    });
+}, { threshold: 0.3 });
+
+const pricingSection = document.getElementById('pricing');
+if (pricingSection) pricingObserver.observe(pricingSection);
+
 // Email form
 document.getElementById('leadForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -1583,10 +1619,11 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
     errorEl.style.display = 'none';
     
     try {
+        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ email, firstName: '' }) : { email, firstName: '' };
         const response = await fetch('/api/lead-magnet', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, firstName: '' })
+            body: JSON.stringify(body)
         });
         
         if (response.ok) {
