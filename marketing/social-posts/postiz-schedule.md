@@ -117,7 +117,7 @@ Topics range from neurological deep dives to advanced oncology pharmacology. Eac
 
 For nursing students preparing for the Next Generation NCLEX, clinical judgment training matters more than memorization. These guides help bridge that gap.
 
-Browse all 60 guides → https://obiomacare.com/content/
+Browse all 67 guides → https://obiomacare.com/content/
 
 #NursingEducation #NCLEX #NursingStudent #ClinicalJudgment #NurseEducator
 
@@ -260,7 +260,7 @@ All free. All aligned with the NCSBN Clinical Judgment Framework.
 💻 Informatics
 ☢️ Oncology pharm
 
-60 total guides now live.
+67 total guides now live.
 
 Start studying → https://obiomacare.com/content/
 

@@ -3,11 +3,11 @@ name: CI — Build & Lint Check
 on:
   pull_request:
     branches:
-      - master
+      - main
   push:
     branches:
       - '**'
-      - '!master'
+      - '!main'
 
 jobs:
   build:
@@ -37,14 +37,14 @@ jobs:
         run: node -c api/tutor.js
 
       - name: Validate sitemap exists
-        run: test -f landing/sitemap.xml && echo "Sitemap OK" || (echo "Sitemap missing!" && exit 1)
+        run: test -f public/sitemap.xml && echo "Sitemap OK" || (echo "Sitemap missing!" && exit 1)
 
       - name: Check content pages are linked in sitemap
         run: |
           MISSING=0
           for f in content/*.html; do
             fname=$(basename "$f")
-            if ! grep -q "$fname" landing/sitemap.xml; then
+            if ! grep -q "$fname" public/sitemap.xml; then
               echo "WARNING: $fname not in sitemap"
               MISSING=$((MISSING + 1))
             fi

@@ -258,12 +258,12 @@ Would love feedback on what topics to cover next. What are you struggling with m
 ---
 
 ### r/NCLEX Post
-**Title:** 60 free NCLEX study guides now live — from lab values to oncology pharmacology
+**Title:** 67 free NCLEX study guides now live — from lab values to oncology pharmacology
 
 **Body:**
 Hi everyone,
 
-We've been building free NCLEX study guides at obiomacare.com and just hit 60 guides. Everything from fundamentals to advanced pharmacology.
+We've been building free NCLEX study guides at obiomacare.com and just hit 67 guides. Everything from fundamentals to advanced pharmacology.
 
 **Most popular so far:**
 - Lab Values Memorization Guide

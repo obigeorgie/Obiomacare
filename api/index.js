@@ -87,7 +87,12 @@ const PRODUCTS = {
 const PROMO_CODES = {
   'TEST99': { discount: 0.98, description: '98% off — E2E test code' },  // $47 → $0.94
   'TEST50': { discount: 0.50, description: '50% off — Development test' }, // $47 → $23.50
-  'NNAMDI': { discount: 0.25, description: '25% off — Founder discount' }   // $47 → $35.25
+  'NNAMDI': { discount: 0.25, description: '25% off — Founder discount' },   // $47 → $35.25
+  'LAUNCH50': { discount: 0.50, description: '50% off — Launch special' },  // $47 → $23.50
+  'NURSE20': { discount: 0.20, description: '20% off — Nursing student discount' },  // $47 → $37.60
+  'BUNDLE10': { discount: 0.15, description: '15% off — Bundle upgrade' },  // $67 → $56.95
+  'NCLEX2026': { discount: 0.30, description: '30% off — NCLEX season' },  // $47 → $32.90
+  'RETURN10': { discount: 0.10, description: '10% off — Welcome back' }  // Return customer
 };
 
 app.post('/api/validate-promo', express.json(), (req, res) => {

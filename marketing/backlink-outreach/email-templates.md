@@ -51,7 +51,7 @@ Hi {{name}},
 
 I've been following {{blog_name}} for a while — your post on {{specific_post_topic}} was incredibly helpful for our content team.
 
-I wanted to share that we just launched a free NCLEX study guide library (60 guides and counting) at Obioma Care. We built these specifically for the Next Generation NCLEX, focusing on clinical judgment rather than rote memorization.
+I wanted to share that we just launched a free NCLEX study guide library (67 guides and counting) at Obioma Care. We built these specifically for the Next Generation NCLEX, focusing on clinical judgment rather than rote memorization.
 
 **A few guides that might resonate with your audience:**
 - "5 Steps to Decode Any NGN Case Study" — breaks down the NCSBN framework
