@@ -66,22 +66,35 @@
 
 ---
 
+## ✅ Completed (2026-08-09)
+
+### CI/CD
+- [x] Added GitHub Action secrets (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`)
+
+### SEO
+- [x] Submitted sitemap to Google Search Console (`https://obiomacare.com/sitemap.xml`)
+
+---
+
 ## 🔄 In Progress
 
-- [ ] Add GitHub Action secrets: `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+- [ ] Real Stripe test purchase with `TEST99` promo code
 
 ---
 
 ## 📋 Next Up
 
-### High Priority (Requires Manual Action)
-- [ ] **Submit sitemap to Google Search Console** — Go to https://search.google.com/search-console, add property `obiomacare.com`, submit sitemap URL: `https://obiomacare.com/sitemap.xml`
-- [ ] **Real Stripe test purchase** — Use code `TEST99` at checkout, pay ~$0.94, verify email arrives with download link, confirm Firestore lead updated
-- [ ] **Verify GA4/FB Pixel receive real purchase events** — Check GA4 Real-Time reports and FB Events Manager after test purchase
+### High Priority
+- [ ] **Real Stripe test purchase** — Use code `TEST99` at checkout, pay ~$0.94, verify:
+  - [ ] Email arrives with download link
+  - [ ] Download page works
+  - [ ] Firestore lead updated with `purchased: true`, `tier`, `stripeCustomerId`
+  - [ ] GA4 receives `purchase` event
+  - [ ] FB Pixel receives `Purchase` event
 
 ### Medium Priority
-- [ ] Add more promo codes (beyond TEST99)
-- [ ] Set up email nurture sequence monitoring
+- [ ] Test email nurture cron (`/api/cron/nurture`) with `CRON_SECRET`
+- [ ] Add more promo codes (LAUNCH50, NURSE20, etc.)
 - [ ] Create Batch 5 content (see content-roadmap.md)
 
 ### Low Priority
