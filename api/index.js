@@ -97,6 +97,57 @@ async function logEvent(eventType, data) {
   }
 }
 
+// ==================== DELIVERY TOKENS (Firestore) ====================
+// Store download tokens in Firestore for serverless persistence
+async function saveDeliveryToken(token, data) {
+  if (!db) {
+    deliveryTokens.set(token, data);
+    return;
+  }
+  try {
+    await db.collection('delivery_tokens').doc(token).set({
+      ...data,
+      createdAt: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error('Failed to save delivery token:', err.message);
+    deliveryTokens.set(token, data); // fallback
+  }
+}
+
+async function getDeliveryToken(token) {
+  if (!db) return deliveryTokens.get(token) || null;
+  try {
+    const doc = await db.collection('delivery_tokens').doc(token).get();
+    if (!doc.exists) return null;
+    const data = doc.data();
+    return {
+      tier: data.tier,
+      email: data.email,
+      createdAt: new Date(data.createdAt),
+      downloads: data.downloads || 0
+    };
+  } catch (err) {
+    console.error('Failed to get delivery token:', err.message);
+    return deliveryTokens.get(token) || null;
+  }
+}
+
+async function incrementDownloadCount(token) {
+  if (!db) {
+    const d = deliveryTokens.get(token);
+    if (d) d.downloads++;
+    return;
+  }
+  try {
+    await db.collection('delivery_tokens').doc(token).update({
+      downloads: require('firebase-admin').firestore.FieldValue.increment(1)
+    });
+  } catch (err) {
+    console.error('Failed to increment download count:', err.message);
+  }
+}
+
 // ==================== PROMO CODES ====================
 // Test promo codes for end-to-end testing
 const PROMO_CODES = {
@@ -499,7 +550,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     }
     
     const downloadToken = crypto.randomUUID();
-    deliveryTokens.set(downloadToken, {
+    await saveDeliveryToken(downloadToken, {
       tier,
       email,
       createdAt: new Date(),
@@ -514,8 +565,8 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
           subject: `Your ${product.name} is ready!`,
           html: emailTemplate({
             title: `Your ${product.name}`,
-            heroImage: 'https://obiomacare.com/assets/shareable/nclex-priority-cheat-sheet.png',
-            heroAlt: 'NCLEX Priority Cheat Sheet',
+            heroImage: 'https://obiomacare.com/assets/logo-email.png',
+            heroAlt: 'Obioma Care',
             content: `
               <p style="margin-top:0;font-size:20px;font-weight:600;color:${BRAND_COLORS.navy};">Your ${product.name} is ready!</p>
               <p>Thanks for your purchase. I'm excited for you to start training your clinical judgment.</p>
@@ -1074,7 +1125,7 @@ app.post('/api/lead-magnet', express.json(), async (req, res) => {
 // ==================== DOWNLOAD ====================
 app.get('/download/:token', async (req, res) => {
   const token = req.params.token;
-  const delivery = deliveryTokens.get(token);
+  const delivery = await getDeliveryToken(token);
   
   if (!delivery) {
     return res.status(404).send('Invalid or expired download link');
@@ -1086,7 +1137,7 @@ app.get('/download/:token', async (req, res) => {
     return res.status(410).send('Download link expired');
   }
   
-  delivery.downloads++;
+  await incrementDownloadCount(token);
   const product = PRODUCTS[delivery.tier];
   const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
   
