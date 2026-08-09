@@ -1394,10 +1394,20 @@ async function pollImapForTutoring() {
 }
 
 // ==================== IMAP CRON (Separate Endpoint) ====================
-app.get('/api/cron/imap', express.json(), async (req, res) => {
+// Accepts auth via Header OR query parameter (for cron-job.org compatibility)
+function verifyCronAuth(req) {
   const authHeader = req.headers.authorization;
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  const querySecret = req.query.cron_secret;
+  
+  if (!CRON_SECRET) return true; // No auth required if secret not set
+  if (authHeader === `Bearer ${CRON_SECRET}`) return true;
+  if (querySecret === CRON_SECRET) return true;
+  return false;
+}
+
+app.get('/api/cron/imap', express.json(), async (req, res) => {
+  if (!verifyCronAuth(req)) {
+    return res.status(401).json({ error: 'Unauthorized. Pass cron_secret as query param or Authorization header.' });
   }
   
   console.log('🔄 Running IMAP poll...');
@@ -1425,9 +1435,8 @@ app.get('/api/cron/imap', express.json(), async (req, res) => {
 });
 
 app.post('/api/cron/imap', express.json(), async (req, res) => {
-  const authHeader = req.headers.authorization;
-  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  if (!verifyCronAuth(req)) {
+    return res.status(401).json({ error: 'Unauthorized. Pass cron_secret as query param or Authorization header.' });
   }
   
   console.log('🔄 Running IMAP poll...');
