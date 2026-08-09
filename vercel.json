@@ -1,90 +1,212 @@
 {
   "version": 2,
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.js" },
-    { "src": "/auth/(.*)", "dest": "/api/index.js" },
-    { "src": "/download/(.*)", "dest": "/api/index.js" },
-    { "src": "/success", "dest": "/api/index.js" },
-    { "src": "/tutor/(.*)", "dest": "/api/index.js" },
-    { "src": "/stats", "dest": "/api/index.js" },
-    { "src": "/admin/(.*)", "dest": "/api/index.js" },
-    { "src": "/plans/(.*)", "dest": "/api/index.js" },
-    { "src": "/export", "dest": "/api/index.js" },
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/free-nclex-checklist", "dest": "/free-nclex-checklist.html" },
-    { "src": "/neuro-cheat-sheet", "dest": "/neuro-cheat-sheet.html" },
-    { "src": "/privacy", "dest": "/privacy.html" },
-    { "src": "/terms", "dest": "/terms.html" },
-    { "src": "/404", "dest": "/404.html" },
-    { "src": "/content/$", "dest": "/content/index.html" },
-    { "src": "/content/(.*)\\.html", "dest": "/content/$1.html" },
-    { "src": "/content/(.*)", "dest": "/content/$1.html" },
-    { "src": "/downloads/(.*)", "dest": "/downloads/$1" },
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/images/(.*)", "dest": "/images/$1" },
-    { "src": "/compare/(.*)", "dest": "/compare/$1.html" },
-    { "src": "/free-framework$", "dest": "/free-framework/index.html" },
-    { "src": "/free-framework/(.*)", "dest": "/free-framework/$1" },
-    { "src": "/products/(.*)", "dest": "/products/$1" },
-    { "src": "/quiz/(.*)", "dest": "/quiz/$1" },
-    { "src": "/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "/favicon.svg", "dest": "/favicon.svg" },
-    { "src": "/obioma-seo.png", "dest": "/obioma-seo.png" },
-    { "src": "/obioma-logo.svg", "dest": "/obioma-logo.svg" },
-    { "src": "/apple-touch-icon.png", "dest": "/apple-touch-icon.png" },
-    { "src": "/icon-192.png", "dest": "/icon-192.png" },
-    { "src": "/icon-512.png", "dest": "/icon-512.png" },
-    { "src": "/robots.txt", "dest": "/robots.txt" },
-    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
-    { "src": "/(.*)\\.html", "dest": "/$1.html" },
-    { "src": "/(.*)", "dest": "/404.html", "status": 404 }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/auth/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/download/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/success",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/tutor/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/stats",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/plans/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/export",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/free-nclex-checklist",
+      "dest": "/free-nclex-checklist.html"
+    },
+    {
+      "src": "/neuro-cheat-sheet",
+      "dest": "/neuro-cheat-sheet.html"
+    },
+    {
+      "src": "/privacy",
+      "dest": "/privacy.html"
+    },
+    {
+      "src": "/terms",
+      "dest": "/terms.html"
+    },
+    {
+      "src": "/404",
+      "dest": "/404.html"
+    },
+    {
+      "src": "/content/$",
+      "dest": "/content/index.html"
+    },
+    {
+      "src": "/content/(.*)\\.html",
+      "dest": "/content/$1.html"
+    },
+    {
+      "src": "/content/(.*)",
+      "dest": "/content/$1.html"
+    },
+    {
+      "src": "/downloads/(.*)",
+      "dest": "/downloads/$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/compare/(.*)",
+      "dest": "/compare/$1.html"
+    },
+    {
+      "src": "/free-framework$",
+      "dest": "/free-framework/index.html"
+    },
+    {
+      "src": "/free-framework/(.*)",
+      "dest": "/free-framework/$1"
+    },
+    {
+      "src": "/products/(.*)",
+      "dest": "/products/$1"
+    },
+    {
+      "src": "/quiz/(.*)",
+      "dest": "/quiz/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
+    },
+    {
+      "src": "/obioma-seo.png",
+      "dest": "/obioma-seo.png"
+    },
+    {
+      "src": "/obioma-logo.svg",
+      "dest": "/obioma-logo.svg"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "dest": "/apple-touch-icon.png"
+    },
+    {
+      "src": "/icon-192.png",
+      "dest": "/icon-192.png"
+    },
+    {
+      "src": "/icon-512.png",
+      "dest": "/icon-512.png"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/(.*)\\.html",
+      "dest": "/$1.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/404.html",
+      "status": 404
+    }
   ],
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "api.obiomacare.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "api.obiomacare.com"
+        }
+      ],
       "destination": "https://obiomacare.com/:path*",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "app.obiomacare.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "app.obiomacare.com"
+        }
+      ],
       "destination": "https://obiomacare.com/:path*",
       "permanent": true
     },
     {
       "source": "/content/child-struggles-math.html",
-      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
       "source": "/content/mastery-based-learning.html",
-      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
       "source": "/content/mastery-vs-grade-levels.html",
-      "destination": "/content/nclex-clinical-judgment-5-steps.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
       "source": "/content/prerequisite-skills.html",
-      "destination": "/content/nclex-priority-abcde-method.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
       "permanent": true
     },
     {
       "source": "/content/learning-path-apps.html",
-      "destination": "/content/nclex-2-week-study-plan-complete.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
       "source": "/content/personalized-learning-path-guide.html",
-      "destination": "/content/nclex-30-day-study-plan.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
       "source": "/content/homeschool-curriculum-planner-comparison.html",
-      "destination": "/content/nclex-delegation-assignment-guide.html",
+      "destination": "/content/nclex-leadership-management.html",
       "permanent": true
     },
     {
@@ -119,7 +241,7 @@
     },
     {
       "source": "/content/nclex-30-day-study-plan.html",
-      "destination": "/content/nclex-2-week-study-plan-complete.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
@@ -164,7 +286,7 @@
     },
     {
       "source": "/content/nclex-prioritization-strategy.html",
-      "destination": "/content/nclex-abcde-prioritization-method.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
       "permanent": true
     },
     {
@@ -176,25 +298,144 @@
       "source": "/content/sata-questions-strategy.html",
       "destination": "/content/nclex-sata-questions-strategy.html",
       "permanent": true
+    },
+    {
+      "source": "/content/nclex-sepsis-recognition.html",
+      "destination": "/content/nclex-antibiotics-infectious-diseases.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-clinical-judgment-guide.html",
+      "destination": "/content/nclex-bow-tie-items.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-ngn-case-studies.html",
+      "destination": "/content/nclex-bow-tie-items.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-renal-urinary-system.html",
+      "destination": "/content/nclex-renal-disorders.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-pediatric-congenital-disorders.html",
+      "destination": "/content/nclex-pediatric-cardiac-congenital.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-oncology-cancer-care.html",
+      "destination": "/content/nclex-oncology-nursing.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-maternity-newborn-care.html",
+      "destination": "/content/nclex-maternity-study-guide.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-dementia-alzheimers.html",
+      "destination": "/content/nclex-neurological-degenerative-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-gastrointestinal-disorders.html",
+      "destination": "/content/nclex-gi-disorders.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-nutrition-diet-therapy.html",
+      "destination": "/content/nclex-nutrition-therapeutic-diets.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-alzheimers-dementia.html",
+      "destination": "/content/nclex-neurological-degenerative-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-head-injuries-increased-icp.html",
+      "destination": "/content/nclex-neurological-disorders.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-medications-pharmacology.html",
+      "destination": "/content/nclex-high-alert-medications.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-safety-infection-control.html",
+      "destination": "/content/nclex-infection-control-precautions.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-legal-ethical-principles.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-quality-improvement-safety.html",
+      "destination": "/content/nclex-leadership-management.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-vital-signs-interpretation.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-prioritization-strategy-master.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-pharmacology-pain-management.html",
+      "destination": "/content/nclex-high-alert-medications.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-abcde-prioritization-method.html",
+      "destination": "/content/nclex-fundamentals-deep-dive.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-sata-questions-strategy.html",
+      "destination": "/content/nclex-bow-tie-items.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-2-week-study-plan-complete.html",
+      "destination": "/content/",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/downloads/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ],
