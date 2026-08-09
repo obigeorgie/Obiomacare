@@ -582,6 +582,45 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
       } catch (err) {
         console.error('Delivery email failed:', err);
       }
+      
+      // Send Day 1 post-purchase email immediately
+      try {
+        // Get lead data for firstName
+        let leadFirstName = '';
+        if (db && email) {
+          try {
+            const leadDoc = await db.collection('leads').doc(email).get();
+            if (leadDoc.exists) {
+              leadFirstName = leadDoc.data().firstName || '';
+            }
+          } catch (e) {
+            // ignore
+          }
+        }
+        
+        const ppEmail1 = POST_PURCHASE_SEQUENCE[0];
+        await sendEmail({
+          from: FROM_EMAIL,
+          to: email,
+          subject: ppEmail1.subject,
+          html: ppEmail1.template({
+            firstName: leadFirstName,
+            email: email,
+            downloadUrl: `${baseUrl}/download/${downloadToken}`
+          }, baseUrl)
+        });
+        
+        // Mark as sent in Firestore
+        if (db && email) {
+          await updateLead(email, {
+            ppEmailsSent: ['pp_email_1'],
+            lastPpEmailSent: new Date().toISOString()
+          });
+        }
+        console.log(`✅ Sent post-purchase Day 1 email to ${email}`);
+      } catch (err) {
+        console.error('Post-purchase Day 1 email failed:', err);
+      }
     }
   }
 
@@ -940,6 +979,142 @@ async function sendNurtureEmails() {
   return { sent, errors, leadsTotal: allLeads.length };
 }
 
+const POST_PURCHASE_SEQUENCE = [
+  {
+    day: 1,
+    subject: 'Your system is ready — start with this scenario',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Your Clinical Judgment Mastery System',
+      heroImage: 'https://obiomacare.com/assets/logo-email.png',
+      heroAlt: 'Obioma Care',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hey ${lead.firstName || 'there'},</p>
+        <p>Your Clinical Judgment Mastery System is in your inbox. But don't open every file at once.</p>
+        <p><strong>Here's what I want you to do in the next 20 minutes:</strong></p>
+        <ol style="padding-left:20px;">
+          <li style="margin-bottom:8px;">Open the NGN Decision Framework PDF</li>
+          <li style="margin-bottom:8px;">Read the "Recognize Cues" section (pages 3-5)</li>
+          <li style="margin-bottom:8px;">Work through Scenario #1 WITHOUT looking at the answer</li>
+          <li style="margin-bottom:8px;">THEN read my thought process</li>
+        </ol>
+        <p>That's it. One scenario. Done right.</p>
+        <p>Most students binge the content like it's Netflix. Then they forget 80% of it. <strong>Don't be most students.</strong></p>
+        <p>The nurses who pass the NGN and thrive on the floor? They practice SLOW at first. One scenario. Full attention. Then they speed up.</p>
+        <p>Your download link is below.</p>
+        <p style="margin-bottom:0;"><strong>P.S.</strong> Hit reply after you do Scenario #1. Tell me: did my thought process feel different from textbook explanations? I read every reply.</p>
+      `,
+      ctaUrl: lead.downloadUrl || baseUrl,
+      ctaText: 'Download Complete System →'
+    })
+  },
+  {
+    day: 3,
+    subject: 'Most people quit here (don\'t)',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Most People Quit Here',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Most people quit here (don't)</p>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>Day 3 of studying a new system. This is where most people hit a wall.</p>
+        <p>They do 3-4 scenarios, feel good, then skip a day. Then two days. Then they forget the framework entirely and go back to cramming flashcards.</p>
+        <p><strong>Here's the truth:</strong> Clinical judgment is a MUSCLE. You can't build it in one session.</p>
+        <p>If you're stuck or frustrated, it's not because you're not smart enough. It's because you're trying to think like a nurse for the first time, and your brain is resisting.</p>
+        <p>That's normal. Push through.</p>
+        <p><strong>If you haven't done Scenario #5 yet, do it today.</strong> It's the hardest one in the set, and it's where the breakthrough happens.</p>
+        <p>If you HAVE been consistent — reply and tell me. I want to hear it.</p>
+        <p style="margin-bottom:0;"><strong>P.S.</strong> Stuck on a specific scenario? Reply with the question. I'll walk you through my thinking.</p>
+      `
+    })
+  },
+  {
+    day: 7,
+    subject: 'One week in — how\'s it going?',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'One Week In — How\'s It Going?',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">One week in — how's it going?</p>
+        <p>Hey ${lead.firstName || 'there'},</p>
+        <p>It's been a week since you got the Clinical Judgment Mastery System.</p>
+        <p><strong>Quick check-in — no pressure, just real talk:</strong></p>
+        <p><strong>Have you done at least 5 scenarios?</strong></p>
+        <p>Yes → You're on track. Keep going.<br>
+        No → That's okay. Life happens. But block 30 minutes today. One scenario. Start there.</p>
+        <p><strong>What I've noticed from students who see the biggest improvement:</strong></p>
+        <p>They don't just read my answers. They talk through the scenario OUT LOUD before checking. Even if they feel silly. Even if they're wrong. The act of verbalizing the thinking is what rewires your brain.</p>
+        <p>Try it. Scenario #7 or #12. Talk through it like you're giving report to the charge nurse.</p>
+        <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0;">
+        <p><strong>If the system is helping you think through cases more clearly</strong>, I'd love a short reply telling me how. These go into the product (with your permission) to help other nursing students.</p>
+        <p><strong>If you're still struggling</strong> or want to go deeper, I open a few 1:1 tutoring slots each week. We walk through YOUR weak areas — not generic content. Reply "TUTORING" and I'll send you the details.</p>
+        <p style="margin-bottom:0;">Either way, you're further along than you were a week ago. That's what matters.</p>
+      `,
+      ctaUrl: `${baseUrl}/tutor`,
+      ctaText: 'Learn About 1:1 Tutoring →'
+    })
+  }
+];
+
+// ==================== POST-PURCHASE EMAIL LOGIC ====================
+
+function shouldSendPostPurchaseEmail(lead, sequenceDay) {
+  if (!lead.purchasedAt) return false;
+  const purchasedAt = new Date(lead.purchasedAt);
+  const now = new Date();
+  const daysSincePurchase = Math.floor((now - purchasedAt) / (1000 * 60 * 60 * 24));
+  
+  const sentKey = `pp_email_${sequenceDay}`;
+  if (lead.ppEmailsSent?.includes(sentKey)) return false;
+  
+  return daysSincePurchase >= sequenceDay;
+}
+
+async function sendPostPurchaseEmails() {
+  if (!emailTransporter) {
+    console.log('❌ Email not configured, skipping post-purchase');
+    return { sent: 0, errors: 0 };
+  }
+  
+  const baseUrl = 'https://obiomacare.com';
+  let sent = 0;
+  let errors = 0;
+  
+  const allLeads = await getLeads();
+  
+  for (const lead of allLeads) {
+    if (!lead.purchased) continue;
+    
+    for (const emailDef of POST_PURCHASE_SEQUENCE) {
+      if (!shouldSendPostPurchaseEmail(lead, emailDef.day)) continue;
+      
+      try {
+        await sendEmail({
+          from: FROM_EMAIL,
+          to: lead.email,
+          subject: emailDef.subject,
+          html: emailDef.template(lead, baseUrl)
+        });
+        
+        const updatedEmailsSent = [...(lead.ppEmailsSent || []), `pp_email_${emailDef.day}`];
+        await updateLead(lead.email, {
+          ppEmailsSent: updatedEmailsSent,
+          lastPpEmailSent: new Date().toISOString()
+        });
+        sent++;
+        
+        console.log(`✅ Sent post-purchase day ${emailDef.day} email to ${lead.email}`);
+        
+        if (sent >= 10) break;
+      } catch (err) {
+        console.error(`❌ Failed post-purchase email to ${lead.email}:`, err);
+        errors++;
+      }
+    }
+    
+    if (sent >= 10) break;
+  }
+  
+  return { sent, errors, leadsTotal: allLeads.length };
+}
+
 // ==================== NURTURE CRON ====================
 // Protected by CRON_SECRET for Vercel Cron Jobs
 const CRON_SECRET = process.env.CRON_SECRET;
@@ -951,19 +1126,22 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running nurture sequence...');
+  console.log('🔄 Running nurture + post-purchase sequences...');
   const startTime = Date.now();
-  const result = await sendNurtureEmails();
+  const nurtureResult = await sendNurtureEmails();
+  const ppResult = await sendPostPurchaseEmails();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'nurture',
-        status: result.errors > 0 ? 'partial' : 'success',
-        sent: result.sent,
-        errors: result.errors,
-        leadsTotal: result.leadsTotal,
+        job: 'nurture+post-purchase',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0) ? 'partial' : 'success',
+        nurtureSent: nurtureResult.sent,
+        nurtureErrors: nurtureResult.errors,
+        ppSent: ppResult.sent,
+        ppErrors: ppResult.errors,
+        leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
       });
@@ -972,7 +1150,11 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
     }
   }
   
-  res.json({ success: true, ...result });
+  res.json({ 
+    success: true, 
+    nurture: nurtureResult,
+    postPurchase: ppResult
+  });
 });
 
 app.post('/api/cron/nurture', express.json(), async (req, res) => {
@@ -982,19 +1164,22 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running nurture sequence...');
+  console.log('🔄 Running nurture + post-purchase sequences...');
   const startTime = Date.now();
-  const result = await sendNurtureEmails();
+  const nurtureResult = await sendNurtureEmails();
+  const ppResult = await sendPostPurchaseEmails();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'nurture',
-        status: result.errors > 0 ? 'partial' : 'success',
-        sent: result.sent,
-        errors: result.errors,
-        leadsTotal: result.leadsTotal,
+        job: 'nurture+post-purchase',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0) ? 'partial' : 'success',
+        nurtureSent: nurtureResult.sent,
+        nurtureErrors: nurtureResult.errors,
+        ppSent: ppResult.sent,
+        ppErrors: ppResult.errors,
+        leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
       });
@@ -1003,7 +1188,11 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
     }
   }
   
-  res.json({ success: true, ...result });
+  res.json({ 
+    success: true, 
+    nurture: nurtureResult,
+    postPurchase: ppResult
+  });
 });
 // ==================== NEWSLETTER ====================
 app.post('/api/newsletter', express.json(), async (req, res) => {

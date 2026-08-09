@@ -118,8 +118,58 @@
       "permanent": true
     },
     {
-      "source": "/content/30-day-nclex-study-plan.html",
-      "destination": "/content/nclex-30-day-study-plan.html",
+      "source": "/content/nclex-30-day-study-plan.html",
+      "destination": "/content/nclex-2-week-study-plan-complete.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-lab-values-cheat-sheet.html",
+      "destination": "/content/nclex-lab-values-memorization-guide.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-pharmacology-drug-classes.html",
+      "destination": "/content/nclex-high-alert-medications.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-pharmacology-mnemonics.html",
+      "destination": "/content/nclex-medication-suffixes.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/ngn-case-studies-examples.html",
+      "destination": "/content/nclex-bow-tie-items.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/pediatric-milestones-reference.html",
+      "destination": "/content/nclex-pediatrics-study-guide.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-delegation-assignment.html",
+      "destination": "/content/nclex-leadership-management.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-anxiety-management.html",
+      "destination": "/content/",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-clinical-judgment-framework.html",
+      "destination": "/content/nclex-bow-tie-items.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/nclex-prioritization-strategy.html",
+      "destination": "/content/nclex-abcde-prioritization-method.html",
+      "permanent": true
+    },
+    {
+      "source": "/content/what-is-next-generation-nclex.html",
+      "destination": "/content/",
       "permanent": true
     },
     {
