@@ -1126,21 +1126,24 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running nurture + post-purchase sequences...');
+  console.log('🔄 Running all email sequences...');
   const startTime = Date.now();
   const nurtureResult = await sendNurtureEmails();
   const ppResult = await sendPostPurchaseEmails();
+  const tfuResult = await sendTutoringFollowups();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'nurture+post-purchase',
-        status: (nurtureResult.errors > 0 || ppResult.errors > 0) ? 'partial' : 'success',
+        job: 'all-sequences',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0) ? 'partial' : 'success',
         nurtureSent: nurtureResult.sent,
         nurtureErrors: nurtureResult.errors,
         ppSent: ppResult.sent,
         ppErrors: ppResult.errors,
+        tfuSent: tfuResult.sent,
+        tfuErrors: tfuResult.errors,
         leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
@@ -1153,7 +1156,8 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
   res.json({ 
     success: true, 
     nurture: nurtureResult,
-    postPurchase: ppResult
+    postPurchase: ppResult,
+    tutoringFollowup: tfuResult
   });
 });
 
@@ -1164,21 +1168,24 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running nurture + post-purchase sequences...');
+  console.log('🔄 Running all email sequences...');
   const startTime = Date.now();
   const nurtureResult = await sendNurtureEmails();
   const ppResult = await sendPostPurchaseEmails();
+  const tfuResult = await sendTutoringFollowups();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'nurture+post-purchase',
-        status: (nurtureResult.errors > 0 || ppResult.errors > 0) ? 'partial' : 'success',
+        job: 'all-sequences',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0) ? 'partial' : 'success',
         nurtureSent: nurtureResult.sent,
         nurtureErrors: nurtureResult.errors,
         ppSent: ppResult.sent,
         ppErrors: ppResult.errors,
+        tfuSent: tfuResult.sent,
+        tfuErrors: tfuResult.errors,
         leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
@@ -1191,7 +1198,8 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
   res.json({ 
     success: true, 
     nurture: nurtureResult,
-    postPurchase: ppResult
+    postPurchase: ppResult,
+    tutoringFollowup: tfuResult
   });
 });
 // ==================== NEWSLETTER ====================
@@ -1325,6 +1333,230 @@ app.get('/api/admin/tutoring-leads', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch leads' });
   }
 });
+
+// ==================== EMAIL WEBHOOK (Hostinger Forwarding) ====================
+// Hostinger forwards emails to this endpoint using the AI agent token
+app.post('/api/email-webhook', express.json(), async (req, res) => {
+  const token = req.headers['x-hostinger-token'] || req.body.token;
+  const HOSTINGER_TOKEN = process.env.HOSTINGER_EMAIL_TOKEN;
+  
+  if (HOSTINGER_TOKEN && token !== HOSTINGER_TOKEN) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+  
+  const { from, subject, body, to } = req.body;
+  
+  if (!from || !body) {
+    return res.status(400).json({ error: 'from and body required' });
+  }
+  
+  // Extract email from "Name <email@example.com>" format
+  const emailMatch = from.match(/<([^>]+)>/);
+  const fromEmail = emailMatch ? emailMatch[1] : from;
+  const fromName = from.replace(/<[^>]+>/, '').trim();
+  
+  // Check for TUTORING keyword
+  const isTutoringInquiry = /TUTORING/i.test(body) || /TUTORING/i.test(subject);
+  
+  if (isTutoringInquiry) {
+    console.log(`🎓 Tutoring inquiry detected from ${fromEmail}`);
+    
+    try {
+      // Log to Firestore
+      if (db) {
+        await db.collection('tutoring_interests').add({
+          email: fromEmail.toLowerCase(),
+          name: fromName,
+          message: body.substring(0, 2000),
+          source: 'email-reply',
+          status: 'new',
+          createdAt: new Date().toISOString()
+        });
+      }
+      
+      // Send auto-reply to student
+      if (emailTransporter) {
+        await sendEmail({
+          from: FROM_EMAIL,
+          to: fromEmail,
+          subject: 'Re: 1:1 Tutoring — Nnamdi will be in touch within 24 hours',
+          html: emailTemplate({
+            title: 'Tutoring Request Received',
+            content: `
+              <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hi ${fromName || 'there'},</p>
+              <p>Thanks for your interest in 1:1 tutoring!</p>
+              <p>I'm Nnamdi, RN and founder of Obioma Care. I personally review every tutoring request and will get back to you within <strong>24 hours</strong> with:</p>
+              <ul style="padding-left:20px;">
+                <li style="margin-bottom:8px;">Available time slots</li>
+                <li style="margin-bottom:8px;">Pricing and package options</li>
+                <li style="margin-bottom:8px;">How we'll target YOUR weak areas</li>
+              </ul>
+              <p>In the meantime, keep working through the Clinical Judgment scenarios. The more specific you can be about what's tripping you up, the more productive our session will be.</p>
+              <p style="margin-bottom:0;">Talk soon,<br>— Nnamdi, RN</p>
+            `
+          })
+        });
+      }
+      
+      // Notify admin
+      if (emailTransporter) {
+        await sendEmail({
+          from: FROM_EMAIL,
+          to: 'admin@obiomacare.com',
+          subject: `🎓 AUTO: Tutoring inquiry from ${fromName || fromEmail}`,
+          html: `<p><strong>Tutoring inquiry detected via email reply!</strong></p>
+                 <p><strong>From:</strong> ${fromName} &lt;${fromEmail}&gt;</p>
+                 <p><strong>Subject:</strong> ${subject || 'N/A'}</p>
+                 <p><strong>Message snippet:</strong></p>
+                 <blockquote style="border-left:3px solid #ccc;padding-left:10px;color:#666;">${body.substring(0, 500).replace(/</g, '&lt;')}</blockquote>
+                 <p><a href="https://obiomacare.com/api/admin/tutoring-leads">View all leads →</a></p>`
+        });
+      }
+      
+      return res.json({ success: true, action: 'tutoring_inquiry_logged', autoReplySent: true });
+    } catch (err) {
+      console.error('Email webhook tutoring error:', err);
+      return res.status(500).json({ error: 'Processing failed' });
+    }
+  }
+  
+  // Not a tutoring inquiry — just log it
+  res.json({ success: true, action: 'logged', tutoringDetected: false });
+});
+
+// ==================== TUTORING FOLLOW-UP SEQUENCE ====================
+const TUTORING_FOLLOWUP_SEQUENCE = [
+  {
+    day: 1,
+    subject: 'Quick question about your tutoring request',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Your Tutoring Request',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hey ${lead.name || 'there'},</p>
+        <p>I got your tutoring request — thanks for reaching out!</p>
+        <p>Before we schedule, I want to make sure our time together is as productive as possible.</p>
+        <p><strong>Quick question: What's your biggest struggle right now?</strong></p>
+        <p>Is it:</p>
+        <ul style="padding-left:20px;">
+          <li style="margin-bottom:8px;">NGN scenario questions (CJMM framework)?</li>
+          <li style="margin-bottom:8px;">Prioritization (who do you see first?)</li>
+          <li style="margin-bottom:8px;">Pharmacology (which med, what to monitor)?</li>
+          <li style="margin-bottom:8px;">Lab values (what's urgent, what's not)?</li>
+          <li style="margin-bottom:8px;">Something else?</li>
+        </ul>
+        <p>Hit reply and let me know. I'll tailor our session exactly to that.</p>
+        <p style="margin-bottom:0;">— Nnamdi, RN</p>
+      `
+    })
+  },
+  {
+    day: 3,
+    subject: 'Still thinking about tutoring?',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Tutoring Slots Filling Up',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hey ${lead.name || 'there'},</p>
+        <p>I wanted to check in — I haven't heard back about your tutoring request.</p>
+        <p>No pressure if you've decided to self-study. The Clinical Judgment Mastery System has everything you need if you put in the work.</p>
+        <p>But if you're still on the fence, here's what a typical 1:1 session looks like:</p>
+        <ul style="padding-left:20px;">
+          <li style="margin-bottom:8px;"><strong>Pre-session:</strong> You send me 2-3 topics you're struggling with</li>
+          <li style="margin-bottom:8px;"><strong>During session:</strong> We walk through real scenarios together — I ask questions, you think out loud, I redirect</li>
+          <li style="margin-bottom:8px;"><strong>Post-session:</strong> You get a personalized study plan for the next 2 weeks</li>
+        </ul>
+        <p>Sessions are 60 minutes, done over Zoom. I only take 5 students per week so I can give each one real attention.</p>
+        <p><strong>Current availability:</strong> 2 slots left this week.</p>
+        <p style="margin-bottom:0;">Reply if you want to grab one.</p>
+      `,
+      ctaUrl: `${baseUrl}/tutor`,
+      ctaText: 'View Tutoring Details →'
+    })
+  },
+  {
+    day: 7,
+    subject: 'Final follow-up: tutoring slots',
+    template: (lead, baseUrl) => emailTemplate({
+      title: 'Final Follow-Up',
+      content: `
+        <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hey ${lead.name || 'there'},</p>
+        <p>This is my last email about tutoring.</p>
+        <p>If you've decided to go it alone — respect. You've got the Clinical Judgment Mastery System. Use it. Trust the process.</p>
+        <p>If you still want help but timing isn't right, I understand. Nursing school is chaos. Just reply "LATER" and I'll reach out when my next batch of slots opens (usually every 2 weeks).</p>
+        <p>Either way, you've already taken the hardest step: admitting you need a different approach to clinical judgment. That's more than most students do.</p>
+        <p style="margin-bottom:0;">Good luck on the NCLEX. You've got this.<br>— Nnamdi, RN</p>
+      `
+    })
+  }
+];
+
+function shouldSendTutoringFollowup(lead, sequenceDay) {
+  if (!lead.createdAt) return false;
+  const createdAt = new Date(lead.createdAt);
+  const now = new Date();
+  const daysSince = Math.floor((now - createdAt) / (1000 * 60 * 60 * 24));
+  
+  const sentKey = `tfu_email_${sequenceDay}`;
+  if (lead.tfuEmailsSent?.includes(sentKey)) return false;
+  
+  return daysSince >= sequenceDay;
+}
+
+async function sendTutoringFollowups() {
+  if (!emailTransporter) {
+    console.log('❌ Email not configured, skipping tutoring followups');
+    return { sent: 0, errors: 0 };
+  }
+  
+  const baseUrl = 'https://obiomacare.com';
+  let sent = 0;
+  let errors = 0;
+  
+  try {
+    let leads = [];
+    if (db) {
+      const snapshot = await db.collection('tutoring_interests')
+        .where('status', 'in', ['new', 'contacted'])
+        .get();
+      snapshot.forEach(doc => leads.push({ id: doc.id, ...doc.data() }));
+    }
+    
+    for (const lead of leads) {
+      for (const emailDef of TUTORING_FOLLOWUP_SEQUENCE) {
+        if (!shouldSendTutoringFollowup(lead, emailDef.day)) continue;
+        
+        try {
+          await sendEmail({
+            from: FROM_EMAIL,
+            to: lead.email,
+            subject: emailDef.subject,
+            html: emailDef.template(lead, baseUrl)
+          });
+          
+          const updatedEmailsSent = [...(lead.tfuEmailsSent || []), `tfu_email_${emailDef.day}`];
+          await db.collection('tutoring_interests').doc(lead.id).update({
+            tfuEmailsSent: updatedEmailsSent,
+            lastTfuEmailSent: new Date().toISOString()
+          });
+          sent++;
+          
+          console.log(`✅ Sent tutoring followup day ${emailDef.day} to ${lead.email}`);
+          
+          if (sent >= 10) break;
+        } catch (err) {
+          console.error(`❌ Failed tutoring followup to ${lead.email}:`, err);
+          errors++;
+        }
+      }
+      
+      if (sent >= 10) break;
+    }
+    
+    return { sent, errors, leadsTotal: leads.length };
+  } catch (err) {
+    console.error('Tutoring followup error:', err);
+    return { sent, errors, leadsTotal: 0 };
+  }
+}
 
 // ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', express.json(), async (req, res) => {
