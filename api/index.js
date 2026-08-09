@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const Stripe = require('stripe');
 const nodemailer = require('nodemailer');
+const Imap = require('imap');
+const { simpleParser } = require('mailparser');
 const path = require('path');
 const crypto = require('crypto');
 
@@ -1126,24 +1128,29 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running all email sequences...');
+  console.log('🔄 Running all email sequences + IMAP poll...');
   const startTime = Date.now();
   const nurtureResult = await sendNurtureEmails();
   const ppResult = await sendPostPurchaseEmails();
   const tfuResult = await sendTutoringFollowups();
+  const imapResult = await pollImapForTutoring();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'all-sequences',
-        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0) ? 'partial' : 'success',
+        job: 'all-sequences+imap',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0 || imapResult.errors > 0) ? 'partial' : 'success',
         nurtureSent: nurtureResult.sent,
         nurtureErrors: nurtureResult.errors,
         ppSent: ppResult.sent,
         ppErrors: ppResult.errors,
         tfuSent: tfuResult.sent,
         tfuErrors: tfuResult.errors,
+        imapChecked: imapResult.checked,
+        imapFound: imapResult.found,
+        imapProcessed: imapResult.processed,
+        imapErrors: imapResult.errors,
         leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
@@ -1157,7 +1164,8 @@ app.get('/api/cron/nurture', express.json(), async (req, res) => {
     success: true, 
     nurture: nurtureResult,
     postPurchase: ppResult,
-    tutoringFollowup: tfuResult
+    tutoringFollowup: tfuResult,
+    imap: imapResult
   });
 });
 
@@ -1168,24 +1176,29 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
-  console.log('🔄 Running all email sequences...');
+  console.log('🔄 Running all email sequences + IMAP poll...');
   const startTime = Date.now();
   const nurtureResult = await sendNurtureEmails();
   const ppResult = await sendPostPurchaseEmails();
   const tfuResult = await sendTutoringFollowups();
+  const imapResult = await pollImapForTutoring();
   
   // Log to Firestore
   if (db) {
     try {
       await db.collection('automation_logs').doc(`nurture_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
-        job: 'all-sequences',
-        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0) ? 'partial' : 'success',
+        job: 'all-sequences+imap',
+        status: (nurtureResult.errors > 0 || ppResult.errors > 0 || tfuResult.errors > 0 || imapResult.errors > 0) ? 'partial' : 'success',
         nurtureSent: nurtureResult.sent,
         nurtureErrors: nurtureResult.errors,
         ppSent: ppResult.sent,
         ppErrors: ppResult.errors,
         tfuSent: tfuResult.sent,
         tfuErrors: tfuResult.errors,
+        imapChecked: imapResult.checked,
+        imapFound: imapResult.found,
+        imapProcessed: imapResult.processed,
+        imapErrors: imapResult.errors,
         leadsTotal: nurtureResult.leadsTotal,
         durationMs: Date.now() - startTime,
         timestamp: new Date().toISOString()
@@ -1199,9 +1212,248 @@ app.post('/api/cron/nurture', express.json(), async (req, res) => {
     success: true, 
     nurture: nurtureResult,
     postPurchase: ppResult,
-    tutoringFollowup: tfuResult
+    tutoringFollowup: tfuResult,
+    imap: imapResult
   });
 });
+
+// ==================== IMAP EMAIL POLLING (TUTORING Detection) ====================
+// Polls Hostinger IMAP every 10 minutes for emails with TUTORING keyword
+
+const IMAP_CONFIG = {
+  user: process.env.IMAP_USER || 'admin@obiomacare.com',
+  password: process.env.IMAP_PASS,
+  host: process.env.IMAP_HOST || 'imap.hostinger.com',
+  port: parseInt(process.env.IMAP_PORT || '993'),
+  tls: true,
+  tlsOptions: { rejectUnauthorized: false }
+};
+
+async function pollImapForTutoring() {
+  if (!IMAP_CONFIG.password) {
+    console.log('⚠️ IMAP not configured (set IMAP_PASS env var)');
+    return { checked: 0, found: 0, processed: 0, errors: 0 };
+  }
+  
+  return new Promise((resolve) => {
+    const imap = new Imap(IMAP_CONFIG);
+    let results = { checked: 0, found: 0, processed: 0, errors: 0 };
+    
+    imap.once('ready', () => {
+      imap.openBox('INBOX', false, (err, box) => {
+        if (err) {
+          console.error('IMAP openBox error:', err.message);
+          results.errors++;
+          imap.end();
+          return resolve(results);
+        }
+        
+        // Search for UNSEEN emails
+        imap.search(['UNSEEN'], (err, uids) => {
+          if (err) {
+            console.error('IMAP search error:', err.message);
+            results.errors++;
+            imap.end();
+            return resolve(results);
+          }
+          
+          if (!uids || uids.length === 0) {
+            console.log('📭 IMAP: No unread emails');
+            imap.end();
+            return resolve(results);
+          }
+          
+          console.log(`📧 IMAP: ${uids.length} unread email(s)`);
+          results.checked = uids.length;
+          
+          const fetch = imap.fetch(uids, { bodies: '', markSeen: true });
+          let pending = 0;
+          
+          fetch.on('message', (msg, seqno) => {
+            pending++;
+            let body = '';
+            
+            msg.on('body', (stream) => {
+              stream.on('data', (chunk) => { body += chunk.toString('utf8'); });
+            });
+            
+            msg.once('end', async () => {
+              try {
+                const parsed = await simpleParser(body);
+                const subject = parsed.subject || '';
+                const text = parsed.text || '';
+                const from = parsed.from?.text || '';
+                const to = parsed.to?.text || '';
+                
+                const isTutoring = /TUTORING/i.test(subject) || /TUTORING/i.test(text);
+                
+                if (isTutoring) {
+                  console.log(`🎓 IMAP: TUTORING detected from ${from}`);
+                  results.found++;
+                  
+                  // Call our own webhook handler internally
+                  try {
+                    const emailMatch = from.match(/<([^>]+)>/);
+                    const fromEmail = emailMatch ? emailMatch[1] : from;
+                    const fromName = from.replace(/<[^>]+>/, '').trim();
+                    
+                    // Log to Firestore
+                    if (db) {
+                      await db.collection('tutoring_interests').add({
+                        email: fromEmail.toLowerCase(),
+                        name: fromName,
+                        message: text.substring(0, 2000),
+                        subject: subject,
+                        source: 'imap-poll',
+                        status: 'new',
+                        createdAt: new Date().toISOString()
+                      });
+                    }
+                    
+                    // Send auto-reply
+                    if (emailTransporter) {
+                      await sendEmail({
+                        from: FROM_EMAIL,
+                        to: fromEmail,
+                        subject: 'Re: 1:1 Tutoring — Nnamdi will be in touch within 24 hours',
+                        html: emailTemplate({
+                          title: 'Tutoring Request Received',
+                          content: `
+                            <p style="margin-top:0;font-size:18px;font-weight:600;color:${BRAND_COLORS.navy};">Hi ${fromName || 'there'},</p>
+                            <p>Thanks for your interest in 1:1 tutoring!</p>
+                            <p>I'm Nnamdi, RN and founder of Obioma Care. I personally review every tutoring request and will get back to you within <strong>24 hours</strong> with:</p>
+                            <ul style="padding-left:20px;">
+                              <li style="margin-bottom:8px;">Available time slots</li>
+                              <li style="margin-bottom:8px;">Pricing and package options</li>
+                              <li style="margin-bottom:8px;">How we'll target YOUR weak areas</li>
+                            </ul>
+                            <p>In the meantime, keep working through the Clinical Judgment scenarios. The more specific you can be about what's tripping you up, the more productive our session will be.</p>
+                            <p style="margin-bottom:0;">Talk soon,<br>— Nnamdi, RN</p>
+                          `
+                        })
+                      });
+                    }
+                    
+                    // Notify admin
+                    if (emailTransporter) {
+                      await sendEmail({
+                        from: FROM_EMAIL,
+                        to: 'admin@obiomacare.com',
+                        subject: `🎓 IMAP: Tutoring inquiry from ${fromName || fromEmail}`,
+                        html: `<p><strong>Tutoring inquiry detected via IMAP!</strong></p>
+                               <p><strong>From:</strong> ${fromName} &lt;${fromEmail}&gt;</p>
+                               <p><strong>Subject:</strong> ${subject}</p>
+                               <p><strong>Message snippet:</strong></p>
+                               <blockquote style="border-left:3px solid #ccc;padding-left:10px;color:#666;">${text.substring(0, 500).replace(/</g, '&lt;')}</blockquote>`
+                      });
+                    }
+                    
+                    results.processed++;
+                  } catch (processErr) {
+                    console.error('IMAP processing error:', processErr.message);
+                    results.errors++;
+                  }
+                }
+              } catch (parseErr) {
+                console.error('IMAP parse error:', parseErr.message);
+              }
+              
+              pending--;
+              if (pending === 0) {
+                imap.end();
+                resolve(results);
+              }
+            });
+          });
+          
+          fetch.once('error', (err) => {
+            console.error('IMAP fetch error:', err.message);
+            results.errors++;
+            imap.end();
+            resolve(results);
+          });
+          
+          fetch.once('end', () => {
+            if (pending === 0) {
+              imap.end();
+              resolve(results);
+            }
+          });
+        });
+      });
+    });
+    
+    imap.once('error', (err) => {
+      console.error('IMAP connection error:', err.message);
+      results.errors++;
+      resolve(results);
+    });
+    
+    imap.connect();
+  });
+}
+
+// ==================== IMAP CRON (Separate Endpoint) ====================
+app.get('/api/cron/imap', express.json(), async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
+  console.log('🔄 Running IMAP poll...');
+  const startTime = Date.now();
+  const result = await pollImapForTutoring();
+  
+  if (db) {
+    try {
+      await db.collection('automation_logs').doc(`imap_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
+        job: 'imap-poll',
+        status: result.errors > 0 ? 'partial' : 'success',
+        checked: result.checked,
+        found: result.found,
+        processed: result.processed,
+        errors: result.errors,
+        durationMs: Date.now() - startTime,
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      console.error('Failed to log IMAP run:', err.message);
+    }
+  }
+  
+  res.json({ success: true, ...result });
+});
+
+app.post('/api/cron/imap', express.json(), async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (CRON_SECRET && authHeader !== `Bearer ${CRON_SECRET}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
+  console.log('🔄 Running IMAP poll...');
+  const startTime = Date.now();
+  const result = await pollImapForTutoring();
+  
+  if (db) {
+    try {
+      await db.collection('automation_logs').doc(`imap_${new Date().toISOString().replace(/[:.]/g, '-')}`).set({
+        job: 'imap-poll',
+        status: result.errors > 0 ? 'partial' : 'success',
+        checked: result.checked,
+        found: result.found,
+        processed: result.processed,
+        errors: result.errors,
+        durationMs: Date.now() - startTime,
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      console.error('Failed to log IMAP run:', err.message);
+    }
+  }
+  
+  res.json({ success: true, ...result });
+});
+
 // ==================== NEWSLETTER ====================
 app.post('/api/newsletter', express.json(), async (req, res) => {
   const { email, utm } = req.body;
