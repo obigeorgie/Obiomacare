@@ -1339,12 +1339,12 @@ async function buyNow(tier) {
     if (window.ObiomaAnalytics) {
         window.ObiomaAnalytics.trackAddToCart(product);
     } else {
-        gtag && gtag('event', 'add_to_cart', { currency: 'USD', value: product.price, items: [{ item_id: product.id, item_name: product.name, price: product.price }] });
-        fbq && fbq('track', 'AddToCart', { content_ids: [product.id], content_type: 'product', value: product.price, currency: 'USD' });
+        if (typeof gtag !== 'undefined') gtag('event', 'add_to_cart', { currency: 'USD', value: product.price, items: [{ item_id: product.id, item_name: product.name, price: product.price }] });
+        if (typeof fbq !== 'undefined') fbq('track', 'AddToCart', { content_ids: [product.id], content_type: 'product', value: product.price, currency: 'USD' });
     }
     
-    gtag && gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
-    fbq && fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
+    if (typeof gtag !== 'undefined') gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
     
     try {
         const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier }) : { tier };
@@ -1596,8 +1596,8 @@ const pricingObserver = new IntersectionObserver((entries) => {
                 if (window.ObiomaAnalytics) {
                     window.ObiomaAnalytics.trackViewItem(p);
                 } else {
-                    gtag && gtag('event', 'view_item', { currency: 'USD', value: p.price, items: [{ item_id: p.id, item_name: p.name, price: p.price }] });
-                    fbq && fbq('track', 'ViewContent', { content_ids: [p.id], content_type: 'product', value: p.price, currency: 'USD' });
+                    if (typeof gtag !== 'undefined') gtag('event', 'view_item', { currency: 'USD', value: p.price, items: [{ item_id: p.id, item_name: p.name, price: p.price }] });
+                    if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_ids: [p.id], content_type: 'product', value: p.price, currency: 'USD' });
                 }
             });
             pricingObserver.disconnect();

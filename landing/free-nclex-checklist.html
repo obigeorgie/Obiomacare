@@ -122,8 +122,8 @@
 if (window.ObiomaAnalytics) {
     window.ObiomaAnalytics.trackViewItem({ id: 'nclex-checklist', name: 'NCLEX Study Checklist', price: 0 });
 } else {
-    gtag && gtag('event', 'view_item', { currency: 'USD', value: 0, items: [{ item_id: 'nclex-checklist', item_name: 'NCLEX Study Checklist', price: 0 }] });
-    fbq && fbq('track', 'ViewContent', { content_ids: ['nclex-checklist'], content_type: 'product', value: 0, currency: 'USD' });
+    if (typeof gtag !== 'undefined') gtag('event', 'view_item', { currency: 'USD', value: 0, items: [{ item_id: 'nclex-checklist', item_name: 'NCLEX Study Checklist', price: 0 }] });
+    if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_ids: ['nclex-checklist'], content_type: 'product', value: 0, currency: 'USD' });
 }
 
 document.getElementById('leadForm').addEventListener('submit', async function(e) {
@@ -146,7 +146,7 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
         if (response.ok) {
             document.getElementById('formCard').querySelector('form').style.display = 'none';
             document.getElementById('successMessage').style.display = 'block';
-            gtag && gtag('event', 'generate_lead', { method: 'nclex-checklist' });
+            if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { method: 'nclex-checklist' });
         } else {
             throw new Error('Failed');
         }
