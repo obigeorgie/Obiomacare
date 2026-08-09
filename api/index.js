@@ -1247,6 +1247,85 @@ app.post('/api/contact', express.json(), async (req, res) => {
   }
 });
 
+// ==================== TUTORING INTEREST ====================
+app.post('/api/tutoring-interest', express.json(), async (req, res) => {
+  const { email, name, message, source } = req.body;
+  if (!email || !email.includes('@')) {
+    return res.status(400).json({ error: 'Valid email required' });
+  }
+  
+  try {
+    // Log to Firestore
+    if (db) {
+      await db.collection('tutoring_interests').add({
+        email: email.toLowerCase(),
+        name: name || '',
+        message: message || '',
+        source: source || 'email-reply',
+        status: 'new',
+        createdAt: new Date().toISOString()
+      });
+    }
+    
+    // Send notification to admin
+    if (emailTransporter) {
+      await sendEmail({
+        from: FROM_EMAIL,
+        to: 'admin@obiomacare.com',
+        subject: `🎓 Tutoring Interest: ${name || email}`,
+        html: `<p><strong>New tutoring request!</strong></p>
+               <p><strong>From:</strong> ${name || 'Anonymous'} &lt;${email}&gt;</p>
+               <p><strong>Source:</strong> ${source || 'email-reply'}</p>
+               <p><strong>Message:</strong></p>
+               <p>${(message || 'No message').replace(/</g, '&lt;')}</p>
+               <p><a href="https://obiomacare.com/api/admin/tutoring-leads">View all leads →</a></p>`
+      });
+    }
+    
+    res.json({ success: true, message: 'Interest logged. Nnamdi will be in touch!' });
+  } catch (err) {
+    console.error('Tutoring interest error:', err);
+    res.status(500).json({ error: 'Failed to log interest' });
+  }
+});
+
+// ==================== ADMIN: TUTORING LEADS ====================
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+
+app.get('/api/admin/tutoring-leads', async (req, res) => {
+  const apiKey = req.headers['x-api-key'] || req.query.key;
+  if (ADMIN_API_KEY && apiKey !== ADMIN_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  
+  try {
+    let leads = [];
+    if (db) {
+      const snapshot = await db.collection('tutoring_interests')
+        .orderBy('createdAt', 'desc')
+        .limit(100)
+        .get();
+      snapshot.forEach(doc => leads.push({ id: doc.id, ...doc.data() }));
+    }
+    
+    res.json({
+      count: leads.length,
+      leads: leads.map(l => ({
+        id: l.id,
+        email: l.email,
+        name: l.name,
+        message: l.message,
+        source: l.source,
+        status: l.status,
+        createdAt: l.createdAt
+      }))
+    });
+  } catch (err) {
+    console.error('Admin tutoring leads error:', err);
+    res.status(500).json({ error: 'Failed to fetch leads' });
+  }
+});
+
 // ==================== LEAD MAGNET ====================
 app.post('/api/lead-magnet', express.json(), async (req, res) => {
   const { email, firstName, utm } = req.body;
