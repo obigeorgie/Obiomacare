@@ -1338,10 +1338,18 @@ app.get('/api/admin/tutoring-leads', async (req, res) => {
 // Hostinger forwards emails to this endpoint using the AI agent token
 app.post('/api/email-webhook', express.json(), async (req, res) => {
   const token = req.headers['x-hostinger-token'] || req.body.token;
+  const signature = req.headers['x-hostinger-signature'];
   const HOSTINGER_TOKEN = process.env.HOSTINGER_EMAIL_TOKEN;
+  const HOSTINGER_SECRET = process.env.HOSTINGER_WEBHOOK_SECRET;
   
-  if (HOSTINGER_TOKEN && token !== HOSTINGER_TOKEN) {
-    return res.status(401).json({ error: 'Invalid token' });
+  // Validate by token or signature
+  let valid = false;
+  if (HOSTINGER_TOKEN && token === HOSTINGER_TOKEN) valid = true;
+  if (HOSTINGER_SECRET && signature === HOSTINGER_SECRET) valid = true;
+  if (!HOSTINGER_TOKEN && !HOSTINGER_SECRET) valid = true; // No auth configured
+  
+  if (!valid) {
+    return res.status(401).json({ error: 'Invalid token or signature' });
   }
   
   const { from, subject, body, to } = req.body;
