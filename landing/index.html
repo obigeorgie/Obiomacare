@@ -1324,6 +1324,14 @@
             </div>
         </div>
         
+        <div class="promo-code-section" style="max-width: 400px; margin: 32px auto 0; text-align: center;">
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <input type="text" id="promoCode" placeholder="Enter promo code" style="flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--navy-800); color: var(--text-primary); font-size: 14px;" maxlength="20">
+                <button onclick="applyPromo()" class="btn btn-secondary" style="padding: 12px 20px; font-size: 14px;">Apply</button>
+            </div>
+            <p id="promoMessage" style="margin-top: 8px; font-size: 13px; min-height: 20px;"></p>
+        </div>
+        
         <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-muted);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
@@ -1334,6 +1342,7 @@
 <script>
 async function buyNow(tier) {
     const product = { id: tier, name: tier === 'core' ? 'Core System' : 'Complete Mastery', price: tier === 'core' ? 47 : 67 };
+    const promoCode = document.getElementById('promoCode').value.trim();
     
     // Track add_to_cart before checkout
     if (window.ObiomaAnalytics) {
@@ -1347,7 +1356,7 @@ async function buyNow(tier) {
     if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
     
     try {
-        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier }) : { tier };
+        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier, promoCode }) : { tier, promoCode };
         const res = await fetch('/api/create-checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1361,6 +1370,42 @@ async function buyNow(tier) {
         alert('Checkout failed. Please try again.');
     }
 }
+
+async function applyPromo() {
+    const code = document.getElementById('promoCode').value.trim().toUpperCase();
+    const msgEl = document.getElementById('promoMessage');
+    
+    if (!code) {
+        msgEl.textContent = 'Please enter a promo code.';
+        msgEl.style.color = 'var(--coral)';
+        return;
+    }
+    
+    try {
+        const res = await fetch('/api/validate-promo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code })
+        });
+        const data = await res.json();
+        
+        if (data.valid) {
+            msgEl.textContent = `✓ ${data.description}`;
+            msgEl.style.color = '#4ade80';
+        } else {
+            msgEl.textContent = '✗ ' + data.error;
+            msgEl.style.color = 'var(--coral)';
+        }
+    } catch (e) {
+        msgEl.textContent = 'Unable to validate code. You can still try it at checkout.';
+        msgEl.style.color = 'var(--text-muted)';
+    }
+}
+
+// Allow Enter key to apply promo code
+document.getElementById('promoCode').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') applyPromo();
+});
 </script>
 
 <!-- Blog Preview -->
