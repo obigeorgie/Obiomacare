@@ -30,7 +30,7 @@ I read every reply.
 — Nnamdi, RN
 Obioma Care
 
-P.S. If you want 30+ more scenarios + video walkthroughs of me thinking through real cases, the Complete System is here: [link]
+P.S. If you want to go deeper on how the NGN actually tests clinical judgment, I just published a full breakdown of the 6 cognitive skills: https://obiomacare.com/content/nclex-cjmm-explained.html
 
 ---
 
@@ -49,6 +49,10 @@ A BP of 148/92 in a post-op patient with a sudden headache? Page the doctor NOW.
 Same number. Completely different action.
 
 The difference is context. And context is what clinical judgment is built on.
+
+**Fresh resource:** I just put together a guide on interpreting vital signs in context — including respiratory patterns, orthostatic changes, and when "stable" isn't actually stable: https://obiomacare.com/content/nclex-vital-signs-interpretation.html
+
+And if you want the full picture on cardiac markers (troponin, BNP, CK-MB) and how timing changes everything: https://obiomacare.com/content/nclex-cardiac-enzymes-markers.html
 
 This is why I built the prioritization decision trees in the Complete System. They force you to ask the right questions before you act.
 
@@ -82,6 +86,10 @@ But here's what textbooks don't teach you: After I stabilize Room 4, I DON'T go 
 
 That's clinical judgment. That's what the NGN tests. That's what I teach.
 
+**New on the site:** Two deep dives on the NGN formats that trip students up most:
+- Matrix Grid Questions (partial credit — the trickiest format): https://obiomacare.com/content/nclex-matrix-grid-questions.html
+- CJMM Explained (all 6 cognitive skills with case studies): https://obiomacare.com/content/nclex-cjmm-explained.html
+
 Want the full framework? [Complete System →]
 
 — Nnamdi
@@ -110,6 +118,8 @@ The Complete System changes that. Here's what's inside:
 
 30-day guarantee. If it doesn't help you think through scenarios more clearly, I'll refund every penny.
 
+**Free resource drop:** Just published — the best electrolyte mnemonics I've collected over 15 years. SALT LOSS, MURDER, CATS... these actually stick: https://obiomacare.com/content/nclex-electrolytes-mnemonics.html
+
 — Nnamdi
 
 ---
@@ -130,6 +140,13 @@ The Clinical Judgment Mastery System is the thinking layer. It shows you HOW an 
 Use BOTH. Practice questions on UWorld. Learn the thinking framework here.
 
 [Get the Complete System →]
+
+**P.S.** — Been adding a ton of free study guides to the site. A few recent ones:
+- Therapeutic Drug Levels (digoxin, lithium, phenytoin, vancomycin): https://obiomacare.com/content/nclex-therapeutic-drug-levels.html
+- Safety & Fall Prevention (Morse Scale, restraint alternatives): https://obiomacare.com/content/nclex-safety-fall-prevention.html
+- Legal & Ethical Issues (HIPAA, consent, scope of practice): https://obiomacare.com/content/nclex-legal-ethical.html
+
+All free. All high-yield. Bookmark them.
 
 — Nnamdi
 
@@ -174,3 +191,5 @@ Either way, good luck on the NCLEX and your first year. You've got this.
 Obioma Care
 
 P.S. If you ever want to chat nursing, just reply. I read every email.
+
+P.P.S. All the free study guides are always available at https://obiomacare.com/content/ — no signup required.
