@@ -372,6 +372,88 @@ src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
       </div>
     </div>
 
+    <h2>🎯 NGN Unfolding Case Study: Acute Coronary Syndrome</h2>
+    <div class="case-study">
+      <div class="case-tabs">
+        <span class="case-tab active" onclick="showTab(this,'cphase1')">Phase 1: Triage</span>
+        <span class="case-tab" onclick="showTab(this,'cphase2')">Phase 2: Intervention</span>
+        <span class="case-tab" onclick="showTab(this,'cphase3')">Phase 3: Complication</span>
+      </div>
+
+      <div id="cphase1" class="case-phase active">
+        <h3>Phase 1: Recognize & Analyze Cues</h3>
+        <p>A 58-year-old male arrives in the ED with crushing substernal chest pain radiating to the left arm and jaw. He is diaphoretic and nauseated.</p>
+        <p><strong>Vital Signs:</strong> HR 102, BP 158/94, RR 24, SpO₂ 93% on RA</p>
+        <p><strong>12-Lead ECG:</strong> ST elevation in leads V1-V4</p>
+        <p><strong>Labs:</strong> Troponin I 0.8 ng/mL (rising), K⁺ 3.2, Mg²⁺ 1.4</p>
+        <p><strong>Which action should the nurse take FIRST?</strong></p>
+        <ol class="ngn-options" type="A">
+          <li>Administer morphine 2 mg IV for pain</li>
+          <li>Start nitroglycerin drip at 10 mcg/min</li>
+          <li>Give aspirin 325 mg chewable and establish IV access</li>
+          <li>Prepare the patient for immediate cardiac catheterization</li>
+        </ol>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: C — Aspirin 325 mg chewable + IV access.</strong></p>
+          <p>The MONA mnemonic is a <strong>memory aid, not a priority order</strong>. Aspirin is the ONLY intervention proven to reduce mortality in ACS — it must be given within minutes of arrival. Morphine and nitroglycerin relieve symptoms but don't save lives. Cardiac cath is critical but happens after stabilization. Always prioritize interventions that reduce mortality.</p>
+        </div>
+      </div>
+
+      <div id="cphase2" class="case-phase">
+        <h3>Phase 2: Prioritize Hypotheses & Take Action</h3>
+        <p>The patient receives aspirin, is started on a heparin infusion, and nitroglycerin 0.4 mg SL every 5 minutes × 3 doses. After the third dose:</p>
+        <p><strong>Vital Signs:</strong> HR 110, BP 88/52, RR 26, SpO₂ 91%</p>
+        <p>The patient says, "I feel dizzy and my vision is blurry."</p>
+        <p><strong>What is the nurse's priority action?</strong></p>
+        <ol class="ngn-options" type="A">
+          <li>Continue nitroglycerin — hypotension is an expected side effect</li>
+          <li>Stop nitroglycerin, place supine with legs elevated, notify provider</li>
+          <li>Increase the heparin infusion rate to improve perfusion</li>
+          <li>Administer a fluid bolus of 1 L normal saline rapidly</li>
+        </ol>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B — Stop nitroglycerin, supine with legs elevated, notify provider.</strong></p>
+          <p>Nitroglycerin causes venodilation → decreased preload → hypotension. With SBP &lt;90, nitroglycerin is contraindicated. The correct response: stop the offending drug (nitroglycerin), position for perfusion (Trendelenburg/supine with legs up), and notify the provider. Do NOT give more fluids without an order — the patient may have right-sided MI where fluids are harmful.</p>
+        </div>
+      </div>
+
+      <div id="cphase3" class="case-phase">
+        <h3>Phase 3: Evaluate Outcomes</h3>
+        <p>The patient goes to the cath lab and receives a drug-eluting stent to the LAD. Post-procedure orders include:</p>
+        <ul>
+          <li>Aspirin 81 mg daily (lifelong)</li>
+          <li>Clopidogrel 75 mg daily</li>
+          <li>Metoprolol 25 mg BID</li>
+          <li>Atorvastatin 80 mg daily</li>
+        </ul>
+        <p>On post-op day 2, the patient develops new-onset atrial fibrillation with HR 154. BP is 102/68.</p>
+        <p><strong>What is the priority nursing intervention?</strong></p>
+        <ol class="ngn-options" type="A">
+          <li>Administer metoprolol to control rate</li>
+          <li>Assess for hemodynamic instability and prepare for synchronized cardioversion</li>
+          <li>Start heparin infusion for anticoagulation</li>
+          <li>Call the rapid response team immediately</li>
+        </ol>
+        <button class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show')">Reveal Answer</button>
+        <div class="answer">
+          <p><strong>Correct: B — Assess for hemodynamic instability and prepare for synchronized cardioversion.</strong></p>
+          <p>New-onset A-fib with rapid ventricular response post-MI is a <strong>medical emergency</strong>. With BP 102/68, the patient is becoming unstable. The priority is assessing hemodynamic status (mental status, urine output, chest pain, signs of shock) and preparing for synchronized cardioversion if unstable. Rate control (metoprolol) is for stable patients only. Heparin is important for stroke prevention but not the immediate priority.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function showTab(tab, phaseId) {
+      var parent = tab.closest('.case-study');
+      parent.querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+      parent.querySelectorAll('.case-phase').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(phaseId).classList.add('active');
+    }
+    </script>
+
     <div class="cta">
       <h3>🫀 Master Cardiac Care</h3>
       <p>Get the Clinical Judgment Framework to understand how the NCLEX tests cardiac decision-making.</p>
