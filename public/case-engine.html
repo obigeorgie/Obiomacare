@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive NGN clinical judgment case studies for NCLEX prep. Practice Recognize Cues, Analyze, Prioritize, and Take Action with real-world scenarios.">
+    <title>NGN Clinical Judgment Cases — Interactive Practice | Obioma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1A365D;
+            --dark: #0A1628;
+            --obioma-red: #C53030;
+            --obioma-coral: #FF6B5B;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --bg-card: rgba(255,255,255,0.05);
+            --border: rgba(255,255,255,0.1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            padding: 40px 0 32px;
+            border-bottom: 2px solid var(--obioma-red);
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .logo { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+        .logo-icon { width: 36px; height: 36px; background: var(--obioma-red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .logo-text { font-size: 1.25rem; font-weight: 800; color: white; }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--obioma-red), var(--obioma-coral));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        .progress-text {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Scenario Panel */
+        .scenario-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .scenario-title { font-size: 1.5rem; font-weight: 700; color: white; }
+        .scenario-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-category { background: rgba(99,102,241,0.2); color: #818cf8; }
+        .badge-difficulty { background: rgba(245,158,11,0.2); color: #fbbf24; }
+        .badge-easy { background: rgba(16,185,129,0.2); color: #34d399; }
+        .badge-moderate { background: rgba(245,158,11,0.2); color: #fbbf24; }
+        .badge-hard { background: rgba(239,68,68,0.2); color: #f87171; }
+
+        .scenario-text {
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--obioma-red);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+        .vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .vital-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        .vital-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .vital-value { font-size: 1.1rem; font-weight: 700; color: white; margin-top: 4px; }
+        .vital-value.abnormal { color: var(--obioma-coral); }
+
+        .info-section { margin: 12px 0; }
+        .info-section h4 { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 6px; }
+        .info-section ul { list-style: none; padding: 0; }
+        .info-section li { font-size: 0.875rem; color: var(--text); padding: 3px 0; padding-left: 16px; position: relative; }
+        .info-section li::before { content: "•"; color: var(--obioma-coral); position: absolute; left: 0; }
+
+        /* CJMM Phase Indicator */
+        .phase-tracker {
+            display: flex;
+            gap: 8px;
+            margin: 24px 0;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .phase-dot {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .phase-dot.active {
+            background: rgba(197,48,48,0.2);
+            border-color: var(--obioma-red);
+            color: var(--obioma-coral);
+        }
+        .phase-dot.completed {
+            background: rgba(16,185,129,0.15);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        /* Question Area */
+        .question-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .phase-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: rgba(197,48,48,0.15);
+            color: var(--obioma-coral);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .step-counter { font-size: 0.875rem; color: var(--text-secondary); }
+        .question-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: white; }
+
+        /* Options */
+        .options-list { display: flex; flex-direction: column; gap: 10px; }
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover { border-color: var(--obioma-coral); background: rgba(255,255,255,0.05); }
+        .option.selected { border-color: var(--obioma-red); background: rgba(197,48,48,0.1); }
+        .option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); }
+        .option.incorrect { border-color: var(--obioma-red); background: rgba(197,48,48,0.1); }
+        .option input { margin-top: 3px; accent-color: var(--obioma-red); }
+        .option-text { font-size: 0.9375rem; flex: 1; }
+
+        /* Ordering */
+        .ordering-list { display: flex; flex-direction: column; gap: 10px; }
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            cursor: move;
+        }
+        .order-item.dragging { opacity: 0.5; }
+        .order-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--obioma-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .order-text { flex: 1; font-size: 0.9375rem; }
+        .drag-handle { color: var(--text-secondary); cursor: grab; }
+
+        /* Rationale */
+        .rationale {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            display: none;
+        }
+        .rationale.show { display: block; }
+        .rationale-correct { background: rgba(16,185,129,0.1); border: 1px solid var(--success); }
+        .rationale-incorrect { background: rgba(239,68,68,0.1); border: 1px solid var(--obioma-red); }
+        .rationale h4 { font-size: 0.875rem; margin-bottom: 8px; }
+        .rationale-correct h4 { color: var(--success); }
+        .rationale-incorrect h4 { color: var(--obioma-red); }
+        .rationale p { font-size: 0.875rem; color: var(--text-secondary); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: var(--obioma-red);
+            color: white;
+        }
+        .btn-primary:hover { background: #a02828; transform: translateY(-1px); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+        .btn-group { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+
+        /* Results */
+        .results-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid var(--obioma-red);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        .score-value { font-size: 2.5rem; font-weight: 800; color: white; }
+        .score-label { font-size: 0.875rem; color: var(--text-secondary); }
+        .results-breakdown { text-align: left; margin: 24px 0; }
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .breakdown-item:last-child { border-bottom: none; }
+        .breakdown-phase { font-size: 0.875rem; }
+        .breakdown-status { font-size: 0.8rem; font-weight: 600; }
+        .status-correct { color: var(--success); }
+        .status-incorrect { color: var(--obioma-red); }
+
+        /* Case Grid */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 24px 0;
+        }
+        .case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .case-card:hover {
+            border-color: var(--obioma-coral);
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.07);
+        }
+        .case-card h3 { font-size: 1.1rem; color: white; margin-bottom: 8px; }
+        .case-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 12px; }
+        .case-card .meta { display: flex; gap: 12px; font-size: 0.8rem; color: var(--text-secondary); }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        footer a { color: var(--obioma-coral); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            .scenario-title { font-size: 1.2rem; }
+            .vitals-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-tracker { gap: 6px; }
+            .phase-dot { padding: 6px 10px; font-size: 0.7rem; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Dynamic content loads here -->
+        <div class="container" style="padding: 80px 20px; text-align: center;">
+            <p style="color: var(--text-secondary);">Loading cases...</p>
+        </div>
+    </div>
+
+<script>
+// ==================== NGN CASE ENGINE ====================
+
+const STATE = {
+    cases: [],
+    currentCaseIndex: 0,
+    currentStepIndex: 0,
+    answers: {}, // caseId -> stepIndex -> { selected: [], correct: boolean }
+    mode: 'menu' // 'menu', 'case', 'results'
+};
+
+// Load cases from JSON
+async function loadCases() {
+    try {
+        const res = await fetch('/cases/seed-cases.json');
+        STATE.cases = await res.json();
+        renderMenu();
+    } catch (err) {
+        document.getElementById('app').innerHTML = `
+            <div class="container" style="padding: 80px 20px; text-align: center;">
+                <p style="color: var(--obioma-coral);">Failed to load cases. Please refresh.</p>
+            </div>`;
+    }
+}
+
+// ==================== RENDER MENU ====================
+function renderMenu() {
+    const completed = Object.keys(STATE.answers).length;
+    const html = `
+        <header>
+            <div class="container">
+                <a href="/" class="logo">
+                    <div class="logo-icon">🩺</div>
+                    <span class="logo-text">Obioma</span>
+                </a>
+                <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 8px;">NGN Clinical Judgment Cases</h1>
+                <p style="color: var(--text-secondary);">Practice the NCSBN Clinical Judgment Measurement Model with interactive cases</p>
+                <div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+                    <span style="padding: 6px 16px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.875rem;">${STATE.cases.length} cases available</span>
+                    <span style="padding: 6px 16px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.875rem;">${completed} completed</span>
+                </div>
+            </div>
+        </header>
+        <main class="container">
+            <div class="cases-grid">
+                ${STATE.cases.map((c, i) => {
+                    const done = STATE.answers[c.id];
+                    const score = done ? calculateCaseScore(c.id) : null;
+                    return `
+                    <div class="case-card" onclick="startCase(${i})">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                            <span class="badge badge-${c.difficulty}">${c.difficulty}</span>
+                            ${done ? `<span style="color: var(--success); font-size: 0.8rem; font-weight: 600;">✓ ${score}%</span>` : ''}
+                        </div>
+                        <h3>${c.title}</h3>
+                        <p>${c.scenario.presentation.substring(0, 100)}...</p>
+                        <div class="meta">
+                            <span>${c.steps.length} steps</span>
+                            <span>~${c.timeLimit} min</span>
+                            <span class="badge badge-category">${c.category}</span>
+                        </div>
+                    </div>`;
+                }).join('')}
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                <p>© 2026 Obioma Care — Clinical Judgment, Mastered</p>
+                <p><a href="/">Home</a> · <a href="/quiz/">All Quizzes</a> · <a href="/free-nclex-checklist">Free Checklist</a></p>
+            </div>
+        </footer>
+    `;
+    document.getElementById('app').innerHTML = html;
+}
+
+// ==================== START CASE ====================
+function startCase(index) {
+    STATE.currentCaseIndex = index;
+    STATE.currentStepIndex = 0;
+    STATE.mode = 'case';
+    if (!STATE.answers[STATE.cases[index].id]) {
+        STATE.answers[STATE.cases[index].id] = {};
+    }
+    renderCase();
+}
+
+function renderCase() {
+    const caseData = STATE.cases[STATE.currentCaseIndex];
+    const step = caseData.steps[STATE.currentStepIndex];
+    const totalSteps = caseData.steps.length;
+    const progress = ((STATE.currentStepIndex) / totalSteps) * 100;
+    const answered = STATE.answers[caseData.id][STATE.currentStepIndex];
+    const isAnswered = answered !== undefined;
+
+    // Build vitals HTML
+    const vitals = caseData.scenario.vitals;
+    const vitalsHtml = Object.entries(vitals).map(([k, v]) => {
+        const abnormal = /\d+/.test(v) && (
+            (k === 'bp' && parseInt(v) < 90) ||
+            (k === 'hr' && (parseInt(v) < 60 || parseInt(v) > 100)) ||
+            (k === 'rr' && (parseInt(v) < 12 || parseInt(v) > 20)) ||
+            (k === 'temp' && parseFloat(v) > 99.5) ||
+            (k === 'spo2' && parseInt(v) < 95)
+        );
+        const label = k === 'bp' ? 'Blood Pressure' : k === 'hr' ? 'Heart Rate' : k === 'rr' ? 'Respiratory' : k === 'temp' ? 'Temperature' : k === 'spo2' ? 'SpO₂' : k;
+        return `<div class="vital-box"><div class="vital-label">${label}</div><div class="vital-value ${abnormal ? 'abnormal' : ''}">${v}</div></div>`;
+    }).join('');
+
+    // Build history HTML
+    const historyHtml = caseData.scenario.history ? `
+        <div class="info-section">
+            <h4>History</h4>
+            <ul>${caseData.scenario.history.map(h => `<li>${h}</li>`).join('')}</ul>
+        </div>` : '';
+
+    // Build labs HTML (if present)
+    const labsHtml = caseData.scenario.labs ? `
+        <div class="info-section">
+            <h4>Labs</h4>
+            <div class="vitals-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+                ${Object.entries(caseData.scenario.labs).map(([k, v]) => {
+                    const label = k === 'ph' ? 'pH' : k === 'hco3' ? 'HCO₃⁻' : k === 'k' ? 'K⁺' : k === 'na' ? 'Na⁺' : k === 'glucose' ? 'Glucose' : k === 'creatinine' ? 'Creatinine' : k === 'bun' ? 'BUN' : k === 'ketones' ? 'Ketones' : k === 'digoxin' ? 'Digoxin' : k === 'magnesium' ? 'Mg²⁺' : k;
+                    return `<div class="vital-box"><div class="vital-label">${label}</div><div class="vital-value">${v}</div></div>`;
+                }).join('')}
+            </div>
+        </div>` : '';
+
+    // Build phase tracker
+    const phases = ['Recognize Cues', 'Analyze Cues', 'Prioritize', 'Generate', 'Take Action', 'Evaluate'];
+    const phaseTrackerHtml = phases.map((p, i) => {
+        const stepPhases = caseData.steps.map(s => s.phase);
+        const isActive = step.phase === p;
+        const isCompleted = stepPhases.indexOf(p) >= 0 && stepPhases.indexOf(p) < stepPhases.indexOf(step.phase);
+        if (!stepPhases.includes(p)) return '';
+        return `<div class="phase-dot ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}">${isCompleted ? '✓' : i + 1} ${p}</div>`;
+    }).filter(Boolean).join('');
+
+    // Build question options
+    let optionsHtml = '';
+    if (step.type === 'sata') {
+        optionsHtml = `
+            <div class="options-list">
+                ${step.options.map((opt, i) => `
+                    <label class="option ${isAnswered && answered.selected.includes(i) ? 'selected' : ''} ${isAnswered ? (opt.correct ? 'correct' : answered.selected.includes(i) ? 'incorrect' : '') : ''}">
+                        <input type="checkbox" ${isAnswered ? 'disabled' : ''} ${isAnswered && answered.selected.includes(i) ? 'checked' : ''} onchange="toggleSATA(${i})" style="width: 18px; height: 18px;">
+                        <span class="option-text">${opt.text}</span>
+                    </label>
+                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected.includes(i) ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '✓ ' : answered.selected.includes(i) ? '✗ ' : ''}${opt.rationale}</div>` : ''}
+                `).join('')}
+            </div>
+        `;
+    } else if (step.type === 'single') {
+        optionsHtml = `
+            <div class="options-list">
+                ${step.options.map((opt, i) => `
+                    <label class="option ${isAnswered && answered.selected === i ? 'selected' : ''} ${isAnswered ? (opt.correct ? 'correct' : answered.selected === i ? 'incorrect' : '') : ''}">
+                        <input type="radio" name="single" ${isAnswered ? 'disabled' : ''} ${isAnswered && answered.selected === i ? 'checked' : ''} onchange="selectSingle(${i})" style="width: 18px; height: 18px;">
+                        <span class="option-text">${opt.text}</span>
+                    </label>
+                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected === i ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '✓ ' : answered.selected === i ? '✗ ' : ''}${opt.rationale}</div>` : ''}
+                `).join('')}
+            </div>
+        `;
+    } else if (step.type === 'ordering') {
+        // For ordering, show the correct order after answering
+        if (isAnswered) {
+            const sorted = [...step.items].sort((a, b) => a.order - b.order);
+            optionsHtml = `
+                <div class="ordering-list">
+                    ${sorted.map((item, i) => `
+                        <div class="order-item">
+                            <div class="order-num">${i + 1}</div>
+                            <span class="order-text">${item.text}</span>
+                        </div>
+                        <div style="padding: 8px 32px; font-size: 0.8rem; color: var(--success);">${item.rationale}</div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            // Shuffle for initial display
+            const shuffled = [...step.items].sort(() => Math.random() - 0.5);
+            optionsHtml = `
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 12px;">Drag to reorder from FIRST to LAST:</p>
+                <div class="ordering-list" id="ordering-list">
+                    ${shuffled.map((item, i) => `
+                        <div class="order-item" draggable="true" data-index="${i}" data-id="${item.text}">
+                            <span class="drag-handle">⋮⋮</span>
+                            <div class="order-num" id="order-num-${i}">?</div>
+                            <span class="order-text">${item.text}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 12px;">After ordering, click "Submit Answer"</p>
+            `;
+        }
+    }
+
+    const html = `
+        <header>
+            <div class="container">
+                <div class="header-top">
+                    <a href="/" class="logo">
+                        <div class="logo-icon">🩺</div>
+                        <span class="logo-text">Obioma</span>
+                    </a>
+                    <a href="javascript:renderMenu()" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">← All Cases</a>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width: ${progress}%"></div></div>
+                <div class="progress-text">Step ${STATE.currentStepIndex + 1} of ${totalSteps}</div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Scenario -->
+            <div class="scenario-panel">
+                <div class="scenario-header">
+                    <div class="scenario-title">${caseData.title}</div>
+                    <div class="scenario-meta">
+                        <span class="badge badge-${caseData.difficulty}">${caseData.difficulty}</span>
+                        <span class="badge badge-category">${caseData.category}</span>
+                    </div>
+                </div>
+                <div class="scenario-text">
+                    <strong>${caseData.scenario.patient}</strong> — ${caseData.scenario.setting}<br><br>
+                    ${caseData.scenario.presentation}
+                </div>
+                <div class="vitals-grid">${vitalsHtml}</div>
+                ${historyHtml}
+                ${caseData.scenario.currentMeds ? `
+                <div class="info-section">
+                    <h4>Current Medications</h4>
+                    <ul>${caseData.scenario.currentMeds.map(m => `<li>${m}</li>`).join('')}</ul>
+                </div>` : ''}
+                ${labsHtml}
+            </div>
+
+            <!-- Phase Tracker -->
+            <div class="phase-tracker">${phaseTrackerHtml}</div>
+
+            <!-- Question -->
+            <div class="question-panel">
+                <div class="question-header">
+                    <span class="phase-label">${step.phase}</span>
+                    <span class="step-counter">Step ${STATE.currentStepIndex + 1} / ${totalSteps}</span>
+                </div>
+                <div class="question-text">${step.instruction}</div>
+                ${optionsHtml}
+
+                ${isAnswered ? `
+                <div class="rationale ${answered.correct ? 'rationale-correct' : 'rationale-incorrect'} show">
+                    <h4>${answered.correct ? '✓ Correct!' : '✗ Not quite'}</h4>
+                    <p>${answered.correct ? 'Great clinical judgment!' : 'Review the rationale and try again.'}</p>
+                </div>
+                ` : ''}
+
+                <div class="btn-group">
+                    ${!isAnswered && step.type !== 'ordering' ? `
+                        <button class="btn btn-primary" id="submit-btn" onclick="submitAnswer()" disabled>Submit Answer</button>
+                    ` : !isAnswered && step.type === 'ordering' ? `
+                        <button class="btn btn-primary" id="submit-btn" onclick="submitOrdering()">Submit Answer</button>
+                    ` : ''}
+                    ${isAnswered ? `
+                        <button class="btn btn-primary" onclick="nextStep()">${STATE.currentStepIndex < totalSteps - 1 ? 'Next Step →' : 'See Results →'}</button>
+                    ` : ''}
+                    ${STATE.currentStepIndex > 0 ? `<button class="btn btn-secondary" onclick="prevStep()">← Previous</button>` : ''}
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                <p>© 2026 Obioma Care — Clinical Judgment, Mastered</p>
+            </div>
+        </footer>
+    `;
+
+    document.getElementById('app').innerHTML = html;
+
+    // Setup ordering drag/drop if applicable
+    if (step.type === 'ordering' && !isAnswered) {
+        setupOrdering();
+    }
+}
+
+// ==================== ANSWER HANDLING ====================
+let currentSelection = [];
+
+function toggleSATA(index) {
+    const idx = currentSelection.indexOf(index);
+    if (idx > -1) currentSelection.splice(idx, 1);
+    else currentSelection.push(index);
+    currentSelection.sort((a, b) => a - b);
+
+    // Update UI
+    document.querySelectorAll('.option').forEach((el, i) => {
+        el.classList.toggle('selected', currentSelection.includes(i));
+    });
+    document.getElementById('submit-btn').disabled = currentSelection.length === 0;
+}
+
+function selectSingle(index) {
+    currentSelection = index;
+    document.querySelectorAll('.option').forEach((el, i) => {
+        el.classList.toggle('selected', i === index);
+    });
+    document.getElementById('submit-btn').disabled = false;
+}
+
+function submitAnswer() {
+    const caseData = STATE.cases[STATE.currentCaseIndex];
+    const step = caseData.steps[STATE.currentStepIndex];
+    let correct = false;
+
+    if (step.type === 'sata') {
+        const correctIndices = step.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0);
+        correct = JSON.stringify(currentSelection) === JSON.stringify(correctIndices);
+    } else if (step.type === 'single') {
+        correct = step.options[currentSelection].correct;
+    }
+
+    STATE.answers[caseData.id][STATE.currentStepIndex] = {
+        selected: currentSelection,
+        correct: correct
+    };
+    currentSelection = step.type === 'sata' ? [] : null;
+    renderCase();
+}
+
+// Ordering
+let orderingItems = [];
+function setupOrdering() {
+    const list = document.getElementById('ordering-list');
+    if (!list) return;
+    orderingItems = Array.from(list.children);
+    let dragged = null;
+
+    orderingItems.forEach(item => {
+        item.addEventListener('dragstart', e => {
+            dragged = item;
+            item.classList.add('dragging');
+        });
+        item.addEventListener('dragend', () => {
+            item.classList.remove('dragging');
+            dragged = null;
+        });
+        item.addEventListener('dragover', e => {
+            e.preventDefault();
+            if (!dragged || dragged === item) return;
+            const rect = item.getBoundingClientRect();
+            const mid = rect.top + rect.height / 2;
+            if (e.clientY < mid) item.before(dragged);
+            else item.after(dragged);
+        });
+    });
+}
+
+function submitOrdering() {
+    const caseData = STATE.cases[STATE.currentCaseIndex];
+    const step = caseData.steps[STATE.currentStepIndex];
+    const list = document.getElementById('ordering-list');
+    const items = Array.from(list.children);
+    const userOrder = items.map(item => item.dataset.id);
+    const correctOrder = [...step.items].sort((a, b) => a.order - b.order).map(i => i.text);
+    const correct = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
+
+    STATE.answers[caseData.id][STATE.currentStepIndex] = {
+        selected: userOrder,
+        correct: correct
+    };
+    renderCase();
+}
+
+// ==================== NAVIGATION ====================
+function nextStep() {
+    const caseData = STATE.cases[STATE.currentCaseIndex];
+    if (STATE.currentStepIndex < caseData.steps.length - 1) {
+        STATE.currentStepIndex++;
+        renderCase();
+    } else {
+        renderResults();
+    }
+}
+
+function prevStep() {
+    if (STATE.currentStepIndex > 0) {
+        STATE.currentStepIndex--;
+        renderCase();
+    }
+}
+
+// ==================== RESULTS ====================
+function calculateCaseScore(caseId) {
+    const answers = STATE.answers[caseId];
+    const caseData = STATE.cases.find(c => c.id === caseId);
+    if (!answers || !caseData) return 0;
+    const correct = Object.values(answers).filter(a => a.correct).length;
+    return Math.round((correct / caseData.steps.length) * 100);
+}
+
+function renderResults() {
+    const caseData = STATE.cases[STATE.currentCaseIndex];
+    const answers = STATE.answers[caseData.id];
+    const totalSteps = caseData.steps.length;
+    const correctCount = Object.values(answers).filter(a => a.correct).length;
+    const score = Math.round((correctCount / totalSteps) * 100);
+
+    const breakdown = caseData.steps.map((step, i) => {
+        const ans = answers[i];
+        return `
+            <div class="breakdown-item">
+                <span class="breakdown-phase">Step ${i + 1}: ${step.phase}</span>
+                <span class="breakdown-status ${ans.correct ? 'status-correct' : 'status-incorrect'}">${ans.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+            </div>
+        `;
+    }).join('');
+
+    const html = `
+        <header>
+            <div class="container">
+                <a href="/" class="logo">
+                    <div class="logo-icon">🩺</div>
+                    <span class="logo-text">Obioma</span>
+                </a>
+            </div>
+        </header>
+        <main class="container">
+            <div class="results-panel">
+                <h2 style="font-size: 1.5rem; margin-bottom: 8px;">Case Complete: ${caseData.title}</h2>
+                <div class="score-circle">
+                    <div class="score-value">${score}%</div>
+                    <div class="score-label">${correctCount}/${totalSteps} correct</div>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">
+                    ${score >= 80 ? '🎯 Excellent clinical judgment!' : score >= 60 ? '👍 Good work — review the rationales to strengthen weak areas.' : '💡 Keep practicing — clinical judgment improves with repetition.'}
+                </p>
+                <div class="results-breakdown">${breakdown}</div>
+                <div class="btn-group" style="justify-content: center;">
+                    <button class="btn btn-primary" onclick="startCase(${STATE.currentCaseIndex})">Retry Case</button>
+                    <button class="btn btn-secondary" onclick="renderMenu()">All Cases</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="container">
+                <p>© 2026 Obioma Care — Clinical Judgment, Mastered</p>
+            </div>
+        </footer>
+    `;
+    document.getElementById('app').innerHTML = html;
+}
+
+// ==================== INIT ====================
+loadCases();
+</script>
+</body>
+</html>

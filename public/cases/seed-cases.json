@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "chest-pain-acs",
+    "title": "Chest Pain & ACS",
+    "category": "med-surg",
+    "difficulty": "moderate",
+    "timeLimit": 15,
+    "scenario": {
+      "patient": "Mr. Henderson, 68-year-old male",
+      "setting": "ED Triage",
+      "presentation": "Presented with crushing substernal chest pain radiating to left jaw and arm, onset 45 minutes ago while mowing lawn. Pain rated 8/10. Diaphoretic and nauseated.",
+      "vitals": {
+        "bp": "158/96 mmHg",
+        "hr": "102 bpm, irregular",
+        "rr": "22/min",
+        "temp": "98.4\u00b0F",
+        "spo2": "94% on room air"
+      },
+      "history": [
+        "Hypertension (lisinopril)",
+        "Type 2 diabetes (metformin)",
+        "Hyperlipidemia (atorvastatin)",
+        "Father died of MI at age 62",
+        "Smokes 1 pack/day \u00d7 40 years"
+      ],
+      "currentMeds": [
+        "Lisinopril 10mg daily",
+        "Metformin 1000mg BID",
+        "Atorvastatin 40mg daily",
+        "Aspirin 81mg daily"
+      ]
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all cues from the scenario that indicate an ACUTE problem requiring immediate attention.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Blood pressure 158/96 mmHg",
+            "correct": false,
+            "rationale": "Elevated but not the most acute finding. Chronic hypertension."
+          },
+          {
+            "text": "Chest pain rated 8/10, crushing, substernal",
+            "correct": true,
+            "rationale": "Classic ACS presentation. Crushing substernal pain is a cardinal sign."
+          },
+          {
+            "text": "Pain radiating to left jaw and arm",
+            "correct": true,
+            "rationale": "Radiation to jaw/arm strongly suggests cardiac ischemia."
+          },
+          {
+            "text": "Diaphoresis and nausea",
+            "correct": true,
+            "rationale": "Autonomic symptoms (diaphoresis, nausea) are common in ACS."
+          },
+          {
+            "text": "Smokes 1 pack/day \u00d7 40 years",
+            "correct": false,
+            "rationale": "Risk factor, not an acute cue requiring immediate action."
+          },
+          {
+            "text": "SpO\u2082 94% on room air",
+            "correct": true,
+            "rationale": "Below normal (\u226595%). May indicate decreased cardiac output or pulmonary involvement."
+          },
+          {
+            "text": "Father died of MI at age 62",
+            "correct": false,
+            "rationale": "Family history is a risk factor, not an acute cue."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Analyze Cues",
+        "instruction": "Based on the cues you identified, what is the MOST likely cause of this patient's presentation?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Stable angina",
+            "correct": false,
+            "rationale": "Stable angina is predictable and relieved by rest. This is new, severe, ongoing pain."
+          },
+          {
+            "text": "Unstable angina / NSTEMI",
+            "correct": true,
+            "rationale": "Crushing pain at rest with autonomic symptoms = ACS. STEMI vs NSTEMI requires ECG/ troponins."
+          },
+          {
+            "text": "Costochondritis",
+            "correct": false,
+            "rationale": "Costochondritis is reproducible with palpation and doesn't radiate. No diaphoresis."
+          },
+          {
+            "text": "Gastroesophageal reflux",
+            "correct": false,
+            "rationale": "GERD causes burning pain, not crushing. No radiation to arm/jaw."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Prioritize Hypotheses",
+        "instruction": "The ECG shows ST elevation in leads II, III, and aVF. Troponin I is 2.8 ng/mL (elevated). Order these interventions from FIRST to LAST.",
+        "type": "ordering",
+        "items": [
+          {
+            "text": "Give aspirin 325 mg (if not already taken)",
+            "order": 1,
+            "rationale": "Aspirin is first-line in ACS \u2014 antiplatelet, mortality benefit."
+          },
+          {
+            "text": "Start supplemental O\u2082 at 2L NC",
+            "order": 2,
+            "rationale": "O\u2082 for SpO\u2082 < 94% or respiratory distress. Not routine if SpO\u2082 \u2265 95%."
+          },
+          {
+            "text": "Establish IV access",
+            "order": 3,
+            "rationale": "Needed for medications but aspirin can be given orally first."
+          },
+          {
+            "text": "Give sublingual nitroglycerin",
+            "order": 4,
+            "rationale": "After aspirin. Check BP first \u2014 SBP must be > 90."
+          },
+          {
+            "text": "Administer morphine 2-4 mg IV",
+            "order": 5,
+            "rationale": "For persistent pain unrelieved by nitrates. Last resort due to mortality data."
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "phase": "Take Action",
+        "instruction": "The patient's pain is unrelieved. BP drops to 88/52 after nitroglycerin. Heart rate increases to 118. What is your FIRST action?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Give another dose of nitroglycerin",
+            "correct": false,
+            "rationale": "Nitroglycerin caused the hypotension. Contraindicated with SBP < 90."
+          },
+          {
+            "text": "Start dopamine infusion",
+            "correct": false,
+            "rationale": "Vasopressors may be needed later, but first stop the offending agent and fluid resuscitate."
+          },
+          {
+            "text": "Place patient in Trendelenburg position",
+            "correct": false,
+            "rationale": "Trendelenburg is not recommended for hypotension \u2014 decreases venous return."
+          },
+          {
+            "text": "Stop nitroglycerin and give IV fluids",
+            "correct": true,
+            "rationale": "Nitroglycerin caused vasodilation \u2192 hypotension. Stop it, give fluids, elevate legs."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pediatric-febrile-seizure",
+    "title": "Pediatric Febrile Seizure",
+    "category": "peds",
+    "difficulty": "easy",
+    "timeLimit": 10,
+    "scenario": {
+      "patient": "Emma, 18-month-old female",
+      "setting": "Pediatric ED",
+      "presentation": "Mother reports Emma had a generalized tonic-clonic seizure lasting 3 minutes. Seizure stopped on arrival. Emma is now post-ictal \u2014 drowsy but responsive to voice. She has had a fever for 24 hours (T max 103.2\u00b0F).",
+      "vitals": {
+        "bp": "92/58 mmHg (age-appropriate)",
+        "hr": "128 bpm",
+        "rr": "28/min",
+        "temp": "102.8\u00b0F (rectal)",
+        "spo2": "98% on room air"
+      },
+      "history": [
+        "No prior seizures",
+        "Up to date on immunizations",
+        "Daycare attendee",
+        "Older sibling had febrile seizures"
+      ],
+      "currentMeds": [
+        "Acetaminophen 160mg given 2 hours ago at home"
+      ]
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all findings consistent with a SIMPLE febrile seizure.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Age 18 months",
+            "correct": true,
+            "rationale": "Simple febrile seizures occur in children 6 months to 5 years."
+          },
+          {
+            "text": "Generalized tonic-clonic activity",
+            "correct": true,
+            "rationale": "Simple febrile seizures are generalized, not focal."
+          },
+          {
+            "text": "Duration < 15 minutes",
+            "correct": true,
+            "rationale": "Simple febrile seizures last < 15 minutes."
+          },
+          {
+            "text": "Fever present",
+            "correct": true,
+            "rationale": "By definition, a febrile seizure is associated with fever."
+          },
+          {
+            "text": "Post-ictal state lasting > 1 hour",
+            "correct": false,
+            "rationale": "Prolonged post-ictal state suggests complex febrile seizure or other etiology."
+          },
+          {
+            "text": "Focal seizure activity",
+            "correct": false,
+            "rationale": "Focal seizures indicate complex febrile seizure \u2014 requires workup."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Prioritize Hypotheses",
+        "instruction": "What is the nurse's FIRST priority after the seizure has stopped?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Order an EEG immediately",
+            "correct": false,
+            "rationale": "EEG is not indicated for simple febrile seizures. Not the first priority."
+          },
+          {
+            "text": "Assess airway, breathing, and circulation",
+            "correct": true,
+            "rationale": "ABCs are always the first priority post-seizure."
+          },
+          {
+            "text": "Start IV anticonvulsants",
+            "correct": false,
+            "rationale": "No indication for anticonvulsants after a simple febrile seizure that has stopped."
+          },
+          {
+            "text": "Prepare for lumbar puncture",
+            "correct": false,
+            "rationale": "LP is only indicated if meningitis is suspected (nuchal rigidity, altered mental status)."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Take Action",
+        "instruction": "Select all appropriate nursing actions for this patient.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Administer antipyretics (acetaminophen or ibuprofen)",
+            "correct": true,
+            "rationale": "Fever reduction is standard care \u2014 though it does not prevent seizure recurrence."
+          },
+          {
+            "text": "Place child on seizure precautions",
+            "correct": true,
+            "rationale": "Seizure precautions (padded bed, O\u2082, suction at bedside) are prudent."
+          },
+          {
+            "text": "Educate parents that febrile seizures are usually benign",
+            "correct": true,
+            "rationale": "Parent education is key \u2014 simple febrile seizures do not cause brain damage."
+          },
+          {
+            "text": "Recommend daily anticonvulsant prophylaxis",
+            "correct": false,
+            "rationale": "Anticonvulsants are NOT indicated for simple febrile seizures."
+          },
+          {
+            "text": "Advise parents to restrict child's activities",
+            "correct": false,
+            "rationale": "No activity restrictions needed after simple febrile seizure."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "postpartum-hemorrhage",
+    "title": "Postpartum Hemorrhage",
+    "category": "ob",
+    "difficulty": "moderate",
+    "timeLimit": 12,
+    "scenario": {
+      "patient": "Ms. Patel, 28-year-old G2P1",
+      "setting": "Labor & Delivery",
+      "presentation": "Delivered vaginally 2 hours ago. Estimated blood loss at delivery was 450 mL. Now reporting increased vaginal bleeding with large clots. Fundus is boggy and located at the level of the umbilicus.",
+      "vitals": {
+        "bp": "94/62 mmHg",
+        "hr": "118 bpm",
+        "rr": "22/min",
+        "temp": "98.6\u00b0F",
+        "spo2": "97% on room air"
+      },
+      "history": [
+        "Prolonged labor (18 hours)",
+        "Pitocin augmentation",
+        "Epidural anesthesia",
+        "Previous vaginal delivery 3 years ago"
+      ],
+      "currentMeds": [
+        "Pitocin 10 units in 1000mL LR @ 125 mL/hr"
+      ]
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all cues indicating postpartum hemorrhage (PPH).",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Blood pressure 94/62 mmHg",
+            "correct": true,
+            "rationale": "Hypotension indicates volume loss."
+          },
+          {
+            "text": "Heart rate 118 bpm",
+            "correct": true,
+            "rationale": "Tachycardia is an early sign of hemorrhage."
+          },
+          {
+            "text": "Boggy fundus at umbilical level",
+            "correct": true,
+            "rationale": "Boggy fundus = uterine atony = #1 cause of PPH. Fundus should be firm and below umbilicus."
+          },
+          {
+            "text": "Large clots in vaginal bleeding",
+            "correct": true,
+            "rationale": "Large clots indicate significant bleeding."
+          },
+          {
+            "text": "Temperature 98.6\u00b0F",
+            "correct": false,
+            "rationale": "Normal temperature. Not a sign of hemorrhage."
+          },
+          {
+            "text": "SpO\u2082 97% on room air",
+            "correct": false,
+            "rationale": "Normal oxygenation. Not a sign of hemorrhage."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Analyze Cues",
+        "instruction": "What is the MOST likely cause of this PPH?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Uterine atony",
+            "correct": true,
+            "rationale": "Boggy fundus + prolonged labor + pitocin = uterine atony. The #1 cause of early PPH."
+          },
+          {
+            "text": "Retained placental fragments",
+            "correct": false,
+            "rationale": "Possible but boggy fundus points to atony. Placental fragments usually cause a firm fundus with bleeding."
+          },
+          {
+            "text": "Laceration",
+            "correct": false,
+            "rationale": "Lacerations cause bleeding with a FIRM fundus."
+          },
+          {
+            "text": "Disseminated intravascular coagulation",
+            "correct": false,
+            "rationale": "DIC is a late complication, not the primary cause of early PPH."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Take Action",
+        "instruction": "Order these nursing interventions from FIRST to LAST.",
+        "type": "ordering",
+        "items": [
+          {
+            "text": "Massage the fundus until firm",
+            "order": 1,
+            "rationale": "First-line for uterine atony \u2014 fundal massage."
+          },
+          {
+            "text": "Increase pitocin infusion rate",
+            "order": 2,
+            "rationale": "Uterotonic medication \u2014 second line after massage."
+          },
+          {
+            "text": "Empty the bladder (straight cath if needed)",
+            "order": 3,
+            "rationale": "Full bladder impedes uterine contraction."
+          },
+          {
+            "text": "Assess for lacerations if bleeding continues",
+            "order": 4,
+            "rationale": "If atony is corrected but bleeding persists, check for lacerations."
+          },
+          {
+            "text": "Prepare for possible blood transfusion",
+            "order": 5,
+            "rationale": "If hemorrhage is uncontrolled, transfusion may be needed."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "diabetic-ketoacidosis",
+    "title": "Diabetic Ketoacidosis (DKA)",
+    "category": "med-surg",
+    "difficulty": "hard",
+    "timeLimit": 15,
+    "scenario": {
+      "patient": "Mr. Chen, 24-year-old male",
+      "setting": "Medical ICU",
+      "presentation": "Brought to ED by roommate. Found confused and breathing heavily. Reports 3 days of vomiting, polyuria, and polydipsia. Has not been taking insulin for 1 week due to financial constraints.",
+      "vitals": {
+        "bp": "88/52 mmHg",
+        "hr": "132 bpm",
+        "rr": "36/min (deep, labored)",
+        "temp": "99.1\u00b0F",
+        "spo2": "96% on room air"
+      },
+      "history": [
+        "Type 1 diabetes \u00d7 8 years",
+        "Non-compliant with insulin",
+        "No other chronic conditions"
+      ],
+      "currentMeds": [
+        "None \u2014 stopped insulin 1 week ago"
+      ],
+      "labs": {
+        "glucose": "486 mg/dL",
+        "ph": "7.18",
+        "hco3": "12 mEq/L",
+        "ketones": "Large (serum)",
+        "k": "5.8 mEq/L",
+        "na": "132 mEq/L",
+        "bun": "38 mg/dL",
+        "creatinine": "1.4 mg/dL"
+      }
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all cues consistent with DKA.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Glucose 486 mg/dL",
+            "correct": true,
+            "rationale": "DKA: glucose usually > 250 mg/dL."
+          },
+          {
+            "text": "pH 7.18",
+            "correct": true,
+            "rationale": "DKA: pH < 7.30 (acidosis)."
+          },
+          {
+            "text": "HCO\u2083\u207b 12 mEq/L",
+            "correct": true,
+            "rationale": "DKA: HCO\u2083\u207b < 18 mEq/L."
+          },
+          {
+            "text": "K\u207a 5.8 mEq/L",
+            "correct": true,
+            "rationale": "DKA causes K\u207a shift out of cells (acidosis) \u2192 pseudohyperkalemia. Total body K\u207a is depleted."
+          },
+          {
+            "text": "Deep, labored breathing (Kussmaul)",
+            "correct": true,
+            "rationale": "Kussmaul respirations = compensatory respiratory alkalosis for metabolic acidosis."
+          },
+          {
+            "text": "BUN 38 mg/dL",
+            "correct": false,
+            "rationale": "Elevated BUN reflects dehydration, not specific to DKA."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Prioritize Hypotheses",
+        "instruction": "Which intervention is the HIGHEST priority?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Start regular insulin infusion at 0.1 units/kg/hr",
+            "correct": false,
+            "rationale": "Insulin is essential BUT fluids must come first to restore perfusion."
+          },
+          {
+            "text": "Begin 0.9% NS at 1 L/hr for first hour",
+            "correct": true,
+            "rationale": "Fluid resuscitation is ALWAYS first in DKA. Restores perfusion, begins glucose dilution."
+          },
+          {
+            "text": "Administer IV bicarbonate",
+            "correct": false,
+            "rationale": "Bicarbonate is controversial and only used for pH < 6.9. Not first priority."
+          },
+          {
+            "text": "Check serum potassium and hold insulin if < 3.3",
+            "correct": false,
+            "rationale": "Important, but fluid resuscitation takes precedence. K\u207a will drop with insulin + fluids."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Take Action",
+        "instruction": "After 2 hours of treatment, repeat labs show K\u207a 3.2 mEq/L. What is the nurse's FIRST action?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Continue insulin infusion \u2014 K\u207a will normalize",
+            "correct": false,
+            "rationale": "Insulin drives K\u207a INTO cells. With K\u207a 3.2, continuing insulin could cause fatal hypokalemia."
+          },
+          {
+            "text": "Add potassium to IV fluids at 20-30 mEq/L",
+            "correct": false,
+            "rationale": "Adding K\u207a is correct, but if K\u207a < 3.3, insulin must be HELD first."
+          },
+          {
+            "text": "Hold insulin infusion and replace potassium",
+            "correct": true,
+            "rationale": "If K\u207a < 3.3, HOLD insulin and replace K\u207a first. Insulin can be restarted once K\u207a > 3.3."
+          },
+          {
+            "text": "Increase fluid rate to dilute potassium",
+            "correct": false,
+            "rationale": "Dilution is not the issue. K\u207a needs replacement. Insulin must be held."
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "phase": "Evaluate Outcomes",
+        "instruction": "Which finding indicates the DKA is RESOLVING?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Glucose < 200 mg/dL",
+            "correct": false,
+            "rationale": "Glucose may normalize before acidosis resolves. Not the best indicator."
+          },
+          {
+            "text": "Anion gap \u2264 12 mEq/L with HCO\u2083\u207b > 18",
+            "correct": true,
+            "rationale": "Resolution = closed anion gap + normalized bicarbonate. Glucose is managed with dextrose."
+          },
+          {
+            "text": "Urine ketones negative",
+            "correct": false,
+            "rationale": "Urine ketones lag behind serum. Not reliable for resolution."
+          },
+          {
+            "text": "Patient reports feeling better",
+            "correct": false,
+            "rationale": "Subjective improvement is good but not an objective resolution criterion."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pharm-digoxin-toxicity",
+    "title": "Digoxin Toxicity",
+    "category": "pharm",
+    "difficulty": "moderate",
+    "timeLimit": 10,
+    "scenario": {
+      "patient": "Mrs. Williams, 78-year-old female",
+      "setting": "Cardiac Unit",
+      "presentation": "Admitted for worsening heart failure. Started on digoxin 0.25 mg daily 5 days ago. Now reports nausea, visual disturbances ('yellow halos around lights'), and fatigue. Telemetry shows frequent PVCs.",
+      "vitals": {
+        "bp": "108/68 mmHg",
+        "hr": "58 bpm (irregular)",
+        "rr": "18/min",
+        "temp": "98.2\u00b0F",
+        "spo2": "95% on room air"
+      },
+      "history": [
+        "CHF (EF 35%)",
+        "Atrial fibrillation",
+        "CKD stage 3 (Cr 1.8)",
+        "Hypothyroidism"
+      ],
+      "currentMeds": [
+        "Digoxin 0.25 mg daily",
+        "Furosemide 80 mg BID",
+        "Lisinopril 10 mg daily",
+        "Levothyroxine 75 mcg daily"
+      ],
+      "labs": {
+        "digoxin": "3.2 ng/mL",
+        "k": "2.8 mEq/L",
+        "creatinine": "1.8 mg/dL",
+        "magnesium": "1.4 mg/dL"
+      }
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all findings consistent with digoxin toxicity.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Digoxin level 3.2 ng/mL (therapeutic: 0.5-0.9)",
+            "correct": true,
+            "rationale": "Toxic level. Therapeutic for heart failure is 0.5-0.9 ng/mL."
+          },
+          {
+            "text": "Nausea",
+            "correct": true,
+            "rationale": "GI symptoms (nausea, vomiting, anorexia) are early signs of toxicity."
+          },
+          {
+            "text": "Visual disturbances (yellow halos)",
+            "correct": true,
+            "rationale": "Classic sign of digoxin toxicity \u2014 yellow/green visual halos."
+          },
+          {
+            "text": "Heart rate 58 bpm with frequent PVCs",
+            "correct": true,
+            "rationale": "Bradycardia + arrhythmias (PVCs, AV blocks) are cardiotoxic effects."
+          },
+          {
+            "text": "K\u207a 2.8 mEq/L",
+            "correct": true,
+            "rationale": "Hypokalemia increases risk of digoxin toxicity. K\u207a and digoxin compete for Na\u207a/K\u207a-ATPase."
+          },
+          {
+            "text": "Hypothyroidism",
+            "correct": false,
+            "rationale": "Hypothyroidism decreases digoxin clearance (risk factor), not a sign of toxicity."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Analyze Cues",
+        "instruction": "What is the PRIMARY reason this patient developed digoxin toxicity?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Age-related decrease in renal clearance",
+            "correct": false,
+            "rationale": "Contributing factor but not the primary cause in this case."
+          },
+          {
+            "text": "Hypokalemia from furosemide therapy",
+            "correct": true,
+            "rationale": "Furosemide causes hypokalemia. Low K\u207a increases digoxin binding to Na\u207a/K\u207a-ATPase \u2192 toxicity."
+          },
+          {
+            "text": "Concurrent levothyroxine therapy",
+            "correct": false,
+            "rationale": "Levothyroxine does not interact with digoxin."
+          },
+          {
+            "text": "Excessive digoxin dose",
+            "correct": false,
+            "rationale": "0.25 mg is a standard dose. The toxicity is due to hypokalemia + renal impairment, not overdose."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Take Action",
+        "instruction": "Select all appropriate nursing interventions.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Hold digoxin immediately",
+            "correct": true,
+            "rationale": "First step \u2014 stop the offending agent."
+          },
+          {
+            "text": "Check apical pulse for 1 full minute before any cardiac meds",
+            "correct": true,
+            "rationale": "Standard for digoxin \u2014 hold if HR < 60."
+          },
+          {
+            "text": "Administer potassium supplements",
+            "correct": true,
+            "rationale": "Replace K\u207a to reduce digoxin binding to Na\u207a/K\u207a-ATPase."
+          },
+          {
+            "text": "Administer digoxin immune Fab (Digibind)",
+            "correct": true,
+            "rationale": "Antidote for severe toxicity (arrhythmias, K\u207a > 5.0). Calculate: (serum digoxin \u00d7 weight in kg) / 100."
+          },
+          {
+            "text": "Increase furosemide dose",
+            "correct": false,
+            "rationale": "Furosemide caused the hypokalemia. Do NOT increase it."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "suicidal-ideation",
+    "title": "Suicidal Ideation Assessment",
+    "category": "psych",
+    "difficulty": "moderate",
+    "timeLimit": 10,
+    "scenario": {
+      "patient": "Mr. Jackson, 34-year-old male",
+      "setting": "Psychiatric Emergency",
+      "presentation": "Brought to ED by wife after he told her 'life isn't worth living anymore.' Found searching 'painless ways to die' on his phone. Has been withdrawn for 2 weeks since losing his job. States 'I just want the pain to stop.'",
+      "vitals": {
+        "bp": "142/88 mmHg",
+        "hr": "96 bpm",
+        "rr": "18/min",
+        "temp": "98.6\u00b0F",
+        "spo2": "98% on room air"
+      },
+      "history": [
+        "Depression (untreated)",
+        "Recent job loss 2 weeks ago",
+        "Divorced, lives with wife",
+        "Father died by suicide at age 45",
+        "Alcohol use: 4-6 beers nightly"
+      ]
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all cues that indicate HIGH suicide risk requiring immediate safety intervention.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Stated 'life isn't worth living anymore'",
+            "correct": true,
+            "rationale": "Direct suicidal ideation = highest risk cue."
+          },
+          {
+            "text": "Searching 'painless ways to die'",
+            "correct": true,
+            "rationale": "Planning/plan research = imminent risk."
+          },
+          {
+            "text": "Recent job loss 2 weeks ago",
+            "correct": true,
+            "rationale": "Recent significant loss is a major precipitating factor."
+          },
+          {
+            "text": "Father died by suicide at age 45",
+            "correct": true,
+            "rationale": "Family history of suicide increases risk."
+          },
+          {
+            "text": "Withdrawn for 2 weeks",
+            "correct": true,
+            "rationale": "Social withdrawal is a warning sign of deteriorating mental state."
+          },
+          {
+            "text": "Alcohol use: 4-6 beers nightly",
+            "correct": true,
+            "rationale": "Substance use lowers inhibitions and increases impulsivity."
+          },
+          {
+            "text": "Blood pressure 142/88 mmHg",
+            "correct": false,
+            "rationale": "Elevated BP is not a direct suicide risk factor."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Take Action",
+        "instruction": "What is the nurse's FIRST priority action?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Initiate one-to-one observation",
+            "correct": true,
+            "rationale": "Highest priority = immediate safety. One-to-one prevents self-harm."
+          },
+          {
+            "text": "Administer PRN lorazepam",
+            "correct": false,
+            "rationale": "Medication may help anxiety but safety is first."
+          },
+          {
+            "text": "Call the psychiatrist for admission",
+            "correct": false,
+            "rationale": "Admission may be needed, but safety measures come first."
+          },
+          {
+            "text": "Begin cognitive behavioral therapy",
+            "correct": false,
+            "rationale": "CBT is long-term treatment, not an acute intervention."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Evaluate Outcomes",
+        "instruction": "Which finding indicates the safety plan is EFFECTIVE during the first 24 hours?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Patient denies suicidal ideation",
+            "correct": false,
+            "rationale": "Denial doesn't mean risk is gone \u2014 patients may conceal intent."
+          },
+          {
+            "text": "Patient has no access to means of self-harm",
+            "correct": true,
+            "rationale": "Means restriction is the most effective suicide prevention strategy."
+          },
+          {
+            "text": "Patient is sleeping 8 hours nightly",
+            "correct": false,
+            "rationale": "Sleep is important but doesn't directly measure suicide risk reduction."
+          },
+          {
+            "text": "Patient is participating in group therapy",
+            "correct": false,
+            "rationale": "Participation is positive but doesn't guarantee safety."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "preeclampsia-severe",
+    "title": "Severe Preeclampsia",
+    "category": "ob",
+    "difficulty": "hard",
+    "timeLimit": 12,
+    "scenario": {
+      "patient": "Ms. Rodriguez, 32-year-old G1P0 at 34 weeks gestation",
+      "setting": "Antepartum Unit",
+      "presentation": "Presented for routine prenatal visit. Reports severe headache, visual disturbances ('spots in vision'), and right upper quadrant pain for 12 hours. No previous pregnancy complications.",
+      "vitals": {
+        "bp": "168/110 mmHg",
+        "hr": "88 bpm",
+        "rr": "18/min",
+        "temp": "98.4\u00b0F",
+        "spo2": "97% on room air"
+      },
+      "history": [
+        "First pregnancy",
+        "No chronic hypertension",
+        "BMI 32",
+        "Family history of preeclampsia (mother)"
+      ],
+      "labs": {
+        "protein": "3+ on dipstick",
+        "platelets": "92,000/\u03bcL",
+        "creatinine": "1.3 mg/dL",
+        "ldh": "520 U/L",
+        "ast": "78 U/L",
+        "alt": "85 U/L"
+      }
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all findings that meet criteria for SEVERE preeclampsia.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "BP 168/110 mmHg",
+            "correct": true,
+            "rationale": "Severe: SBP \u2265 160 or DBP \u2265 110 on 2 occasions 4 hours apart."
+          },
+          {
+            "text": "3+ protein on dipstick",
+            "correct": false,
+            "rationale": "Proteinuria alone does not indicate severity. Need 24-hr urine \u2265 5g or protein/creatinine ratio."
+          },
+          {
+            "text": "Platelets 92,000/\u03bcL",
+            "correct": true,
+            "rationale": "Thrombocytopenia (&lt;100,000) = severe feature."
+          },
+          {
+            "text": "Right upper quadrant pain",
+            "correct": true,
+            "rationale": "RUQ/epigastric pain = liver involvement = severe feature."
+          },
+          {
+            "text": "Visual disturbances (spots)",
+            "correct": true,
+            "rationale": "Visual symptoms = cerebral involvement = severe feature."
+          },
+          {
+            "text": "Severe headache",
+            "correct": true,
+            "rationale": "Persistent headache = cerebral involvement = severe feature."
+          },
+          {
+            "text": "LDH 520 U/L",
+            "correct": true,
+            "rationale": "Elevated LDH suggests hemolysis (part of HELLP syndrome)."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Take Action",
+        "instruction": "What is the PRIORITY nursing intervention?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Start magnesium sulfate for seizure prophylaxis",
+            "correct": true,
+            "rationale": "Severe preeclampsia requires MgSO\u2084 to prevent eclampsia. Loading dose 4-6g IV, then 1-2g/hr."
+          },
+          {
+            "text": "Administer antihypertensives to normalize BP",
+            "correct": false,
+            "rationale": "BP control is important but MgSO\u2084 is the priority for seizure prevention."
+          },
+          {
+            "text": "Prepare for immediate vaginal delivery",
+            "correct": false,
+            "rationale": "Delivery is definitive treatment but stabilization (MgSO\u2084, antihypertensives) comes first."
+          },
+          {
+            "text": "Start heparin for DVT prophylaxis",
+            "correct": false,
+            "rationale": "Thrombocytopenia is a contraindication to heparin. Platelets are 92K."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Take Action",
+        "instruction": "The patient is receiving magnesium sulfate. Which findings require IMMEDIATE intervention?",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Respiratory rate 10/min",
+            "correct": true,
+            "rationale": "MgSO\u2084 toxicity: RR &lt; 12 = respiratory depression. Hold MgSO\u2084, give calcium gluconate."
+          },
+          {
+            "text": "Absent patellar reflexes",
+            "correct": true,
+            "rationale": "Loss of DTRs = early sign of MgSO\u2084 toxicity. Hold infusion."
+          },
+          {
+            "text": "Urine output 20 mL/hr",
+            "correct": true,
+            "rationale": "UOP &lt; 25-30 mL/hr = MgSO\u2084 toxicity risk (renal excretion impaired)."
+          },
+          {
+            "text": "Flushing and feeling warm",
+            "correct": false,
+            "rationale": "Common side effect of MgSO\u2084, not toxic."
+          },
+          {
+            "text": "Heart rate 88 bpm",
+            "correct": false,
+            "rationale": "Normal heart rate. Not a sign of toxicity."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sepsis-hour-one",
+    "title": "Sepsis \u2014 Hour-1 Bundle",
+    "category": "med-surg",
+    "difficulty": "moderate",
+    "timeLimit": 10,
+    "scenario": {
+      "patient": "Mr. Patel, 67-year-old male",
+      "setting": "Medical-Surgical Floor",
+      "presentation": "Post-op day 3 after colectomy. Night shift nurse reports he has become increasingly confused over the past 4 hours. Temperature spiked to 102.8\u00b0F. Surgical incision appears erythematous with purulent drainage.",
+      "vitals": {
+        "bp": "88/56 mmHg",
+        "hr": "118 bpm",
+        "rr": "26/min",
+        "temp": "102.8\u00b0F",
+        "spo2": "91% on 2L NC"
+      },
+      "history": [
+        "Colon cancer \u2014 hemicolectomy 3 days ago",
+        "Type 2 diabetes",
+        "Hypertension"
+      ],
+      "labs": {
+        "wbc": "18,500/\u03bcL",
+        "lactate": "3.8 mmol/L",
+        "creatinine": "1.9 mg/dL",
+        "glucose": "248 mg/dL"
+      }
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all cues indicating sepsis with probable septic shock.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Temperature 102.8\u00b0F",
+            "correct": true,
+            "rationale": "Fever = sign of infection."
+          },
+          {
+            "text": "BP 88/56 mmHg (MAP &lt; 65)",
+            "correct": true,
+            "rationale": "Hypotension despite fluid resuscitation = septic shock."
+          },
+          {
+            "text": "Heart rate 118 bpm",
+            "correct": true,
+            "rationale": "Tachycardia = compensatory response."
+          },
+          {
+            "text": "Respiratory rate 26/min",
+            "correct": true,
+            "rationale": "Tachypnea = sign of compensation/metabolic acidosis."
+          },
+          {
+            "text": "Lactate 3.8 mmol/L",
+            "correct": true,
+            "rationale": "Lactate \u2265 2 = tissue hypoperfusion."
+          },
+          {
+            "text": "WBC 18,500/\u03bcL",
+            "correct": true,
+            "rationale": "Leukocytosis = sign of infection."
+          },
+          {
+            "text": "Confusion",
+            "correct": true,
+            "rationale": "Altered mental status = organ dysfunction."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Take Action",
+        "instruction": "Order the Hour-1 bundle interventions from FIRST to LAST priority.",
+        "type": "ordering",
+        "items": [
+          {
+            "text": "Draw blood cultures (before antibiotics)",
+            "order": 1,
+            "rationale": "Blood cultures must be drawn BEFORE antibiotics to identify the pathogen."
+          },
+          {
+            "text": "Start broad-spectrum antibiotics within 1 hour",
+            "order": 2,
+            "rationale": "Antibiotics within 1 hour of recognition significantly improve survival."
+          },
+          {
+            "text": "Administer 30 mL/kg crystalloid bolus",
+            "order": 3,
+            "rationale": "Fluid resuscitation for hypotension/lactate \u2265 4. Give within 3 hours."
+          },
+          {
+            "text": "Start vasopressors if MAP remains &lt; 65 after fluids",
+            "order": 4,
+            "rationale": "Norepinephrine is first-line vasopressor for septic shock."
+          },
+          {
+            "text": "Measure serial lactate",
+            "order": 5,
+            "rationale": "Monitor response to treatment \u2014 lactate clearance target &gt; 10%."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Evaluate Outcomes",
+        "instruction": "After fluid resuscitation and antibiotics, which finding BEST indicates the patient is responding to treatment?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Temperature decreased to 100.2\u00b0F",
+            "correct": false,
+            "rationale": "Fever reduction is good but not the best indicator of perfusion restoration."
+          },
+          {
+            "text": "Lactate decreased from 3.8 to 2.1 mmol/L",
+            "correct": true,
+            "rationale": "Lactate clearance &gt; 10% indicates restored tissue perfusion. Best objective marker."
+          },
+          {
+            "text": "WBC decreased to 14,000/\u03bcL",
+            "correct": false,
+            "rationale": "WBC changes lag behind clinical improvement."
+          },
+          {
+            "text": "Patient is less confused",
+            "correct": false,
+            "rationale": "Improved mentation is positive but subjective compared to lactate clearance."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pediatric-asthma",
+    "title": "Pediatric Asthma Exacerbation",
+    "category": "peds",
+    "difficulty": "moderate",
+    "timeLimit": 10,
+    "scenario": {
+      "patient": "Liam, 7-year-old male",
+      "setting": "Pediatric ED",
+      "presentation": "Mother reports increased wheezing and cough for 2 days, worse tonight. Using accessory muscles to breathe. Can only speak in 2-3 word phrases. Has asthma \u2014 usually controlled with albuterol PRN.",
+      "vitals": {
+        "bp": "95/62 mmHg",
+        "hr": "138 bpm",
+        "rr": "38/min",
+        "temp": "99.1\u00b0F",
+        "spo2": "89% on room air"
+      },
+      "history": [
+        "Asthma \u2014 intermittent",
+        "Allergic rhinitis",
+        "No previous intubations",
+        "Father has asthma"
+      ]
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Recognize Cues",
+        "instruction": "Select all findings indicating a SEVERE asthma exacerbation.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "SpO\u2082 89% on room air",
+            "correct": true,
+            "rationale": "SpO\u2082 &lt; 92% = severe exacerbation."
+          },
+          {
+            "text": "Using accessory muscles",
+            "correct": true,
+            "rationale": "Accessory muscle use = increased work of breathing = severe."
+          },
+          {
+            "text": "Can only speak in 2-3 word phrases",
+            "correct": true,
+            "rationale": "Inability to speak in full sentences = severe."
+          },
+          {
+            "text": "Respiratory rate 38/min",
+            "correct": true,
+            "rationale": "RR &gt; 30 in child = severe."
+          },
+          {
+            "text": "Heart rate 138 bpm",
+            "correct": true,
+            "rationale": "Tachycardia from hypoxia and bronchodilator use."
+          },
+          {
+            "text": "Temperature 99.1\u00b0F",
+            "correct": false,
+            "rationale": "Low-grade fever is not a severity indicator."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Take Action",
+        "instruction": "What is the FIRST medication the nurse should prepare?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Oral prednisolone",
+            "correct": false,
+            "rationale": "Steroids are important but take hours to work. Not first."
+          },
+          {
+            "text": "Nebulized albuterol",
+            "correct": true,
+            "rationale": "Albuterol is first-line for acute bronchospasm. Nebulizer preferred in severe cases."
+          },
+          {
+            "text": "Subcutaneous epinephrine",
+            "correct": false,
+            "rationale": "Epinephrine is for anaphylaxis, not asthma."
+          },
+          {
+            "text": "IV magnesium sulfate",
+            "correct": false,
+            "rationale": "MgSO\u2084 is adjunctive for severe cases not responding to albuterol. Not first."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Evaluate Outcomes",
+        "instruction": "After treatment, Liam's SpO\u2082 improves to 94% on 2L NC. He can speak in full sentences. What is the nurse's NEXT action?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Discharge home with albuterol MDI",
+            "correct": false,
+            "rationale": "Not yet \u2014 need to observe, ensure stability, and provide asthma action plan."
+          },
+          {
+            "text": "Continue monitoring and prepare for admission observation",
+            "correct": true,
+            "rationale": "Severe exacerbations require observation. Start oral steroids. Provide asthma action plan before discharge."
+          },
+          {
+            "text": "Wean oxygen and discharge if SpO\u2082 remains &gt; 92%",
+            "correct": false,
+            "rationale": "Too early. Need observation period and discharge planning."
+          },
+          {
+            "text": "Switch to continuous albuterol",
+            "correct": false,
+            "rationale": "Patient is improving \u2014 no need for continuous albuterol."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "heparin-drip",
+    "title": "Heparin Infusion & aPTT Monitoring",
+    "category": "pharm",
+    "difficulty": "easy",
+    "timeLimit": 8,
+    "scenario": {
+      "patient": "Mr. Kim, 58-year-old male",
+      "setting": "Cardiac Unit",
+      "presentation": "Admitted with acute DVT in left calf. Started on heparin infusion per protocol 6 hours ago. aPTT is checked q6h.",
+      "vitals": {
+        "bp": "132/78 mmHg",
+        "hr": "82 bpm",
+        "rr": "16/min",
+        "temp": "98.4\u00b0F",
+        "spo2": "97% on room air"
+      },
+      "history": [
+        "Acute DVT",
+        "No bleeding disorders",
+        "No recent surgery"
+      ],
+      "labs": {
+        "aptt": "28 seconds",
+        "baseline": "30 seconds",
+        "pt": "12 seconds",
+        "inr": "1.0",
+        "platelets": "250,000/\u03bcL"
+      }
+    },
+    "steps": [
+      {
+        "number": 1,
+        "phase": "Analyze Cues",
+        "instruction": "The aPTT is 28 seconds (baseline 30 seconds, therapeutic range 1.5-2.5\u00d7 baseline = 45-75 seconds). What does this indicate?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Therapeutic \u2014 continue current rate",
+            "correct": false,
+            "rationale": "28 sec is BELOW therapeutic range. Patient is subtherapeutic."
+          },
+          {
+            "text": "Subtherapeutic \u2014 increase heparin rate",
+            "correct": true,
+            "rationale": "aPTT 28 sec &lt; 45 sec = subtherapeutic. Increase per protocol (usually by 2-4 units/kg/hr)."
+          },
+          {
+            "text": "Supratherapeutic \u2014 decrease heparin rate",
+            "correct": false,
+            "rationale": "Supratherapeutic would be aPTT &gt; 75 seconds."
+          },
+          {
+            "text": "Toxic \u2014 stop heparin immediately",
+            "correct": false,
+            "rationale": "Not toxic \u2014 just subtherapeutic."
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "phase": "Take Action",
+        "instruction": "Select all nursing actions for a patient on a heparin drip.",
+        "type": "sata",
+        "options": [
+          {
+            "text": "Monitor aPTT q6h until therapeutic, then daily",
+            "correct": true,
+            "rationale": "Standard monitoring protocol."
+          },
+          {
+            "text": "Assess for signs of bleeding (gingival, GI, urine, bruising)",
+            "correct": true,
+            "rationale": "Bleeding is the main adverse effect of heparin."
+          },
+          {
+            "text": "Monitor platelet count daily for HIT",
+            "correct": true,
+            "rationale": "Heparin-induced thrombocytopenia (HIT) can occur 5-10 days after start."
+          },
+          {
+            "text": "Apply pressure for 5 minutes after any needle sticks",
+            "correct": true,
+            "rationale": "Anticoagulated patients need prolonged pressure."
+          },
+          {
+            "text": "Administer aspirin concurrently for better anticoagulation",
+            "correct": false,
+            "rationale": "Aspirin increases bleeding risk. Not routinely given with heparin for DVT."
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "phase": "Evaluate Outcomes",
+        "instruction": "The next aPTT is 92 seconds. What is the appropriate action?",
+        "type": "single",
+        "options": [
+          {
+            "text": "Continue current rate \u2014 now therapeutic",
+            "correct": false,
+            "rationale": "92 sec is supratherapeutic (&gt; 75 sec)."
+          },
+          {
+            "text": "Hold heparin for 1 hour, then decrease rate",
+            "correct": true,
+            "rationale": "Supratherapeutic aPTT: hold infusion 1 hour, reduce rate, recheck in 4-6 hours."
+          },
+          {
+            "text": "Give protamine sulfate immediately",
+            "correct": false,
+            "rationale": "Protamine is for significant bleeding or overdose, not for mildly supratherapeutic aPTT."
+          },
+          {
+            "text": "Increase rate to reach higher therapeutic target",
+            "correct": false,
+            "rationale": "Never increase a supratherapeutic dose."
+          }
+        ]
+      }
+    ]
+  }
+]
