@@ -32,6 +32,9 @@ for (const entry of rootContentFiles) {
   }
 }
 
+// Also copy landing/downloads/ to public/downloads/
+copyDir('landing/downloads', 'public/downloads');
+
 // Also copy landing/ assets to public/ so they're available at root
 const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html', 
   'privacy.html', 'terms.html', 'success.html', 'sitemap.xml', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',

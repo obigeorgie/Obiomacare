@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCLEX Lab Values Quick Reference | Obioma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1a1a2e; background: #fff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 32px; }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; color: #1a1a2e; }
+        .subtitle { font-size: 16px; color: #e74c3c; font-weight: 600; margin-bottom: 32px; }
+        h2 { font-size: 20px; font-weight: 700; margin: 28px 0 12px; color: #1a1a2e; border-bottom: 3px solid #e74c3c; padding-bottom: 6px; }
+        h3 { font-size: 15px; font-weight: 700; margin: 16px 0 8px; color: #e74c3c; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+        th { background: #1a1a2e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+        td { padding: 8px 12px; border-bottom: 1px solid #e8e5df; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .critical { color: #e74c3c; font-weight: 700; }
+        .normal { color: #10b981; font-weight: 600; }
+        .note { background: #f0fdf4; border-left: 4px solid #10b981; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+        .warning { background: #fff5f5; border-left: 4px solid #e74c3c; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+        .footer { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid #eee; color: #7c756d; font-size: 13px; }
+        @media print {
+            .container { padding: 20px; }
+            .footer { page-break-inside: avoid; }
+            h2 { page-break-after: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧪 NCLEX Lab Values Quick Reference</h1>
+    <p class="subtitle">Normal ranges, critical values & clinical significance</p>
+
+    <h2>Electrolytes</h2>
+    <table>
+        <tr><th>Lab</th><th>Normal Range</th><th>Critical Low</th><th>Critical High</th></tr>
+        <tr><td>Sodium (Na⁺)</td><td class="normal">135-145 mEq/L</td><td class="critical">&lt;120</td><td class="critical">&gt;160</td></tr>
+        <tr><td>Potassium (K⁺)</td><td class="normal">3.5-5.0 mEq/L</td><td class="critical">&lt;2.5</td><td class="critical">&gt;6.5</td></tr>
+        <tr><td>Calcium (Ca²⁺)</td><td class="normal">8.5-10.5 mg/dL</td><td class="critical">&lt;7.0</td><td class="critical">&gt;13</td></tr>
+        <tr><td>Magnesium (Mg²⁺)</td><td class="normal">1.5-2.5 mg/dL</td><td class="critical">&lt;1.0</td><td class="critical">&gt;4.0</td></tr>
+        <tr><td>Chloride (Cl⁻)</td><td class="normal">95-105 mEq/L</td><td class="critical">&lt;80</td><td class="critical">&gt;120</td></tr>
+        <tr><td>Phosphorus (PO₄³⁻)</td><td class="normal">2.5-4.5 mg/dL</td><td class="critical">&lt;1.0</td><td class="critical">&gt;7.0</td></tr>
+    </table>
+    <div class="warning"><strong>NCLEX Trap:</strong> Hypomagnesemia causes refractory hypokalemia and hypocalcemia. Fix Mg²⁺ first.</div>
+
+    <h2>Renal Function</h2>
+    <table>
+        <tr><th>Lab</th><th>Normal Range</th><th>Critical Value</th></tr>
+        <tr><td>BUN</td><td class="normal">7-20 mg/dL</td><td class="critical">&gt;100</td></tr>
+        <tr><td>Creatinine</td><td class="normal">0.6-1.2 mg/dL</td><td class="critical">&gt;4.0 (or doubling baseline)</td></tr>
+        <tr><td>eGFR</td><td class="normal">&gt;90 mL/min</td><td class="critical">&lt;15 (ESRD)</td></tr>
+    </table>
+
+    <h2>Cardiac Enzymes & Biomarkers</h2>
+    <table>
+        <tr><th>Marker</th><th>Normal</th><th>Rises At</th><th>Peaks At</th></tr>
+        <tr><td>Troponin I</td><td class="normal">&lt;0.04 ng/mL</td><td>3-6 hrs</td><td>12-24 hrs</td></tr>
+        <tr><td>CK-MB</td><td class="normal">&lt;5 ng/mL</td><td>4-6 hrs</td><td>12-24 hrs</td></tr>
+        <tr><td>BNP</td><td class="normal">&lt;100 pg/mL</td><td>Immediate</td><td>Immediate</td></tr>
+        <tr><td>Myoglobin</td><td class="normal">&lt;70 ng/mL</td><td>1-3 hrs</td><td>6-12 hrs</td></tr>
+    </table>
+    <div class="note"><strong>Tip:</strong> Troponin is the gold standard. BNP &gt;400 = heart failure likely. BNP &lt;100 = heart failure unlikely.</div>
+
+    <h2>ABG Values</h2>
+    <table>
+        <tr><th>Parameter</th><th>Normal Range</th></tr>
+        <tr><td>pH</td><td class="normal">7.35-7.45</td></tr>
+        <tr><td>PaCO₂</td><td class="normal">35-45 mmHg</td></tr>
+        <tr><td>PaO₂</td><td class="normal">80-100 mmHg</td></tr>
+        <tr><td>HCO₃⁻</td><td class="normal">22-26 mEq/L</td></tr>
+        <tr><td>Base Excess</td><td class="normal">-2 to +2</td></tr>
+        <tr><td>SpO₂</td><td class="normal">95-100%</td></tr>
+    </table>
+
+    <h2>CBC</h2>
+    <table>
+        <tr><th>Component</th><th>Normal Range</th><th>Critical</th></tr>
+        <tr><td>Hemoglobin (male)</td><td class="normal">13.5-17.5 g/dL</td><td class="critical">&lt;7.0 or &gt;20</td></tr>
+        <tr><td>Hemoglobin (female)</td><td class="normal">12.0-16.0 g/dL</td><td class="critical">&lt;7.0 or &gt;20</td></tr>
+        <tr><td>WBC</td><td class="normal">4,500-11,000/μL</td><td class="critical">&lt;1,000 or &gt;30,000</td></tr>
+        <tr><td>Platelets</td><td class="normal">150,000-400,000/μL</td><td class="critical">&lt;20,000 or &gt;1M</td></tr>
+        <tr><td>Hct (male)</td><td class="normal">40-50%</td><td class="critical">&lt;21%</td></tr>
+        <tr><td>Hct (female)</td><td class="normal">36-46%</td><td class="critical">&lt;21%</td></tr>
+    </table>
+
+    <h2>Liver Function</h2>
+    <table>
+        <tr><th>Lab</th><th>Normal Range</th></tr>
+        <tr><td>ALT</td><td class="normal">7-56 U/L</td></tr>
+        <tr><td>AST</td><td class="normal">10-40 U/L</td></tr>
+        <tr><td>ALP</td><td class="normal">44-147 U/L</td></tr>
+        <tr><td>Bilirubin (total)</td><td class="normal">0.1-1.2 mg/dL</td></tr>
+        <tr><td>Albumin</td><td class="normal">3.5-5.0 g/dL</td></tr>
+        <tr><td>PT/INR</td><td class="normal">11-13.5 sec / 0.8-1.2</td></tr>
+        <tr><td>aPTT</td><td class="normal">30-40 sec</td></tr>
+    </table>
+
+    <h2>Glucose & HbA1c</h2>
+    <table>
+        <tr><th>Test</th><th>Normal</th><th>Prediabetes</th><th>Diabetes</th></tr>
+        <tr><td>Fasting Glucose</td><td class="normal">70-100 mg/dL</td><td>100-125</td><td class="critical">≥126</td></tr>
+        <tr><td>HbA1c</td><td class="normal">&lt;5.7%</td><td>5.7-6.4%</td><td class="critical">≥6.5%</td></tr>
+        <tr><td>Random Glucose</td><td class="normal">&lt;140 mg/dL</td><td>—</td><td class="critical">≥200 + symptoms</td></tr>
+    </table>
+
+    <h2>Coagulation</h2>
+    <table>
+        <tr><th>Test</th><th>Normal</th><th>Therapeutic (Warfarin)</th><th>Therapeutic (Heparin)</th></tr>
+        <tr><td>PT/INR</td><td class="normal">11-13.5 sec / 0.8-1.2</td><td>2.0-3.0 (3.0-4.5 for mech valve)</td><td>—</td></tr>
+        <tr><td>aPTT</td><td class="normal">30-40 sec</td><td>—</td><td>1.5-2.5× normal</td></tr>
+    </table>
+
+    <h2> Lipid Panel</h2>
+    <table>
+        <tr><th>Component</th><th>Desirable</th><th>Borderline</th><th>High Risk</th></tr>
+        <tr><td>Total Cholesterol</td><td class="normal">&lt;200 mg/dL</td><td>200-239</td><td class="critical">≥240</td></tr>
+        <tr><td>LDL</td><td class="normal">&lt;100</td><td>130-159</td><td class="critical">≥160</td></tr>
+        <tr><td>HDL (male)</td><td class="normal">&gt;40</td><td>—</td><td>&lt;40</td></tr>
+        <tr><td>HDL (female)</td><td class="normal">&gt;50</td><td>—</td><td>&lt;50</td></tr>
+        <tr><td>Triglycerides</td><td class="normal">&lt;150</td><td>150-199</td><td class="critical">≥200</td></tr>
+    </table>
+
+    <div class="footer">
+        <p><strong>Obioma Care</strong> — Clinical Judgment for Nursing Students</p>
+        <p>© 2026 Obioma Care | obiomacare.com</p>
+        <p style="margin-top:8px;font-size:12px;">For educational purposes only. Always verify with your institution's reference ranges.</p>
+    </div>
+</div>
+</body>
+</html>

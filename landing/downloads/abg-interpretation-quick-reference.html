@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCLEX ABG Interpretation Quick Reference | Obioma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.5; color: #1a1a2e; background: #fff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 32px; }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { font-size: 16px; color: #e74c3c; font-weight: 600; margin-bottom: 32px; }
+        h2 { font-size: 20px; font-weight: 700; margin: 28px 0 12px; border-bottom: 3px solid #e74c3c; padding-bottom: 6px; }
+        .step-box { background: #f0eeff; border-radius: 12px; padding: 20px; margin: 12px 0; }
+        .step-box h3 { color: #6366f1; font-size: 16px; margin-bottom: 8px; }
+        .step-num { display: inline-block; background: #e74c3c; color: #fff; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; margin-right: 8px; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+        th { background: #1a1a2e; color: #fff; padding: 10px 12px; text-align: left; }
+        td { padding: 8px 12px; border-bottom: 1px solid #e8e5df; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .acidosis { color: #e74c3c; font-weight: 700; }
+        .alkalosis { color: #10b981; font-weight: 700; }
+        .normal { color: #6366f1; font-weight: 600; }
+        .tip { background: #f0fdf4; border-left: 4px solid #10b981; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+        .trap { background: #fff5f5; border-left: 4px solid #e74c3c; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+        .footer { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid #eee; color: #7c756d; font-size: 13px; }
+        @media print { .container { padding: 20px; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🫁 NCLEX ABG Interpretation Quick Reference</h1>
+    <p class="subtitle">4-step method + common disorders + practice cues</p>
+
+    <h2>🎯 The 4-Step Method</h2>
+
+    <div class="step-box">
+        <h3><span class="step-num">1</span>Look at the pH</h3>
+        <p><span class="normal">Normal: 7.35-7.45</span></p>
+        <p><span class="acidosis">&lt;7.35 = Acidosis</span> | <span class="alkalosis">&gt;7.45 = Alkalosis</span></p>
+    </div>
+
+    <div class="step-box">
+        <h3><span class="step-num">2</span>Look at PaCO₂ (respiratory component)</h3>
+        <p><span class="normal">Normal: 35-45 mmHg</span></p>
+        <p><span class="acidosis">&gt;45 = Respiratory acidosis</span> (retaining CO₂)</p>
+        <p><span class="alkalosis">&lt;35 = Respiratory alkalosis</span> (blowing off CO₂)</p>
+    </div>
+
+    <div class="step-box">
+        <h3><span class="step-num">3</span>Look at HCO₃⁻ (metabolic component)</h3>
+        <p><span class="normal">Normal: 22-26 mEq/L</span></p>
+        <p><span class="acidosis">&lt;22 = Metabolic acidosis</span> (losing bicarb)</p>
+        <p><span class="alkalosis">&gt;26 = Metabolic alkalosis</span> (retaining bicarb)</p>
+    </div>
+
+    <div class="step-box">
+        <h3><span class="step-num">4</span>Is there compensation?</h3>
+        <p><strong>Uncompensated:</strong> One value abnormal, pH abnormal</p>
+        <p><strong>Partially compensated:</strong> Both values abnormal, pH still abnormal</p>
+        <p><strong>Fully compensated:</strong> Both values abnormal, pH normal (7.35-7.45)</p>
+        <div class="trap"><strong>Trap:</strong> The body never overcompensates. If pH is acidotic, the PRIMARY problem is acidosis. The compensating system moves in the SAME direction as the primary problem.</div>
+    </div>
+
+    <h2>📋 Common ABG Patterns</h2>
+
+    <table>
+        <tr><th>Disorder</th><th>pH</th><th>PaCO₂</th><th>HCO₃⁻</th><th>Common Causes</th></tr>
+        <tr><td class="acidosis">Respiratory Acidosis</td><td class="acidosis">↓</td><td class="acidosis">↑</td><td>Normal (acute) or ↑ (chronic)</td><td>COPD, opioid overdose, chest trauma, neuromuscular disease</td></tr>
+        <tr><td class="alkalosis">Respiratory Alkalosis</td><td class="alkalosis">↑</td><td class="alkalosis">↓</td><td>Normal (acute) or ↓ (chronic)</td><td>Anxiety/hyperventilation, fever, PE, early sepsis, altitude</td></tr>
+        <tr><td class="acidosis">Metabolic Acidosis</td><td class="acidosis">↓</td><td>Normal (acute) or ↓ (compensated)</td><td class="acidosis">↓</td><td>DKA, lactic acidosis, renal failure, diarrhea, aspirin OD</td></tr>
+        <tr><td class="alkalosis">Metabolic Alkalosis</td><td class="alkalosis">↑</td><td>Normal (acute) or ↑ (compensated)</td><td class="alkalosis">↑</td><td>Vomiting, NG suction, diuretics, antacids, hyperaldosteronism</td></tr>
+    </table>
+
+    <h2>🧪 Anion Gap (for Metabolic Acidosis)</h2>
+    <p><strong>Formula:</strong> Na⁺ - (Cl⁻ + HCO₃⁻) | <strong>Normal:</strong> 8-12 mEq/L</p>
+
+    <table>
+        <tr><th>Type</th><th>Anion Gap</th><th>Causes (MUDPILES)</th></tr>
+        <tr><td>High Anion Gap</td><td class="acidosis">&gt;12</td><td><strong>M</strong>ethanol, <strong>U</strong>remia, <strong>D</strong>KA, <strong>P</strong>ropylene glycol, <strong>I</strong>soniazid, <strong>L</strong>actic acidosis, <strong>E</strong>thylene glycol, <strong>S</strong>alicylates</td></tr>
+        <tr><td>Normal Anion Gap</td><td>8-12</td><td><strong>HARDASS:</strong> <strong>H</strong>yperalimentation, <strong>A</strong>cetazolamide, <strong>R</strong>enal tubular acidosis, <strong>D</strong>iarrhea, <strong>A</strong>ddison's, <strong>S</strong>pironolactone, <strong>S</strong>aline infusion</td></tr>
+    </table>
+
+    <h2>🫁 O₂ Assessment</h2>
+
+    <table>
+        <tr><th>Parameter</th><th>Normal</th><th>Interpretation</th></tr>
+        <tr><td>PaO₂</td><td class="normal">80-100 mmHg</td><td>Measures oxygenation (A = arterial)</td></tr>
+        <tr><td>SaO₂</td><td class="normal">95-100%</td><td>Oxygen saturation of hemoglobin</td></tr>
+        <tr><td>SpO₂</td><td class="normal">95-100%</td><td>Pulse oximetry (non-invasive estimate)</td></tr>
+        <tr><td>PaO₂/FiO₂ (P/F) Ratio</td><td class="normal">400-500</td><td>&lt;300 = ALI | &lt;200 = ARDS</td></tr>
+        <tr><td>A-a Gradient</td><td class="normal">5-15 mmHg</td><td>Elevated = V/Q mismatch, shunt, diffusion defect</td></tr>
+    </table>
+
+    <div class="tip"><strong>Tip:</strong> For every 1% decrease in SpO₂ below 90%, PaO₂ drops by ~5-7 mmHg. SpO₂ 90% ≈ PaO₂ 60 mmHg (steep part of the oxyhemoglobin dissociation curve).</div>
+
+    <h2>🎯 ABG in Specific Conditions</h2>
+
+    <table>
+        <tr><th>Condition</th><th>ABG Pattern</th><th>Key Nursing Action</th></tr>
+        <tr><td>DKA</td><td>pH ↓, PaCO₂ ↓, HCO₃⁻ ↓↓, anion gap ↑</td><td>IV insulin + fluids, monitor K⁺, watch for cerebral edema</td></tr>
+        <tr><td>COPD Exacerbation</td><td>pH ↓, PaCO₂ ↑, HCO₃⁻ ↑ (chronic compensation)</td><td>O₂ 2-4L (target SpO₂ 88-92%), bronchodilators, steroids, consider BiPAP</td></tr>
+        <tr><td>Salicylate OD</td><td>pH ↓, PaCO₂ ↓, HCO₃⁻ ↓ (mixed: resp alk + meta acid)</td><td>Activated charcoal, urinary alkalinization, hemodialysis if severe</td></tr>
+        <tr><td>Septic Shock</td><td>pH ↓, PaCO₂ ↓, HCO₃⁻ ↓, lactate ↑</td><td>Fluids, antibiotics within 1 hr, vasopressors, source control</td></tr>
+        <tr><td>PE</td><td>pH ↓, PaCO₂ ↓, PaO₂ ↓, A-a gradient ↑</td><td>Anticoagulation (heparin), O₂, consider thrombolysis if massive</td></tr>
+        <tr><td>CHF Pulmonary Edema</td><td>pH ↓, PaCO₂ ↑, PaO₂ ↓↓</td><td>BiPAP, diuretics, nitrates, morphine (if hypertensive)</td></tr>
+    </table>
+
+    <h2>⚡ Rapid Fire Questions</h2>
+
+    <div class="trap">
+        <strong>Q:</strong> ABG: pH 7.25, PaCO₂ 55, HCO₃⁻ 24. What's the disorder?<br>
+        <strong>A:</strong> Respiratory acidosis (uncompensated). pH acidotic, PaCO₂ high (respiratory cause), HCO₃⁻ normal.
+    </div>
+
+    <div class="trap">
+        <strong>Q:</strong> ABG: pH 7.50, PaCO₂ 30, HCO₃⁻ 24. What's the disorder?<br>
+        <strong>A:</strong> Respiratory alkalosis (uncompensated). pH alkalotic, PaCO₂ low (respiratory cause), HCO₃⁻ normal.
+    </div>
+
+    <div class="trap">
+        <strong>Q:</strong> ABG: pH 7.32, PaCO₂ 38, HCO₃⁻ 18. What's the disorder?<br>
+        <strong>A:</strong> Metabolic acidosis (uncompensated). pH acidotic, HCO₃⁻ low (metabolic cause), PaCO₂ normal.
+    </div>
+
+    <div class="trap">
+        <strong>Q:</strong> ABG: pH 7.40, PaCO₂ 52, HCO₃⁻ 32. What's the disorder?<br>
+        <strong>A:</strong> Respiratory acidosis with metabolic compensation (fully compensated). pH normal but on acidotic side, both values abnormal in same direction.
+    </div>
+
+    <div class="footer">
+        <p><strong>Obioma Care</strong> — Clinical Judgment for Nursing Students</p>
+        <p>© 2026 Obioma Care | obiomacare.com</p>
+    </div>
+</div>
+</body>
+</html>
