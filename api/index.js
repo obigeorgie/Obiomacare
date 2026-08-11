@@ -336,7 +336,7 @@ app.post('/auth/update-profile', authMiddleware, express.json(), async (req, res
 app.post('/api/create-checkout', express.json(), async (req, res) => {
   if (!stripe) return res.status(500).json({ error: 'Stripe not configured' });
   
-  const { tier, email, promoCode, utm } = req.body;
+  const { tier, email, promoCode, utm, abTest, abTestName } = req.body;
   const product = PRODUCTS[tier];
   
   if (!product) return res.status(400).json({ error: 'Invalid product tier' });
@@ -344,12 +344,14 @@ app.post('/api/create-checkout', express.json(), async (req, res) => {
   try {
     const baseUrl = req.headers.origin || `https://${req.headers.host}` || 'https://obioma-care.vercel.app';
     
-    // Log checkout initiation with UTM attribution
+    // Log checkout initiation with UTM + A/B test attribution
     logEvent('checkout_initiated', {
       tier,
       email: email || null,
       promoCode: promoCode || null,
       utm: utm || null,
+      abTest: abTest || 'A',
+      abTestName: abTestName || '',
       ip: req.headers['x-forwarded-for'] || req.ip,
       userAgent: req.headers['user-agent']
     });
@@ -385,7 +387,9 @@ app.post('/api/create-checkout', express.json(), async (req, res) => {
         promoCode: promoCode || 'none',
         utm_source: utm?.utm_source || '',
         utm_medium: utm?.utm_medium || '',
-        utm_campaign: utm?.utm_campaign || ''
+        utm_campaign: utm?.utm_campaign || '',
+        ab_test: abTest || 'A',
+        ab_test_name: abTestName || ''
       },
       ...(discounts.length > 0 && { discounts })
     });
@@ -503,7 +507,7 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
     const product = PRODUCTS[tier];
     const baseUrl = 'https://obiomacare.com';
     
-    // Log purchase with UTM attribution
+    // Log purchase with UTM + A/B test attribution
     logEvent('purchase_completed', {
       email: email || null,
       tier,
@@ -514,6 +518,8 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
         medium: session.metadata?.utm_medium || '',
         campaign: session.metadata?.utm_campaign || ''
       },
+      abTest: session.metadata?.ab_test || 'A',
+      abTestName: session.metadata?.ab_test_name || '',
       promoCode: session.metadata?.promoCode || null
     });
     
@@ -524,6 +530,8 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
           purchased: true,
           tier: tier || 'none',
           stripeCustomerId: stripeCustomerId || null,
+          abTest: session.metadata?.ab_test || 'A',
+          abTestName: session.metadata?.ab_test_name || '',
           purchasedAt: new Date().toISOString()
         });
         console.log(`✅ Updated lead ${email} with purchase`);
@@ -2074,6 +2082,24 @@ function downloadPageTemplate(product, tier, baseUrl) {
     </html>
   `;
 }
+
+// ==================== A/B TEST EVENTS ====================
+app.post('/api/ab-event', express.json(), async (req, res) => {
+  const { test, variant, event, tier, timestamp, url } = req.body;
+  
+  logEvent('ab_test_event', {
+    test: test || 'unknown',
+    variant: variant || 'A',
+    event: event || 'unknown',
+    tier: tier || null,
+    timestamp: timestamp || new Date().toISOString(),
+    url: url || '',
+    ip: req.headers['x-forwarded-for'] || req.ip,
+    userAgent: req.headers['user-agent']
+  });
+  
+  res.json({ received: true });
+});
 
 // 404 handler — returns proper 404 status for unmatched routes
 app.use((req, res) => {

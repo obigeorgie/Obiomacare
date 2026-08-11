@@ -8,10 +8,12 @@ const API_URL = 'https://api.postiz.com';
 
 // Integration IDs
 const INTEGRATIONS = {
-  'x_posts': 'cmrqspwfp0843qj0yyiru88sy',      // @obiomacare
-  'x_threads': 'cmrqspwfp0843qj0yyiru88sy',     // @obiomacare
+  'x_posts': 'cmrqspwfp0843qj0yyiru88sy',        // @obiomacare
+  'x_threads': 'cmrqspwfp0843qj0yyiru88sy',       // @obiomacare
   'instagram_posts': 'cmrrmzsu20dg4qj0ym3m4eskv', // @obiomacare
-  'tiktok_scripts': 'cmrrmrnsz0dj4pc0yzrtdgo2q'   // @obiomacare
+  'tiktok_scripts': 'cmrrmrnsz0dj4pc0yzrtdgo2q',  // @obiomacare
+  'linkedin_posts': 'cmplx746g04hxma0y5w4fdyxv',  // Obioma
+  'pinterest_pins': null                            // Not connected
 };
 
 async function schedulePost(post) {
@@ -24,10 +26,11 @@ async function schedulePost(post) {
   const dateStr = `${post.date}T${post.time}:00Z`;
 
   const platformSettings = {
-    'x_posts': { who_can_reply_post: 'everyone' },
-    'x_threads': { who_can_reply_post: 'everyone' },
-    'instagram_posts': { post_type: 'post' },
+    'x_posts': { __type: 'x', who_can_reply_post: 'everyone' },
+    'x_threads': { __type: 'x', who_can_reply_post: 'everyone' },
+    'instagram_posts': { __type: 'instagram-standalone', post_type: 'post' },
     'tiktok_scripts': {
+      __type: 'tiktok',
       privacy_level: 'PUBLIC_TO_EVERYONE',
       duet: false,
       stitch: false,
@@ -36,7 +39,9 @@ async function schedulePost(post) {
       brand_content_toggle: false,
       brand_organic_toggle: false,
       content_posting_method: 'DIRECT_POST'
-    }
+    },
+    'linkedin_posts': { __type: 'linkedin-page' },
+    'pinterest_pins': { __type: 'pinterest' }
   };
 
   // Split threads into multiple posts for X

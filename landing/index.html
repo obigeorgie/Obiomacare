@@ -1362,7 +1362,9 @@ async function buyNow(tier) {
     if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
     
     try {
-        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier, promoCode }) : { tier, promoCode };
+        const body = window.ObiomaAnalytics 
+            ? window.ObiomaAnalytics.withUTM({ tier, promoCode, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' })
+            : { tier, promoCode, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' };
         const res = await fetch('/api/create-checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1802,6 +1804,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   ]
 }
 </script>
+
+<!-- A/B Test -->
+<script src="/ab-test-pricing.js"></script>
 
 </body>
 </html>
