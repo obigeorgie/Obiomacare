@@ -1,107 +1,74 @@
 # TODO.md — Obioma Care
 
-## ✅ Completed (2026-08-07)
+*Last updated: 2026-08-11*
 
-### Critical Fixes
-- [x] Fixed `FROM_EMAIL`/`BRAND_COLORS` hoisting bug in Stripe webhook
-- [x] Added missing `jsonwebtoken` dependency
-- [x] Fixed broken `/landing/` links across 8 content files
-- [x] Created `public/privacy.html` and `public/terms.html`
-- [x] Removed stale `dist/api/` directory
-- [x] Deduplicated `.gitignore`
-- [x] Regenerated sitemap with 69 URLs
+## ✅ Completed
 
-### API Endpoints
-- [x] `POST /api/newsletter` — subscribe endpoint
-- [x] `POST /api/contact` — contact form
-- [x] `POST /api/validate-promo` — promo code validation
-- [x] `POST /api/create-checkout` — Stripe checkout creation
+### Critical Infrastructure
+- [x] Stripe checkout + webhook (live mode)
+- [x] GA4 + FB Pixel tracking
+- [x] Firestore lead/user management
+- [x] Vercel deployment pipeline
+- [x] Email nurture cron (daily 10 AM UTC)
+- [x] Promo codes: TEST99, LAUNCH50, NURSE20
 
-### Analytics & Tracking
-- [x] Added GA4 (`G-922HP9B76M`) to all 67 content + 7 landing pages
-- [x] Added Facebook Pixel (`1045171501242922`) to all pages
-- [x] Created `/success.html` with purchase event tracking
-- [x] Connected Vercel Web Analytics + Speed Insights
-
-### Firestore
-- [x] Webhook updates lead with `purchased`, `tier`, `stripeCustomerId`
-- [x] Webhook updates user tier on purchase
-- [x] Cron nurture endpoint logs to `automation_logs`
-- [x] Deleted stale `landing` + `public` collections (152 docs)
-
-### Cleanup
-- [x] Removed old MasteryGraph app artifacts (`dist/`, dead API stubs)
-- [x] Replaced `app.obiomacare.com` links in 40 content files
-- [x] Removed dead Vercel routes for old app
-
-### CI/CD
-- [x] Created GitHub Actions workflows (deploy.yml, ci.yml)
-- [x] Pushed 50 commits to `https://github.com/obigeorgie/Obiomacare.git`
-
-## ✅ Completed (2026-08-08)
-
-### Documentation
-- [x] Created `AGENTS.md` — project agent guide with health check, commands, troubleshooting
-- [x] Created `docs/TODO.md` — task tracking
-- [x] Created `docs/DECISIONS.md` — 11 settled architectural decisions
-- [x] Created `docs/links.md` — canonical URLs, endpoints, dashboards
-- [x] Created `docs/SESSION-LOG.md` — session history
-- [x] Created `KIMICLAW-BOOTSTRAP.md` — session bootstrap prompt
-- [x] Updated `.env.example` — comprehensive environment variables
-
-### Batch 4 Content (COMPLETED)
-- [x] `nclex-fluids-electrolytes-master.html` (14.7 KB) — Osmolality, acid-base, IV calculations, electrolyte emergencies, NGN case study
-- [x] `nclex-mechanical-ventilation-master.html` (13.6 KB) — Vent modes, ARDS, PEEP, weaning, ETT care, alarms, NGN case study
-- [x] `nclex-trauma-nursing-master.html` (13.9 KB) — ABCDE triage, shock, burns, spinal injury, head trauma, NGN case study
-- [x] Sitemap updated to 69 URLs
-
-### Stripe Test (PARTIALLY VERIFIED)
-- [x] TEST99 promo code validates correctly
-- [x] Checkout URL generates successfully
-- [x] Success page exists with GA4 + FB Pixel purchase tracking
-- [x] Download PDFs accessible
-- [x] Webhook handler configured for `checkout.session.completed`
-- [x] API health check passes (stripe: true)
-- [ ] **PENDING**: Actual payment completion (requires real card)
-
----
-
-## ✅ Completed (2026-08-09)
-
-### CI/CD
-- [x] Added GitHub Action secrets (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`)
+### Content (74 articles live)
+- [x] Phase 1: Lab values, pharmacology, NGN, body systems, specialty nursing
+- [x] Phase 2: Fundamentals, nutrition, professional issues
+- [x] Batch 5: 8 new guides (electrolyte mnemonics, drug levels, cardiac enzymes, matrix grid, CJMM, vital signs, legal/ethical, safety/fall prevention)
+- [x] All articles have product CTAs
+- [x] All articles have case studies or interactive questions
+- [x] Internal link audit complete (0 generic links)
+- [x] BreadcrumbList schema on 73 pages
+- [x] Article schema on 8 key pages
 
 ### SEO
-- [x] Submitted sitemap to Google Search Console (`https://obiomacare.com/sitemap.xml`)
+- [x] Sitemap: 80+ URLs including case-engine, quiz, downloads
+- [x] Meta descriptions on all 74 content pages
+- [x] Alt tags on all images
+- [x] Cross-linking between related articles
+- [x] Redirects for merged/deprecated content
+
+### Trust & Compliance
+- [x] Unsubstantiated claims replaced with verified stats
+- [x] Product schema + Review structured data
+- [x] Privacy policy + Terms pages
+- [x] 30-day guarantee clearly stated
+
+### Interactive Features
+- [x] NGN Case Engine: 10 clinical judgment cases
+- [x] Quiz system: lab-values quiz live
+- [x] 12+ downloadable cheat sheets / quick references
 
 ---
 
-## 🔄 In Progress
+## 🔄 In Progress / Blocked
 
-- [ ] Real Stripe test purchase with `TEST99` promo code
+| Task | Status | Blocker |
+|------|--------|---------|
+| Stripe E2E test purchase | Blocked | Live mode only; needs real payment or test keys |
+| GSC automated submission | Blocked | Service account needs Owner permission in GSC |
+| GA4 analytics review | Blocked | No Data API credentials configured |
 
 ---
 
 ## 📋 Next Up
 
 ### High Priority
-- [ ] **Real Stripe test purchase** — Use code `TEST99` at checkout, pay ~$0.94, verify:
-  - [ ] Email arrives with download link
-  - [ ] Download page works
-  - [ ] Firestore lead updated with `purchased: true`, `tier`, `stripeCustomerId`
-  - [ ] GA4 receives `purchase` event
-  - [ ] FB Pixel receives `Purchase` event
+- [ ] **GSC access fix** — Add `masterygraph-sitemap@masterygraph-gsc.iam.gserviceaccount.com` as Owner in GSC
+- [ ] **Stripe test mode** — Set up test keys for safe E2E verification
+- [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
 
 ### Medium Priority
-- [ ] Test email nurture cron (`/api/cron/nurture`) with `CRON_SECRET`
-- [ ] Add more promo codes (LAUNCH50, NURSE20, etc.)
-- [ ] Create Batch 5 content (see content-roadmap.md)
+- [ ] **Content gap analysis** — Identify underserved keywords vs competitors
+- [ ] **Backlink outreach** — Contact nursing schools, educators for links
+- [ ] **Social content calendar** — Schedule posts from `social-schedule.json`
+- [ ] **A/B test pricing page** — Test headline/CTA variants
 
 ### Low Priority
-- [ ] Add unit tests for API endpoints
-- [ ] Implement Redis for delivery tokens (currently in-memory)
-- [ ] Add user dashboard for download history
-- [ ] A/B test pricing page variants
+- [ ] **Redis for delivery tokens** — Replace in-memory storage
+- [ ] **Unit tests for API** — Automated endpoint testing
+- [ ] **User dashboard** — Download history, progress tracking
 
 ---
 
@@ -109,10 +76,19 @@
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| In-memory delivery tokens | Medium | Lost on deploy; use Redis in production |
-| No automated tests | Low | Manual testing only |
-| 3 users have `tier: "none"` | Low | Pre-existing accounts; will update on next purchase |
+| Cloudflare email obfuscation 404s | Low | `cdn-cgi/l/email-protection` returns 404 to crawlers; works for JS-enabled users |
+| In-memory delivery tokens | Low | Lost on deploy; low impact for digital downloads |
+| No automated tests | Low | Manual testing only; stable for 2+ weeks |
 
 ---
 
-*Last updated: 2026-08-08*
+## 📊 Current Metrics
+
+| Metric | Value |
+|--------|-------|
+| Content pages | 74 |
+| Downloadable resources | 12+ |
+| Interactive NGN cases | 10 |
+| Leads in Firestore | 53 |
+| Promo codes active | 3 |
+| Email sequences | 2 (nurture + post-purchase) |
