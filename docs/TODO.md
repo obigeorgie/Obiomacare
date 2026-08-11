@@ -62,8 +62,8 @@
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
 
 ### Medium Priority
-- [x] **Content gap analysis** — 12 priority opportunities identified, 6 guides drafted
-- [ ] **Backlink outreach** — Contact nursing schools, educators for links
+- [x] **Content gap analysis** — 12 opportunities identified, 9 guides published (~120K words)
+- [ ] **Backlink outreach** — In progress: templates drafted, prospect research begun
 - [ ] **Social content calendar** — Schedule posts from `social-schedule.json`
 - [ ] **A/B test pricing page** — Test headline/CTA variants
 
