@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(135deg, #0a1628 0%, #162544 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(255, 107, 91, 0.06);
+  top: -150px;
+  left: -150px;
+}
+.title {
+  font-size: 64px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.2;
+  color: #e2e8f0;
+  margin-bottom: 60px;
+}
+.accent { color: #FF6B5B; }
+.scenario {
+  width: 100%;
+  max-width: 880px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 24px;
+  padding: 48px;
+  margin-bottom: 32px;
+  border-left: 6px solid #FF6B5B;
+}
+.scenario-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #FF6B5B;
+  margin-bottom: 16px;
+}
+.scenario-text {
+  font-size: 32px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+.action {
+  font-size: 38px;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-align: center;
+  margin-top: 20px;
+}
+.footer {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #FF6B5B;
+}
+</style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="title">Same Lab.<br><span class="accent">Different Action.</span></div>
+  
+  <div class="scenario">
+    <div class="scenario-title">K+ 3.2 — Stable Patient</div>
+    <div class="scenario-text">Replace, monitor</div>
+  </div>
+  
+  <div class="scenario">
+    <div class="scenario-title">K+ 3.2 — On Digoxin with PVCs</div>
+    <div class="scenario-text">PRIORITY — Hold digoxin, notify provider</div>
+  </div>
+  
+  <div class="action">Context changes everything. 🧪</div>
+  <div class="footer">obiomacare.com</div>
+</body>
+</html>
