@@ -1,0 +1,65 @@
+{
+  "sent": [
+    {
+      "id": "nsna-resources",
+      "status": "sent",
+      "messageId": "<4f06d2e6-6e3d-dfbd-ecb0-8108a09cd58b@obiomacare.com>",
+      "date": "2026-08-11T06:57:41.332Z"
+    },
+    {
+      "id": "chamberlain-resources",
+      "status": "sent",
+      "messageId": "<3c57af63-b240-a3bc-e4b1-efa00c7d6f91@obiomacare.com>",
+      "date": "2026-08-11T06:58:13.163Z"
+    },
+    {
+      "id": "loyola-resources",
+      "status": "sent",
+      "messageId": "<90521ae2-a956-eb41-523a-ea773099f322@obiomacare.com>",
+      "date": "2026-08-11T06:58:45.000Z"
+    },
+    {
+      "id": "leveluprn-collab",
+      "status": "sent",
+      "messageId": "<5e34028f-8df1-b22a-4e95-8443ff8fd1e0@obiomacare.com>",
+      "date": "2026-08-11T06:59:16.569Z"
+    },
+    {
+      "id": "ncsbn-resources",
+      "status": "sent",
+      "messageId": "<94f63fe9-3faf-37e5-ad48-d6400ce4d18f@obiomacare.com>",
+      "date": "2026-08-11T06:59:48.446Z"
+    },
+    {
+      "id": "nurseorg-guestpost",
+      "status": "sent",
+      "messageId": "<9cdfc434-3954-0e4f-ecd1-0a2d06fc1b59@obiomacare.com>",
+      "date": "2026-08-11T07:00:20.148Z"
+    },
+    {
+      "id": "dailynurse-guestpost",
+      "status": "sent",
+      "messageId": "<847a8a71-d3d8-b29d-6912-7d776c82f02f@obiomacare.com>",
+      "date": "2026-08-11T07:00:51.803Z"
+    },
+    {
+      "id": "minoritynurse-guestpost",
+      "status": "sent",
+      "messageId": "<0779e37b-9b10-043b-7511-6b3c916a130a@obiomacare.com>",
+      "date": "2026-08-11T07:01:23.639Z"
+    },
+    {
+      "id": "allnurses-resources",
+      "status": "sent",
+      "messageId": "<41845c7f-fc35-682d-e93b-4f41fecac992@obiomacare.com>",
+      "date": "2026-08-11T07:01:55.190Z"
+    },
+    {
+      "id": "reddit-studentnurse",
+      "status": "skipped",
+      "reason": "No email — use Reddit mod mail"
+    }
+  ],
+  "failed": [],
+  "lastRun": "2026-08-11T07:02:25.191Z"
+}
