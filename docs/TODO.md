@@ -16,6 +16,8 @@
 - [x] Phase 1: Lab values, pharmacology, NGN, body systems, specialty nursing
 - [x] Phase 2: Fundamentals, nutrition, professional issues
 - [x] Batch 5: 8 new guides (electrolyte mnemonics, drug levels, cardiac enzymes, matrix grid, CJMM, vital signs, legal/ethical, safety/fall prevention)
+- [x] Batch 6: 5 new guides (types of shock, ABG interpretation, OB labor stages, EKG interpretation, pediatric milestones)
+- [x] Care plan template library (10 examples + NANDA reference)
 - [x] All articles have product CTAs
 - [x] All articles have case studies or interactive questions
 - [x] Internal link audit complete (0 generic links)
@@ -60,7 +62,7 @@
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
 
 ### Medium Priority
-- [ ] **Content gap analysis** — Identify underserved keywords vs competitors
+- [x] **Content gap analysis** — 12 priority opportunities identified, 6 guides drafted
 - [ ] **Backlink outreach** — Contact nursing schools, educators for links
 - [ ] **Social content calendar** — Schedule posts from `social-schedule.json`
 - [ ] **A/B test pricing page** — Test headline/CTA variants
