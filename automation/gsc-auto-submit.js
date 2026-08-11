@@ -4,7 +4,7 @@ const path = require('path');
 const { storeLog, storeDocument } = require('../lib/firestore-helper');
 
 const KEY_PATH = process.env.GSC_KEY_PATH || '/root/.openclaw/workspace/downloads/19f65655-36f2-893e-8000-00000311d180_gsc-service-account.json';
-const SITE_URL = process.env.GSC_SITE_URL || 'https://obiomacare.com/';
+const SITE_URL = process.env.GSC_SITE_URL || 'sc-domain:obiomacare.com';
 const SITEMAP_URL = 'https://obiomacare.com/sitemap.xml';
 
 async function main() {
