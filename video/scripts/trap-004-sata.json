@@ -1,0 +1,18 @@
+{
+  "id": "trap-004-sata",
+  "series": "nclex-trap-of-the-day",
+  "title": "SATA: The True/False Method",
+  "hook": "SATA questions terrify nursing students. Here's the method that makes them easy.",
+  "scenario": "Select all that apply: A patient with heart failure has decreased cardiac output. Which nursing interventions are appropriate? (A) Elevate HOB 30° (B) Administer digoxin (C) Restrict sodium intake (D) Encourage vigorous exercise (E) Monitor daily weights",
+  "answer": "Treat EACH option as a true/false question. A=True (improves breathing). B=True (inotropic support). C=True (reduces fluid retention). D=False (contraindicated). E=True (monitors fluid status). Answer: A, B, C, E.",
+  "payoff": "SATA Method: Read each option as a standalone true/false. Don't look for patterns. If it's true for the scenario, select it. No partial credit on NCLEX — all correct or nothing.",
+  "caption": "🚨 NCLEX Trap of the Day: SATA Questions\n\nThe method that makes SATA easy:\n\nTreat EACH option as True/False.\n\nDon't look for patterns.\nDon't overthink.\n\nIf it's true → select it\nIf it's false → skip it\n\nThat's it. That's the secret.\n\nFollow for tomorrow's trap 🎯\n#nclex #sata #nursingstudent #testtips",
+  "sources": [
+    "Kaplan NCLEX Review - SATA Strategy",
+    "NCSBN Next Generation NCLEX Item Types"
+  ],
+  "reviewStatus": "approved",
+  "disclosure": "ai-generated, nurse-reviewed",
+  "duration": "45s",
+  "aspectRatio": "9:16"
+}

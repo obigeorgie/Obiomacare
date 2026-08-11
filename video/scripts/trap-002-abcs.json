@@ -1,0 +1,18 @@
+{
+  "id": "trap-002-abcs",
+  "series": "nclex-trap-of-the-day",
+  "title": "ABCs vs. The Distraction",
+  "hook": "The NCLEX gives you 5 urgent tasks. 95% pick the wrong one first.",
+  "scenario": "Post-op patient: BP 88/52, RR 28, wound dressing saturated, family demanding pain medication, IV line infiltrated. What do you address FIRST?",
+  "answer": "Airway and Breathing first — RR 28 indicates respiratory distress. Circulation next (BP 88/52). Pain and family are important but NOT priority over ABCs.",
+  "payoff": "The ABC Rule: Airway → Breathing → Circulation. Everything else comes after. The NCLEX will ALWAYS test if you know this order.",
+  "caption": "🚨 NCLEX Trap of the Day: ABCs vs. Distraction\n\nPost-op patient:\n• BP 88/52\n• RR 28\n• Saturated dressing\n• Family wants pain meds\n• IV infiltrated\n\nWhat's FIRST?\n\nA) Change wound dressing\nB) Call provider for pain med\nC) Restart IV\nD) Assess airway & breathing\n\nAnswer: D\n\nABCs ALWAYS come first. RR 28 = respiratory distress.\n\nFollow for tomorrow's trap 🎯\n#nclex #nursingstudent #clinicaljudgment #prioritization",
+  "sources": [
+    "NCSBN Clinical Judgment Measurement Model - Prioritization",
+    "ATI Nursing Fundamentals - Priority Setting Frameworks"
+  ],
+  "reviewStatus": "approved",
+  "disclosure": "ai-generated, nurse-reviewed",
+  "duration": "45s",
+  "aspectRatio": "9:16"
+}

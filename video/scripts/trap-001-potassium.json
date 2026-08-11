@@ -1,0 +1,51 @@
+{
+  "id": "trap-001-potassium",
+  "series": "nclex-trap-of-the-day",
+  "title": "Potassium + Digoxin = Deadly Combo",
+  "hook": "This lab value kills faster than any other — do you check it first?",
+  "scenario": "Your patient is on digoxin. Their potassium is 3.2. They report nausea and have premature ventricular contractions on the monitor. What's your FIRST action?",
+  "answer": "Check potassium BEFORE giving digoxin. Hypokalemia increases digoxin toxicity risk. Hold the dose, notify provider, and prepare for potassium replacement.",
+  "payoff": "Rule: ALWAYS check K+ before digoxin. Hypokalemia = increased toxicity. Hyperkalemia = also dangerous. Potassium is never 'just a number'.",
+  "caption": "🚨 NCLEX Trap of the Day: Potassium + Digoxin\n\nThis combo kills more patients than you think.\n\nYour patient on digoxin has K+ 3.2 and PVCs. FIRST action?\n\nA) Give digoxin as scheduled\nB) Hold digoxin, check K+, notify provider\nC) Give potassium supplement only\nD) Call rapid response\n\nAnswer: B\n\nHypokalemia INCREASES digoxin toxicity. Always check K+ first.\n\nFollow for tomorrow's trap 🎯\nFree study checklist → obiomacare.com\n\n#nclex #nclexnextgen #nursingstudent #clinicaljudgment #nurse #rn #nursingschool #nclexprep",
+  "sources": [
+    "NCSBN Clinical Judgment Measurement Model",
+    "AACN Essentials of Critical Care Nursing - Digoxin Toxicity",
+    "ATI Pharmacology - Cardiac Glycosides"
+  ],
+  "reviewStatus": "approved",
+  "disclosure": "ai-generated, nurse-reviewed",
+  "duration": "45s",
+  "aspectRatio": "9:16",
+  "scenes": [
+    {
+      "scene": 1,
+      "type": "hook",
+      "duration": "0-3s",
+      "content": "This lab value kills faster than any other"
+    },
+    {
+      "scene": 2,
+      "type": "scenario",
+      "duration": "3-18s",
+      "content": "Patient on digoxin. K+ 3.2. Nausea + PVCs. What's FIRST?"
+    },
+    {
+      "scene": 3,
+      "type": "answer",
+      "duration": "18-35s",
+      "content": "Hold digoxin. Check K+. Notify provider. Hypokalemia = toxicity risk."
+    },
+    {
+      "scene": 4,
+      "type": "payoff",
+      "duration": "35-42s",
+      "content": "ALWAYS check K+ before digoxin. Potassium is never 'just a number'."
+    },
+    {
+      "scene": 5,
+      "type": "cta",
+      "duration": "42-45s",
+      "content": "Follow for tomorrow's trap. Free checklist → obiomacare.com"
+    }
+  ]
+}

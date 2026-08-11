@@ -1,0 +1,18 @@
+{
+  "id": "trap-003-delegation",
+  "series": "nclex-trap-of-the-day",
+  "title": "Who Do You Delegate To?",
+  "hook": "The NCLEX doesn't ask you to LIST the 5 rights. It gives you a scenario.",
+  "scenario": "You have 4 patients. Patient A needs a bed bath. Patient B needs wound dressing change (sterile). Patient C needs VS taken. Patient D needs ambulation assistance. Who do you delegate the bed bath to?",
+  "answer": "Delegate bed bath to UAP (Unlicensed Assistive Personnel). Bed bath is within UAP scope. You (RN) must do the sterile dressing change. VS can be delegated if stable. Ambulation may need RN assessment first.",
+  "payoff": "Delegation Rule: RN keeps assessment, teaching, medication, sterile procedures. Delegate ADLs, stable VS, and routine tasks to UAP.",
+  "caption": "🚨 NCLEX Trap of the Day: Delegation\n\nWho gets the bed bath?\nA) RN\nB) LPN\nC) UAP\nD) Physical Therapist\n\nAnswer: C (UAP)\n\nRN keeps: Assessment, meds, sterile procedures, teaching\nUAP gets: ADLs, stable VS, routine tasks\n\nThe NGN tests this in EVERY scenario.\n\nFollow for tomorrow's trap 🎯\n#nclex #delegation #nursingstudent #clinicaljudgment",
+  "sources": [
+    "NCSBN Delegation Decision-Making Framework",
+    "State Board of Nursing - Scope of Practice"
+  ],
+  "reviewStatus": "approved",
+  "disclosure": "ai-generated, nurse-reviewed",
+  "duration": "45s",
+  "aspectRatio": "9:16"
+}

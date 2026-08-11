@@ -1,0 +1,18 @@
+{
+  "id": "trap-005-isolation",
+  "series": "nclex-trap-of-the-day",
+  "title": "Isolation Precautions Made Simple",
+  "hook": "Contact? Droplet? Airborne? One trick tells you instantly.",
+  "scenario": "Patient has suspected tuberculosis. What PPE do you need BEFORE entering the room?",
+  "answer": "N95 respirator + standard precautions. TB is AIRBORNE (particles <5 microns, remain suspended). NOT droplet (which requires surgical mask). Key: airborne diseases = N95; droplet = surgical mask; contact = gown + gloves.",
+  "payoff": "Isolation Memory: AIRBORNE = N95 (TB, measles, chickenpox). DROPLET = surgical mask (flu, COVID, pertussis). CONTACT = gown + gloves (MRSA, C. diff).",
+  "caption": "🚨 NCLEX Trap of the Day: Isolation PPE\n\nTB patient. What PPE?\n\nA) Surgical mask + gown\nB) N95 respirator\nC) Gloves only\nD) Face shield + gown\n\nAnswer: B\n\nAirborne = N95\nDroplet = Surgical mask\nContact = Gown + gloves\n\nRemember: TB floats. It needs the GOOD mask.\n\nFollow for tomorrow's trap 🎯\n#nclex #infectioncontrol #ppe #nursingstudent",
+  "sources": [
+    "CDC Isolation Precautions Guidelines",
+    "OSHA Respiratory Protection Standard"
+  ],
+  "reviewStatus": "approved",
+  "disclosure": "ai-generated, nurse-reviewed",
+  "duration": "45s",
+  "aspectRatio": "9:16"
+}
