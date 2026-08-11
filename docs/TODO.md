@@ -47,7 +47,7 @@
 | Task | Status | Blocker |
 |------|--------|---------|
 | Stripe E2E test purchase | Blocked | Live mode only; needs real payment or test keys |
-| GSC automated submission | Blocked | Service account needs Owner permission in GSC |
+| GSC automated submission | Working | Use `sc-domain:obiomacare.com` format; URL indexing requires explicit per-URL ownership |
 | GA4 analytics review | Blocked | No Data API credentials configured |
 
 ---
