@@ -2,9 +2,10 @@
 
 | Date | Task ID | Description | Duration | Cost | Status |
 |------|---------|-------------|----------|------|--------|
-| 2026-08-12 | 8a107ca5 | Host avatar clip - trap-001 | ~10s | TBD | Rendering |
-| 2026-08-12 | 3aa997c0 | Medical animation - K+/Digoxin | ~10s | TBD | Rendering |
-| 2026-08-12 | 50a873ca | Medical animation - ABCs | ~10s | TBD | Rendering |
+| 2026-08-12 | 8a107ca5 | Host avatar clip - trap-001 | ~10s | Failed (no API key) | Failed |
+| 2026-08-12 | 3aa997c0 | Medical animation - K+/Digoxin | ~10s | Failed (no API key) | Failed |
+| 2026-08-12 | 50a873ca | Medical animation - ABCs | ~10s | Failed (no API key) | Failed |
+| 2026-08-12 | trap-001-potassium | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
 
 ## Notes
 - Runway gen4.5 pricing: ~$0.05-0.10 per second of video
