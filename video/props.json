@@ -1,0 +1,8 @@
+{
+  "scriptId": "trap-001-potassium",
+  "hook": "This lab value kills faster than any other — do you check it first?",
+  "scenario": "Your patient is on digoxin. Their potassium is 3.2. They report nausea and have PVCs. What's your FIRST action?",
+  "answer": "Check potassium BEFORE giving digoxin. Hypokalemia increases digoxin toxicity risk.",
+  "payoff": "ALWAYS check K+ before digoxin. Potassium is never just a number.",
+  "cta": "Follow for tomorrow's trap · Free study checklist — obiomacare.com"
+}
