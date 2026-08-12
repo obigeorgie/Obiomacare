@@ -6,6 +6,10 @@
 | 2026-08-12 | 3aa997c0 | Medical animation - K+/Digoxin | ~10s | Failed (no API key) | Failed |
 | 2026-08-12 | 50a873ca | Medical animation - ABCs | ~10s | Failed (no API key) | Failed |
 | 2026-08-12 | trap-001-potassium | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
+| 2026-08-12 | trap-002-abcs | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
+| 2026-08-12 | trap-003-delegation | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
+| 2026-08-12 | trap-004-sata | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
+| 2026-08-12 | trap-005-isolation | Remotion render - NCLEX Trap | 45s | Free (CPU render) | ✅ Rendered |
 
 ## Notes
 - Runway gen4.5 pricing: ~$0.05-0.10 per second of video
