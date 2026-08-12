@@ -193,3 +193,47 @@ Obioma Care
 P.S. If you ever want to chat nursing, just reply. I read every email.
 
 P.P.S. All the free study guides are always available at https://obiomacare.com/content/ — no signup required.
+
+---
+
+## Email 8: Win-Back (Day 21) — ONLY to non-buyers
+**Subject**: {{first_name}}, here's 50% off (last 48 hours)
+
+{{first_name}},
+
+You downloaded the NGN framework 3 weeks ago. I sent you 7 emails. You opened [X] of them.
+
+I get it — $67 is real money when you're a nursing student.
+
+So here's what I'm going to do:
+
+**Use code LAUNCH50 at checkout for 50% off the Complete System.**
+
+That brings it down to $33.50. Less than a textbook. Less than one shift at a part-time job.
+
+[Get Complete System — 50% off →]
+
+This code expires in 48 hours. After that, I'm removing it permanently.
+
+— Nnamdi
+
+---
+
+## Email 9: Final Offer (Day 30) — ONLY to non-buyers
+**Subject**: Final offer: NURSE20 for 20% off
+
+{{first_name}},
+
+Last email. Promise.
+
+If the Complete System wasn't the right fit at $67, and the 50% off window closed, here's one more option:
+
+**Code NURSE20 saves you 20%** — brings it to $53.60.
+
+No expiration. Use it whenever you're ready.
+
+[Get 20% off →]
+
+Or don't. The free framework and study guides are still yours either way. No hard feelings.
+
+— Nnamdi
