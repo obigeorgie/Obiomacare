@@ -1,0 +1,8 @@
+{
+  "scriptId": "trap-002-abcs",
+  "hook": "The NCLEX gives you 5 urgent tasks. 95% pick the wrong one first.",
+  "scenario": "Post-op patient: BP 88/52, RR 28, wound dressing saturated, family demanding pain meds, IV infiltrated. What do you address FIRST?",
+  "answer": "Airway and Breathing first — RR 28 indicates respiratory distress. Circulation next. Pain and family are NOT priority over ABCs.",
+  "payoff": "The ABC Rule: Airway → Breathing → Circulation. Everything else comes after.",
+  "cta": "Follow for tomorrow's trap · Free study checklist — obiomacare.com"
+}
