@@ -1,5 +1,6 @@
 import {Composition} from 'remotion';
 import {NclexTrap} from './NclexTrap';
+import {LandingPromo} from './LandingPromo';
 
 export const RemotionRoot: React.FC = () => {
   const scripts = [
@@ -59,6 +60,15 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={script}
         />
       ))}
+      <Composition
+        id="promo-landing-v1"
+        component={LandingPromo}
+        durationInFrames={2250}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{}}
+      />
     </>
   );
 };
