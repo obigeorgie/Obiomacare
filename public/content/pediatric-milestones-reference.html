@@ -94,7 +94,7 @@
             left: 0;
         }
         .milestone-card li.critical { color: var(--warning); font-weight: 600; }
-        .milestone-card li.critical::before { color: var(--warning); content: "⚠"; }
+        .milestone-card li.critical::before { color: var(--warning); content: "\26A0"; }
         
         .alert-box {
             background: rgba(239,68,68,0.1);
@@ -204,7 +204,7 @@
         <div class="container">
             
             <div class="alert-box">
-                <h4>🍼 NCLEX Tip</h4>
+                <h4><span class="emoji-replaced" aria-label="Bottle">(bottle)</span> NCLEX Tip</h4>
                 <p>Pediatric milestones are tested in "Select All That Apply" format. Know the KEY milestones for each age — the ones that are most distinct and clinically significant. Focus on the milestones that differentiate one age from the next.</p>
             </div>
             
@@ -470,7 +470,7 @@
             </div>
             
             <div class="pearl-box">
-                <h4>💡 NCLEX Testing Strategy</h4>
+                <h4><i data-lucide="lightbulb" class="icon icon-warning icon-md" aria-label="Idea"></i> NCLEX Testing Strategy</h4>
                 <p><strong>Red flags = delayed milestones</strong> — these are the answer choices the NCLEX wants you to identify as abnormal:</p>
                 <ul style="margin-top: 12px; padding-left: 20px;">
                     <li>Not sitting by 9 months</li>
@@ -491,19 +491,19 @@
                 <h3>Continue Learning</h3>
                 <div class="related-grid">
                     <a href="/quiz/lab-values.html" class="related-card">
-                        <h4>🧪 Lab Values Quiz</h4>
+                        <h4><i data-lucide="flask-conical" class="icon icon-coral icon-md" aria-label="Laboratory"></i> Lab Values Quiz</h4>
                         <p>15 questions with instant scoring and clinical pearls</p>
                     </a>
                     <a href="/content/emergency-drugs-reference.html" class="related-card">
-                        <h4>🚨 Emergency Drugs</h4>
+                        <h4><i data-lucide="alert-octagon" class="icon icon-error icon-md" aria-label="Emergency"></i> Emergency Drugs</h4>
                         <p>ACLS medications, antidotes, and critical care drips</p>
                     </a>
                     <a href="/content/nclex-pharmacology-mnemonics.html" class="related-card">
-                        <h4>💊 Pharmacology Mnemonics</h4>
+                        <h4><i data-lucide="pill" class="icon icon-coral icon-md" aria-label="Medication"></i> Pharmacology Mnemonics</h4>
                         <p>50+ memory aids for drug classes and side effects</p>
                     </a>
                     <a href="/free-nclex-checklist" class="related-card">
-                        <h4>📋 Free Study Checklist</h4>
+                        <h4><i data-lucide="clipboard-list" class="icon icon-coral icon-md" aria-label="Checklist"></i> Free Study Checklist</h4>
                         <p>14-day and 30-day study plans with priority frameworks</p>
                     </a>
                 </div>
@@ -527,5 +527,9 @@
             <p><a href="/">Home</a> · <a href="/quiz/">Quizzes</a> · <a href="/content/">Blog</a></p>
         </div>
     </footer>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

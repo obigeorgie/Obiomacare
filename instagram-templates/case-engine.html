@@ -15,7 +15,7 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
 <body>
   <div class="circle"></div>
   <div class="badge">NEW</div>
-  <div class="icon">🎉</div>
+  <div class="icon"><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i></div>
   <div class="title">Interactive NGN<br><span class="accent">Case Engine</span></div>
   <div class="features">
     <div class="feature"><div class="dot"></div>10 real clinical scenarios</div>
@@ -25,4 +25,8 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
     <div class="feature"><div class="dot"></div>FREE</div>
   </div>
   <div class="footer">obiomacare.com/case-engine</div>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body></html>

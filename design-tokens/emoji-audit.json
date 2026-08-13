@@ -1,0 +1,1503 @@
+{
+  "./public/terms.html": [
+    "📜"
+  ],
+  "./public/privacy.html": [
+    "🔒"
+  ],
+  "./public/neuro-cheat-sheet.html": [
+    "🧠",
+    "⚡",
+    "🔒",
+    "📊",
+    "🩹",
+    "📈",
+    "💊",
+    "🎉"
+  ],
+  "./public/free-nclex-checklist.html": [
+    "✅"
+  ],
+  "./public/index.html": [
+    "📋",
+    "🧠",
+    "🚧",
+    "🆕",
+    "🎯",
+    "😰",
+    "📊",
+    "✅",
+    "🏥",
+    "❌",
+    "🫀",
+    "🌍",
+    "💊",
+    "✓"
+  ],
+  "./public/case-engine.html": [
+    "🎯",
+    "✗",
+    "👍",
+    "💡",
+    "✓"
+  ],
+  "./public/ab-dashboard.html": [
+    "🏆",
+    "🔄",
+    "🔬"
+  ],
+  "./public/success.html": [
+    "📧",
+    "🎉"
+  ],
+  "./public/404.html": [
+    "🩺"
+  ],
+  "./public/success/index.html": [
+    "🎉"
+  ],
+  "./public/content/nclex-high-alert-medications.html": [
+    "⚠️",
+    "✅",
+    "🧩",
+    "🎯"
+  ],
+  "./public/content/nclex-nutrition-therapeutic-diets.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-sensory-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅"
+  ],
+  "./public/content/nclex-renal-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-mechanical-ventilation-ards.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/why-nursing-students-struggle-nclex-next-gen.html": [
+    "🩺",
+    "✅",
+    "😭😭"
+  ],
+  "./public/content/nclex-immune-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/pediatric-milestones-reference.html": [
+    "🚨",
+    "⚠",
+    "🧪",
+    "📋",
+    "💊",
+    "💡",
+    "🍼"
+  ],
+  "./public/content/nclex-research-evidence-based-practice.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-matrix-grid-questions.html": [
+    "🎯",
+    "⚠️",
+    "✗",
+    "✅",
+    "☐",
+    "✓"
+  ],
+  "./public/content/nclex-therapeutic-drug-levels.html": [
+    "📥",
+    "🧠",
+    "🩺",
+    "⚡",
+    "🔥",
+    "⚠️",
+    "🩸",
+    "💊",
+    "🦠",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-stroke-seizures-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "⚡",
+    "📊",
+    "🔬",
+    "📋"
+  ],
+  "./public/content/nclex-gi-surgery-ostomies-bariatric.html": [
+    "🎯",
+    "🔵"
+  ],
+  "./public/content/nclex-neurological-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-oncology-pharmacology-advanced.html": [
+    "🎯",
+    "☢️"
+  ],
+  "./public/content/nclex-delegation-assignment.html": [
+    "✗",
+    "✓"
+  ],
+  "./public/content/nclex-abg-interpretation-guide.html": [
+    "📚",
+    "🧠",
+    "📝",
+    "📑",
+    "🎯",
+    "💡"
+  ],
+  "./public/content/child-struggles-math.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-emergency-trauma-triage.html": [
+    "🚨",
+    "🔴",
+    "🧩",
+    "🎓",
+    "📋",
+    "⚫",
+    "✅",
+    "💡"
+  ],
+  "./public/content/mastery-vs-grade-levels.html": [
+    "🎯",
+    "⚖️"
+  ],
+  "./public/content/nclex-gi-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-cardiac-devices-cath-lab.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-gerontology-study-guide.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-pharmacology-mnemonics.html": [
+    "📋",
+    "🧠",
+    "💉",
+    "🦴",
+    "😰",
+    "📊",
+    "✅",
+    "🧪",
+    "🩸",
+    "🫀",
+    "💊"
+  ],
+  "./public/content/nclex-neurological-degenerative-deep-dive.html": [
+    "🎯",
+    "📊",
+    "🧠"
+  ],
+  "./public/content/nclex-cardiac-disorders.html": [
+    "🫀",
+    "🧠",
+    "🎯",
+    "🧩",
+    "⚠️",
+    "📋",
+    "✅"
+  ],
+  "./public/content/nclex-lab-values-memorization-guide.html": [
+    "📚",
+    "🧠",
+    "📑",
+    "🩺",
+    "🎯",
+    "📋",
+    "💡"
+  ],
+  "./public/content/nclex-burns-wound-care-deep-dive.html": [
+    "🎯",
+    "🧩",
+    "🩹",
+    "🔥"
+  ],
+  "./public/content/nclex-2-week-study-plan-complete.html": [
+    "📝",
+    "🎯",
+    "🍳",
+    "💪",
+    "🩺",
+    "⚠️",
+    "📊",
+    "💧",
+    "🧘",
+    "✅",
+    "📖",
+    "😴",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-anxiety-management.html": [
+    "🌅",
+    "⚠️",
+    "🧘",
+    "🏥",
+    "❌",
+    "✅"
+  ],
+  "./public/content/nclex-orthopedic-surgery-joint-replacement.html": [
+    "🦴",
+    "🎯"
+  ],
+  "./public/content/index.html": [
+    "🚨",
+    "🤱",
+    "🧠",
+    "⚖️",
+    "📋",
+    "🎯",
+    "🧪",
+    "🏥",
+    "🫀",
+    "🌍",
+    "💊",
+    "🍎"
+  ],
+  "./public/content/nclex-case-study-sepsis-walkthrough.html": [
+    "🔴",
+    "🧠",
+    "🎯",
+    "🩺",
+    "🏥",
+    "⚪",
+    "✓"
+  ],
+  "./public/content/personalized-learning-path-guide.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-infection-control-precautions.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-lab-values-cheat-sheet.html": [
+    "🔴"
+  ],
+  "./public/content/nclex-musculoskeletal-disorders-deep-dive.html": [
+    "🦴",
+    "🎯"
+  ],
+  "./public/content/nclex-genetics-genomics.html": [
+    "🎯",
+    "🧬"
+  ],
+  "./public/content/nclex-electrolytes-mnemonics.html": [
+    "📥",
+    "🩺",
+    "🔥",
+    "⚠️",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-clinical-judgment-5-steps.html": [
+    "✅"
+  ],
+  "./public/content/nclex-newborn-complications-nicu.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-professional-issues-ethics.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "❌",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/sata-questions-strategy.html": [
+    "📝"
+  ],
+  "./public/content/nclex-heart-failure-deep-dive.html": [
+    "📋",
+    "🔧",
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "📊",
+    "📈",
+    "💊"
+  ],
+  "./public/content/prerequisite-skills.html": [
+    "🎯",
+    "🗺️"
+  ],
+  "./public/content/nclex-copd-asthma-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🩺",
+    "🧩",
+    "🫁",
+    "📊",
+    "🌬️",
+    "📋"
+  ],
+  "./public/content/nclex-vital-signs-interpretation.html": [
+    "🩺",
+    "⚡",
+    "⚠️",
+    "💓",
+    "🫁",
+    "😣",
+    "🩸",
+    "🔄",
+    "💡",
+    "✓",
+    "🌡️"
+  ],
+  "./public/content/nclex-perioperative-nursing.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-community-health-epidemiology.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/ngn-case-studies-examples.html": [
+    "🫀",
+    "🫁",
+    "✗",
+    "✓"
+  ],
+  "./public/content/nclex-maternity-study-guide.html": [
+    "🤱",
+    "🧠",
+    "🧩",
+    "⚠️",
+    "📋",
+    "✅"
+  ],
+  "./public/content/nclex-legal-ethical.html": [
+    "👩",
+    "📝",
+    "🩺",
+    "🔒",
+    "⚠️",
+    "✗",
+    "📋",
+    "⚖️",
+    "⚕️",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-leadership-management.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/mastery-based-learning.html": [
+    "🎯",
+    "📚"
+  ],
+  "./public/content/what-is-mastery-based-learning.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-antibiotics-infectious-diseases.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "📊",
+    "🔬",
+    "📋",
+    "🦠"
+  ],
+  "./public/content/nclex-delegation-assignment-guide.html": [
+    "✗",
+    "🩺",
+    "✓"
+  ],
+  "./public/content/nclex-sata-questions-strategy.html": [
+    "✗",
+    "✓"
+  ],
+  "./public/content/nclex-liver-pancreas-disorders.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "🫁",
+    "📊",
+    "🩹",
+    "🔬",
+    "📋",
+    "🦠"
+  ],
+  "./public/content/nclex-nursing-informatics-technology.html": [
+    "🎯",
+    "💻"
+  ],
+  "./public/content/nclex-cultural-competence-diversity.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/homeschool-curriculum-planner-comparison.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-burns-integumentary-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-pediatrics-study-guide.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "💡"
+  ],
+  "./public/content/ai-tutors-for-kids-2026.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-mechanical-ventilation-modes.html": [
+    "🧩"
+  ],
+  "./public/content/nclex-psychiatric-medications.html": [
+    "😔",
+    "🎢",
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "😰",
+    "📊",
+    "📋",
+    "💊"
+  ],
+  "./public/content/nclex-iv-therapy-calculations.html": [
+    "🧩"
+  ],
+  "./public/content/nclex-respiratory-disorders.html": [
+    "🚨",
+    "🎯",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/learning-path-apps.html": [
+    "🎯",
+    "📱"
+  ],
+  "./public/content/nclex-cardiac-enzymes-markers.html": [
+    "🩺",
+    "💉",
+    "⚡",
+    "⚠️",
+    "🥇",
+    "💓",
+    "🔍",
+    "️",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-abcde-prioritization-method.html": [
+    "🚨",
+    "🩺",
+    "🧠",
+    "✓"
+  ],
+  "./public/content/nclex-fundamentals-deep-dive.html": [
+    "📚",
+    "🧠",
+    "📝",
+    "🎯",
+    "⚠️",
+    "🏥",
+    "🧪",
+    "🫀",
+    "⚖️",
+    "🦠",
+    "💡"
+  ],
+  "./public/content/nclex-pediatric-cardiac-congenital.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🩺",
+    "🧩",
+    "🔍",
+    "📊",
+    "🏥",
+    "📋",
+    "💊",
+    "❤️"
+  ],
+  "./public/content/nclex-medication-suffixes.html": [
+    "🎯",
+    "🩺",
+    "💊"
+  ],
+  "./public/content/math-prerequisites-importance.html": [
+    "🎯"
+  ],
+  "./public/content/nclex-musculoskeletal-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-diabetes-thyroid-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "💉",
+    "🧮",
+    "🦋",
+    "🧩",
+    "📊",
+    "🍬",
+    "🔬",
+    "📋",
+    "🌡️"
+  ],
+  "./public/content/nclex-safety-fall-prevention.html": [
+    "🚫",
+    "🚨",
+    "🛡️",
+    "🩺",
+    "⚡",
+    "⚠️",
+    "📊",
+    "⛓️",
+    "🍂",
+    "💡",
+    "✓"
+  ],
+  "./public/content/nclex-drug-calculations-guide.html": [
+    "📝",
+    "🧩",
+    "🧮",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-dialysis-renal-replacement.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "⚡",
+    "💧",
+    "📊",
+    "🫘",
+    "🩸",
+    "🔬",
+    "📋"
+  ],
+  "./public/content/nclex-mental-health-nursing.html": [
+    "💬",
+    "🚨",
+    "🚫",
+    "🧠",
+    "🧩",
+    "📋",
+    "✅"
+  ],
+  "./public/content/nclex-oncology-nursing.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-rehabilitation-nursing.html": [
+    "🎯",
+    "🧠",
+    "🦾"
+  ],
+  "./public/content/nclex-nursing-fundamentals.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-therapeutic-communication.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅"
+  ],
+  "./public/content/nclex-palliative-care-hospice.html": [
+    "🕊️",
+    "🎯"
+  ],
+  "./public/content/nclex-nursing-fundamentals-master.html": [
+    "🧩"
+  ],
+  "./public/content/nclex-hematology-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-obstetric-complications.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "👶",
+    "🧩",
+    "💧",
+    "📊",
+    "🩸",
+    "🔬",
+    "📋",
+    "🍭"
+  ],
+  "./public/content/nclex-endocrine-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./public/content/nclex-bow-tie-items.html": [
+    "📝",
+    "🎯",
+    "⚠️",
+    "✅",
+    "☐"
+  ],
+  "./public/content/nclex-cjmm-explained.html": [
+    "🔴",
+    "🧠",
+    "🩺",
+    "⚠️",
+    "✗",
+    "🔍",
+    "📊",
+    "🏃",
+    "📈",
+    "💡",
+    "✓"
+  ],
+  "./public/quiz/lab-values.html": [
+    "✗",
+    "✓"
+  ],
+  "./public/quiz/index.html": [
+    "🎯",
+    "✅",
+    "🧠",
+    "🧪"
+  ],
+  "./public/compare/obioma-vs-khan-academy.html": [
+    "✗",
+    "🎯",
+    "△",
+    "✓"
+  ],
+  "./public/compare/obioma-vs-ixl.html": [
+    "✗",
+    "🎯",
+    "△",
+    "✓"
+  ],
+  "./public/free-framework/index.html": [
+    "🩺",
+    "📧",
+    "🔒"
+  ],
+  "./instagram-templates/before-after.html": [
+    "✅",
+    "❌"
+  ],
+  "./instagram-templates/delegation.html": [
+    "✓"
+  ],
+  "./instagram-templates/which-choose.html": [
+    "🧠"
+  ],
+  "./instagram-templates/lab-context.html": [
+    "🧪"
+  ],
+  "./instagram-templates/checklist.html": [
+    "✓"
+  ],
+  "./instagram-templates/august-wrapup.html": [
+    "🎉"
+  ],
+  "./instagram-templates/case-engine.html": [
+    "🎉"
+  ],
+  "./instagram-templates/mnemonics.html": [
+    "👇"
+  ],
+  "./instagram-templates/priority.html": [
+    "✍️"
+  ],
+  "./content/nclex-high-alert-medications.html": [
+    "⚠️",
+    "✅",
+    "🧩",
+    "🎯"
+  ],
+  "./content/nclex-nutrition-therapeutic-diets.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-sensory-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅"
+  ],
+  "./content/nclex-renal-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-mechanical-ventilation-ards.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-immune-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-research-evidence-based-practice.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-matrix-grid-questions.html": [
+    "🎯",
+    "⚠️",
+    "✗",
+    "✅",
+    "☐",
+    "✓"
+  ],
+  "./content/nclex-therapeutic-drug-levels.html": [
+    "📥",
+    "🧠",
+    "🩺",
+    "⚡",
+    "🔥",
+    "⚠️",
+    "🩸",
+    "💊",
+    "🦠",
+    "💡",
+    "✓"
+  ],
+  "./content/nclex-stroke-seizures-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "⚡",
+    "📊",
+    "🔬",
+    "📋"
+  ],
+  "./content/nclex-gi-surgery-ostomies-bariatric.html": [
+    "🎯",
+    "🔵"
+  ],
+  "./content/nclex-neurological-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-oncology-pharmacology-advanced.html": [
+    "🎯",
+    "☢️"
+  ],
+  "./content/nclex-abg-interpretation-guide.html": [
+    "📚",
+    "🧠",
+    "📝",
+    "📑",
+    "🎯",
+    "💡"
+  ],
+  "./content/nclex-emergency-trauma-triage.html": [
+    "🚨",
+    "🔴",
+    "🧩",
+    "🎓",
+    "📋",
+    "⚫",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-gi-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-cardiac-devices-cath-lab.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-gerontology-study-guide.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-neurological-degenerative-deep-dive.html": [
+    "🎯",
+    "📊",
+    "🧠"
+  ],
+  "./content/nclex-cardiac-disorders.html": [
+    "🫀",
+    "🧠",
+    "🎯",
+    "🧩",
+    "⚠️",
+    "📋",
+    "✅"
+  ],
+  "./content/nclex-lab-values-memorization-guide.html": [
+    "📚",
+    "🧠",
+    "📑",
+    "🩺",
+    "🎯",
+    "📋",
+    "💡"
+  ],
+  "./content/nclex-burns-wound-care-deep-dive.html": [
+    "🎯",
+    "🧩",
+    "🩹",
+    "🔥"
+  ],
+  "./content/nclex-orthopedic-surgery-joint-replacement.html": [
+    "🦴",
+    "🎯"
+  ],
+  "./content/index.html": [
+    "🚨",
+    "🤱",
+    "🧠",
+    "⚖️",
+    "📋",
+    "🎯",
+    "🧪",
+    "🏥",
+    "🫀",
+    "🌍",
+    "💊",
+    "🍎"
+  ],
+  "./content/nclex-infection-control-precautions.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-musculoskeletal-disorders-deep-dive.html": [
+    "🦴",
+    "🎯"
+  ],
+  "./content/nclex-genetics-genomics.html": [
+    "🎯",
+    "🧬"
+  ],
+  "./content/nclex-electrolytes-mnemonics.html": [
+    "📥",
+    "🩺",
+    "🔥",
+    "⚠️",
+    "💡",
+    "✓"
+  ],
+  "./content/nclex-newborn-complications-nicu.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-professional-issues-ethics.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "❌",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-heart-failure-deep-dive.html": [
+    "📋",
+    "🔧",
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "📊",
+    "📈",
+    "💊"
+  ],
+  "./content/nclex-copd-asthma-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🩺",
+    "🧩",
+    "🫁",
+    "📊",
+    "🌬️",
+    "📋"
+  ],
+  "./content/nclex-vital-signs-interpretation.html": [
+    "🩺",
+    "⚡",
+    "⚠️",
+    "💓",
+    "🫁",
+    "😣",
+    "🩸",
+    "🔄",
+    "💡",
+    "✓",
+    "🌡️"
+  ],
+  "./content/nclex-perioperative-nursing.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-community-health-epidemiology.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-maternity-study-guide.html": [
+    "🤱",
+    "🧠",
+    "🧩",
+    "⚠️",
+    "📋",
+    "✅"
+  ],
+  "./content/nclex-legal-ethical.html": [
+    "👩",
+    "📝",
+    "🩺",
+    "🔒",
+    "⚠️",
+    "✗",
+    "📋",
+    "⚖️",
+    "⚕️",
+    "💡",
+    "✓"
+  ],
+  "./content/nclex-leadership-management.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-antibiotics-infectious-diseases.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "📊",
+    "🔬",
+    "📋",
+    "🦠"
+  ],
+  "./content/nclex-liver-pancreas-disorders.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "🫁",
+    "📊",
+    "🩹",
+    "🔬",
+    "📋",
+    "🦠"
+  ],
+  "./content/nclex-nursing-informatics-technology.html": [
+    "🎯",
+    "💻"
+  ],
+  "./content/nclex-cultural-competence-diversity.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-burns-integumentary-disorders.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-pediatrics-study-guide.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "💡"
+  ],
+  "./content/nclex-mechanical-ventilation-modes.html": [
+    "🧩"
+  ],
+  "./content/nclex-psychiatric-medications.html": [
+    "😔",
+    "🎢",
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "😰",
+    "📊",
+    "📋",
+    "💊"
+  ],
+  "./content/nclex-iv-therapy-calculations.html": [
+    "🧩"
+  ],
+  "./content/nclex-respiratory-disorders.html": [
+    "🚨",
+    "🎯",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-cardiac-enzymes-markers.html": [
+    "🩺",
+    "💉",
+    "⚡",
+    "⚠️",
+    "🥇",
+    "💓",
+    "🔍",
+    "️",
+    "💡",
+    "✓"
+  ],
+  "./content/nclex-fundamentals-deep-dive.html": [
+    "📚",
+    "🧠",
+    "📝",
+    "🎯",
+    "⚠️",
+    "🏥",
+    "🧪",
+    "🫀",
+    "⚖️",
+    "🦠",
+    "💡"
+  ],
+  "./content/nclex-pediatric-cardiac-congenital.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🩺",
+    "🧩",
+    "🔍",
+    "📊",
+    "🏥",
+    "📋",
+    "💊",
+    "❤️"
+  ],
+  "./content/nclex-medication-suffixes.html": [
+    "🎯",
+    "🩺",
+    "💊"
+  ],
+  "./content/nclex-musculoskeletal-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-diabetes-thyroid-deep-dive.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "💉",
+    "🧮",
+    "🦋",
+    "🧩",
+    "📊",
+    "🍬",
+    "🔬",
+    "📋",
+    "🌡️"
+  ],
+  "./content/nclex-safety-fall-prevention.html": [
+    "🚫",
+    "🚨",
+    "🛡️",
+    "🩺",
+    "⚡",
+    "⚠️",
+    "📊",
+    "⛓️",
+    "🍂",
+    "💡",
+    "✓"
+  ],
+  "./content/nclex-drug-calculations-guide.html": [
+    "📝",
+    "🧩",
+    "🧮",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-dialysis-renal-replacement.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "🧩",
+    "⚡",
+    "💧",
+    "📊",
+    "🫘",
+    "🩸",
+    "🔬",
+    "📋"
+  ],
+  "./content/nclex-mental-health-nursing.html": [
+    "💬",
+    "🚨",
+    "🚫",
+    "🧠",
+    "🧩",
+    "📋",
+    "✅"
+  ],
+  "./content/nclex-oncology-nursing.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-rehabilitation-nursing.html": [
+    "🎯",
+    "🧠",
+    "🦾"
+  ],
+  "./content/nclex-nursing-fundamentals.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-therapeutic-communication.html": [
+    "🚨",
+    "🎯",
+    "🎓",
+    "📋",
+    "✅"
+  ],
+  "./content/nclex-palliative-care-hospice.html": [
+    "🕊️",
+    "🎯"
+  ],
+  "./content/nclex-nursing-fundamentals-master.html": [
+    "🧩"
+  ],
+  "./content/nclex-hematology-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-obstetric-complications.html": [
+    "🧠",
+    "📝",
+    "🎯",
+    "👶",
+    "🧩",
+    "💧",
+    "📊",
+    "🩸",
+    "🔬",
+    "📋",
+    "🍭"
+  ],
+  "./content/nclex-endocrine-disorders.html": [
+    "🚨",
+    "🧩",
+    "🎓",
+    "📋",
+    "✅",
+    "💡"
+  ],
+  "./content/nclex-bow-tie-items.html": [
+    "📝",
+    "🎯",
+    "⚠️",
+    "✅",
+    "☐"
+  ],
+  "./content/nclex-cjmm-explained.html": [
+    "🔴",
+    "🧠",
+    "🩺",
+    "⚠️",
+    "✗",
+    "🔍",
+    "📊",
+    "🏃",
+    "📈",
+    "💡",
+    "✓"
+  ],
+  "./content-nursing/media/tiktok-videos/compositions/aug-11.html": [
+    "✋"
+  ],
+  "./landing/terms.html": [
+    "📜"
+  ],
+  "./landing/privacy.html": [
+    "🔒"
+  ],
+  "./landing/free-nclex-checklist.html": [
+    "✅"
+  ],
+  "./landing/index.html": [
+    "📋",
+    "🧠",
+    "🚧",
+    "🆕",
+    "🎯",
+    "😰",
+    "📊",
+    "✅",
+    "🏥",
+    "❌",
+    "🫀",
+    "🌍",
+    "💊",
+    "✓"
+  ],
+  "./landing/ab-dashboard.html": [
+    "🏆",
+    "🔄",
+    "🔬"
+  ],
+  "./landing/success.html": [
+    "📧",
+    "🎉"
+  ],
+  "./landing/404.html": [
+    "🩺"
+  ],
+  "./landing/success/index.html": [
+    "🎉"
+  ],
+  "./landing/tools/learning-path-planner.html": [
+    "🗺️",
+    "️",
+    "📤",
+    "🎯"
+  ],
+  "./landing/tools/prerequisite-checklist.html": [
+    "🛠️",
+    "🎯",
+    "⚡",
+    "📤",
+    "👆",
+    "📋",
+    "🎉"
+  ],
+  "./landing/quiz/lab-values.html": [
+    "✗",
+    "✓"
+  ],
+  "./landing/quiz/index.html": [
+    "🎯",
+    "✅",
+    "🧠",
+    "🧪"
+  ],
+  "./landing/compare/obioma-vs-khan-academy.html": [
+    "✗",
+    "🎯",
+    "△",
+    "✓"
+  ],
+  "./landing/compare/obioma-vs-ixl.html": [
+    "✗",
+    "🎯",
+    "△",
+    "✓"
+  ],
+  "./landing/free-framework/index.html": [
+    "🩺",
+    "📧",
+    "🔒"
+  ],
+  "./marketing/lead-magnets/nclex-neuro-assessment-cheat-sheet.html": [
+    "🧠",
+    "🎯",
+    "⚠️",
+    "📊",
+    "❌",
+    "✅"
+  ],
+  "./marketing/email-campaigns/batch-6-announcement.html": [
+    "🚨",
+    "🧬",
+    "🧠",
+    "💜",
+    "🩺",
+    "♿",
+    "☢️",
+    "🔥",
+    "🦴",
+    "🏥",
+    "💻",
+    "✅"
+  ]
+}

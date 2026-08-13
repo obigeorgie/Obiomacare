@@ -96,7 +96,7 @@
             </nav>
 
             <div class="quick-reference">
-                <h2>⚡ Normal Ranges by Age</h2>
+                <h2><i data-lucide="zap" class="icon icon-warning icon-md" aria-label="Fast"></i> Normal Ranges by Age</h2>
                 <table class="lab-table">
                     <thead>
                         <tr>
@@ -169,7 +169,7 @@
             </div>
 
             <section id="temperature" class="content-section">
-                <h2>🌡️ Temperature</h2>
+                <h2><i data-lucide="thermometer" class="icon icon-warning icon-md" aria-label="Temperature"></i> Temperature</h2>
                 
                 <h3>Normal: 36.5-37.5°C (97.7-99.5°F)</h3>
                 <table class="lab-table">
@@ -220,12 +220,12 @@
                 </ul>
 
                 <div class="memory-tip">
-                    <p><strong>💡 Remember:</strong> Rectal is highest, Axillary is lowest. Think "Rise up, Fall down."</p>
+                    <p><strong><i data-lucide="lightbulb" class="icon icon-warning icon-md" aria-label="Idea"></i> Remember:</strong> Rectal is highest, Axillary is lowest. Think "Rise up, Fall down."</p>
                 </div>
             </section>
 
             <section id="pulse" class="content-section">
-                <h2>💓 Pulse & Heart Rate</h2>
+                <h2><i data-lucide="heart" class="icon icon-error icon-md" aria-label="Heartbeat"></i> Pulse & Heart Rate</h2>
                 
                 <h3>Tachycardia (&gt;100 bpm in adults)</h3>
                 <p><strong>Causes — Mnemonic: TACHYCARDIA</strong></p>
@@ -254,7 +254,7 @@
                 </ul>
 
                 <div class="critical-alert">
-                    <p><strong>⚠️ Critical:</strong> Bradycardia + hypertension + irregular respirations = <strong>Cushing's Triad</strong> (↑ intracranial pressure). Emergency!</p>
+                    <p><strong><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> Critical:</strong> Bradycardia + hypertension + irregular respirations = <strong>Cushing's Triad</strong> (↑ intracranial pressure). Emergency!</p>
                 </div>
 
                 <h3>Pulse Quality</h3>
@@ -283,7 +283,7 @@
             </section>
 
             <section id="respiration" class="content-section">
-                <h2>🫁 Respiration & SpO₂</h2>
+                <h2><i data-lucide="wind" class="icon icon-coral icon-md" aria-label="Respiratory"></i> Respiration & SpO₂</h2>
                 
                 <h3>Normal: 12-20 breaths/min (adult)</h3>
 
@@ -356,12 +356,12 @@
                 </table>
 
                 <div class="critical-alert">
-                    <p><strong>⚠️ Important:</strong> SpO₂ can be falsely elevated in carbon monoxide poisoning (pulse ox cannot distinguish O₂ from CO). If CO poisoning suspected, use co-oximetry (ABG).</p>
+                    <p><strong><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> Important:</strong> SpO₂ can be falsely elevated in carbon monoxide poisoning (pulse ox cannot distinguish O₂ from CO). If CO poisoning suspected, use co-oximetry (ABG).</p>
                 </div>
             </section>
 
             <section id="bp" class="content-section">
-                <h2>🩸 Blood Pressure</h2>
+                <h2><i data-lucide="droplets" class="icon icon-error icon-md" aria-label="Bleeding"></i> Blood Pressure</h2>
                 
                 <h3>Hypertension Categories (JNC 8)</h3>
                 <table class="lab-table">
@@ -413,7 +413,7 @@
             </section>
 
             <section id="orthostatic" class="content-section">
-                <h2>🔄 Orthostatic (Postural) Vitals</h2>
+                <h2><i data-lucide="refresh-cw" class="icon icon-coral icon-md" aria-label="Refresh"></i> Orthostatic (Postural) Vitals</h2>
                 
                 <h3>How to Measure</h3>
                 <ol>
@@ -436,12 +436,12 @@
                 </ul>
 
                 <div class="critical-alert">
-                    <p><strong>⚠️ Safety:</strong> If orthostatic hypotension suspected, do NOT let patient stand alone. Dizziness → fall risk. Have them sit first, then stand with assistance.</p>
+                    <p><strong><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> Safety:</strong> If orthostatic hypotension suspected, do NOT let patient stand alone. Dizziness → fall risk. Have them sit first, then stand with assistance.</p>
                 </div>
             </section>
 
             <section id="pain" class="content-section">
-                <h2>😣 Pain Assessment</h2>
+                <h2><span class="emoji-replaced" aria-label="In pain">(in pain)</span> Pain Assessment</h2>
                 <p>Pain is the <strong>5th vital sign</strong>. Always assess:</p>
                 <ul>
                     <li><strong>P</strong> — Provocation/Palliation (what makes it better/worse?)</li>
@@ -460,7 +460,7 @@
             </section>
 
             <section id="case-study" class="case-study-section">
-                <h2>🩺 NGN Case Study: Vital Signs Emergency</h2>
+                <h2><i data-lucide="stethoscope" class="icon icon-coral icon-md" aria-label="Medical"></i> NGN Case Study: Vital Signs Emergency</h2>
                 
                 <div class="case-presentation">
                     <h3>Patient Presentation</h3>
@@ -509,7 +509,7 @@
                         <button class="option" onclick="revealAnswer(this, false)">D. Obtain orthostatic vital signs</button>
                     </div>
                     <div class="rationale" style="display:none;">
-                        <p><strong>✓ Correct: C</strong></p>
+                        <p><strong><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Correct: C</strong></p>
                         <p><strong>Rationale:</strong> Mr. Johnson meets criteria for <strong>septic shock</strong>:</p>
                         <ul>
                             <li>Suspected infection (pneumonia, WBC 16,500)</li>
@@ -558,5 +558,9 @@
             rationale.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

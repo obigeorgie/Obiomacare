@@ -97,7 +97,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>📋 Prerequisite Skills Checklist</h1>
+            <h1><i data-lucide="clipboard-list" class="icon icon-coral icon-md" aria-label="Checklist"></i> Prerequisite Skills Checklist</h1>
             <p>Identify the exact skills your child needs before learning any new topic.</p>
         </div>
     </header>
@@ -138,18 +138,18 @@
                 <h2>Step 2: Check the skills your child already has</h2>
                 <p style="color: var(--mg-warm-500);">Go through the list below. Check each skill your child can do confidently.</p>
                 <div id="checklist">
-                    <p style="color: var(--mg-warm-400); text-align: center; padding: 32px;">👆 Select a topic above to see the prerequisite checklist.</p>
+                    <p style="color: var(--mg-warm-400); text-align: center; padding: 32px;"><i data-lucide="arrow-up" class="icon icon-coral icon-md" aria-label="Up"></i> Select a topic above to see the prerequisite checklist.</p>
                 </div>
             </div>
             
             <div class="result" id="result">
-                <h3>🎯 Your Checklist Results</h3>
+                <h3><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> Your Checklist Results</h3>
                 <p id="result-text"></p>
                 <a href="https://app.obiomacare.com/assessment" class="btn btn-primary">Get a Full Learning Path →</a>
             </div>
             
             <div class="share">
-                <p>📤 This tool is free. Share it with other parents who might find it helpful.</p>
+                <p><i data-lucide="send" class="icon icon-coral icon-md" aria-label="Send"></i> This tool is free. Share it with other parents who might find it helpful.</p>
                 <p><a href="https://twitter.com/intent/tweet?text=Free%20prerequisite%20skills%20checklist%20for%20kids%20ages%204-11&url=https://obiomacare.com/tools/prerequisite-checklist.html">Share on Twitter/X</a> · <a href="https://www.facebook.com/sharer/sharer.php?u=https://obiomacare.com/tools/prerequisite-checklist.html">Share on Facebook</a></p>
             </div>
         </div>
@@ -228,15 +228,19 @@
         var text = document.getElementById('result-text');
         
         if(checked === total){
-            text.innerHTML = '<strong>🎉 Your child has all the prerequisites!</strong><br>They are ready to learn this topic. Use Obioma to generate a personalized learning path with time estimates.';
+            text.innerHTML = '<strong><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i> Your child has all the prerequisites!</strong><br>They are ready to learn this topic. Use Obioma to generate a personalized learning path with time estimates.';
         } else if(checked >= total * 0.6){
-            text.innerHTML = '<strong>⚡ Almost ready!</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Review the unchecked items, then they will be ready to learn this topic.';
+            text.innerHTML = '<strong><i data-lucide="zap" class="icon icon-warning icon-md" aria-label="Fast"></i> Almost ready!</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Review the unchecked items, then they will be ready to learn this topic.';
         } else {
-            text.innerHTML = '<strong>🛠️ Needs some prep first.</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Focus on the unchecked items first. Obioma can generate a step-by-step prerequisite path for you.';
+            text.innerHTML = '<strong><i data-lucide="tools" class="icon icon-coral icon-md" aria-label="Tools"></i> Needs some prep first.</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Focus on the unchecked items first. Obioma can generate a step-by-step prerequisite path for you.';
         }
         result.style.display = 'block';
         gtag('event', 'generate_lead', {content_type: 'checklist_complete', value: checked / total});
     }
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

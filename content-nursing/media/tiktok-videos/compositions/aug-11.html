@@ -81,7 +81,7 @@
     </style>
   </head>
   <body>
-    <div class="stop-sign">✋</div>
+    <div class="stop-sign"><i data-lucide="hand" class="icon icon-warning icon-md" aria-label="Stop"></i></div>
     <h1>Stop Buying More<br><span class="highlight">NCLEX Review Books</span></h1>
     <div class="sub">You don't need more content. You need to learn how to THINK like a nurse.</div>
     <div class="solution">
@@ -90,5 +90,9 @@
     </div>
     <div class="cta">$47 → obiomacare.com</div>
     <div class="brand">obiomacare.com</div>
-  </body>
+  
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+</body>
 </html>

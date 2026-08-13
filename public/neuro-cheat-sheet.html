@@ -73,7 +73,7 @@ body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; li
 <body>
 <div class="container">
   <div class="hero">
-    <div class="emoji">🧠</div>
+    <div class="emoji"><i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i></div>
     <h1>NCLEX Neuro Assessment Cheat Sheet</h1>
     <p class="subtitle">The most-tested neurological concepts on the NCLEX — distilled into a 2-page printable guide. GCS, cranial nerves, BE FAST, seizures, ICP, and more.</p>
   </div>
@@ -82,42 +82,42 @@ body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; li
     <h2>What's Inside</h2>
     <div class="benefit-grid">
       <div class="benefit-item">
-        <span class="icon">📊</span>
+        <span class="icon"><i data-lucide="bar-chart-3" class="icon icon-coral icon-md" aria-label="Analytics"></i></span>
         <div>
           <h4>Glasgow Coma Scale</h4>
           <p>Quick scoring reference + NCLEX trap warning</p>
         </div>
       </div>
       <div class="benefit-item">
-        <span class="icon">🧠</span>
+        <span class="icon"><i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i></span>
         <div>
           <h4>12 Cranial Nerves</h4>
           <p>OOOTTAFVGVAH mnemonic + function & test for each</p>
         </div>
       </div>
       <div class="benefit-item">
-        <span class="icon">⚡</span>
+        <span class="icon"><i data-lucide="zap" class="icon icon-warning icon-md" aria-label="Fast"></i></span>
         <div>
           <h4>Stroke: BE FAST</h4>
           <p>Recognition + tPA window + door-to-needle time</p>
         </div>
       </div>
       <div class="benefit-item">
-        <span class="icon">🩹</span>
+        <span class="icon"><i data-lucide="bandage" class="icon icon-coral icon-md" aria-label="Wound care"></i></span>
         <div>
           <h4>Seizure First Aid</h4>
           <p>Do's & Don'ts + status epilepticus management</p>
         </div>
       </div>
       <div class="benefit-item">
-        <span class="icon">📈</span>
+        <span class="icon"><i data-lucide="trending-up" class="icon icon-success icon-md" aria-label="Improving"></i></span>
         <div>
           <h4>Increased ICP Signs</h4>
           <p>Early vs late + emergency interventions</p>
         </div>
       </div>
       <div class="benefit-item">
-        <span class="icon">💊</span>
+        <span class="icon"><i data-lucide="pill" class="icon icon-coral icon-md" aria-label="Medication"></i></span>
         <div>
           <h4>MG vs Cholinergic Crisis</h4>
           <p>Side-by-side comparison for rapid identification</p>
@@ -141,11 +141,11 @@ body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; li
     </form>
     
     <div class="success-message" id="successMessage">
-      <h3>🎉 Check your inbox!</h3>
+      <h3><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i> Check your inbox!</h3>
       <p>Your Neuro Assessment Cheat Sheet is on its way. If you don't see it in 2 minutes, check your spam folder.</p>
     </div>
     
-    <p class="privacy-note">🔒 No spam. Unsubscribe anytime. We respect your privacy.</p>
+    <p class="privacy-note"><i data-lucide="lock" class="icon icon-success icon-md" aria-label="Secure"></i> No spam. Unsubscribe anytime. We respect your privacy.</p>
   </div>
 
   <div class="footer">
@@ -194,5 +194,9 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
   }
 });
 </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

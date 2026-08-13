@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Clinical Judgment, Mastered. The only NCLEX Next Gen prep that trains clinical judgment — not memorization. AI-powered case studies, 3D Anatomy Lab, and spaced repetition. Aligned with the NCSBN framework.">
+    <meta name="description" content="Clinical Judgment, Mastered. The only NCLEX Next Gen prep that trains clinical judgment — not memorization. AI-powered case studies, study guides, and adaptive assessments. Aligned with the NCSBN framework.">
     <meta name="keywords" content="NCLEX Next Gen, clinical judgment, nursing exam prep, NCLEX case studies, nursing prioritization, NGN prep, pass NCLEX">
     
     <title>Obioma — Clinical Judgment, Mastered | NCLEX Next Gen Prep</title>
@@ -87,21 +87,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
     
+    <link rel="stylesheet" href="/design-tokens/tokens.css">
     <style>
-        :root {
-            --navy-900: #0a1628;
-            --navy-800: #0f1d32;
-            --navy-700: #162544;
-            --navy-600: #1e3560;
-            --coral: #FF6B5B;
-            --coral-dark: #E85D4E;
-            --coral-light: #FF8A7D;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --accent-glow: rgba(255, 107, 91, 0.15);
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -121,7 +108,7 @@
             height: 100%;
             z-index: -1;
             background: 
-                radial-gradient(ellipse at 20% 20%, rgba(255, 107, 91, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 20%, var(--color-coral-8) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(30, 53, 96, 0.4) 0%, transparent 50%),
                 var(--navy-900);
         }
@@ -200,11 +187,11 @@
         .btn-primary { 
             background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); 
             color: #fff;
-            box-shadow: 0 4px 20px rgba(255, 107, 91, 0.3);
+            box-shadow: 0 4px 20px var(--color-coral-30);
         }
         .btn-primary:hover { 
             transform: translateY(-2px); 
-            box-shadow: 0 8px 30px rgba(255, 107, 91, 0.4);
+            box-shadow: 0 8px 30px var(--color-coral-40);
         }
         .btn-outline { 
             background: transparent; 
@@ -227,8 +214,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 107, 91, 0.1);
-            border: 1px solid rgba(255, 107, 91, 0.2);
+            background: var(--color-coral-10);
+            border: 1px solid var(--color-coral-20);
             padding: 8px 20px;
             border-radius: 100px;
             font-size: 14px;
@@ -302,6 +289,98 @@
             letter-spacing: 1px;
         }
         
+        /* Hero Visual */
+        .hero-visual {
+            max-width: 900px;
+            margin: 48px auto 0;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .hero-visual-inner {
+            background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-700) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--coral) 0%, var(--coral-dark) 100%);
+        }
+        .hero-visual-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .hero-visual-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .hero-visual-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .hero-visual-title {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+        .hero-visual-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .hero-visual-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .hero-visual-card-header {
+            font-size: 11px;
+            color: var(--coral);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .hero-visual-card-text {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero-visual-card-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+        .hero-visual-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+        .hero-visual-item-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        @media (max-width: 768px) {
+            .hero-visual-content { grid-template-columns: 1fr; }
+        }
+        
         /* Video Section */
         .video-section {
             padding: 60px 0;
@@ -341,7 +420,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 30px rgba(255, 107, 91, 0.4);
+            box-shadow: 0 8px 30px var(--color-coral-40);
             transition: transform 0.3s;
         }
         .play-button:hover { transform: scale(1.1); }
@@ -389,7 +468,7 @@
         }
         .problem-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 107, 91, 0.2);
+            border-color: var(--color-coral-20);
             transform: translateY(-4px);
         }
         .problem-card h3 { 
@@ -435,8 +514,8 @@
             color: var(--text-secondary);
         }
         .solution-list li::before { 
-            content: "✓"; 
-            color: #22c55e; 
+            content: "\2713"; 
+            color: var(--color-success); 
             font-weight: 800; 
             flex-shrink: 0; 
         }
@@ -459,7 +538,7 @@
             transition: all 0.3s;
         }
         .step:hover {
-            border-color: rgba(255, 107, 91, 0.3);
+            border-color: var(--color-coral-30);
             transform: translateY(-4px);
         }
         .step-number { 
@@ -503,7 +582,7 @@
         }
         .feature:hover {
             background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 107, 91, 0.2);
+            border-color: var(--color-coral-20);
             transform: translateY(-4px);
         }
         .feature-icon { 
@@ -538,7 +617,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .comparison-table th {
-            background: rgba(255, 107, 91, 0.1);
+            background: var(--color-coral-10);
             color: var(--coral);
             font-weight: 700;
             font-size: 14px;
@@ -552,10 +631,10 @@
         .comparison-table tr:hover td {
             background: rgba(255, 255, 255, 0.02);
         }
-        .comparison-table .check { color: #22c55e; font-weight: 700; }
+        .comparison-table .check { color: var(--color-success); font-weight: 700; }
         .comparison-table .cross { color: #ef4444; }
         .comparison-table .highlight-row td {
-            background: rgba(255, 107, 91, 0.05);
+            background: var(--color-coral-5);
             color: #fff;
             font-weight: 600;
         }
@@ -575,7 +654,7 @@
             transition: all 0.3s;
         }
         .testimonial:hover {
-            border-color: rgba(255, 107, 91, 0.2);
+            border-color: var(--color-coral-20);
         }
         .testimonial-text { 
             font-size: 16px; 
@@ -609,6 +688,70 @@
             color: var(--text-muted); 
         }
         
+        /* Star Rating */
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .star {
+            color: #f59e0b;
+            font-size: 16px;
+        }
+        .star-empty {
+            color: rgba(255,255,255,0.2);
+            font-size: 16px;
+        }
+        
+        /* Reviewed By Block */
+        .reviewed-by {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 32px;
+        }
+        .reviewed-by-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .reviewed-by-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .reviewed-by-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .reviewed-by-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            color: #22c55e;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
         /* CTA Section */
         .cta-section { 
             text-align: center; 
@@ -623,7 +766,7 @@
             transform: translateX(-50%);
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 107, 91, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--color-coral-10) 0%, transparent 70%);
             z-index: -1;
         }
         .cta-section h2 { 
@@ -642,7 +785,7 @@
         .email-capture { 
             padding: 80px 0; 
             text-align: center; 
-            background: linear-gradient(135deg, rgba(255, 107, 91, 0.1) 0%, rgba(30, 53, 96, 0.2) 100%);
+            background: linear-gradient(135deg, var(--color-coral-10) 0%, rgba(30, 53, 96, 0.2) 100%);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -691,9 +834,9 @@
         }
         .email-form button:hover { 
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(255, 107, 91, 0.3);
+            box-shadow: 0 8px 30px var(--color-coral-30);
         }
-        .email-success { color: #22c55e; font-weight: 600; margin-top: 16px; display: none; }
+        .email-success { color: var(--color-success); font-weight: 600; margin-top: 16px; display: none; }
         .email-error { color: var(--coral); font-weight: 600; margin-top: 16px; display: none; }
         
         /* Blog Preview */
@@ -712,12 +855,12 @@
         }
         .blog-card:hover { 
             transform: translateY(-4px); 
-            border-color: rgba(255, 107, 91, 0.2);
+            border-color: var(--color-coral-20);
         }
         .blog-card-content { padding: 24px; }
         .blog-card-tag { 
             display: inline-block; 
-            background: rgba(255, 107, 91, 0.1); 
+            background: var(--color-coral-10); 
             color: var(--coral); 
             padding: 4px 12px; 
             border-radius: 4px; 
@@ -868,7 +1011,7 @@
         .pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
         .pricing-features { list-style: none; padding: 0; margin: 0 0 32px; }
         .pricing-features li { padding: 8px 0; font-size: 14px; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 10px; }
-        .pricing-features li::before { content: '✓'; color: var(--coral); font-weight: 700; flex-shrink: 0; }
+        .pricing-features li::before { content: "\2713"; color: var(--coral); font-weight: 700; flex-shrink: 0; }
         @media (max-width: 768px) {
             .pricing-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 36px; }
@@ -920,7 +1063,7 @@
                 <span class="logo-text">Obioma<span>.</span></span>
             </a>
             <nav class="nav-links">
-                <a href="#anatomy">Anatomy Lab</a>
+                <a href="/case-engine.html">Case Engine</a>
                 <a href="/quiz/">Quizzes</a>
                 <a href="/content/">Blog</a>
                 <a href="/free-nclex-checklist">Free Checklist</a>
@@ -936,7 +1079,7 @@
         <div class="hero-badge">Trusted by 2,000+ Nursing Students</div>
         <h1>Stop Memorizing.<br>Start <span style="color: var(--coral);">Thinking Like a Nurse.</span></h1>
         <p class="hero-tagline">Clinical Judgment, Mastered.</p>
-        <p class="hero-subtitle">The only NCLEX Next Gen prep that trains clinical judgment — not memorization. AI-powered case studies aligned with the NCSBN framework.</p>
+        <p class="hero-subtitle">The only NCLEX<sup>&reg;</sup> Next Gen prep that trains clinical judgment — not memorization. AI-powered case studies aligned with the NCSBN framework.</p>
         <div class="hero-cta">
             <a href="#" class="btn btn-primary btn-large" style="opacity: 0.5; cursor: not-allowed;" onclick="return false;">Coming Soon</a>
             <p class="hero-note">or <a href="/free-nclex-checklist" style="color: var(--coral);">download the free NCLEX Study Checklist</a> — 500+ nurses already have</p>
@@ -944,7 +1087,7 @@
         <div class="hero-stats">
             <div class="hero-stat">
                 <div class="hero-stat-number">10+</div>
-                <div class="hero-stat-label">Interactive NGN Cases</div>
+                <div class="hero-stat-label">Interactive NGN<sup>&reg;</sup> Cases</div>
             </div>
             <div class="hero-stat">
                 <div class="hero-stat-number">74</div>
@@ -955,17 +1098,65 @@
                 <div class="hero-stat-label">Nurses Helped</div>
             </div>
         </div>
+        
+        <!-- Hero Visual -->
+        <div class="hero-visual">
+            <div class="hero-visual-inner">
+                <div class="hero-visual-header">
+                    <div class="hero-visual-dots">
+                        <div class="hero-visual-dot" style="background: #ff5f57;"></div>
+                        <div class="hero-visual-dot" style="background: #febc2e;"></div>
+                        <div class="hero-visual-dot" style="background: #28c840;"></div>
+                    </div>
+                    <span class="hero-visual-title">obiomacare.com/case-engine.html</span>
+                </div>
+                <div class="hero-visual-content">
+                    <div class="hero-visual-card">
+                        <div class="hero-visual-card-header">Step 1: Recognize Cues</div>
+                        <div class="hero-visual-card-text">67-year-old male with crushing chest pain</div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">BP 88/52, HR 112 bpm</span>
+                        </div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">ST elevation V1-V4</span>
+                        </div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">Troponin I: 2.8 ng/mL</span>
+                        </div>
+                    </div>
+                    <div class="hero-visual-card">
+                        <div class="hero-visual-card-header">Step 2: Analyze</div>
+                        <div class="hero-visual-card-text">What is the priority nursing action?</div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">Administer aspirin 325 mg</span>
+                        </div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">Prepare for PCI within 90 min</span>
+                        </div>
+                        <div class="hero-visual-card-item">
+                            <div class="hero-visual-checkbox"></div>
+                            <span class="hero-visual-item-text">Start nitroglycerin drip</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- Video Section -->
 <section class="video-section">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">See How It Works</h2>
-        <p class="section-subtitle animate-on-scroll">Watch how Obioma trains clinical judgment in 2 minutes</p>
+        <h2 class="section-title animate-on-scroll">See Why Memorization Won't Help</h2>
+        <p class="section-subtitle animate-on-scroll">Watch how the NCLEX Next Gen actually tests clinical judgment — and how Obioma prepares you for it</p>
         <div class="video-container animate-on-scroll">
-            <video id="explainerVideo" controls poster="assets/obioma-explainer-thumb.jpg" style="width: 100%; border-radius: 16px;">
-                <source src="assets/obioma-explainer.mp4" type="video/mp4">
+            <video id="explainerVideo" controls poster="assets/promo-landing-v2-thumb.jpg" style="width: 100%; border-radius: 16px;">
+                <source src="assets/promo-landing-v2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -980,22 +1171,22 @@
         
         <div class="problem-grid">
             <div class="problem-card animate-on-scroll">
-                <h3>😰 NCLEX Anxiety Is Overwhelming</h3>
+                <h3><span class="emoji-replaced" aria-label="Anxious">(anxious)</span> NCLEX Anxiety Is Overwhelming</h3>
                 <p>Students aren't failing because they don't know content. They're panicking because they haven't been trained in clinical judgment thinking.</p>
                 <p class="problem-quote">"I have so much anxiety about NCLEX I'd rather just get it over with"</p>
             </div>
             <div class="problem-card animate-on-scroll">
-                <h3>🆕 Next Gen Case Studies Are Confusing</h3>
+                <h3><i data-lucide="badge-plus" class="icon icon-success icon-md" aria-label="New"></i> Next Gen Case Studies Are Confusing</h3>
                 <p>The old NCLEX tested memorization. Next Gen tests how you think. Most prep tools haven't caught up.</p>
                 <p class="problem-quote">"Staring at a Next Gen case study and feeling like your brain is completely fried"</p>
             </div>
             <div class="problem-card animate-on-scroll">
-                <h3>💊 SATA Questions Destroy Confidence</h3>
+                <h3><i data-lucide="pill" class="icon icon-coral icon-md" aria-label="Medication"></i> SATA Questions Destroy Confidence</h3>
                 <p>Select All That Apply questions trip up everyone. Students try to find all right answers at once instead of evaluating each option.</p>
                 <p class="problem-quote">"SATA questions are the bane of my existence"</p>
             </div>
             <div class="problem-card animate-on-scroll">
-                <h3>🌍 International Nurses Face Extra Barriers</h3>
+                <h3><i data-lucide="globe" class="icon icon-coral icon-md" aria-label="Global"></i> International Nurses Face Extra Barriers</h3>
                 <p>Foreign-trained nurses navigate visas, relocation, language barriers — then face a completely new exam format they've never seen.</p>
                 <p class="problem-quote">"I left my family, flew 24 hours, and now I'm staring at a case study wondering if it was all worth it"</p>
             </div>
@@ -1079,56 +1270,56 @@
             <tbody>
                 <tr>
                     <td>NGN Case Studies</td>
-                    <td class="check">✓ Interactive</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Interactive</td>
                     <td>Available</td>
                     <td>Available</td>
                     <td>Limited</td>
                 </tr>
                 <tr>
                     <td>Clinical Judgment Training</td>
-                    <td class="check">✓ NCSBN Framework</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> NCSBN Framework</td>
                     <td>Available</td>
                     <td>Available</td>
                     <td>Minimal</td>
                 </tr>
                 <tr>
                     <td>AI-Powered Explanations</td>
-                    <td class="check">✓ Interactive Tutor</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Interactive Tutor</td>
                     <td>Static Rationales</td>
                     <td>Static Rationales</td>
                     <td>Static Rationales</td>
                 </tr>
                 <tr>
                     <td>Adaptive Learning</td>
-                    <td class="check">✓ Weak Spot Targeting</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Weak Spot Targeting</td>
                     <td>Performance Based</td>
                     <td>Structured Plan</td>
                     <td>Fixed Content</td>
                 </tr>
                 <tr>
                     <td>International Nurse Support</td>
-                    <td class="check">✓ Specialized Content</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Specialized Content</td>
                     <td>Limited</td>
                     <td>Limited</td>
                     <td>Limited</td>
                 </tr>
                 <tr>
                     <td>3D Anatomy Lab</td>
-                    <td class="check">✓ Interactive Body Systems</td>
+                    <td class="check" style="color: var(--text-muted);">Coming Soon</td>
                     <td>—</td>
                     <td>—</td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Spaced Repetition Engine</td>
-                    <td class="check">✓ SM-2 Algorithm</td>
+                    <td class="check" style="color: var(--text-muted);">Coming Soon</td>
                     <td>—</td>
                     <td>—</td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Free Trial</td>
-                    <td class="check">✓ 30-Day Guarantee</td>
+                    <td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> 30-Day Guarantee</td>
                     <td>7 Days</td>
                     <td>7 Days</td>
                     <td>School-Licensed</td>
@@ -1145,6 +1336,138 @@
     </div>
 </section>
 
+<!-- Product Proof: Case Engine -->
+<section class="section" id="product-proof" style="background: rgba(15, 29, 50, 0.3);">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">See What You're Getting</h2>
+        <p class="section-subtitle animate-on-scroll">Real screenshots from our shipped features. No mockups.</p>
+        
+        <!-- Case Engine Proof -->
+        <div class="solution-grid" style="margin-bottom: 80px;">
+            <div class="animate-on-scroll" style="position: relative;">
+                <div style="background: #0A1628; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                    <!-- Browser chrome -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--text-muted); margin-left: 8px;">obiomacare.com/case-engine.html</div>
+                    </div>
+                    <!-- Case Engine UI -->
+                    <div style="padding: 24px;">
+                        <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+                            <span style="background: rgba(197,48,48,0.2); color: #FF6B5B; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 700;">Acute MI</span>
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">COPD Exacerbation</span>
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">Stroke</span>
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">+7 more</span>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px;">
+                            <div style="font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Step 1 of 6: Recognize Cues</div>
+                            <div style="font-size: 15px; color: #fff; font-weight: 600; margin-bottom: 12px;">A 67-year-old male presents with crushing chest pain...</div>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                    <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">BP 88/52 mmHg, HR 112 bpm</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                    <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">ST elevation in V1-V4</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                    <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
+                                    <span style="font-size: 13px; color: var(--text-secondary);">Troponin I: 2.8 ng/mL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-size: 12px; color: var(--text-muted);">Obioma NGN Case Engine</div>
+                            <div style="display: flex; gap: 8px;">
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--coral);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content animate-on-scroll">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,91,0.1); border: 1px solid rgba(255,107,91,0.2); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
+                    <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
+                </div>
+                <h2>NGN Case Engine</h2>
+                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Interactive case studies that match the exact format you'll see on exam day. Walk through realistic patient scenarios step-by-step using the NCSBN Clinical Judgment Measurement Model.</p>
+                
+                <ul style="list-style: none; margin-top: 24px;">
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 10+ interactive NGN cases (MI, COPD, stroke, pancreatitis, post-op)</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 6-step CJMM framework: Recognize Cues → Analyze → Prioritize → Generate Solutions → Take Action → Evaluate</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Detailed rationales for every answer choice</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Vital signs trend charts and care timeline visualizations</li>
+                </ul>
+                
+                <a href="/case-engine.html" class="btn btn-primary" style="margin-top: 24px;">Try a Case Study</a>
+            </div>
+        </div>
+        
+        <!-- AI Tutor Proof -->
+        <div class="solution-grid" style="direction: rtl;">
+            <div class="animate-on-scroll" style="direction: ltr; position: relative;">
+                <div style="background: #0A1628; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                    <!-- Browser chrome -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
+                        <div style="flex: 1; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--text-muted); margin-left: 8px;">obiomacare.com/tutor</div>
+                    </div>
+                    <!-- Tutor UI -->
+                    <div style="padding: 24px;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="user" class="icon icon-white icon-sm" aria-label="User"></i></div>
+                                <div style="font-size: 13px; color: #fff; font-weight: 600;">Student</div>
+                            </div>
+                            <div style="font-size: 14px; color: var(--text-secondary); padding-left: 40px;">Why is morphine contraindicated in acute pancreatitis?</div>
+                        </div>
+                        <div style="background: rgba(255,107,91,0.05); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,107,91,0.1); margin-bottom: 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #1e3560 0%, #162544 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" class="icon icon-coral icon-sm" aria-label="AI"></i></div>
+                                <div style="font-size: 13px; color: var(--coral); font-weight: 600;">Obioma AI Tutor</div>
+                            </div>
+                            <div style="font-size: 14px; color: var(--text-secondary); padding-left: 40px; line-height: 1.6;">
+                                Morphine causes spasm of the sphincter of Oddi, which increases pressure in the pancreatic duct and can worsen pain. Instead, hydromorphone or fentanyl are preferred...
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Explain like I'm a new grad</span>
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Give me a mnemonic</span>
+                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">NCLEX-style question</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content animate-on-scroll" style="direction: ltr;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,91,0.1); border: 1px solid rgba(255,107,91,0.2); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
+                    <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
+                </div>
+                <h2>AI Tutor</h2>
+                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Ask anything. Get instant, detailed explanations tailored to your level. Whether you need a quick refresher or a deep dive into pathophysiology, the AI Tutor adapts to you.</p>
+                
+                <ul style="list-style: none; margin-top: 24px;">
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Instant answers to any nursing question</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Multiple explanation modes: simple, detailed, mnemonic, NCLEX-style</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Context-aware follow-up questions</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Available on every study guide and case study page</li>
+                </ul>
+                
+                <a href="/tutor/" class="btn btn-primary" style="margin-top: 24px;">Try AI Tutor</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Features -->
 <section class="section section-alt" id="features">
     <div class="container">
@@ -1153,32 +1476,32 @@
         
         <div class="features-grid">
             <div class="feature animate-on-scroll">
-                <div class="feature-icon">🫀</div>
-                <h3>3D Anatomy Lab</h3>
-                <p>Interactive 3D body systems — cardiovascular, respiratory, nervous, digestive, musculoskeletal. Click any organ to see structure, function, common diseases, and nursing implications.</p>
-            </div>
-            <div class="feature animate-on-scroll">
-                <div class="feature-icon">🧠</div>
-                <h3>Spaced Repetition (SRS)</h3>
-                <p>SuperMemo-2 algorithm adapts to your memory. Review anatomy facts at the optimal interval — never cram again. 4 difficulty ratings: Again, Hard, Good, Easy.</p>
-            </div>
-            <div class="feature animate-on-scroll">
-                <div class="feature-icon">📋</div>
+                <div class="feature-icon"><i data-lucide="clipboard-list" class="icon icon-coral icon-md" aria-label="Checklist"></i></div>
                 <h3>NGN Case Study Bank</h3>
                 <p>Growing library of interactive Next Gen-style case studies with detailed rationales. Practice the exact clinical judgment format you'll see on exam day.</p>
             </div>
             <div class="feature animate-on-scroll">
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon"><i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i></div>
+                <h3>AI-Powered Explanations</h3>
+                <p>Get instant, detailed explanations for every answer choice. Understand why the right answer is right and why the wrong ones are wrong.</p>
+            </div>
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon"><i data-lucide="book-open" class="icon icon-coral icon-md" aria-label="Book"></i></div>
+                <h3>Study Guides</h3>
+                <p>74+ comprehensive study guides covering every body system, disease process, and nursing intervention you need to know.</p>
+            </div>
+            <div class="feature animate-on-scroll">
+                <div class="feature-icon"><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i></div>
                 <h3>Adaptive Assessments</h3>
                 <p>Our AI identifies your weak areas and targets them. No wasted time on topics you've already mastered.</p>
             </div>
             <div class="feature animate-on-scroll">
-                <div class="feature-icon">📊</div>
+                <div class="feature-icon"><i data-lucide="bar-chart-3" class="icon icon-coral icon-md" aria-label="Analytics"></i></div>
                 <h3>Performance Analytics</h3>
                 <p>Track your progress in real-time. See exactly which clinical judgment steps need work before your exam.</p>
             </div>
             <div class="feature animate-on-scroll">
-                <div class="feature-icon">🏥</div>
+                <div class="feature-icon"><i data-lucide="building-2" class="icon icon-coral icon-md" aria-label="Hospital"></i></div>
                 <h3>Unfolding Case Studies</h3>
                 <p>Walk through realistic patient scenarios — MI, COPD, stroke, pancreatitis, post-op — with CJMM-aligned questions at every stage.</p>
             </div>
@@ -1194,6 +1517,13 @@
         
         <div class="testimonials-grid">
             <div class="testimonial animate-on-scroll">
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
                 <p class="testimonial-text">"I failed my first practice exam by 20 points. Then I learned the Clinical Judgment Framework. I passed on my first try. It's not about memorizing more — it's about thinking differently."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">JW</div>
@@ -1204,6 +1534,13 @@
                 </div>
             </div>
             <div class="testimonial animate-on-scroll">
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
                 <p class="testimonial-text">"I boarded a flight from Nigeria to the Philippines, over 24 hours in the air, chasing one opportunity: to write the NCLEX. Obioma helped me bridge the gap between what I knew and how to think."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">OA</div>
@@ -1214,6 +1551,13 @@
                 </div>
             </div>
             <div class="testimonial animate-on-scroll">
+                <div class="stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
                 <p class="testimonial-text">"The SATA strategy alone was worth the subscription. I went from guessing on every Select All That Apply to getting 90% right. Treat each option as true/false — game changer."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">MK</div>
@@ -1234,10 +1578,10 @@
         <p class="section-subtitle animate-on-scroll">Get the NCLEX Study Checklist — the 30-day framework used by nurses who pass on their first attempt.</p>
         <div style="background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; margin-top: 32px; text-align: left;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);">✓</span> 30-day day-by-day schedule</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);">✓</span> Critical lab values sheet</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);">✓</span> ABCDE prioritization tree</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);">✓</span> Test day prep checklist</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> 30-day day-by-day schedule</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Critical lab values sheet</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> ABCDE prioritization tree</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Test day prep checklist</div>
             </div>
             <a href="/free-nclex-checklist" class="btn btn-primary" style="width: 100%; text-align: center;">Download Free Checklist →</a>
             <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">No spam. Unsubscribe anytime. 500+ nursing students already using it.</p>
@@ -1248,7 +1592,7 @@
 <!-- Anatomy & Physiology Lab Section -->
 <section class="section section-alt" id="anatomy">
     <div style="background: rgba(255,193,7,0.1); border: 1px solid rgba(255,193,7,0.3); border-radius: 12px; padding: 12px 20px; max-width: 800px; margin: 0 auto 24px; text-align: center;">
-        <span style="color: #ffc107; font-weight: 700; font-size: 14px;">🚧 Coming Soon — Under Active Development</span>
+        <span style="color: var(--color-warning); font-weight: 700; font-size: 14px;"><i data-lucide="construction" class="icon icon-warning icon-md" aria-label="Under construction"></i> Coming Soon — Under Active Development</span>
     </div>
     <div class="container">
         <h2 class="section-title animate-on-scroll">Anatomy & Physiology Lab</h2>
@@ -1257,7 +1601,7 @@
         <div class="solution-grid" style="margin-top: 48px;">
             <div class="animate-on-scroll">
                 <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
-                    <div style="font-size: 80px; margin-bottom: 20px;">🫀</div>
+                    <div style="font-size: 80px; margin-bottom: 20px;"><i data-lucide="heart" class="icon icon-coral icon-md" aria-label="Cardiac"></i></div>
                     <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Interactive Body Systems</h3>
                     <p style="color: var(--text-secondary);">Explore 5 major body systems in 3D. Click any organ to see anatomy, physiology, common diseases, and nursing priorities.</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px;">
@@ -1273,18 +1617,36 @@
                 <h2>From <span style="color: var(--coral);">Anatomy</span> to <span style="color: var(--coral);">Clinical Judgment</span></h2>
                 <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Most NCLEX prep tools give you flashcards. We give you context — how anatomy connects to disease, how disease connects to nursing action.</p>
                 
-                <ul style="list-style: none; margin-top: 24px;">
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> 3D organ exploration with labeled structures and functions</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Spaced repetition quiz engine — facts stick long-term</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Disease profiles with nursing implications and interventions</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Clinical animations showing pathophysiology in action</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Unfolding case studies tie anatomy to real patient scenarios</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: #22c55e; font-weight: 800; flex-shrink: 0;">✓</span> Markup & share — annotate and share study notes</li>
+                <ul style="list-style: none; margin-top: 24px; opacity: 0.6;">
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> 3D organ exploration with labeled structures and functions</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Spaced repetition quiz engine — facts stick long-term</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Disease profiles with nursing implications and interventions</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Clinical animations showing pathophysiology in action</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Unfolding case studies tie anatomy to real patient scenarios</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Markup & share — annotate and share study notes</li>
                 </ul>
                 
                 <a href="#" class="btn btn-primary" style="margin-top: 24px; opacity: 0.5; cursor: not-allowed;" onclick="return false;">Coming Soon</a>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Reviewed By -->
+<section class="section section-alt" id="reviewed-by">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Medically Reviewed</h2>
+        <p class="section-subtitle animate-on-scroll">All clinical content is reviewed by licensed nurses and healthcare professionals.</p>
+        
+        <div class="reviewed-by animate-on-scroll">
+            <div class="reviewed-by-avatar">RN</div>
+            <div class="reviewed-by-info">
+                <h4>[Reviewer Name — To Be Filled In]</h4>
+                <p>[Credentials, e.g., BSN, RN, CCRN] — [Role, e.g., Clinical Nurse Educator]</p>
+                <span class="reviewed-by-badge"><i data-lucide="shield-check" class="icon icon-success icon-xs" aria-label="Verified"></i> Clinical Reviewer</span>
+            </div>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px; text-align: center;"><i data-lucide="info" class="icon icon-secondary icon-xs" aria-label="Info"></i> Last reviewed: [Date] | Next review: [Date]</p>
     </div>
 </section>
 
@@ -1327,17 +1689,6 @@
             </div>
         </div>
         
-        <div class="promo-code-section" style="max-width: 400px; margin: 32px auto 0; text-align: center;">
-            <div style="display: flex; gap: 8px; align-items: center;">
-                <input type="text" id="promoCode" placeholder="Enter promo code" style="flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: var(--navy-800); color: var(--text-primary); font-size: 14px;" maxlength="20">
-                <button onclick="applyPromo()" class="btn btn-secondary" style="padding: 12px 20px; font-size: 14px;">Apply</button>
-            </div>
-            <p id="promoMessage" style="margin-top: 8px; font-size: 13px; min-height: 20px;"></p>
-            <p style="margin-top: 4px; font-size: 12px; color: var(--text-muted); opacity: 0.7;">
-                Available: <strong style="color: #4ade80;">LAUNCH50</strong> (50% off) · <strong style="color: #4ade80;">NURSE20</strong> (20% off)
-            </p>
-        </div>
-        
         <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-muted);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
@@ -1348,7 +1699,6 @@
 <script>
 async function buyNow(tier) {
     const product = { id: tier, name: tier === 'core' ? 'Core System' : 'Complete Mastery', price: tier === 'core' ? 47 : 67 };
-    const promoCode = document.getElementById('promoCode').value.trim();
     
     // Track add_to_cart before checkout
     if (window.ObiomaAnalytics) {
@@ -1362,7 +1712,9 @@ async function buyNow(tier) {
     if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
     
     try {
-        const body = window.ObiomaAnalytics ? window.ObiomaAnalytics.withUTM({ tier, promoCode }) : { tier, promoCode };
+        const body = window.ObiomaAnalytics 
+            ? window.ObiomaAnalytics.withUTM({ tier, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' })
+            : { tier, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' };
         const res = await fetch('/api/create-checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1376,42 +1728,6 @@ async function buyNow(tier) {
         alert('Checkout failed. Please try again.');
     }
 }
-
-async function applyPromo() {
-    const code = document.getElementById('promoCode').value.trim().toUpperCase();
-    const msgEl = document.getElementById('promoMessage');
-    
-    if (!code) {
-        msgEl.textContent = 'Please enter a promo code.';
-        msgEl.style.color = 'var(--coral)';
-        return;
-    }
-    
-    try {
-        const res = await fetch('/api/validate-promo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code })
-        });
-        const data = await res.json();
-        
-        if (data.valid) {
-            msgEl.textContent = `✓ ${data.description}`;
-            msgEl.style.color = '#4ade80';
-        } else {
-            msgEl.textContent = '✗ ' + data.error;
-            msgEl.style.color = 'var(--coral)';
-        }
-    } catch (e) {
-        msgEl.textContent = 'Unable to validate code. You can still try it at checkout.';
-        msgEl.style.color = 'var(--text-muted)';
-    }
-}
-
-// Allow Enter key to apply promo code
-document.getElementById('promoCode').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') applyPromo();
-});
 </script>
 
 <!-- Blog Preview -->
@@ -1474,11 +1790,11 @@ document.getElementById('promoCode').addEventListener('keypress', function(e) {
         <div class="faq-grid">
             <div class="faq-card animate-on-scroll">
                 <h3>What is the 3D Anatomy Lab?</h3>
-                <p>Our Anatomy Lab is an interactive 3D exploration of 5 major body systems — cardiovascular, respiratory, nervous, digestive, and musculoskeletal. Click any organ to learn its structure, function, common diseases, and nursing implications. Combined with our spaced repetition quiz engine, it helps anatomy facts stick long-term.</p>
+                <p><strong>Coming soon.</strong> We're building an interactive 3D exploration of 5 major body systems — cardiovascular, respiratory, nervous, digestive, and musculoskeletal. Click any organ to learn its structure, function, common diseases, and nursing implications.</p>
             </div>
             <div class="faq-card animate-on-scroll">
                 <h3>How does the Spaced Repetition system work?</h3>
-                <p>We use the SuperMemo-2 (SM-2) algorithm, the gold standard for spaced repetition. After each quiz, you rate your confidence: Again (1 day), Hard (3 days), Good (default interval), or Easy (longer interval). The system schedules your next review at the optimal time to maximize retention — no more cramming.</p>
+                <p><strong>Coming soon.</strong> We're implementing the SuperMemo-2 (SM-2) algorithm, the gold standard for spaced repetition. After each quiz, you'll rate your confidence: Again (1 day), Hard (3 days), Good (default interval), or Easy (longer interval). The system schedules your next review at the optimal time to maximize retention.</p>
             </div>
             <div class="faq-card animate-on-scroll">
                 <h3>What is the NCLEX Next Generation exam?</h3>
@@ -1558,8 +1874,8 @@ document.getElementById('promoCode').addEventListener('keypress', function(e) {
             <input type="email" id="emailInput" placeholder="Enter your email" required>
             <button type="submit">Get Free Guide →</button>
         </form>
-        <div class="email-success" id="emailSuccess">✅ Check your inbox! The guide is on its way.</div>
-        <div class="email-error" id="emailError">❌ Something went wrong. Please try again.</div>
+        <div class="email-success" id="emailSuccess"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i> Check your inbox! The guide is on its way.</div>
+        <div class="email-error" id="emailError"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i> Something went wrong. Please try again.</div>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px;">No spam. Unsubscribe anytime. 12,000+ nursing students subscribed.</p>
     </div>
 </section>
@@ -1628,6 +1944,7 @@ document.getElementById('promoCode').addEventListener('keypress', function(e) {
         </div>
         <div class="footer-bottom">
             <p>© 2026 Obioma Care. Built by nurses, for nurses. All rights reserved.</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">NCLEX<sup>&reg;</sup> and NGN<sup>&reg;</sup> are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). NCSBN is not affiliated with Obioma Care and does not endorse this product.</p>
         </div>
     </div>
 </footer>
@@ -1803,5 +2120,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 }
 </script>
 
+<!-- A/B Test -->
+<script src="assets/ab-testing.js"></script>
+
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

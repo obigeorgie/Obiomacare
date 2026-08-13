@@ -7,6 +7,7 @@
     <title>NGN Clinical Judgment Cases — Interactive Practice | Obioma</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/design-tokens/tokens.css">
     <style>
         :root {
             --navy: #1A365D;
@@ -425,7 +426,7 @@ function renderMenu() {
                     <div class="case-card" onclick="startCase(${i})">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
                             <span class="badge badge-${c.difficulty}">${c.difficulty}</span>
-                            ${done ? `<span style="color: var(--success); font-size: 0.8rem; font-weight: 600;">✓ ${score}%</span>` : ''}
+                            ${done ? `<span style="color: var(--success); font-size: 0.8rem; font-weight: 600;"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> ${score}%</span>` : ''}
                         </div>
                         <h3>${c.title}</h3>
                         <p>${c.scenario.presentation.substring(0, 100)}...</p>
@@ -507,7 +508,7 @@ function renderCase() {
         const isActive = step.phase === p;
         const isCompleted = stepPhases.indexOf(p) >= 0 && stepPhases.indexOf(p) < stepPhases.indexOf(step.phase);
         if (!stepPhases.includes(p)) return '';
-        return `<div class="phase-dot ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}">${isCompleted ? '✓' : i + 1} ${p}</div>`;
+        return `<div class="phase-dot ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}">${isCompleted ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i>' : i + 1} ${p}</div>`;
     }).filter(Boolean).join('');
 
     // Build question options
@@ -520,7 +521,7 @@ function renderCase() {
                         <input type="checkbox" ${isAnswered ? 'disabled' : ''} ${isAnswered && answered.selected.includes(i) ? 'checked' : ''} onchange="toggleSATA(${i})" style="width: 18px; height: 18px;">
                         <span class="option-text">${opt.text}</span>
                     </label>
-                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected.includes(i) ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '✓ ' : answered.selected.includes(i) ? '✗ ' : ''}${opt.rationale}</div>` : ''}
+                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected.includes(i) ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> ' : answered.selected.includes(i) ? '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> ' : ''}${opt.rationale}</div>` : ''}
                 `).join('')}
             </div>
         `;
@@ -532,7 +533,7 @@ function renderCase() {
                         <input type="radio" name="single" ${isAnswered ? 'disabled' : ''} ${isAnswered && answered.selected === i ? 'checked' : ''} onchange="selectSingle(${i})" style="width: 18px; height: 18px;">
                         <span class="option-text">${opt.text}</span>
                     </label>
-                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected === i ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '✓ ' : answered.selected === i ? '✗ ' : ''}${opt.rationale}</div>` : ''}
+                    ${isAnswered ? `<div style="padding: 8px 16px; font-size: 0.8rem; color: ${opt.correct ? 'var(--success)' : answered.selected === i ? 'var(--obioma-red)' : 'var(--text-secondary)'};">${opt.correct ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> ' : answered.selected === i ? '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> ' : ''}${opt.rationale}</div>` : ''}
                 `).join('')}
             </div>
         `;
@@ -623,7 +624,7 @@ function renderCase() {
 
                 ${isAnswered ? `
                 <div class="rationale ${answered.correct ? 'rationale-correct' : 'rationale-incorrect'} show">
-                    <h4>${answered.correct ? '✓ Correct!' : '✗ Not quite'}</h4>
+                    <h4>${answered.correct ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Correct!' : '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Not quite'}</h4>
                     <p>${answered.correct ? 'Great clinical judgment!' : 'Review the rationale and try again.'}</p>
                 </div>
                 ` : ''}
@@ -783,7 +784,7 @@ function renderResults() {
         return `
             <div class="breakdown-item">
                 <span class="breakdown-phase">Step ${i + 1}: ${step.phase}</span>
-                <span class="breakdown-status ${ans.correct ? 'status-correct' : 'status-incorrect'}">${ans.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                <span class="breakdown-status ${ans.correct ? 'status-correct' : 'status-incorrect'}">${ans.correct ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Correct' : '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Incorrect'}</span>
             </div>
         `;
     }).join('');
@@ -805,7 +806,7 @@ function renderResults() {
                     <div class="score-label">${correctCount}/${totalSteps} correct</div>
                 </div>
                 <p style="color: var(--text-secondary); margin-bottom: 24px;">
-                    ${score >= 80 ? '🎯 Excellent clinical judgment!' : score >= 60 ? '👍 Good work — review the rationales to strengthen weak areas.' : '💡 Keep practicing — clinical judgment improves with repetition.'}
+                    ${score >= 80 ? '<i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> Excellent clinical judgment!' : score >= 60 ? '<i data-lucide="thumbs-up" class="icon icon-coral icon-md" aria-label="Like"></i> Good work — review the rationales to strengthen weak areas.' : '<i data-lucide="lightbulb" class="icon icon-warning icon-md" aria-label="Idea"></i> Keep practicing — clinical judgment improves with repetition.'}
                 </p>
                 <div class="results-breakdown">${breakdown}</div>
                 <div class="btn-group" style="justify-content: center;">
@@ -826,5 +827,9 @@ function renderResults() {
 // ==================== INIT ====================
 loadCases();
 </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

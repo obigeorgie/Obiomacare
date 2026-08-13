@@ -50,7 +50,7 @@ footer{margin-top:40px;padding-top:24px;border-top:1px solid #e2e8f0;color:#7180
 </head>
 <body>
 <div class="container">
-  <div class="check">🎉</div>
+  <div class="check"><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i></div>
   <h1>You're In!</h1>
   <p class="subtitle">Your Clinical Judgment Mastery System is being prepared. Check your email in the next 2 minutes for your download link.</p>
 
@@ -58,7 +58,7 @@ footer{margin-top:40px;padding-top:24px;border-top:1px solid #e2e8f0;color:#7180
   <a href="https://obiomacare.com/content/nclex-clinical-judgment-framework.html" class="btn">Start Reading the Framework →</a>
 
   <div class="note">
-    📧 <strong>Didn't get the email?</strong> Check your spam/promotions folder. Still nothing? Email <a href="mailto:admin@obiomacare.com">admin@obiomacare.com</a> and I'll resend it manually.
+    <i data-lucide="mail" class="icon icon-coral icon-md" aria-label="Email"></i> <strong>Didn't get the email?</strong> Check your spam/promotions folder. Still nothing? Email <a href="mailto:admin@obiomacare.com">admin@obiomacare.com</a> and I'll resend it manually.
   </div>
 
   <footer>
@@ -98,5 +98,9 @@ fbq('track', 'Purchase', {
 
 console.log('Purchase tracked:', { sessionId, tier, value });
 </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Free NGN Clinical Judgment Framework — Obioma Care</title>
     <meta name="description" content="Download the free NGN Clinical Judgment Framework. The same decision-making model that helps nurses pass the Next Generation NCLEX.">
     <link rel="canonical" href="https://obiomacare.com/free-framework">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'><i data-lucide="stethoscope" class="icon icon-coral icon-md" aria-label="Medical"></i></text></svg>">
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
@@ -72,12 +72,12 @@
                     <input type="email" id="email" placeholder="your@email.com">
                 </div>
                 <button onclick="submitLead()">Send Me the Free Framework →</button>
-                <p class="trust">🔒 No spam. Unsubscribe anytime. Your email is safe with me.</p>
+                <p class="trust"><i data-lucide="lock" class="icon icon-success icon-md" aria-label="Secure"></i> No spam. Unsubscribe anytime. Your email is safe with me.</p>
             </div>
         </div>
         
         <div id="success-section" class="success">
-            <h2>📧 Check your email!</h2>
+            <h2><i data-lucide="mail" class="icon icon-coral icon-md" aria-label="Email"></i> Check your email!</h2>
             <p>The framework is on its way. Over the next few days, I'll send you my best clinical judgment tips.</p>
             <p style="margin-top: 24px;">While you wait — <a href="/#pricing" style="color: var(--accent); font-weight: 600;">check out the complete mastery system</a>.</p>
         </div>
@@ -119,5 +119,9 @@
             }
         }
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

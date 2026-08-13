@@ -36,7 +36,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
 </head>
 <body>
 <div class="header">
-  <h1>🧠 NCLEX Neuro Assessment Cheat Sheet</h1>
+  <h1><i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i> NCLEX Neuro Assessment Cheat Sheet</h1>
   <p>Free from Obioma Care — Clinical Judgment for Nursing Students | obiomacare.com</p>
 </div>
 
@@ -50,7 +50,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
       <tr><td><strong>Motor:</strong> Obeys / Localizes / Withdraws / Flexion (decorticate) / Extension (decerebrate) / None</td><td>6 / 5 / 4 / 3 / 2 / 1</td></tr>
     </table>
     <p><strong>13–15 = Mild | 9–12 = Moderate | 3–8 = Severe</strong></p>
-    <div class="trap">⚠️ <strong>NCLEX Trap:</strong> A change of 2+ points is significant — report immediately, even if still "normal."</div>
+    <div class="trap"><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> <strong>NCLEX Trap:</strong> A change of 2+ points is significant — report immediately, even if still "normal."</div>
   </div>
 
   <div class="section">
@@ -90,7 +90,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
     <h2>Seizure First Aid</h2>
     <div class="dos-donts">
       <div class="dos">
-        <h4>✅ DO</h4>
+        <h4><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i> DO</h4>
         <ul>
           <li>Note start time</li>
           <li>Protect from injury</li>
@@ -100,7 +100,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
         </ul>
       </div>
       <div class="donts">
-        <h4>❌ DO NOT</h4>
+        <h4><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i> DO NOT</h4>
         <ul>
           <li>Put anything in mouth</li>
           <li>Restrain patient</li>
@@ -135,7 +135,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
         </td>
       </tr>
     </table>
-    <div class="trap">⚠️ <strong>NCLEX Trap:</strong> HOB 30–45°. Avoid neck/hip flexion. Hyperventilate ONLY for acute herniation (briefly) — not long-term.</div>
+    <div class="trap"><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> <strong>NCLEX Trap:</strong> HOB 30–45°. Avoid neck/hip flexion. Hyperventilate ONLY for acute herniation (briefly) — not long-term.</div>
   </div>
 
   <div class="section">
@@ -166,7 +166,7 @@ li { margin-bottom: 2px; font-size: 9pt; }
 
 <div class="footer">
   <p><strong>Obioma Care</strong> — Clinical Judgment for Nursing Students</p>
-  <p>🎯 1,200+ NGN Case Studies | 📊 NCSBN Framework Aligned | 🧠 AI-Powered Explanations</p>
+  <p><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> 1,200+ NGN Case Studies | <i data-lucide="bar-chart-3" class="icon icon-coral icon-md" aria-label="Analytics"></i> NCSBN Framework Aligned | <i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i> AI-Powered Explanations</p>
   <p>Start free at <strong>obiomacare.com</strong></p>
   <p>© 2026 Obioma Care. All rights reserved.</p>
 </div>
@@ -179,5 +179,9 @@ window.addEventListener('load', function() {
   }
 });
 </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

@@ -36,7 +36,7 @@
 <h2>Case Study 1: Acute Myocardial Infarction</h2>
 
 <div class="case-box">
-<h3>🫀 Patient Scenario</h3>
+<h3><i data-lucide="heart" class="icon icon-coral icon-md" aria-label="Cardiac"></i> Patient Scenario</h3>
 <p><strong>J.R., 67-year-old male</strong>, presents to the ER with crushing chest pain radiating to his left arm. He is diaphoretic and anxious.</p>
 
 <div class="vital-signs">
@@ -57,13 +57,13 @@ Temp: 98.6°F (37°C) | Pain: 9/10
 
 <div class="rationale-box">
 <strong>Answer & Rationale:</strong><br>
-✓ Chest pain radiating to left arm — Classic MI presentation<br>
-✓ Diaphoresis — Sympathetic response to cardiac ischemia<br>
-✓ BP 88/52 — Cardiogenic shock from decreased cardiac output<br>
-✓ HR 118 (irregular) — Possible ventricular dysrhythmia<br>
-✓ SpO2 89% — Hypoxemia from pulmonary edema<br>
-✓ Troponin 2.8 — Elevated cardiac marker confirms myocardial damage<br>
-✗ Temp 98.6 — Normal, not relevant to MI diagnosis<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Chest pain radiating to left arm — Classic MI presentation<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Diaphoresis — Sympathetic response to cardiac ischemia<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> BP 88/52 — Cardiogenic shock from decreased cardiac output<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> HR 118 (irregular) — Possible ventricular dysrhythmia<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> SpO2 89% — Hypoxemia from pulmonary edema<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Troponin 2.8 — Elevated cardiac marker confirms myocardial damage<br>
+<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Temp 98.6 — Normal, not relevant to MI diagnosis<br>
 </div>
 
 <div class="question-box">
@@ -87,7 +87,7 @@ Temp: 98.6°F (37°C) | Pain: 9/10
 <h2>Case Study 2: COPD Exacerbation</h2>
 
 <div class="case-box">
-<h3>🫁 Patient Scenario</h3>
+<h3><i data-lucide="wind" class="icon icon-coral icon-md" aria-label="Respiratory"></i> Patient Scenario</h3>
 <p><strong>M.S., 72-year-old female</strong>, arrives via ambulance with severe dyspnea. She has a history of COPD (GOLD Stage 3) and is on home oxygen 2L NC.</p>
 
 <div class="vital-signs">
@@ -115,11 +115,11 @@ Temp: 99.8°F (37.7°C) | Alert but anxious
 
 <div class="rationale-box">
 <strong>Answer:</strong><br>
-✓ Increase O2 to 4-6L NC and titrate to SpO2 88-92%<br>
-✓ Prepare for possible BiPAP or intubation<br>
-✓ Administer albuterol nebulizer<br>
-✓ Draw ABG<br>
-✗ Sedate the patient to reduce anxiety — WRONG. Sedation depresses respiratory drive in COPD patients. Use reassurance and positioning instead.
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Increase O2 to 4-6L NC and titrate to SpO2 88-92%<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Prepare for possible BiPAP or intubation<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Administer albuterol nebulizer<br>
+<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Draw ABG<br>
+<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Sedate the patient to reduce anxiety — WRONG. Sedation depresses respiratory drive in COPD patients. Use reassurance and positioning instead.
 </div>
 
 <h2>How to Practice NGN Case Studies</h2>
@@ -153,5 +153,9 @@ Temp: 99.8°F (37.7°C) | Alert but anxious
 </article>
 
 <footer><div class="container"><p>© 2026 Healthcare Hustle LLC. Built by nurses, for nurses.</p></div></footer>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

@@ -92,7 +92,7 @@
                 <p class="trust">No spam. Unsubscribe anytime. Join 500+ nursing students.</p>
             </form>
             <div class="success-message" id="successMessage">
-                <h3>✅ Checklist sent!</h3>
+                <h3><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i> Checklist sent!</h3>
                 <p>Check your inbox (and spam folder) for the NCLEX Study Checklist. You'll also get 3 bonus clinical judgment tips over the next week.</p>
             </div>
         </div>
@@ -165,5 +165,9 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
   gtag('js', new Date());
   gtag('config', 'G-922HP9B76M');
 </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

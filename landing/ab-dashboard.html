@@ -128,7 +128,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🔬 A/B Test Dashboard</h1>
+        <h1><i data-lucide="microscope" class="icon icon-coral icon-md" aria-label="Lab"></i> A/B Test Dashboard</h1>
         <p class="subtitle">Real-time results from your Obioma landing page experiments</p>
         
         <div class="instructions">
@@ -139,7 +139,7 @@
             <p>4. Copy the JSON output and paste it below</p>
         </div>
         
-        <button class="refresh-btn" onclick="loadResults()">🔄 Load Results from Browser</button>
+        <button class="refresh-btn" onclick="loadResults()"><i data-lucide="refresh-cw" class="icon icon-coral icon-md" aria-label="Refresh"></i> Load Results from Browser</button>
         
         <div id="results-container">
             <div class="test-card">
@@ -345,7 +345,7 @@
                                 const isLeading = vid === leadingVariant;
                                 return `
                                     <div class="variant-card ${isLeading ? 'leading' : ''}">
-                                        <h3>${v.name} ${isLeading ? '🏆' : ''}</h3>
+                                        <h3>${v.name} ${isLeading ? '<i data-lucide="trophy" class="icon icon-coral icon-md" aria-label="Achievement"></i>' : ''}</h3>
                                         <div class="metric">
                                             <span class="metric-label">Exposures</span>
                                             <span class="metric-value">${v.exposures}</span>
@@ -382,5 +382,9 @@
         // Auto-load on page open
         loadResults();
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

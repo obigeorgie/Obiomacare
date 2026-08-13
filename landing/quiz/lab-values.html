@@ -734,7 +734,7 @@
             
             explanation.className = 'explanation show ' + (isCorrect ? 'correct-box' : 'incorrect-box');
             explanation.innerHTML = `
-                <h4>${isCorrect ? '✓ Correct!' : '✗ Incorrect'}</h4>
+                <h4>${isCorrect ? '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Correct!' : '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Incorrect'}</h4>
                 <p>${q.explanation}</p>
                 <div class="clinical-pearl">
                     <strong>Clinical Pearl:</strong> ${q.pearl}
@@ -821,5 +821,9 @@
         // Start
         initQuiz();
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

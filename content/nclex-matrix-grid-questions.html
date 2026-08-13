@@ -111,15 +111,15 @@
                         <tbody>
                             <tr>
                                 <td>Check blood glucose</td>
-                                <td>☐</td>
-                                <td>☐</td>
-                                <td>☐</td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
                             </tr>
                             <tr>
                                 <td>Administer insulin</td>
-                                <td>☐</td>
-                                <td>☐</td>
-                                <td>☐</td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
+                                <td><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -149,7 +149,7 @@
                     </ul>
                     <p><strong>Example:</strong> A row has 1 correct and 3 incorrect options.</p>
                     <ul>
-                        <li>Select correct + leave others blank = <strong>+1 point</strong> ✅</li>
+                        <li>Select correct + leave others blank = <strong>+1 point</strong> <i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></li>
                         <li>Select correct + 1 wrong = <strong>0 points</strong> (1 - 1 = 0)</li>
                         <li>Select correct + 2 wrong = <strong>0 points</strong> (net can't be negative)</li>
                         <li>Select 2 wrong, miss correct = <strong>0 points</strong></li>
@@ -157,7 +157,7 @@
                 </div>
 
                 <div class="critical-alert">
-                    <p><strong>⚠️ Key Strategy:</strong> If you're unsure about an option, <strong>it's better to leave it blank than guess</strong>. A wrong answer cancels a right answer. When in doubt, don't select.</p>
+                    <p><strong><i data-lucide="alert-triangle" class="icon icon-warning icon-md" aria-label="Warning"></i> Key Strategy:</strong> If you're unsure about an option, <strong>it's better to leave it blank than guess</strong>. A wrong answer cancels a right answer. When in doubt, don't select.</p>
                 </div>
 
                 <h3>All-or-Nothing Scoring (Less Common)</h3>
@@ -255,46 +255,46 @@
                     <tbody>
                         <tr>
                             <td>Initial assessment</td>
-                            <td>✓</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Medication administration (PO, IM)</td>
-                            <td>✓</td>
-                            <td>✓</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>IV push medications</td>
-                            <td>✓</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>Vital signs (stable patient)</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
                         </tr>
                         <tr>
                             <td>Bathing, ambulation</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
                         </tr>
                         <tr>
                             <td>Blood glucose monitoring</td>
-                            <td>✓</td>
-                            <td>✓</td>
-                            <td>✓ (with training)</td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></td>
+                            <td><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> (with training)</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
 
             <section id="practice" class="case-study-section">
-                <h2>🎯 Practice Matrix Question</h2>
+                <h2><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> Practice Matrix Question</h2>
                 
                 <div class="case-presentation">
                     <h3>Scenario</h3>
@@ -316,33 +316,33 @@
                         <tbody>
                             <tr>
                                 <td>Place patient in negative pressure room</td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Wear N95 respirator</td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Wear surgical mask</td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Keep door closed</td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
                             </tr>
                             <tr>
                                 <td>Limit transport — mask patient if unavoidable</td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
-                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)">☐</button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, true)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
+                                <td><button class="matrix-btn" onclick="checkMatrix(this, false)"><i data-lucide="square" class="icon icon-secondary icon-md" aria-label="Unchecked"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -390,15 +390,15 @@
             
             if (isCorrect) {
                 btn.classList.add('correct');
-                btn.textContent = '✓';
+                btn.textContent = '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i>';
             } else {
                 btn.classList.add('incorrect');
-                btn.textContent = '✗';
+                btn.textContent = '<i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i>';
                 // Show correct answer
                 buttons.forEach(b => {
                     if (b.onclick.toString().includes('true')) {
                         b.classList.add('correct');
-                        b.textContent = '✓';
+                        b.textContent = '<i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i>';
                     }
                 });
             }
@@ -406,5 +406,9 @@
             document.getElementById('matrix-feedback').style.display = 'block';
         }
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

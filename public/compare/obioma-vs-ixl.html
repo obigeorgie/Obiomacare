@@ -70,15 +70,15 @@
             <h2>At a Glance</h2>
             <table class="comparison-table">
                 <tr><th>Feature</th><th>Obioma</th><th>IXL</th></tr>
-                <tr><td class="feature">Personalized path from assessment</td><td class="check">✓ 5-min diagnostic</td><td class="cross">✗ Not available</td></tr>
-                <tr><td class="feature">Prerequisite gap detection</td><td class="check">✓ Automatic</td><td class="cross">✗ Not available</td></tr>
-                <tr><td class="feature">Mastery-based progression</td><td class="check">✓ Must master prerequisites first</td><td class="partial">△ Score-based, not prerequisite-based</td></tr>
-                <tr><td class="feature">Question volume</td><td class="cross">✗ AI explanations, no drills</td><td class="check">✓ 10,000+ exercises</td></tr>
-                <tr><td class="feature">AI tutor</td><td class="check">✓ Age-appropriate explanations</td><td class="cross">✗ Not available</td></tr>
-                <tr><td class="feature">Grade-level alignment</td><td class="partial">△ Readiness-based, not grade-based</td><td class="check">✓ K-12, all standards</td></tr>
-                <tr><td class="feature">Cost</td><td class="partial">△ Free assessment / $12/mo</td><td class="partial">△ $9.95-19.95/mo</td></tr>
-                <tr><td class="feature">Parent reports</td><td class="check">✓ Weekly progress + gap analysis</td><td class="check">✓ Detailed analytics</td></tr>
-                <tr><td class="feature">Gamification</td><td class="partial">△ Mastery badges</td><td class="check">✓ Awards, certificates, prizes</td></tr>
+                <tr><td class="feature">Personalized path from assessment</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> 5-min diagnostic</td><td class="cross"><i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Not available</td></tr>
+                <tr><td class="feature">Prerequisite gap detection</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Automatic</td><td class="cross"><i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Not available</td></tr>
+                <tr><td class="feature">Mastery-based progression</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Must master prerequisites first</td><td class="partial"><i data-lucide="triangle" class="icon icon-secondary icon-md" aria-label="Note"></i> Score-based, not prerequisite-based</td></tr>
+                <tr><td class="feature">Question volume</td><td class="cross"><i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> AI explanations, no drills</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> 10,000+ exercises</td></tr>
+                <tr><td class="feature">AI tutor</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Age-appropriate explanations</td><td class="cross"><i data-lucide="x" class="icon icon-error icon-md" aria-label="No"></i> Not available</td></tr>
+                <tr><td class="feature">Grade-level alignment</td><td class="partial"><i data-lucide="triangle" class="icon icon-secondary icon-md" aria-label="Note"></i> Readiness-based, not grade-based</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> K-12, all standards</td></tr>
+                <tr><td class="feature">Cost</td><td class="partial"><i data-lucide="triangle" class="icon icon-secondary icon-md" aria-label="Note"></i> Free assessment / $12/mo</td><td class="partial"><i data-lucide="triangle" class="icon icon-secondary icon-md" aria-label="Note"></i> $9.95-19.95/mo</td></tr>
+                <tr><td class="feature">Parent reports</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Weekly progress + gap analysis</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Detailed analytics</td></tr>
+                <tr><td class="feature">Gamification</td><td class="partial"><i data-lucide="triangle" class="icon icon-secondary icon-md" aria-label="Note"></i> Mastery badges</td><td class="check"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i> Awards, certificates, prizes</td></tr>
             </table>
             <h2>When IXL Is Better</h2>
             <ul>
@@ -103,7 +103,7 @@
                 <p><strong>Pro tip:</strong> Run Obioma's free assessment, get your child's prerequisite path, then search each topic on IXL for targeted practice. Obioma plans; IXL drills.</p>
             </div>
             <div class="cta-box">
-                <h3>🎯 Find the Real Gap</h3>
+                <h3><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> Find the Real Gap</h3>
                 <p>Not sure why your child is struggling? The free 5-minute assessment reveals the exact prerequisite holding them back.</p>
                 <a href="https://app.obiomacare.com/assessment" class="btn">Start Free Assessment →</a>
             </div>
@@ -124,5 +124,9 @@
             <p><a href="/">Home</a> • <a href="https://app.obiomacare.com">App</a> • <a href="/content/">Articles</a></p>
         </div>
     </footer>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

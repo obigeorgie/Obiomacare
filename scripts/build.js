@@ -59,6 +59,7 @@ copyDir('landing/free-framework', 'public/free-framework');
 copyDir('landing/compare', 'public/compare');
 copyDir('landing/products', 'public/products');
 copyDir('landing/quiz', 'public/quiz');
+copyDir('design-tokens', 'public/design-tokens');
 
 
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);

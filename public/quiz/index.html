@@ -125,7 +125,7 @@
     <main class="container">
         <div class="quizzes-grid">
             <a href="/quiz/lab-values.html" class="quiz-card">
-                <div class="emoji">🧪</div>
+                <div class="emoji"><i data-lucide="flask-conical" class="icon icon-coral icon-md" aria-label="Laboratory"></i></div>
                 <h3>Lab Values Quiz</h3>
                 <p>15 questions covering sodium, potassium, glucose, ABGs, CBC, coagulation studies, and more. Includes clinical pearls for every answer.</p>
                 <div class="meta">
@@ -137,7 +137,7 @@
             
             <div class="quiz-card coming-soon">
                 <span class="badge">Coming Soon</span>
-                <div class="emoji">🎯</div>
+                <div class="emoji"><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i></div>
                 <h3>Prioritization Quiz</h3>
                 <p>ABCDE method, Maslow's hierarchy, urgent vs. important. Master the skill that separates passing from failing.</p>
                 <div class="meta">
@@ -148,7 +148,7 @@
             
             <div class="quiz-card coming-soon">
                 <span class="badge">Coming Soon</span>
-                <div class="emoji">✅</div>
+                <div class="emoji"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></div>
                 <h3>SATA Strategy Quiz</h3>
                 <p>True/False method, common traps, elimination strategies. The question type that causes the most anxiety.</p>
                 <div class="meta">
@@ -159,7 +159,7 @@
             
             <div class="quiz-card coming-soon">
                 <span class="badge">Coming Soon</span>
-                <div class="emoji">🧠</div>
+                <div class="emoji"><i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i></div>
                 <h3>Clinical Judgment Cases</h3>
                 <p>Full NGN-style case studies. Recognize cues, analyze, prioritize, take action. Just like the real exam.</p>
                 <div class="meta">
@@ -176,5 +176,9 @@
             <p><a href="/">Home</a> · <a href="/free-nclex-checklist">Free Checklist</a> · <a href="/content/nclex-lab-values-cheat-sheet.html">Lab Values Guide</a></p>
         </div>
     </footer>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

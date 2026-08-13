@@ -15,7 +15,7 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
 </style></head>
 <body>
   <div class="circle"></div>
-  <div class="icon">✍️</div>
+  <div class="icon"><i data-lucide="pen-tool" class="icon icon-coral icon-md" aria-label="Write"></i></div>
   <div class="title">Fill in the blank</div>
   <div class="question">"The nurse's FIRST priority is ALWAYS ______."</div>
   <div class="options">
@@ -26,4 +26,8 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
   </div>
   <div class="answer">Answer: A) Patient safety</div>
   <div class="footer">obiomacare.com</div>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body></html>

@@ -131,7 +131,7 @@ body {
   <div class="circle"></div>
   <div class="circle2"></div>
   <div class="badge">FREE</div>
-  <div class="icon">✓</div>
+  <div class="icon"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></div>
   <div class="title white">Clinical Judgment<br><span class="accent">Checklist</span></div>
   <div class="steps">
     <div class="step"><div class="step-num">1</div>Recognize Cues</div>
@@ -141,5 +141,9 @@ body {
     <div class="step"><div class="step-num">5</div>Take Action → Evaluate</div>
   </div>
   <div class="footer">obiomacare.com</div>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

@@ -21,6 +21,10 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
     <div class="option">Option A: 1,000 flashcards + 500 practice questions<div class="label">Memorization approach</div></div>
     <div class="option winner">Option B: 30 real case studies + clinical judgment framework<div class="label">Thinking approach</div></div>
   </div>
-  <div class="result">Option B wins every time. 🧠</div>
+  <div class="result">Option B wins every time. <i data-lucide="brain" class="icon icon-coral icon-md" aria-label="Neurology"></i></div>
   <div class="footer">obiomacare.com</div>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body></html>

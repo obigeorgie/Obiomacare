@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="icon">🎉</div>
+        <div class="icon"><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i></div>
         <h1>Thank You for Your Purchase!</h1>
         <p>Your Clinical Judgment Mastery System is being prepared. Check your email in the next 2-3 minutes for your download link.</p>
         <a href="/" class="btn">Back to Homepage</a>
@@ -72,5 +72,9 @@
             }
         }
     </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body>
 </html>

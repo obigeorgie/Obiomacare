@@ -1,0 +1,154 @@
+/**
+ * Obioma Design Tokens — CSS Custom Properties
+ * Shared between marketing site and app
+ * Source: design-tokens/tokens.js
+ * 
+ * RULE: No hardcoded hex values outside this file.
+ */
+
+:root {
+  /* ─── Navy Scale ─── */
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f1d32;
+  --color-navy-700: #162544;
+  --color-navy-600: #1e3560;
+  --color-navy-500: #2a4578;
+  --color-navy-400: #3d5a8a;
+
+  /* ─── Coral Scale ─── */
+  --color-coral: #FF6B5B;
+  --color-coral-dark: #E85D4E;
+  --color-coral-light: #FF8A7D;
+  --color-coral-muted: rgba(255, 107, 91, 0.15);
+  --color-coral-glow: rgba(255, 107, 91, 0.25);
+  --color-coral-5: rgba(255, 107, 91, 0.05);
+  --color-coral-8: rgba(255, 107, 91, 0.08);
+  --color-coral-10: rgba(255, 107, 91, 0.10);
+  --color-coral-20: rgba(255, 107, 91, 0.20);
+  --color-coral-30: rgba(255, 107, 91, 0.30);
+  --color-coral-40: rgba(255, 107, 91, 0.40);
+
+  /* ─── Text ─── */
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #0a1628;
+
+  /* ─── Semantic ─── */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ─── Spacing (base 4px) ─── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+
+  /* ─── Border Radius ─── */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-DEFAULT: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.4), 0 3px 6px -3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.5), 0 4px 8px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 40px -8px rgba(0, 0, 0, 0.6);
+  --shadow-coral: 0 4px 20px rgba(255, 107, 91, 0.25);
+  --shadow-glow: 0 0 40px rgba(255, 107, 91, 0.15);
+
+  /* ─── Transitions ─── */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-DEFAULT: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ─── Icon Sizes ─── */
+  --icon-xs: 0.75rem;
+  --icon-sm: 1rem;
+  --icon-md: 1.25rem;
+  --icon-lg: 1.5rem;
+  --icon-xl: 2rem;
+  --icon-2xl: 2.5rem;
+
+  /* ─── Z-Index ─── */
+  --z-base: 0;
+  --z-dropdown: 50;
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
+
+  /* ─── Legacy aliases (for gradual migration) ─── */
+  --navy-900: var(--color-navy-900);
+  --navy-800: var(--color-navy-800);
+  --navy-700: var(--color-navy-700);
+  --navy-600: var(--color-navy-600);
+  --coral: var(--color-coral);
+  --coral-dark: var(--color-coral-dark);
+  --coral-light: var(--color-coral-light);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --accent-glow: var(--color-coral-muted);
+}
+
+/* ─── Lucide Icon System ─── */
+/* Load from CDN with consistent styling */
+@import url('https://unpkg.com/lucide-static@latest/font/lucide.css');
+
+.icon {
+  display: inline-block;
+  width: var(--icon-md);
+  height: var(--icon-md);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.icon-xs { width: var(--icon-xs); height: var(--icon-xs); stroke-width: 1.5; }
+.icon-sm { width: var(--icon-sm); height: var(--icon-sm); stroke-width: 1.75; }
+.icon-md { width: var(--icon-md); height: var(--icon-md); stroke-width: 2; }
+.icon-lg { width: var(--icon-lg); height: var(--icon-lg); stroke-width: 2; }
+.icon-xl { width: var(--icon-xl); height: var(--icon-xl); stroke-width: 2; }
+.icon-2xl { width: var(--icon-2xl); height: var(--icon-2xl); stroke-width: 2; }
+
+.icon-coral { stroke: var(--color-coral); }
+.icon-primary { stroke: var(--color-text-primary); }
+.icon-secondary { stroke: var(--color-text-secondary); }
+.icon-success { stroke: var(--color-success); }
+.icon-warning { stroke: var(--color-warning); }
+.icon-error { stroke: var(--color-error); }
+
+/* Icon in button context */
+.btn .icon,
+button .icon {
+  vertical-align: middle;
+  margin-right: var(--space-2);
+}
+
+/* ─── Emoji Ban Enforcement ─── */
+/* Any remaining emoji usage is a token violation */

@@ -23,18 +23,22 @@ body { width: 1080px; height: 1080px; background: linear-gradient(135deg, #0a162
   <div class="comparison">
     <div class="col before">
       <div class="col-title before">BEFORE</div>
-      <div class="item"><span class="x">❌</span> Memorized flashcards for 6 months</div>
-      <div class="item"><span class="x">❌</span> Practice questions in isolation</div>
-      <div class="item"><span class="x">❌</span> Focused on content, not reasoning</div>
-      <div class="item"><span class="x">❌</span> Failed first attempt</div>
+      <div class="item"><span class="x"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i></span> Memorized flashcards for 6 months</div>
+      <div class="item"><span class="x"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i></span> Practice questions in isolation</div>
+      <div class="item"><span class="x"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i></span> Focused on content, not reasoning</div>
+      <div class="item"><span class="x"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i></span> Failed first attempt</div>
     </div>
     <div class="col after">
       <div class="col-title after">AFTER</div>
-      <div class="item"><span class="check">✅</span> Learned CJMM framework</div>
-      <div class="item"><span class="check">✅</span> Practiced full case studies</div>
-      <div class="item"><span class="check">✅</span> Focused on clinical judgment</div>
-      <div class="item"><span class="check">✅</span> Passed on first try</div>
+      <div class="item"><span class="check"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></span> Learned CJMM framework</div>
+      <div class="item"><span class="check"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></span> Practiced full case studies</div>
+      <div class="item"><span class="check"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></span> Focused on clinical judgment</div>
+      <div class="item"><span class="check"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i></span> Passed on first try</div>
     </div>
   </div>
   <div class="footer">obiomacare.com</div>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
 </body></html>
