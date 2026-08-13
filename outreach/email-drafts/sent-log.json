@@ -1,0 +1,45 @@
+{
+  "date": "2026-08-13T01:47:41.211Z",
+  "results": [
+    {
+      "to": "admissions@chamberlain.edu",
+      "status": "sent",
+      "messageId": "<47ec9045-9596-e010-56a0-9f89d41eaf3b@obiomacare.com>"
+    },
+    {
+      "to": "nursing@wgu.edu",
+      "status": "sent",
+      "messageId": "<d44a054e-bb76-0447-9bf3-1ea016d275dc@obiomacare.com>"
+    },
+    {
+      "to": "nursing.admissions@jhu.edu",
+      "status": "sent",
+      "messageId": "<85405f0a-442d-ba0c-802d-f1942512fe03@obiomacare.com>"
+    },
+    {
+      "to": "resources@nurse.org",
+      "status": "sent",
+      "messageId": "<aa844514-6c28-d570-01e5-670d54bdf610@obiomacare.com>"
+    },
+    {
+      "to": "editor@dailynurse.com",
+      "status": "sent",
+      "messageId": "<028adc30-2bae-c22c-25c9-72e95818a8a4@obiomacare.com>"
+    },
+    {
+      "to": "contact@freshrn.com",
+      "status": "sent",
+      "messageId": "<6ea622a7-322e-7a71-7991-d94500a82011@obiomacare.com>"
+    },
+    {
+      "to": "info@nsna.org",
+      "status": "sent",
+      "messageId": "<5b0bf98c-a80c-b5cc-3237-bc6e3f786284@obiomacare.com>"
+    },
+    {
+      "to": "katie@straightanursingstudent.com",
+      "status": "sent",
+      "messageId": "<cedba822-4b26-d42b-1ad2-13331f662e38@obiomacare.com>"
+    }
+  ]
+}
