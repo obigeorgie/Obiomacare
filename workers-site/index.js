@@ -27,6 +27,20 @@ async function handleEvent(event) {
   let options = {}
 
   /**
+   * Redirects for retired app routes (Vercel app pages, now static site)
+   */
+  const redirects = {
+    '/pricing': '/#pricing',
+    '/cases': '/case-engine.html',
+    '/login': '/',
+    '/readiness': '/case-engine.html',
+    '/anatomy-lab': '/',
+  }
+  if (redirects[url.pathname]) {
+    return Response.redirect(url.origin + redirects[url.pathname], 301)
+  }
+
+  /**
    * mapRequestToAsset serves a default asset when the route is "/"
    */
   options.mapRequestToAsset = req => {
