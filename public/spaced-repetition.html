@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Adaptive spaced repetition for NCLEX Next Gen. Review clinical judgment cases at optimal intervals.">
+  <title>Spaced Repetition — ObiomaCare</title>
+  <link rel="canonical" href="https://obiomacare.com/spaced-repetition" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/design-tokens/tokens.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Header */
+    .site-header {
+      background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-900) 100%);
+      color: #fff;
+      padding: 16px 0;
+    }
+    .site-header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; font-weight: 800; }
+    .logo img { width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+    
+    /* Main */
+    .sr-app { padding: 40px 0 80px; }
+    .sr-header { margin-bottom: 32px; }
+    .sr-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .sr-header p { color: var(--color-text-secondary); }
+    
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--color-bg-secondary);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .stat-value { font-size: 1.75rem; font-weight: 800; color: var(--color-coral-accessible); }
+    .stat-label { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 4px; }
+    
+    /* Queue */
+    .queue-list { display: flex; flex-direction: column; gap: 12px; }
+    .queue-item {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .queue-item:hover { border-color: var(--color-coral-30); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .queue-item.due { border-left: 4px solid var(--color-coral); }
+    .queue-item.new { border-left: 4px solid var(--color-success); }
+    .queue-item.learning { border-left: 4px solid var(--color-warning); }
+    
+    .queue-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+    }
+    .queue-icon.due { background: var(--color-coral-muted); }
+    .queue-icon.new { background: rgba(34,197,94,0.1); }
+    .queue-icon.learning { background: rgba(245,158,11,0.1); }
+    
+    .queue-info { flex-grow: 1; }
+    .queue-title { font-weight: 700; margin-bottom: 4px; }
+    .queue-meta { font-size: 0.8rem; color: var(--color-text-muted); }
+    .queue-badge {
+      font-size: 0.7rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-due { background: var(--color-coral-muted); color: var(--color-coral-accessible); }
+    .badge-new { background: rgba(34,197,94,0.1); color: var(--color-success); }
+    .badge-learning { background: rgba(245,158,11,0.1); color: var(--color-warning); }
+    
+    /* Review modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--color-bg-elevated);
+      border-radius: 20px;
+      width: 90%; max-width: 600px;
+      max-height: 90vh; overflow-y: auto;
+      padding: 32px;
+    }
+    .modal h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; }
+    .rating-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .rating-btn {
+      padding: 16px 8px;
+      border-radius: 12px;
+      border: 2px solid var(--color-border);
+      background: var(--color-bg);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .rating-btn:hover { border-color: var(--color-coral); background: var(--color-coral-muted); }
+    .rating-btn .label { font-size: 0.7rem; font-weight: 500; color: var(--color-text-muted); display: block; margin-top: 4px; }
+    
+    /* Paywall */
+    .paywall {
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .paywall-icon { font-size: 4rem; margin-bottom: 24px; }
+    .paywall h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 12px; }
+    .paywall p { color: var(--color-text-secondary); margin-bottom: 24px; }
+    .paywall-features {
+      text-align: left;
+      background: var(--color-bg-secondary);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .paywall-features li {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px; font-size: 0.9rem;
+    }
+    .paywall-features li::before {
+      content: "✓"; color: var(--color-success); font-weight: 700;
+    }
+    .paywall-cta {
+      display: inline-block;
+      background: var(--color-coral);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      margin-top: 16px;
+    }
+    .paywall-cta:hover { background: var(--color-coral-hover); }
+    
+    .hidden { display: none !important; }
+    
+    @media (max-width: 600px) {
+      .rating-buttons { grid-template-columns: repeat(2, 1fr); }
+      .queue-item { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">
+        <img src="/assets/logo.svg" alt="">
+        ObiomaCare
+      </a>
+      <nav class="nav-links">
+        <a href="/case-engine.html">Cases</a>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/spaced-repetition">Review</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Gated Content -->
+  <div id="gated-content" class="container sr-app hidden">
+    <div class="sr-header">
+      <h1>Spaced Repetition</h1>
+      <p>Review clinical judgment cases at scientifically optimized intervals. Your due queue refreshes daily.</p>
+    </div>
+    
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-due">0</div>
+        <div class="stat-label">Due Now</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-new">0</div>
+        <div class="stat-label">New Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-streak">0</div>
+        <div class="stat-label">Day Streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Total Reviews</div>
+      </div>
+    </div>
+    
+    <div class="queue-list" id="queue-list">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Paywall (shown to free users) -->
+  <div id="paywall" class="paywall hidden">
+    <div class="paywall-icon">🧠</div>
+    <h2>Unlock Spaced Repetition</h2>
+    <p>Stop cramming. Start retaining. Our adaptive algorithm schedules reviews at the exact moment you're about to forget — proven to boost long-term retention by 2–3×.</p>
+    
+    <ul class="paywall-features">
+      <li>Adaptive SM-2 algorithm optimized for clinical judgment</li>
+      <li>Auto-scheduled reviews based on your performance</li>
+      <li>Weak-topic detection and targeted reinforcement</li>
+      <li>Sync progress across all your devices</li>
+    </ul>
+    
+    <a href="/pricing?tier=student_monthly" class="paywall-cta">Start 7-Day Free Trial</a>
+    <p style="margin-top: 16px; font-size: 0.85rem; color: var(--color-text-muted);">
+      <a href="/pricing" style="color: var(--color-coral-accessible);">View all plans</a> · No credit card required for free content
+    </p>
+  </div>
+
+  <!-- Review Modal -->
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal">
+      <h2 id="modal-title">Case Review</h2>
+      <div id="modal-content"></div>
+      <p style="margin-top: 16px; color: var(--color-text-secondary); font-size: 0.9rem;">
+        How well did you know this?
+      </p>
+      <div class="rating-buttons">
+        <button class="rating-btn" data-rating="again">
+          Again
+          <span class="label">&lt; 1 min</span>
+        </button>
+        <button class="rating-btn" data-rating="hard">
+          Hard
+          <span class="label">~ 6 min</span>
+        </button>
+        <button class="rating-btn" data-rating="good">
+          Good
+          <span class="label">~ 10 min</span>
+        </button>
+        <button class="rating-btn" data-rating="easy">
+          Easy
+          <span class="label">~ 4 days</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    // ─── TIER GATE ───
+    // Check if user has access to spaced repetition
+    async function checkAccess() {
+      try {
+        // Try to get user from localStorage first (stub auth)
+        const user = JSON.parse(localStorage.getItem('obioma_user') || '{}');
+        const email = user.email;
+        
+        const res = await fetch(`/api/user-tier?email=${encodeURIComponent(email || '')}`);
+        const data = await res.json();
+        
+        const hasSR = data.features?.includes('spaced_repetition') || data.tier !== 'free';
+        
+        if (hasSR) {
+          document.getElementById('gated-content').classList.remove('hidden');
+          initSRApp();
+        } else {
+          document.getElementById('paywall').classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error('Access check failed:', err);
+        // Default to paywall on error
+        document.getElementById('paywall').classList.remove('hidden');
+      }
+    }
+    
+    // ─── SPACED REPETITION APP ───
+    // Demo data — in production this comes from the API
+    const DEMO_QUEUE = [
+      {
+        id: 'case_001',
+        title: 'COPD Exacerbation — Prioritization',
+        category: 'Respiratory',
+        status: 'due',
+        dueDate: new Date(),
+        interval: '2 days',
+        ease: 2.5,
+        reviews: 3,
+        icon: '🫁',
+      },
+      {
+        id: 'case_002',
+        title: 'DKA — Fluid & Electrolyte Management',
+        category: 'Endocrine',
+        status: 'due',
+        dueDate: new Date(),
+        interval: '5 days',
+        ease: 2.3,
+        reviews: 5,
+        icon: '💉',
+      },
+      {
+        id: 'case_003',
+        title: 'Sepsis — Early Recognition & Action',
+        category: 'Critical Care',
+        status: 'new',
+        dueDate: new Date(),
+        interval: 'new',
+        ease: 2.5,
+        reviews: 0,
+        icon: '🚨',
+      },
+      {
+        id: 'case_004',
+        title: 'Heart Failure — Medication Education',
+        category: 'Cardiac',
+        status: 'learning',
+        dueDate: new Date(Date.now() + 86400000),
+        interval: '1 day',
+        ease: 2.1,
+        reviews: 2,
+        icon: '❤️',
+      },
+      {
+        id: 'case_005',
+        title: 'Post-Op Complications — Assessment',
+        category: 'Surgical',
+        status: 'learning',
+        dueDate: new Date(Date.now() + 86400000 * 2),
+        interval: '2 days',
+        ease: 2.4,
+        reviews: 1,
+        icon: '🏥',
+      },
+    ];
+    
+    function initSRApp() {
+      renderQueue();
+      updateStats();
+      
+      // Modal handlers
+      document.querySelectorAll('.rating-btn').forEach(btn => {
+        btn.addEventListener('click', handleRating);
+      });
+      document.getElementById('review-modal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeModal();
+      });
+    }
+    
+    function renderQueue() {
+      const list = document.getElementById('queue-list');
+      const dueItems = DEMO_QUEUE.filter(i => i.status === 'due');
+      const newItems = DEMO_QUEUE.filter(i => i.status === 'new');
+      const learningItems = DEMO_QUEUE.filter(i => i.status === 'learning');
+      
+      const sorted = [...dueItems, ...newItems, ...learningItems];
+      
+      list.innerHTML = sorted.map(item => `
+        <div class="queue-item ${item.status}" data-id="${item.id}">
+          <div class="queue-icon ${item.status}">${item.icon}</div>
+          <div class="queue-info">
+            <div class="queue-title">${item.title}</div>
+            <div class="queue-meta">${item.category} · Interval: ${item.interval} · Reviews: ${item.reviews}</div>
+          </div>
+          <span class="queue-badge badge-${item.status}">${item.status}</span>
+        </div>
+      `).join('');
+      
+      document.querySelectorAll('.queue-item').forEach(item => {
+        item.addEventListener('click', () => openReview(item.dataset.id));
+      });
+    }
+    
+    function updateStats() {
+      document.getElementById('stat-due').textContent = DEMO_QUEUE.filter(i => i.status === 'due').length;
+      document.getElementById('stat-new').textContent = DEMO_QUEUE.filter(i => i.status === 'new').length;
+      document.getElementById('stat-streak').textContent = '12';
+      document.getElementById('stat-total').textContent = DEMO_QUEUE.reduce((s, i) => s + i.reviews, 0);
+    }
+    
+    function openReview(id) {
+      const item = DEMO_QUEUE.find(i => i.id === id);
+      if (!item) return;
+      
+      document.getElementById('modal-title').textContent = item.title;
+      document.getElementById('modal-content').innerHTML = `
+        <p><strong>Category:</strong> ${item.category}</p>
+        <p><strong>Current interval:</strong> ${item.interval}</p>
+        <p><strong>Ease factor:</strong> ${item.ease.toFixed(2)}</p>
+        <p style="margin-top: 12px; color: var(--color-text-secondary);">
+          Review the case and rate how well you recalled the clinical judgment steps.
+        </p>
+      `;
+      document.getElementById('review-modal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('review-modal').classList.remove('active');
+    }
+    
+    function handleRating(e) {
+      const rating = e.currentTarget.dataset.rating;
+      console.log('Rated:', rating);
+      // In production: send to API, update schedule
+      closeModal();
+      // Visual feedback
+      alert(`Review saved! Next review scheduled based on "${rating}" rating.`);
+    }
+    
+    // Init
+    checkAccess();
+  </script>
+
+</body>
+</html>

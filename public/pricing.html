@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ObiomaCare pricing — NCLEX Next Gen prep plans. Start free, upgrade to Student ($19/mo) or Annual ($99/yr). Lifetime option available.">
+  <title>Pricing — ObiomaCare | NCLEX Next Gen Prep</title>
+  <link rel="canonical" href="https://obiomacare.com/pricing" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/design-tokens/tokens.css">
+  
+  <!-- Schema.org Product/Offer markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "ObiomaCare NCLEX Next Gen Prep",
+    "description": "AI-powered NCLEX Next Gen preparation with clinical judgment case studies, spaced repetition, and 3D anatomy lab.",
+    "brand": { "@type": "Brand", "name": "ObiomaCare" },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Student Monthly",
+        "price": "19.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-08-15",
+        "availability": "https://schema.org/InStock",
+        "url": "https://obiomacare.com/pricing",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Subscription Plans",
+          "itemListElement": [
+            { "@type": "Offer", "name": "Student Monthly", "price": "19.00", "priceCurrency": "USD", "billingIncrement": 1, "unitCode": "MON" },
+            { "@type": "Offer", "name": "Student Annual", "price": "99.00", "priceCurrency": "USD", "billingIncrement": 1, "unitCode": "ANN" }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Header */
+    .site-header {
+      background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-900) 100%);
+      color: var(--color-text-inverse);
+      padding: 20px 0;
+    }
+    .site-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; font-weight: 800; font-size: 1.25rem; }
+    .logo img { width: 32px; height: 32px; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--color-coral);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    
+    /* Hero */
+    .pricing-hero {
+      background: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-900) 100%);
+      color: var(--color-text-inverse);
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .pricing-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 16px; }
+    .pricing-hero p { font-size: 1.2rem; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 32px; }
+    .trial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+    }
+    .trial-badge .dot { width: 8px; height: 8px; background: var(--color-success); border-radius: 50%; }
+    
+    /* Toggle */
+    .billing-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin: -24px 0 48px;
+      position: relative;
+      z-index: 2;
+    }
+    .toggle-btn {
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .toggle-btn.active {
+      background: var(--color-navy-800);
+      color: #fff;
+      border-color: var(--color-navy-800);
+    }
+    .save-badge {
+      background: var(--color-success);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-left: 4px;
+    }
+    
+    /* Plans Grid */
+    .plans-section { padding: 40px 0 80px; }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .plan-card {
+      background: var(--color-bg-elevated);
+      border: 2px solid var(--color-border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    .plan-card.highlighted {
+      border-color: var(--color-coral);
+      box-shadow: 0 0 0 4px var(--color-coral-10);
+    }
+    .plan-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-coral);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .plan-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+    .plan-price { font-size: 2.5rem; font-weight: 900; margin-bottom: 4px; }
+    .plan-price span { font-size: 1rem; font-weight: 500; color: var(--color-text-muted); }
+    .plan-interval { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 16px; }
+    .plan-desc { color: var(--color-text-secondary); margin-bottom: 24px; font-size: 0.95rem; }
+    .plan-features { list-style: none; margin-bottom: 24px; flex-grow: 1; }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+    .plan-features li::before {
+      content: "✓";
+      color: var(--color-success);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .plan-features li.limited::before {
+      content: "—";
+      color: var(--color-text-muted);
+    }
+    .plan-features li.limited { color: var(--color-text-muted); text-decoration: line-through; opacity: 0.7; }
+    .plan-cta {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+    .plan-cta.primary {
+      background: var(--color-coral);
+      color: #fff;
+    }
+    .plan-cta.primary:hover { background: var(--color-coral-hover); }
+    .plan-cta.secondary {
+      background: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      border: 2px solid var(--color-border);
+    }
+    .plan-cta.secondary:hover { background: var(--color-border-light); }
+    .plan-cta.outline {
+      background: transparent;
+      color: var(--color-coral-accessible);
+      border: 2px solid var(--color-coral-accessible);
+    }
+    .plan-cta.outline:hover { background: var(--color-coral-muted); }
+    
+    /* Comparison Table */
+    .compare-section { padding: 60px 0; background: var(--color-bg-secondary); }
+    .compare-section h2 { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .compare-section .subtitle { text-align: center; color: var(--color-text-muted); margin-bottom: 40px; }
+    .compare-table-wrap { overflow-x: auto; }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-table th {
+      font-weight: 700;
+      color: var(--color-text-primary);
+      background: var(--color-bg-tertiary);
+    }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td { font-size: 0.9rem; }
+    .compare-table .feature-name { font-weight: 600; }
+    .check { color: var(--color-success); font-weight: 700; }
+    .cross { color: var(--color-text-muted); }
+    .partial { color: var(--color-warning); }
+    .price-cell { font-weight: 700; color: var(--color-coral-accessible); }
+    .source-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      margin-top: 16px;
+    }
+    
+    /* FAQ */
+    .faq-section { padding: 60px 0; }
+    .faq-section h2 { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 40px; }
+    .faq-grid { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--color-border); }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 20px 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--color-text-primary);
+    }
+    .faq-question:hover { color: var(--color-coral-accessible); }
+    .faq-icon { font-size: 1.25rem; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 20px; }
+    .faq-answer p { color: var(--color-text-secondary); line-height: 1.7; }
+    
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--color-navy-700) 0%, var(--color-navy-900) 100%);
+      color: #fff;
+      padding: 60px 24px;
+      text-align: center;
+      border-radius: 20px;
+      margin: 40px auto 80px;
+      max-width: 900px;
+    }
+    .cta-banner h2 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+    .cta-banner p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 24px; }
+    .cta-banner .btn {
+      background: var(--color-coral);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+    
+    /* Mobile */
+    @media (max-width: 768px) {
+      .plans-grid { grid-template-columns: 1fr; }
+      .compare-table-wrap { margin: 0 -24px; padding: 0 24px; }
+      .nav-links { display: none; }
+      .pricing-hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">
+        <img src="/assets/logo.svg" alt="Obioma">
+        ObiomaCare
+      </a>
+      <nav class="nav-links">
+        <a href="/case-engine.html">Case Studies</a>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/content/">Guides</a>
+        <a href="/pricing" class="nav-cta">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pricing-hero">
+    <div class="container">
+      <h1>Simple Pricing for Nursing Students</h1>
+      <p>Start free. Upgrade when you're ready. No surprise charges. Cancel anytime.</p>
+      <div class="trial-badge">
+        <span class="dot"></span>
+        7-day free trial on Student plans
+      </div>
+    </div>
+  </section>
+
+  <!-- Billing Toggle -->
+  <div class="container">
+    <div class="billing-toggle">
+      <button class="toggle-btn active" data-interval="monthly">Monthly</button>
+      <button class="toggle-btn" data-interval="annual">Annual <span class="save-badge">Save 57%</span></button>
+    </div>
+  </div>
+
+  <!-- Plans -->
+  <section class="plans-section">
+    <div class="container">
+      <div class="plans-grid" id="plans-grid">
+        <!-- Rendered by JS from config -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="compare-section">
+    <div class="container">
+      <h2>How We Compare</h2>
+      <p class="subtitle">Verified competitor pricing as of August 2026</p>
+      <div class="compare-table-wrap">
+        <table class="compare-table" id="compare-table">
+          <!-- Rendered by JS -->
+        </table>
+      </div>
+      <p class="source-note">Prices verified from competitor websites on 2026-08-14. Subject to change.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid" id="faq-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Ready to Master Clinical Judgment?</h2>
+      <p>Join thousands of nursing students training with the NCSBN framework.</p>
+      <a href="#plans-grid" class="btn">Start Your Free Trial</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 ObiomaCare. All rights reserved. · <a href="/privacy" style="color:inherit;">Privacy</a> · <a href="/terms" style="color:inherit;">Terms</a></p>
+    </div>
+  </footer>
+
+  <!-- Config & Rendering -->
+  <script type="module">
+    // Plan definitions (mirrors config/pricing.js)
+    const PLANS = {
+      free: {
+        id: 'free',
+        name: 'Free',
+        displayPrice: '$0',
+        interval: null,
+        trialDays: 0,
+        badge: null,
+        description: 'Access to all educational content and limited quizzes.',
+        ctaText: 'Get Started Free',
+        ctaAction: 'signup',
+        highlighted: false,
+        features: [
+          'All nursing articles & guides',
+          'Basic anatomy reference',
+          '10 quiz questions/day',
+          'Community access',
+        ],
+        limitations: [
+          'No NGN case studies',
+          'No spaced repetition',
+          'No analytics',
+        ]
+      },
+      student_monthly: {
+        id: 'student_monthly',
+        name: 'Student',
+        displayPrice: '$19',
+        interval: 'month',
+        trialDays: 7,
+        badge: 'Most Flexible',
+        description: 'Full access. Cancel anytime.',
+        ctaText: 'Start 7-Day Free Trial',
+        ctaAction: 'checkout',
+        highlighted: false,
+        features: [
+          'Full NGN case study bank',
+          'Adaptive spaced repetition',
+          'Performance analytics',
+          '3D Anatomy Lab',
+          'Unlimited quizzes + AI explanations',
+          'SATA & bow-tie practice',
+          'Progress sync',
+        ],
+        limitations: []
+      },
+      student_annual: {
+        id: 'student_annual',
+        name: 'Student Annual',
+        displayPrice: '$99',
+        interval: 'year',
+        trialDays: 14,
+        badge: 'Best Value',
+        description: 'Save 57% vs. monthly. 14-day trial.',
+        ctaText: 'Start 14-Day Free Trial',
+        ctaAction: 'checkout',
+        highlighted: true,
+        features: [
+          'Everything in Student Monthly',
+          'Priority AI tutor',
+          'Early access to new cases',
+          'Downloadable guides & cheat sheets',
+          'Exclusive webinars',
+        ],
+        limitations: []
+      },
+      lifetime: {
+        id: 'lifetime',
+        name: 'Lifetime',
+        displayPrice: '$47',
+        interval: 'once',
+        trialDays: 0,
+        badge: null,
+        description: 'One-time. All current and future content.',
+        ctaText: 'Buy Once, Own Forever',
+        ctaAction: 'checkout',
+        highlighted: false,
+        features: [
+          'Everything in Student Annual',
+          'Never pay again',
+          'All future updates included',
+        ],
+        limitations: []
+      }
+    };
+
+    const COMPETITORS = [
+      { name: 'UWorld', price: '$369–$499', ngn: false, cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'Kaplan', price: '$399–$599', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'ATI', price: '$500+', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'Archer', price: '$89–$199', ngn: false, cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'Obioma', price: '$19/mo', ngn: true, cases: true, ai: true, anatomy: true, sr: true, isUs: true },
+    ];
+
+    const FAQ = [
+      { q: 'Can I cancel anytime?', a: 'Yes. Cancel from your account dashboard or Stripe Customer Portal. You keep access until your billing period ends, then drop to Free with progress preserved.' },
+      { q: 'What happens after my trial?', a: 'If you don\'t cancel, your card is charged. We send a reminder 2 days before. No surprises.' },
+      { q: 'Is Lifetime really one-time?', a: 'Yes. $47 once. All current and future content. No renewals.' },
+      { q: 'Do you offer refunds?', a: 'Monthly/Annual: full refund within 7 days of payment. Lifetime: 14-day guarantee. Contact support@obiomacare.com.' },
+      { q: 'Can I switch Monthly → Annual?', a: 'Yes. Upgrade anytime. We prorate your current month toward the annual plan.' },
+      { q: 'What\'s in the Free plan?', a: 'All articles, reference pages, and 10 quiz questions/day. No card required.' },
+      { q: 'Nursing school discounts?', a: 'Yes. Contact partnerships@obiomacare.com for institutional pricing.' },
+    ];
+
+    // Render plans
+    function renderPlans(interval) {
+      const grid = document.getElementById('plans-grid');
+      const order = interval === 'annual' 
+        ? ['free', 'student_annual', 'student_monthly', 'lifetime']
+        : ['free', 'student_monthly', 'student_annual', 'lifetime'];
+      
+      grid.innerHTML = order.map(key => {
+        const plan = PLANS[key];
+        if (interval === 'annual' && plan.interval === 'month') return '';
+        if (interval === 'monthly' && plan.interval === 'year') return '';
+        
+        const btnClass = plan.highlighted ? 'primary' : (plan.id === 'free' ? 'secondary' : 'outline');
+        const allFeatures = [...plan.features, ...plan.limitations.map(l => ({ text: l, limited: true }))];
+        
+        return `
+          <div class="plan-card ${plan.highlighted ? 'highlighted' : ''}">
+            ${plan.badge ? `<span class="plan-badge">${plan.badge}</span>` : ''}
+            <div class="plan-name">${plan.name}</div>
+            <div class="plan-price">${plan.displayPrice}<span>${plan.interval ? '/' + plan.interval.replace('once', 'one-time') : ''}</span></div>
+            <div class="plan-interval">${plan.trialDays > 0 ? plan.trialDays + '-day free trial' : 'No trial'}</div>
+            <p class="plan-desc">${plan.description}</p>
+            <ul class="plan-features">
+              ${allFeatures.map(f => {
+                if (typeof f === 'string') return `<li>${f}</li>`;
+                return `<li class="limited">${f.text}</li>`;
+              }).join('')}
+            </ul>
+            <button class="plan-cta ${btnClass}" data-plan="${plan.id}" data-action="${plan.ctaAction}">
+              ${plan.ctaText}
+            </button>
+          </div>
+        `;
+      }).join('');
+      
+      // Attach handlers
+      document.querySelectorAll('.plan-cta').forEach(btn => {
+        btn.addEventListener('click', handlePlanClick);
+      });
+    }
+
+    function handlePlanClick(e) {
+      const planId = e.target.dataset.plan;
+      const action = e.target.dataset.action;
+      
+      if (action === 'signup') {
+        window.location.href = '/signup?plan=free';
+      } else if (action === 'checkout') {
+        startCheckout(planId);
+      }
+    }
+
+    async function startCheckout(planId) {
+      try {
+        const res = await fetch('/api/create-subscription-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier: planId })
+        });
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert('Checkout failed: ' + (data.error || 'Unknown error'));
+        }
+      } catch (err) {
+        alert('Checkout error: ' + err.message);
+      }
+    }
+
+    // Render comparison table
+    function renderComparison() {
+      const table = document.getElementById('compare-table');
+      const features = [
+        { key: 'price', label: 'Price (90-day)' },
+        { key: 'ngn', label: 'NGN-Native Cases' },
+        { key: 'cases', label: 'Clinical Case Studies' },
+        { key: 'ai', label: 'AI Explanations' },
+        { key: 'anatomy', label: '3D Anatomy Lab' },
+        { key: 'sr', label: 'Spaced Repetition' },
+      ];
+      
+      let html = '<thead><tr><th>Feature</th>';
+      COMPETITORS.forEach(c => {
+        html += `<th ${c.isUs ? 'style="color:var(--color-coral)"' : ''}>${c.name}</th>`;
+      });
+      html += '</tr></thead><tbody>';
+      
+      features.forEach(f => {
+        html += `<tr><td class="feature-name">${f.label}</td>`;
+        COMPETITORS.forEach(c => {
+          const val = c[f.key];
+          if (f.key === 'price') {
+            html += `<td class="price-cell">${val}</td>`;
+          } else if (val === true) {
+            html += `<td class="check">✓</td>`;
+          } else if (val === false) {
+            html += `<td class="cross">—</td>`;
+          } else if (val === 'partial') {
+            html += `<td class="partial">Partial</td>`;
+          }
+        });
+        html += '</tr>';
+      });
+      
+      html += '</tbody>';
+      table.innerHTML = html;
+    }
+
+    // Render FAQ
+    function renderFAQ() {
+      const grid = document.getElementById('faq-grid');
+      grid.innerHTML = FAQ.map((item, i) => `
+        <div class="faq-item" data-index="${i}">
+          <button class="faq-question">
+            ${item.q}
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>${item.a}</p>
+          </div>
+        </div>
+      `).join('');
+      
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          const item = q.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    }
+
+    // Billing toggle
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPlans(btn.dataset.interval);
+      });
+    });
+
+    // Init
+    renderPlans('monthly');
+    renderComparison();
+    renderFAQ();
+  </script>
+
+</body>
+</html>

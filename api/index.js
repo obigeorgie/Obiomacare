@@ -401,6 +401,22 @@ app.post('/api/create-checkout', express.json(), async (req, res) => {
   }
 });
 
+// ==================== SUBSCRIPTION CHECKOUT ====================
+const subscriptions = require('./subscriptions');
+subscriptions.init(stripe, db);
+
+app.post('/api/create-subscription-checkout', express.json(), async (req, res) => {
+  await subscriptions.createSubscriptionCheckout(req, res);
+});
+
+app.post('/api/customer-portal', express.json(), async (req, res) => {
+  await subscriptions.createPortalSession(req, res);
+});
+
+app.get('/api/user-tier', async (req, res) => {
+  await subscriptions.getUserTier(req, res);
+});
+
 // ==================== AI TUTOR (Real Implementation) ====================
 const { classifyQuestion, generateExplanation, generatePracticeQuestion, generateHint } = require('./tutor');
 
@@ -631,6 +647,15 @@ app.post('/api/webhook', express.raw({type: 'application/json'}), async (req, re
       } catch (err) {
         console.error('Post-purchase Day 1 email failed:', err);
       }
+    }
+  }
+
+  // Handle subscription webhooks
+  if (event.type.startsWith('customer.subscription') || event.type === 'invoice.payment_failed') {
+    try {
+      await subscriptions.handleSubscriptionWebhook(event);
+    } catch (err) {
+      console.error('Subscription webhook error:', err.message);
     }
   }
 
