@@ -146,6 +146,10 @@
       "dest": "/$1.html"
     },
     {
+      "src": "/cases/(.*)",
+      "dest": "/cases/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/404.html",
       "status": 404
