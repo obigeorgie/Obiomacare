@@ -36,7 +36,9 @@
             background: linear-gradient(135deg, #1e40af 0%, #1e3a5f 100%);
             padding: 40px 0 32px;
             border-bottom: 2px solid var(--obioma-red);
+            color: white;
         }
+        header a { color: white; }
         .header-top {
             display: flex;
             justify-content: space-between;
@@ -83,7 +85,7 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-        .scenario-title { font-size: 1.5rem; font-weight: 700; color: white; }
+        .scenario-title { font-size: 1.5rem; font-weight: 700; color: var(--text); }
         .scenario-meta {
             display: flex;
             gap: 12px;
@@ -340,7 +342,7 @@
             border-color: var(--obioma-coral);
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
-        .case-card h3 { font-size: 1.1rem; color: white; margin-bottom: 8px; }
+        .case-card h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 8px; }
         .case-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 12px; }
         .case-card .meta { display: flex; gap: 12px; font-size: 0.8rem; color: var(--text-secondary); }
 
@@ -407,10 +409,10 @@ function renderMenu() {
                     <span class="logo-text">Obioma</span>
                 </a>
                 <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 8px;">NGN Clinical Judgment Cases</h1>
-                <p style="color: var(--text-secondary);">Practice the NCSBN Clinical Judgment Measurement Model with interactive cases</p>
+                <p style="color: rgba(255,255,255,0.9);">Practice the NCSBN Clinical Judgment Measurement Model with interactive cases</p>
                 <div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-                    <span style="padding: 6px 16px; background: var(--color-border); border-radius: 20px; font-size: 0.875rem;">${STATE.cases.length} cases available</span>
-                    <span style="padding: 6px 16px; background: var(--color-border); border-radius: 20px; font-size: 0.875rem;">${completed} completed</span>
+                    <span style="padding: 6px 16px; background: var(--color-border); color: var(--text); border-radius: 20px; font-size: 0.875rem;">${STATE.cases.length} cases available</span>
+                    <span style="padding: 6px 16px; background: var(--color-border); color: var(--text); border-radius: 20px; font-size: 0.875rem;">${completed} completed</span>
                 </div>
             </div>
         </header>

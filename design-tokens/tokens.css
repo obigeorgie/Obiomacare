@@ -45,6 +45,10 @@
   --color-coral-30: rgba(255, 107, 91, 0.30);
   --color-coral-40: rgba(255, 107, 91, 0.40);
 
+  /* ─── Accessible Coral (WCAG AA ≥4.5:1 on white) ─── */
+  --color-coral-accessible: #D93828;   /* 4.62:1 on white; white-on-it 4.62:1 */
+  --color-coral-hover: #C5301F;        /* 5.5:1 */
+
   /* ─── Semantic ─── */
   --color-success: #22c55e;
   --color-warning: #f59e0b;
