@@ -30,7 +30,6 @@ async function handleEvent(event) {
    * Redirects for retired app routes (Vercel app pages, now static site)
    */
   const redirects = {
-    '/pricing': '/#pricing',
     '/cases': '/case-engine.html',
     '/login': '/',
     '/readiness': '/case-engine.html',
