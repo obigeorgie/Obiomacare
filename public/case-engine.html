@@ -10,21 +10,21 @@
     <link rel="stylesheet" href="/design-tokens/tokens.css">
     <style>
         :root {
-            --navy: #1A365D;
-            --dark: #0A1628;
+            --navy: #1e40af;
+            --dark: #f8fafc;
             --obioma-red: #C53030;
             --obioma-coral: #FF6B5B;
             --success: #10b981;
             --warning: #f59e0b;
-            --text: #E2E8F0;
-            --text-secondary: #94A3B8;
-            --bg-card: rgba(255,255,255,0.05);
-            --border: rgba(255,255,255,0.1);
+            --text: #0f172a;
+            --text-secondary: #475569;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--dark);
+            background: #f8fafc;
             color: var(--text);
             min-height: 100vh;
             line-height: 1.6;
@@ -33,7 +33,7 @@
         
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a5f 100%);
             padding: 40px 0 32px;
             border-bottom: 2px solid var(--obioma-red);
         }
@@ -49,7 +49,7 @@
         .progress-bar {
             width: 100%;
             height: 6px;
-            background: rgba(255,255,255,0.1);
+            background: var(--color-border);
             border-radius: 3px;
             overflow: hidden;
         }
@@ -68,11 +68,12 @@
 
         /* Scenario Panel */
         .scenario-panel {
-            background: var(--bg-card);
+            background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 24px;
             margin: 24px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .scenario-header {
             display: flex;
@@ -206,7 +207,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .option:hover { border-color: var(--obioma-coral); background: rgba(255,255,255,0.05); }
+        .option:hover { border-color: var(--obioma-coral); background: var(--color-border-light); }
         .option.selected { border-color: var(--obioma-red); background: rgba(197,48,48,0.1); }
         .option.correct { border-color: var(--success); background: rgba(16,185,129,0.1); }
         .option.incorrect { border-color: var(--obioma-red); background: rgba(197,48,48,0.1); }
@@ -278,7 +279,7 @@
         .btn-primary:hover { background: #a02828; transform: translateY(-1px); }
         .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         .btn-secondary {
-            background: rgba(255,255,255,0.1);
+            background: var(--color-border);
             color: var(--text);
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.15); }
@@ -328,20 +329,16 @@
             padding: 24px 0;
         }
         .case-card {
-            background: var(--bg-card);
+            background: #ffffff;
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: all 0.3s;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
             cursor: pointer;
         }
         .case-card:hover {
             border-color: var(--obioma-coral);
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.07);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .case-card h3 { font-size: 1.1rem; color: white; margin-bottom: 8px; }
         .case-card p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 12px; }
@@ -412,8 +409,8 @@ function renderMenu() {
                 <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 8px;">NGN Clinical Judgment Cases</h1>
                 <p style="color: var(--text-secondary);">Practice the NCSBN Clinical Judgment Measurement Model with interactive cases</p>
                 <div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-                    <span style="padding: 6px 16px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.875rem;">${STATE.cases.length} cases available</span>
-                    <span style="padding: 6px 16px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.875rem;">${completed} completed</span>
+                    <span style="padding: 6px 16px; background: var(--color-border); border-radius: 20px; font-size: 0.875rem;">${STATE.cases.length} cases available</span>
+                    <span style="padding: 6px 16px; background: var(--color-border); border-radius: 20px; font-size: 0.875rem;">${completed} completed</span>
                 </div>
             </div>
         </header>

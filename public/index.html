@@ -93,8 +93,8 @@
         body { 
             font-family: 'Inter', sans-serif; 
             line-height: 1.6; 
-            color: var(--text-primary); 
-            background: var(--navy-900); 
+            color: var(--color-text-primary); 
+            background: var(--color-bg); 
             overflow-x: hidden;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -108,9 +108,9 @@
             height: 100%;
             z-index: -1;
             background: 
-                radial-gradient(ellipse at 20% 20%, var(--color-coral-8) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(30, 53, 96, 0.4) 0%, transparent 50%),
-                var(--navy-900);
+                radial-gradient(ellipse at 20% 20%, var(--color-coral-5) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(148, 163, 184, 0.1) 0%, transparent 50%),
+                var(--color-bg);
         }
         
         /* Floating particles */
@@ -128,7 +128,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: var(--coral);
+            background: var(--color-coral);
             border-radius: 50%;
             opacity: 0.3;
             animation: float 20s infinite;
@@ -142,9 +142,9 @@
         
         /* Header */
         header { 
-            background: rgba(10, 22, 40, 0.8); 
+            background: rgba(248, 250, 252, 0.8); 
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+            border-bottom: 1px solid var(--color-border-light); 
             position: sticky; 
             top: 0; 
             z-index: 100; 
@@ -160,14 +160,14 @@
         .logo-text { 
             font-size: 24px; 
             font-weight: 800; 
-            color: #fff;
+            color: var(--color-text-primary);
             letter-spacing: -0.5px;
         }
         .logo-text span { color: var(--coral); }
         .nav-links { display: flex; gap: 32px; align-items: center; }
         .nav-links a { 
             text-decoration: none; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-weight: 500; 
             font-size: 15px; 
             transition: color 0.2s; 
@@ -206,7 +206,7 @@
         
         /* Hero */
         .hero { 
-            padding: 100px 0 80px; 
+            padding: 120px 0 80px; 
             text-align: center; 
             position: relative;
         }
@@ -253,7 +253,7 @@
         }
         .hero-subtitle { 
             font-size: 20px; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             max-width: 640px; 
             margin: 0 auto 40px;
             animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -264,7 +264,7 @@
         }
         .hero-note { 
             font-size: 14px; 
-            color: var(--text-muted); 
+            color: var(--color-text-muted); 
             margin-top: 16px; 
         }
         .hero-stats { 
@@ -276,17 +276,15 @@
         }
         .hero-stat { text-align: center; }
         .hero-stat-number { 
-            font-size: 48px; 
-            font-weight: 900; 
-            color: var(--coral);
+            font-size: 36px; 
+            font-weight: 800; 
+            color: var(--color-coral); 
             line-height: 1;
         }
         .hero-stat-label { 
-            font-size: 14px; 
-            color: var(--text-muted); 
-            margin-top: 8px; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 13px; 
+            color: var(--color-text-secondary); 
+            margin-top: 4px;
         }
         
         /* Hero Visual */
@@ -296,11 +294,11 @@
             animation: fadeInUp 0.8s ease-out 0.5s both;
         }
         .hero-visual-inner {
-            background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-700) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+            border: 1px solid var(--color-border);
             border-radius: 20px;
             padding: 32px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
@@ -330,7 +328,7 @@
         }
         .hero-visual-title {
             font-size: 13px;
-            color: var(--text-muted);
+            color: var(--color-text-muted);
             margin-left: auto;
         }
         .hero-visual-content {
@@ -340,7 +338,7 @@
         }
         .hero-visual-card {
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--color-border-light);
             border-radius: 12px;
             padding: 20px;
         }
@@ -354,7 +352,7 @@
         }
         .hero-visual-card-text {
             font-size: 14px;
-            color: #fff;
+            color: var(--color-text-primary);
             font-weight: 600;
             margin-bottom: 12px;
         }
@@ -375,7 +373,7 @@
         }
         .hero-visual-item-text {
             font-size: 12px;
-            color: var(--text-secondary);
+            color: var(--color-text-secondary);
         }
         @media (max-width: 768px) {
             .hero-visual-content { grid-template-columns: 1fr; }
@@ -392,8 +390,8 @@
             position: relative;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
         }
         .video-container video,
         .video-container iframe {
@@ -404,7 +402,7 @@
         .video-placeholder {
             width: 100%;
             aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-600) 100%);
+            background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-tertiary) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -436,7 +434,7 @@
         
         /* Section Base */
         .section { padding: 100px 0; }
-        .section-alt { background: rgba(15, 29, 50, 0.5); }
+        .section-alt { background: rgba(248, 250, 252, 0.5); }
         .section-title { 
             font-size: 42px; 
             font-weight: 900; 
@@ -446,7 +444,7 @@
         }
         .section-subtitle { 
             text-align: center; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-size: 18px; 
             max-width: 600px; 
             margin: 0 auto 48px; 
@@ -460,14 +458,14 @@
             margin-top: 40px; 
         }
         .problem-card { 
-            background: rgba(255, 255, 255, 0.03); 
+            background: var(--color-bg-elevated); 
             border-radius: 16px; 
             padding: 32px; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
             transition: all 0.3s;
         }
         .problem-card:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--color-border-light);
             border-color: var(--color-coral-20);
             transform: translateY(-4px);
         }
@@ -475,15 +473,15 @@
             font-size: 18px; 
             font-weight: 700; 
             margin-bottom: 12px; 
-            color: #fff; 
+            color: var(--color-text-primary); 
         }
         .problem-card p { 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-size: 15px; 
         }
         .problem-quote { 
             font-style: italic; 
-            color: var(--text-muted); 
+            color: var(--color-text-muted); 
             margin-top: 12px; 
             font-size: 14px; 
             border-left: 2px solid var(--coral); 
@@ -511,7 +509,7 @@
             align-items: flex-start; 
             gap: 12px; 
             font-size: 16px;
-            color: var(--text-secondary);
+            color: var(--color-text-secondary);
         }
         .solution-list li::before { 
             content: "\2713"; 
@@ -534,7 +532,7 @@
             padding: 28px; 
             width: 180px; 
             text-align: center; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border-light);
             transition: all 0.3s;
         }
         .step:hover {
@@ -558,11 +556,11 @@
             font-size: 15px; 
             font-weight: 700; 
             margin-bottom: 8px;
-            color: #fff;
+            color: var(--color-text-primary);
         }
         .step p { 
             font-size: 13px; 
-            color: var(--text-muted); 
+            color: var(--color-text-muted); 
         }
         
         /* Features */
@@ -575,9 +573,9 @@
         .feature { 
             text-align: center; 
             padding: 40px 32px;
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--color-bg-elevated);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
             transition: all 0.3s;
         }
         .feature:hover {
@@ -593,28 +591,27 @@
             font-size: 20px; 
             font-weight: 700; 
             margin-bottom: 12px;
-            color: #fff;
+            color: var(--color-text-primary);
         }
         .feature p { 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-size: 15px; 
         }
         
         /* Competitor Comparison */
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 48px;
-            background: rgba(255, 255, 255, 0.02);
+        .comparison-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: var(--color-bg-elevated);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border);
         }
         .comparison-table th,
         .comparison-table td {
             padding: 20px 24px;
             text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--color-border-light);
         }
         .comparison-table th {
             background: var(--color-coral-10);
@@ -625,7 +622,7 @@
             letter-spacing: 1px;
         }
         .comparison-table td {
-            color: var(--text-secondary);
+            color: var(--color-text-secondary);
             font-size: 15px;
         }
         .comparison-table tr:hover td {
@@ -635,7 +632,7 @@
         .comparison-table .cross { color: #ef4444; }
         .comparison-table .highlight-row td {
             background: var(--color-coral-5);
-            color: #fff;
+            color: var(--color-text-primary);
             font-weight: 600;
         }
         
@@ -650,7 +647,7 @@
             background: rgba(255, 255, 255, 0.03); 
             border-radius: 16px; 
             padding: 32px; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border-light);
             transition: all 0.3s;
         }
         .testimonial:hover {
@@ -658,7 +655,7 @@
         }
         .testimonial-text { 
             font-size: 16px; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             margin-bottom: 20px; 
             line-height: 1.7; 
         }
@@ -681,11 +678,11 @@
         }
         .testimonial-name { 
             font-weight: 700;
-            color: #fff;
+            color: var(--color-text-primary);
         }
         .testimonial-role { 
             font-size: 14px; 
-            color: var(--text-muted); 
+            color: var(--color-text-muted); 
         }
         
         /* Star Rating */
@@ -699,7 +696,7 @@
             font-size: 16px;
         }
         .star-empty {
-            color: rgba(255,255,255,0.2);
+            color: var(--color-border);
             font-size: 16px;
         }
         
@@ -709,7 +706,7 @@
             align-items: center;
             gap: 16px;
             background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--color-border-light);
             border-radius: 16px;
             padding: 20px 24px;
             margin-top: 32px;
@@ -735,7 +732,7 @@
         }
         .reviewed-by-info p {
             font-size: 13px;
-            color: var(--text-muted);
+            color: var(--color-text-muted);
             margin: 0;
         }
         .reviewed-by-badge {
@@ -777,17 +774,17 @@
         }
         .cta-section p { 
             font-size: 18px; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             margin-bottom: 32px; 
         }
         
         /* Email Capture */
         .email-capture { 
-            padding: 80px 0; 
-            text-align: center; 
-            background: linear-gradient(135deg, var(--color-coral-10) 0%, rgba(30, 53, 96, 0.2) 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--color-bg-secondary); 
+            border-radius: 20px; 
+            padding: 60px 40px; 
+            text-align: center;
+            border: 1px solid var(--color-border);
         }
         .email-capture h2 { 
             font-size: 32px; 
@@ -796,7 +793,7 @@
         }
         .email-capture p { 
             font-size: 18px; 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             margin-bottom: 32px; 
         }
         .email-form { 
@@ -812,14 +809,14 @@
             min-width: 250px; 
             padding: 14px 20px; 
             border-radius: 8px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border: 1px solid var(--color-border); 
             font-size: 16px; 
             font-family: Inter, sans-serif; 
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
+            background: var(--color-border-light);
+            color: var(--color-text-primary);
         }
         .email-form input[type="email"]::placeholder {
-            color: var(--text-muted);
+            color: var(--color-text-muted);
         }
         .email-form button { 
             padding: 14px 28px; 
@@ -850,7 +847,7 @@
             background: rgba(255, 255, 255, 0.03); 
             border-radius: 16px; 
             overflow: hidden; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border-light);
             transition: all 0.3s;
         }
         .blog-card:hover { 
@@ -872,10 +869,10 @@
             font-size: 18px; 
             font-weight: 700; 
             margin-bottom: 8px;
-            color: #fff;
+            color: var(--color-text-primary);
         }
         .blog-card p { 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-size: 14px; 
             margin-bottom: 16px; 
         }
@@ -897,25 +894,25 @@
             background: rgba(255, 255, 255, 0.03); 
             border-radius: 16px; 
             padding: 24px; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--color-border-light);
         }
         .faq-card h3 { 
             font-size: 17px; 
             font-weight: 700; 
             margin-bottom: 12px; 
-            color: #fff; 
+            color: var(--color-text-primary); 
         }
         .faq-card p { 
-            color: var(--text-secondary); 
+            color: var(--color-text-secondary); 
             font-size: 15px; 
         }
         
         /* Footer */
         footer { 
-            background: rgba(10, 22, 40, 0.8); 
-            color: var(--text-muted); 
+            background: var(--color-bg-secondary); 
+            color: var(--color-text-secondary); 
             padding: 48px 0 24px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--color-border);
         }
         .footer-grid { 
             display: grid; 
@@ -926,7 +923,7 @@
         .footer-brand { 
             font-size: 24px; 
             font-weight: 800; 
-            color: #fff; 
+            color: var(--color-text-primary); 
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -943,7 +940,7 @@
             line-height: 1.6; 
         }
         .footer-col h4 { 
-            color: #fff; 
+            color: var(--color-text-primary); 
             font-size: 14px; 
             font-weight: 700; 
             margin-bottom: 16px; 
@@ -952,7 +949,7 @@
         }
         .footer-col a { 
             display: block; 
-            color: var(--text-muted); 
+            color: var(--color-text-muted); 
             text-decoration: none; 
             font-size: 14px; 
             padding: 4px 0; 
@@ -960,7 +957,7 @@
         }
         .footer-col a:hover { color: var(--coral); }
         .footer-bottom { 
-            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            border-top: 1px solid var(--color-border-light); 
             padding-top: 24px; 
             text-align: center; 
             font-size: 14px; 
@@ -1000,17 +997,17 @@
         
         /* Pricing */
         .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 900px; margin: 48px auto 0; }
-        .pricing-card { background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px 32px; position: relative; transition: transform 0.3s, border-color 0.3s; }
+        .pricing-card { background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 16px; padding: 40px 32px; position: relative; transition: transform 0.3s, border-color 0.3s; }
         .pricing-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
-        .pricing-popular { border-color: var(--coral); background: linear-gradient(135deg, var(--navy-800) 0%, rgba(255,107,91,0.08) 100%); }
+        .pricing-popular { border-color: var(--coral); background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(255,107,91,0.08) 100%); }
         .pricing-popular:hover { border-color: var(--coral-light); }
         .pricing-badge { position: absolute; top: -12px; right: 24px; background: var(--coral); color: white; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .pricing-name { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .pricing-name { font-size: 20px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px; }
         .pricing-price { font-size: 48px; font-weight: 800; color: var(--coral); margin-bottom: 8px; }
         .pricing-price::before { content: ''; }
-        .pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+        .pricing-desc { font-size: 14px; color: var(--color-text-muted); margin-bottom: 24px; }
         .pricing-features { list-style: none; padding: 0; margin: 0 0 32px; }
-        .pricing-features li { padding: 8px 0; font-size: 14px; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 10px; }
+        .pricing-features li { padding: 8px 0; font-size: 14px; color: var(--color-text-secondary); display: flex; align-items: flex-start; gap: 10px; }
         .pricing-features li::before { content: "\2713"; color: var(--coral); font-weight: 700; flex-shrink: 0; }
         @media (max-width: 768px) {
             .pricing-grid { grid-template-columns: 1fr; }
@@ -1196,8 +1193,8 @@
         <div class="solution-grid">
             <div class="solution-content animate-on-scroll">
                 <h2>The <span class="highlight">Clinical Judgment Framework</span> That Changes Everything</h2>
-                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">The NCSBN (the people who write the NCLEX) developed the Clinical Judgment Measurement Model. It's not theory — it's the exact framework they use to write every question.</p>
-                <p style="color: var(--text-secondary); font-size: 17px;">We built Obioma to train you in this framework, step by step.</p>
+                <p style="color: var(--color-text-secondary); font-size: 17px; margin-bottom: 16px;">The NCSBN (the people who write the NCLEX) developed the Clinical Judgment Measurement Model. It's not theory — it's the exact framework they use to write every question.</p>
+                <p style="color: var(--color-text-secondary); font-size: 17px;">We built Obioma to train you in this framework, step by step.</p>
                 
                 <ul class="solution-list">
                     <li>Real NGN-style case studies — practice the exact format you'll see</li>
@@ -1301,14 +1298,14 @@
                 </tr>
                 <tr>
                     <td>3D Anatomy Lab</td>
-                    <td class="check" style="color: var(--text-muted);">Coming Soon</td>
+                    <td class="check" style="color: var(--color-text-muted);">Coming Soon</td>
                     <td>—</td>
                     <td>—</td>
                     <td>—</td>
                 </tr>
                 <tr>
                     <td>Spaced Repetition Engine</td>
-                    <td class="check" style="color: var(--text-muted);">Coming Soon</td>
+                    <td class="check" style="color: var(--color-text-muted);">Coming Soon</td>
                     <td>—</td>
                     <td>—</td>
                     <td>—</td>
@@ -1333,7 +1330,7 @@
 </section>
 
 <!-- Product Proof: Case Engine -->
-<section class="section" id="product-proof" style="background: rgba(15, 29, 50, 0.3);">
+<section class="section" id="product-proof" style="background: rgba(248, 250, 252, 0.3);">
     <div class="container">
         <h2 class="section-title animate-on-scroll">See What You're Getting</h2>
         <p class="section-subtitle animate-on-scroll">Real screenshots from our shipped features. No mockups.</p>
@@ -1341,49 +1338,49 @@
         <!-- Case Engine Proof -->
         <div class="solution-grid" style="margin-bottom: 80px;">
             <div class="animate-on-scroll" style="position: relative;">
-                <div style="background: #0A1628; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                <div style="background: #0A1628; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
                     <!-- Browser chrome -->
-                    <div style="background: rgba(255,255,255,0.05); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="background: var(--color-border-light); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--color-border-light);">
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
-                        <div style="flex: 1; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--text-muted); margin-left: 8px;">obiomacare.com/case-engine.html</div>
+                        <div style="flex: 1; background: var(--color-border-light); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--color-text-muted); margin-left: 8px;">obiomacare.com/case-engine.html</div>
                     </div>
                     <!-- Case Engine UI -->
                     <div style="padding: 24px;">
                         <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
                             <span style="background: rgba(197,48,48,0.2); color: #FF6B5B; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 700;">Acute MI</span>
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">COPD Exacerbation</span>
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">Stroke</span>
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">+7 more</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">COPD Exacerbation</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">Stroke</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-secondary); padding: 6px 14px; border-radius: 100px; font-size: 12px;">+7 more</span>
                         </div>
-                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px; border: 1px solid var(--color-border-light); margin-bottom: 16px;">
                             <div style="font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Step 1 of 6: Recognize Cues</div>
-                            <div style="font-size: 15px; color: #fff; font-weight: 600; margin-bottom: 12px;">A 67-year-old male presents with crushing chest pain...</div>
+                            <div style="font-size: 15px; color: var(--color-text-primary); font-weight: 600; margin-bottom: 12px;">A 67-year-old male presents with crushing chest pain...</div>
                             <div style="display: flex; flex-direction: column; gap: 8px;">
-                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--color-border-light);">
                                     <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
-                                    <span style="font-size: 13px; color: var(--text-secondary);">BP 88/52 mmHg, HR 112 bpm</span>
+                                    <span style="font-size: 13px; color: var(--color-text-secondary);">BP 88/52 mmHg, HR 112 bpm</span>
                                 </div>
-                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--color-border-light);">
                                     <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
-                                    <span style="font-size: 13px; color: var(--text-secondary);">ST elevation in V1-V4</span>
+                                    <span style="font-size: 13px; color: var(--color-text-secondary);">ST elevation in V1-V4</span>
                                 </div>
-                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--color-border-light);">
                                     <div style="width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.2); border-radius: 4px;"></div>
-                                    <span style="font-size: 13px; color: var(--text-secondary);">Troponin I: 2.8 ng/mL</span>
+                                    <span style="font-size: 13px; color: var(--color-text-secondary);">Troponin I: 2.8 ng/mL</span>
                                 </div>
                             </div>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <div style="font-size: 12px; color: var(--text-muted);">Obioma NGN Case Engine</div>
+                            <div style="font-size: 12px; color: var(--color-text-muted);">Obioma NGN Case Engine</div>
                             <div style="display: flex; gap: 8px;">
                                 <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--coral);"></div>
-                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
-                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
-                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
-                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
-                                <div style="width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.1);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);"></div>
+                                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-border);"></div>
                             </div>
                         </div>
                     </div>
@@ -1394,13 +1391,13 @@
                     <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
                 </div>
                 <h2>NGN Case Engine</h2>
-                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Interactive case studies that match the exact format you'll see on exam day. Walk through realistic patient scenarios step-by-step using the NCSBN Clinical Judgment Measurement Model.</p>
+                <p style="color: var(--color-text-secondary); font-size: 17px; margin-bottom: 16px;">Interactive case studies that match the exact format you'll see on exam day. Walk through realistic patient scenarios step-by-step using the NCSBN Clinical Judgment Measurement Model.</p>
                 
                 <ul style="list-style: none; margin-top: 24px;">
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 10+ interactive NGN cases (MI, COPD, stroke, pancreatitis, post-op)</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 6-step CJMM framework: Recognize Cues → Analyze → Prioritize → Generate Solutions → Take Action → Evaluate</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Detailed rationales for every answer choice</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Vital signs trend charts and care timeline visualizations</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 10+ interactive NGN cases (MI, COPD, stroke, pancreatitis, post-op)</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> 6-step CJMM framework: Recognize Cues → Analyze → Prioritize → Generate Solutions → Take Action → Evaluate</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Detailed rationales for every answer choice</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Vital signs trend charts and care timeline visualizations</li>
                 </ul>
                 
                 <a href="/case-engine.html" class="btn btn-primary" style="margin-top: 24px;">Try a Case Study</a>
@@ -1410,36 +1407,36 @@
         <!-- AI Tutor Proof -->
         <div class="solution-grid" style="direction: rtl;">
             <div class="animate-on-scroll" style="direction: ltr; position: relative;">
-                <div style="background: #0A1628; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
+                <div style="background: #0A1628; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
                     <!-- Browser chrome -->
-                    <div style="background: rgba(255,255,255,0.05); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <div style="background: var(--color-border-light); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--color-border-light);">
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f57;"></div>
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #febc2e;"></div>
                         <div style="width: 12px; height: 12px; border-radius: 50%; background: #28c840;"></div>
-                        <div style="flex: 1; background: rgba(255,255,255,0.05); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--text-muted); margin-left: 8px;">obiomacare.com/tutor</div>
+                        <div style="flex: 1; background: var(--color-border-light); border-radius: 6px; padding: 4px 12px; font-size: 12px; color: var(--color-text-muted); margin-left: 8px;">obiomacare.com/tutor</div>
                     </div>
                     <!-- Tutor UI -->
                     <div style="padding: 24px;">
-                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 16px;">
+                        <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 16px; border: 1px solid var(--color-border-light); margin-bottom: 16px;">
                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
                                 <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="user" class="icon icon-white icon-sm" aria-label="User"></i></div>
-                                <div style="font-size: 13px; color: #fff; font-weight: 600;">Student</div>
+                                <div style="font-size: 13px; color: var(--color-text-primary); font-weight: 600;">Student</div>
                             </div>
-                            <div style="font-size: 14px; color: var(--text-secondary); padding-left: 40px;">Why is morphine contraindicated in acute pancreatitis?</div>
+                            <div style="font-size: 14px; color: var(--color-text-secondary); padding-left: 40px;">Why is morphine contraindicated in acute pancreatitis?</div>
                         </div>
                         <div style="background: rgba(255,107,91,0.05); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,107,91,0.1); margin-bottom: 16px;">
                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
-                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #1e3560 0%, #162544 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" class="icon icon-coral icon-sm" aria-label="AI"></i></div>
+                                <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-tertiary) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" class="icon icon-coral icon-sm" aria-label="AI"></i></div>
                                 <div style="font-size: 13px; color: var(--coral); font-weight: 600;">Obioma AI Tutor</div>
                             </div>
-                            <div style="font-size: 14px; color: var(--text-secondary); padding-left: 40px; line-height: 1.6;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); padding-left: 40px; line-height: 1.6;">
                                 Morphine causes spasm of the sphincter of Oddi, which increases pressure in the pancreatic duct and can worsen pain. Instead, hydromorphone or fentanyl are preferred...
                             </div>
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Explain like I'm a new grad</span>
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Give me a mnemonic</span>
-                            <span style="background: rgba(255,255,255,0.05); color: var(--text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">NCLEX-style question</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Explain like I'm a new grad</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">Give me a mnemonic</span>
+                            <span style="background: var(--color-border-light); color: var(--color-text-muted); padding: 6px 12px; border-radius: 100px; font-size: 12px;">NCLEX-style question</span>
                         </div>
                     </div>
                 </div>
@@ -1449,13 +1446,13 @@
                     <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
                 </div>
                 <h2>AI Tutor</h2>
-                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Ask anything. Get instant, detailed explanations tailored to your level. Whether you need a quick refresher or a deep dive into pathophysiology, the AI Tutor adapts to you.</p>
+                <p style="color: var(--color-text-secondary); font-size: 17px; margin-bottom: 16px;">Ask anything. Get instant, detailed explanations tailored to your level. Whether you need a quick refresher or a deep dive into pathophysiology, the AI Tutor adapts to you.</p>
                 
                 <ul style="list-style: none; margin-top: 24px;">
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Instant answers to any nursing question</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Multiple explanation modes: simple, detailed, mnemonic, NCLEX-style</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Context-aware follow-up questions</li>
-                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Available on every study guide and case study page</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Instant answers to any nursing question</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Multiple explanation modes: simple, detailed, mnemonic, NCLEX-style</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Context-aware follow-up questions</li>
+                    <li style="padding: 10px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-secondary);"><span style="color: var(--color-success); font-weight: 800; flex-shrink: 0;"><i data-lucide="check" class="icon icon-coral icon-sm" aria-label="Yes"></i></span> Available on every study guide and case study page</li>
                 </ul>
                 
                 <a href="/tutor/" class="btn btn-primary" style="margin-top: 24px;">Try AI Tutor</a>
@@ -1572,15 +1569,15 @@
     <div class="container" style="max-width: 800px; text-align: center;">
         <h2 class="section-title animate-on-scroll">Not Ready to Buy? Start Free.</h2>
         <p class="section-subtitle animate-on-scroll">Get the NCLEX Study Checklist — the 30-day framework used by nurses who pass on their first attempt.</p>
-        <div style="background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; margin-top: 32px; text-align: left;">
+        <div style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 16px; padding: 40px; margin-top: 32px; text-align: left;">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> 30-day day-by-day schedule</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Critical lab values sheet</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> ABCDE prioritization tree</div>
-                <div style="display: flex; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Test day prep checklist</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> 30-day day-by-day schedule</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Critical lab values sheet</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> ABCDE prioritization tree</div>
+                <div style="display: flex; align-items: center; gap: 8px; color: var(--color-text-secondary); font-size: 14px;"><span style="color: var(--coral);"><i data-lucide="check" class="icon icon-coral icon-md" aria-label="Yes"></i></span> Test day prep checklist</div>
             </div>
             <a href="/free-nclex-checklist" class="btn btn-primary" style="width: 100%; text-align: center;">Download Free Checklist →</a>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: center;">No spam. Unsubscribe anytime.</p>
+            <p style="font-size: 13px; color: var(--color-text-muted); margin-top: 12px; text-align: center;">No spam. Unsubscribe anytime.</p>
         </div>
     </div>
 </section>
@@ -1596,10 +1593,10 @@
         
         <div class="solution-grid" style="margin-top: 48px;">
             <div class="animate-on-scroll">
-                <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <div style="background: rgba(255,255,255,0.03); border-radius: 16px; padding: 40px; border: 1px solid var(--color-border-light); text-align: center;">
                     <div style="font-size: 80px; margin-bottom: 20px;"><i data-lucide="heart" class="icon icon-coral icon-md" aria-label="Cardiac"></i></div>
                     <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Interactive Body Systems</h3>
-                    <p style="color: var(--text-secondary);">Explore 5 major body systems in 3D. Click any organ to see anatomy, physiology, common diseases, and nursing priorities.</p>
+                    <p style="color: var(--color-text-secondary);">Explore 5 major body systems in 3D. Click any organ to see anatomy, physiology, common diseases, and nursing priorities.</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px;">
                         <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Cardiovascular</span>
                         <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Respiratory</span>
@@ -1611,15 +1608,15 @@
             </div>
             <div class="solution-content animate-on-scroll">
                 <h2>From <span style="color: var(--coral);">Anatomy</span> to <span style="color: var(--coral);">Clinical Judgment</span></h2>
-                <p style="color: var(--text-secondary); font-size: 17px; margin-bottom: 16px;">Most NCLEX prep tools give you flashcards. We give you context — how anatomy connects to disease, how disease connects to nursing action.</p>
+                <p style="color: var(--color-text-secondary); font-size: 17px; margin-bottom: 16px;">Most NCLEX prep tools give you flashcards. We give you context — how anatomy connects to disease, how disease connects to nursing action.</p>
                 
                 <ul style="list-style: none; margin-top: 24px; opacity: 0.6;">
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> 3D organ exploration with labeled structures and functions</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Spaced repetition quiz engine — facts stick long-term</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Disease profiles with nursing implications and interventions</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Clinical animations showing pathophysiology in action</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Unfolding case studies tie anatomy to real patient scenarios</li>
-                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--text-muted);"><span style="color: var(--text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Markup & share — annotate and share study notes</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> 3D organ exploration with labeled structures and functions</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Spaced repetition quiz engine — facts stick long-term</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Disease profiles with nursing implications and interventions</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Clinical animations showing pathophysiology in action</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Unfolding case studies tie anatomy to real patient scenarios</li>
+                    <li style="padding: 12px 0; display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--color-text-muted);"><span style="color: var(--color-text-muted); font-weight: 800; flex-shrink: 0;"><i data-lucide="clock" class="icon icon-muted icon-sm" aria-label="Soon"></i></span> Markup & share — annotate and share study notes</li>
                 </ul>
                 
                 <a href="#" class="btn btn-primary" style="margin-top: 24px; opacity: 0.5; cursor: not-allowed;" onclick="return false;">Coming Soon</a>
@@ -1667,7 +1664,7 @@
             </div>
         </div>
         
-        <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--text-muted);">
+        <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--color-text-muted);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
         </p>
@@ -1809,35 +1806,35 @@ async function buyNow(tier) {
         <h2 class="section-title animate-on-scroll">Free NCLEX Study Guides</h2>
         <p class="section-subtitle animate-on-scroll">Evidence-based strategies from a 15-year ER nurse. No fluff. Just what works.</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px;">
-            <a href="/content/what-is-next-generation-nclex.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/what-is-next-generation-nclex.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">NGN Overview</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">What Is the Next Generation NCLEX?</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">Complete 2026 guide to the NGN format, new question types, and the Clinical Judgment Measurement Model.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">What Is the Next Generation NCLEX?</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">Complete 2026 guide to the NGN format, new question types, and the Clinical Judgment Measurement Model.</p>
             </a>
-            <a href="/content/nclex-priority-abcde-method.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/nclex-priority-abcde-method.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Prioritization</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">NCLEX Priority Setting: The ABCDE Method</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">The framework ER nurses use to rank patient needs under pressure. Real scenarios + NGN applications.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">NCLEX Priority Setting: The ABCDE Method</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">The framework ER nurses use to rank patient needs under pressure. Real scenarios + NGN applications.</p>
             </a>
-            <a href="/content/nclex-2-week-study-plan-complete.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/nclex-2-week-study-plan-complete.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Study Plan</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">30-Day NCLEX Study Plan</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">Week-by-week schedule with daily tasks, practice targets, and what to do in the final 48 hours.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">30-Day NCLEX Study Plan</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">Week-by-week schedule with daily tasks, practice targets, and what to do in the final 48 hours.</p>
             </a>
-            <a href="/content/nclex-sata-questions-strategy.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/nclex-sata-questions-strategy.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Question Strategy</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">How to Beat SATA Questions</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">The "independent true/false" method that turns SATA from your weakness into your strength.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">How to Beat SATA Questions</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">The "independent true/false" method that turns SATA from your weakness into your strength.</p>
             </a>
-            <a href="/content/nclex-leadership-management.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/nclex-leadership-management.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Delegation</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">NCLEX Delegation & Assignment</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">The 5 Rights of Delegation with real scenarios. Know what can and cannot be delegated to a UAP.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">NCLEX Delegation & Assignment</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">The 5 Rights of Delegation with real scenarios. Know what can and cannot be delegated to a UAP.</p>
             </a>
-            <a href="/content/nclex-high-alert-medications.html" style="text-decoration: none; background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
+            <a href="/content/nclex-high-alert-medications.html" style="text-decoration: none; background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; transition: all 0.3s; display: block;">
                 <div style="font-size: 12px; color: var(--coral); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">Pharmacology</div>
-                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">NCLEX Pharmacology Drug Classes</h3>
-                <p style="font-size: 14px; color: var(--text-secondary);">The 10 drug classes every nurse must know. Side effects, nursing considerations, and exam tricks.</p>
+                <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--color-text-primary);">NCLEX Pharmacology Drug Classes</h3>
+                <p style="font-size: 14px; color: var(--color-text-secondary);">The 10 drug classes every nurse must know. Side effects, nursing considerations, and exam tricks.</p>
             </a>
         </div>
     </div>
@@ -1854,7 +1851,7 @@ async function buyNow(tier) {
         </form>
         <div class="email-success" id="emailSuccess"><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i> Check your inbox! The guide is on its way.</div>
         <div class="email-error" id="emailError"><i data-lucide="x-circle" class="icon icon-error icon-md" aria-label="Incorrect"></i> Something went wrong. Please try again.</div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-top: 16px;">No spam. Unsubscribe anytime.</p>
+        <p style="font-size: 13px; color: var(--color-text-muted); margin-top: 16px;">No spam. Unsubscribe anytime.</p>
     </div>
 </section>
 
@@ -1869,7 +1866,7 @@ async function buyNow(tier) {
         </div>
         <div class="footer-bottom">
             <p>© 2026 Obioma Care. Built by nurses, for nurses. All rights reserved.</p>
-            <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">NCLEX<sup>&reg;</sup> and NGN<sup>&reg;</sup> are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). NCSBN is not affiliated with Obioma Care and does not endorse this product.</p>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">NCLEX<sup>&reg;</sup> and NGN<sup>&reg;</sup> are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). NCSBN is not affiliated with Obioma Care and does not endorse this product.</p>
         </div>
     </div>
 </footer>

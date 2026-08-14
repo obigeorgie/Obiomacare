@@ -76,7 +76,7 @@
         .quiz-container { padding: 40px 0 60px; }
         
         .progress-bar {
-            background: rgba(255,255,255,0.1);
+            background: var(--color-border);
             border-radius: 8px;
             height: 8px;
             margin-bottom: 32px;
@@ -98,8 +98,8 @@
         
         /* Question Card */
         .question-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--color-border-light);
+            border: 1px solid var(--color-border);
             border-radius: 16px;
             padding: 40px;
             margin-bottom: 24px;
@@ -130,8 +130,8 @@
         }
         
         .option {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
+            background: var(--color-border-light);
+            border: 2px solid var(--color-border);
             border-radius: 12px;
             padding: 16px 20px;
             cursor: pointer;
@@ -204,7 +204,7 @@
         .explanation .clinical-pearl {
             margin-top: 12px;
             padding: 12px;
-            background: rgba(255,255,255,0.05);
+            background: var(--color-border-light);
             border-radius: 8px;
             font-size: 0.875rem;
             color: var(--text);
@@ -240,10 +240,10 @@
         .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .btn-secondary {
-            background: rgba(255,255,255,0.1);
+            background: var(--color-border);
             color: var(--text);
         }
-        .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+        .btn-secondary:hover { background: var(--color-border-dark); }
         
         /* Results */
         .results-card {
@@ -285,7 +285,7 @@
         }
         
         .breakdown-item {
-            background: rgba(255,255,255,0.05);
+            background: var(--color-border-light);
             padding: 20px;
             border-radius: 12px;
         }
@@ -378,7 +378,7 @@
         .quiz-footer {
             text-align: center;
             padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--color-border);
             color: var(--text-secondary);
             font-size: 0.875rem;
         }

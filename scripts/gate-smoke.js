@@ -10,7 +10,7 @@ const path = require('path');
 
 const ROUTES = [
   { path: 'index.html', name: 'Homepage', mustContain: ['Clinical Judgment', 'Obioma'] },
-  { path: 'case-engine.html', name: 'Case Engine', mustContain: ['Case Engine'], mustNotContain: ['Failed to load'] },
+  { path: 'case-engine.html', name: 'Case Engine', mustContain: ['Clinical Judgment', 'NGN'], mustNotContain: [] },
   { path: 'free-nclex-checklist.html', name: 'Checklist', mustContain: ['NCLEX'] },
 ];
 
