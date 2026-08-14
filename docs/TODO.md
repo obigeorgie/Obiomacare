@@ -78,10 +78,10 @@
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| `app.obiomacare.com` routes to Vercel | **Medium** | DNS CNAME points to `cname.vercel-dns.com`. Needs Cloudflare DNS toggle to Proxied (orange cloud) or CNAME deletion + A record. |
 | Cloudflare email obfuscation 404s | Low | `cdn-cgi/l/email-protection` returns 404 to crawlers; works for JS-enabled users |
 | In-memory delivery tokens | Low | Lost on deploy; low impact for digital downloads |
 | No automated tests | Low | Manual testing only; stable for 2+ weeks |
+| Express API not on Worker | Medium | API endpoints (`/api/*`, `/tutor/*`) return 404 from Worker. Needs separate architecture decision. |
 
 ---
 
