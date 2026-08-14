@@ -1,15 +1,30 @@
 /**
  * Obioma Design Tokens — CSS Custom Properties
- * Shared between marketing site and app
- * Source: design-tokens/tokens.js
+ * Light Theme (default) with Dark Theme override
  * 
- * THEME: Light (default)
- * All pages use light theme. Dark navy reserved for accent/hero sections.
  * RULE: No hardcoded hex values outside this file.
  */
 
 :root {
-  /* ─── Brand: Navy Scale (accent/hero sections) ─── */
+  /* ─── Core Colors (Light Theme) ─── */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-elevated: #ffffff;
+  --color-bg-inverse: #0f172a;
+  
+  /* ─── Text ─── */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+  
+  /* ─── Borders ─── */
+  --color-border: #e2e8f0;
+  --color-border-light: #f1f5f9;
+  --color-border-dark: #cbd5e1;
+
+  /* ─── Navy Scale (for dark sections) ─── */
   --color-navy-900: #0a1628;
   --color-navy-800: #0f1d32;
   --color-navy-700: #162544;
@@ -17,11 +32,11 @@
   --color-navy-500: #2a4578;
   --color-navy-400: #3d5a8a;
 
-  /* ─── Brand: Coral Scale ─── */
+  /* ─── Coral Scale ─── */
   --color-coral: #FF6B5B;
   --color-coral-dark: #E85D4E;
   --color-coral-light: #FF8A7D;
-  --color-coral-muted: rgba(255, 107, 91, 0.12);
+  --color-coral-muted: rgba(255, 107, 91, 0.10);
   --color-coral-glow: rgba(255, 107, 91, 0.20);
   --color-coral-5: rgba(255, 107, 91, 0.05);
   --color-coral-8: rgba(255, 107, 91, 0.08);
@@ -29,26 +44,6 @@
   --color-coral-20: rgba(255, 107, 91, 0.20);
   --color-coral-30: rgba(255, 107, 91, 0.30);
   --color-coral-40: rgba(255, 107, 91, 0.40);
-
-  /* ─── Light Theme: Surfaces ─── */
-  --color-bg: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
-  --color-bg-elevated: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-bg-inverse: #0f172a;
-  --color-bg-dark: #0a1628;
-
-  /* ─── Light Theme: Text ─── */
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
-  --color-text-inverse: #ffffff;
-
-  /* ─── Light Theme: Borders ─── */
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
-  --color-border-focus: #FF6B5B;
 
   /* ─── Semantic ─── */
   --color-success: #22c55e;
@@ -84,14 +79,14 @@
   --radius-2xl: 2rem;
   --radius-full: 9999px;
 
-  /* ─── Shadows (light theme: softer, less opaque) ─── */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-DEFAULT: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.10), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.10), 0 4px 8px -4px rgba(0, 0, 0, 0.06);
-  --shadow-xl: 0 20px 40px -8px rgba(0, 0, 0, 0.12);
+  /* ─── Shadows (Light Theme) ─── */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-DEFAULT: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   --shadow-coral: 0 4px 20px rgba(255, 107, 91, 0.20);
-  --shadow-glow: 0 0 40px rgba(255, 107, 91, 0.12);
+  --shadow-glow: 0 0 40px rgba(255, 107, 91, 0.10);
 
   /* ─── Transitions ─── */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -130,20 +125,23 @@
   --accent-glow: var(--color-coral-muted);
 }
 
-/* ─── Dark theme override (for specific dark sections) ─── */
+/* ─── Dark Theme Override ─── */
 [data-theme="dark"] {
   --color-bg: #0a1628;
   --color-bg-secondary: #0f1d32;
   --color-bg-tertiary: #162544;
   --color-bg-elevated: #0f1d32;
-  --color-bg-card: rgba(255, 255, 255, 0.03);
-  --color-bg-inverse: #ffffff;
+  --color-bg-inverse: #f8fafc;
+  
   --color-text-primary: #e2e8f0;
   --color-text-secondary: #94a3b8;
   --color-text-muted: #64748b;
   --color-text-inverse: #0a1628;
+  
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-dark: rgba(255, 255, 255, 0.15);
+  
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   --shadow-DEFAULT: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.4), 0 3px 6px -3px rgba(0, 0, 0, 0.3);
@@ -154,6 +152,8 @@
 }
 
 /* ─── Lucide Icon System ─── */
+@import url('https://unpkg.com/lucide-static@latest/font/lucide.css');
+
 .icon {
   display: inline-block;
   width: var(--icon-md);

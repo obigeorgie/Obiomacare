@@ -1,0 +1,7 @@
+name = "obiomacare-site"
+main = "workers-site/index.js"
+compatibility_date = "2026-08-14"
+account_id = "7331f696a15eee3fe7bf94f41376f7b8"
+
+[site]
+bucket = "./public"
