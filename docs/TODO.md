@@ -68,6 +68,7 @@
 - [ ] **A/B test pricing page** — Test headline/CTA variants
 
 ### Low Priority
+- [ ] **Redirects for retired app routes** — `/pricing`, `/cases`, `/login`, `/readiness`, `/anatomy-lab` currently 404. Map to working pages or add wrangler redirects.
 - [ ] **Redis for delivery tokens** — Replace in-memory storage
 - [ ] **Unit tests for API** — Automated endpoint testing
 - [ ] **User dashboard** — Download history, progress tracking

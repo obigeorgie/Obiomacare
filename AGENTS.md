@@ -81,6 +81,32 @@ curl -s -o /dev/null -w "%{http_code}" https://obiomacare.com/sitemap.xml  # 200
 
 ---
 
+## 🚀 Deploy Checklist
+
+Before calling a deploy "done", verify every linked route:
+
+```bash
+# Build + deploy
+npm run build
+export CLOUDFLARE_API_TOKEN=<token>
+wrangler deploy
+
+# Route smoke test — every nav/footer link must 200
+BASE=https://obiomacare.com
+curl -s -o /dev/null -w "home %{http_code}\n" $BASE/
+curl -s -o /dev/null -w "case-engine %{http_code}\n" $BASE/case-engine.html
+curl -s -o /dev/null -w "quiz %{http_code}\n" $BASE/quiz/
+curl -s -o /dev/null -w "content %{http_code}\n" $BASE/content/
+curl -s -o /dev/null -w "checklist %{http_code}\n" $BASE/free-nclex-checklist
+curl -s -o /dev/null -w "privacy %{http_code}\n" $BASE/privacy.html
+curl -s -o /dev/null -w "terms %{http_code}\n" $BASE/terms.html
+# A linked 404 = deploy NOT done. Fix before declaring complete.
+```
+
+**Rollback:** `wrangler deployments list` → `wrangler rollback <version-id>`
+
+---
+
 ## ⌨️ Quick Commands
 
 | Command | Purpose |

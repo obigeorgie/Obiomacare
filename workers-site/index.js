@@ -34,6 +34,10 @@ async function handleEvent(event) {
     if (url.pathname === '/') {
       return mapRequestToAsset(new Request(`${url.origin}/index.html`, req))
     }
+    // Serve directory index.html for trailing-slash paths
+    if (url.pathname.endsWith('/')) {
+      return mapRequestToAsset(new Request(`${url.origin}${url.pathname}index.html`, req))
+    }
     // Try with .html extension for clean URLs
     if (!url.pathname.includes('.')) {
       return mapRequestToAsset(new Request(`${url.origin}${url.pathname}.html`, req))
