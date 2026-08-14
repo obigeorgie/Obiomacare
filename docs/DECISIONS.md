@@ -65,12 +65,36 @@
 
 ---
 
-## Operations
+## Deploy
 
-### 10. GitHub Actions for CI/CD
-**Decision**: Use GitHub Actions to auto-deploy to Vercel on push to main.
-**Rationale**: Automated deployment reduces human error. PR checks prevent broken builds.
-**Date**: 2026-08-07
+### 12. Cloudflare Workers as Primary Hosting
+**Decision**: Use Cloudflare Workers (`obiomacare-site`) as the production hosting platform.
+**Rationale**: Workers are always-on, globally distributed, and don't require secrets for deployment beyond a single API token. Vercel pipeline was failing due to missing GitHub Action secrets.
+**Date**: 2026-08-15
+
+**Deploy command**:
+```bash
+export CLOUDFLARE_API_TOKEN=<token>
+npm run build
+wrangler deploy
+```
+
+**Rollback**:
+```bash
+wrangler rollback <version-id>   # from wrangler deployments list
+```
+
+**Active routes**:
+- `obiomacare.com/*` → Worker
+- `www.obiomacare.com/*` → Worker
+- `app.obiomacare.com/*` → Worker (pending DNS CNAME fix)
+- `obiomacare-site.empathycollection.workers.dev` → Worker (staging)
+
+### 13. Vercel Pipeline Retired
+**Decision**: Do not maintain Vercel deployment pipeline.
+**Rationale**: GitHub Actions workflow `.github/workflows/deploy.yml` has been failing for multiple runs due to missing `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, and `VERCEL_TOKEN` secrets. Cloudflare Workers is now primary.
+**Date**: 2026-08-15
+**Status**: Workflow file retained in repo but not maintained. Delete when confident Workers is stable.
 
 ### 11. Local `master` → Remote `main`
 **Decision**: Local `master` branch pushes to remote `main`.

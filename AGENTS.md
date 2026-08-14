@@ -34,15 +34,15 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 
 | Layer | Technology |
 |-------|-----------|
-| Hosting | Vercel (serverless functions) |
+| Hosting | **Cloudflare Workers** (static site) |
 | Frontend | Static HTML/CSS/JS |
-| Backend | Node.js + Express |
+| Backend | Node.js + Express (API routes on Worker) |
 | Database | Firebase Firestore |
 | Auth | Stripe Checkout sessions + in-house tokens |
 | Payments | Stripe (live keys) |
 | Email | Hostinger SMTP + Resend fallback |
-| Analytics | GA4 + FB Pixel + Vercel Web Analytics |
-| CI/CD | GitHub Actions → Vercel |
+| Analytics | GA4 + FB Pixel |
+| CI/CD | `wrangler deploy` (manual) |
 
 ---
 
@@ -86,9 +86,9 @@ curl -s -o /dev/null -w "%{http_code}" https://obiomacare.com/sitemap.xml  # 200
 | Command | Purpose |
 |---------|---------|
 | `npm run build` | Build static site → `public/` |
-| `vercel --prod` | Deploy to production |
-| `vercel dev` | Local dev server |
-| `vercel logs` | Check production logs |
+| `wrangler deploy` | Deploy to Cloudflare Workers |
+| `wrangler deployments list` | Show deployment history |
+| `wrangler rollback [version-id]` | Rollback to previous version |
 | `npm start` | Local Express API server |
 | `node scripts/check-firestore.js` | Verify Firestore connection |
 

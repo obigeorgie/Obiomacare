@@ -8,7 +8,7 @@
 - [x] Stripe checkout + webhook (live mode)
 - [x] GA4 + FB Pixel tracking
 - [x] Firestore lead/user management
-- [x] Vercel deployment pipeline
+- [x] **Cloudflare Workers deployment** (replaced Vercel 2026-08-15)
 - [x] Email nurture cron (daily 10 AM UTC)
 - [x] Promo codes: TEST99, LAUNCH50, NURSE20
 
@@ -78,6 +78,7 @@
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
+| `app.obiomacare.com` routes to Vercel | **Medium** | DNS CNAME points to `cname.vercel-dns.com`. Needs Cloudflare DNS toggle to Proxied (orange cloud) or CNAME deletion + A record. |
 | Cloudflare email obfuscation 404s | Low | `cdn-cgi/l/email-protection` returns 404 to crawlers; works for JS-enabled users |
 | In-memory delivery tokens | Low | Lost on deploy; low impact for digital downloads |
 | No automated tests | Low | Manual testing only; stable for 2+ weeks |

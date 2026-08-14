@@ -33,12 +33,21 @@
 
 | Service | URL |
 |---------|-----|
-| **Vercel** | https://vercel.com/obigeorgies-projects/obioma-care |
+| **Cloudflare Workers** | https://dash.cloudflare.com/7331f696a15eee3fe7bf94f41376f7b8/workers-and-pages |
 | **Stripe** | https://dashboard.stripe.com |
 | **Firebase** | https://console.firebase.google.com/project/kindred-x5pbk |
 | **GA4** | https://analytics.google.com |
 | **FB Events Manager** | https://business.facebook.com/events_manager |
 | **GitHub Repo** | https://github.com/obigeorgie/Obiomacare |
+
+## 🌐 Deployment URLs
+
+| Environment | URL |
+|-------------|-----|
+| **Production (custom domain)** | https://obiomacare.com |
+| **Production (www)** | https://www.obiomacare.com |
+| **Staging (workers.dev)** | https://obiomacare-site.empathycollection.workers.dev |
+| **API Health** | https://obiomacare.com/api/health |
 
 ## 📧 Accounts
 

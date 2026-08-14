@@ -3,5 +3,12 @@ main = "workers-site/index.js"
 compatibility_date = "2026-08-14"
 account_id = "7331f696a15eee3fe7bf94f41376f7b8"
 
+routes = [
+  { pattern = "obiomacare.com/*", zone_id = "764dadccabdd5b0d558cd063c49264b8" },
+  { pattern = "www.obiomacare.com/*", zone_id = "764dadccabdd5b0d558cd063c49264b8" },
+  { pattern = "app.obiomacare.com/*", zone_id = "764dadccabdd5b0d558cd063c49264b8" }
+]
+workers_dev = true
+
 [site]
 bucket = "./public"
