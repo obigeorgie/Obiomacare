@@ -34,21 +34,21 @@ const PLANS = {
     price: 19,
     interval: 'month',
     trialDays: 7,
-    stripePriceId: 'price_1TwfUHJQl5hjYpdcEQGcfZRk',
+    stripePriceId: null, // Reverted to test mode per INCIDENT-2026-08-15
   },
   [TIER.STUDENT_ANNUAL]: {
     name: 'Student Annual',
-    price: 149,
+    price: 99,
     interval: 'year',
     trialDays: 14,
-    stripePriceId: 'price_1TwfUIJQl5hjYpdcSaOfSMpG',
+    stripePriceId: null, // Reverted to test mode per INCIDENT-2026-08-15
   },
   [TIER.LIFETIME]: {
     name: 'Lifetime',
     price: 47,
     interval: 'once',
     trialDays: 0,
-    stripePriceId: 'price_1TwJ5MJQl5hjYpdc5z5vTSwg',
+    stripePriceId: null, // Reverted to test mode per INCIDENT-2026-08-15
   },
 };
 
@@ -189,20 +189,12 @@ async function handlePortal(request, env) {
     return jsonResponse({ error: 'customerId required' }, 400);
   }
 
-  try {
-    const params = new URLSearchParams();
-    params.append('customer', customerId);
-    params.append('return_url', 'https://obiomacare.com/account');
-
-    const session = await stripeRequest('/billing_portal/sessions', {
-      method: 'POST',
-      body: params.toString(),
-    }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
-
-    return jsonResponse({ url: session.url });
-  } catch (err) {
-    return jsonResponse({ error: 'Portal failed', details: err.message }, 500);
-  }
+  // Reverted to test mode per INCIDENT-2026-08-15
+  return jsonResponse({
+    url: 'https://obiomacare.com/account',
+    testMode: true,
+    message: 'Stripe test mode — no portal available.',
+  });
 }
 
 async function handleWebhook(request, env) {
@@ -365,9 +357,8 @@ async function handleHealth() {
   return jsonResponse({
     status: 'ok',
     api: 'obiomacare-subscriptions',
-    version: '1.2.0',
-    mode: 'live',
-    stripe: 'connected',
+    version: '1.2.1-test',
+    mode: 'test',
     timestamp: new Date().toISOString(),
   });
 }
