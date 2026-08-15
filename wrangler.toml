@@ -17,6 +17,7 @@ bucket = "./public"
 binding = "readiness_sessions"
 id = "8d942c4cf31a442483e832d5a392ad1b"
 
+# Auth users KV
 [[kv_namespaces]]
 binding = "users"
-id = "" # Run: wrangler kv:namespace create users
+id = "c8a6959ce7a54d5c8092c8ddcc4d175e"

@@ -19,7 +19,15 @@ const TIER = {
   INSTITUTIONAL_STUDENT: 'institutional_student',
 };
 
-// ─── JWT UTILS (Web Crypto API) ───
+// ─── ENV HELPER (service worker globals fallback) ───
+function getEnvVar(env, name) {
+  // Module format: env.SECRET
+  if (env && env[name]) return env[name];
+  // Service worker format: global SECRET
+  try { return globalThis[name]; } catch { }
+  try { return self[name]; } catch { }
+  return undefined;
+}
 
 function base64urlEncode(buf) {
   return btoa(String.fromCharCode(...new Uint8Array(buf)))
@@ -131,13 +139,14 @@ async function setMagicLink(env, token, email, ttlSeconds = 600) {
 // ─── EMAIL (Resend) ───
 
 async function sendMagicLinkEmail(email, token, env) {
-  const resendKey = env.RESEND_API_KEY;
+  const resendKey = getEnvVar(env, 'RESEND_API_KEY');
   if (!resendKey) {
     console.warn(`[Auth] RESEND_API_KEY not set. Magic link for ${email}: /api/auth/verify?token=${token}`);
     return { sent: false, reason: 'RESEND_API_KEY not configured', token };
   }
 
-  const verifyUrl = `${env.APP_URL || 'https://obiomacare.com'}/api/auth/verify?token=${token}`;
+  const appUrl = getEnvVar(env, 'APP_URL') || 'https://obiomacare.com';
+  const verifyUrl = `${appUrl}/api/auth/verify?token=${token}`;
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -174,7 +183,7 @@ async function sendMagicLinkEmail(email, token, env) {
 // ─── AUTH MIDDLEWARE ───
 
 async function getAuthUser(request, env) {
-  const jwtSecret = env.JWT_SECRET;
+  const jwtSecret = getEnvVar(env, 'JWT_SECRET');
   if (!jwtSecret) return null;
 
   const token = getCookie(request, 'obioma_session');
@@ -200,7 +209,7 @@ async function handleSendLink(request, env) {
     return jsonResponse({ error: 'Valid email required' }, 400);
   }
 
-  const jwtSecret = env.JWT_SECRET;
+  const jwtSecret = getEnvVar(env, 'JWT_SECRET');
   if (!jwtSecret) {
     return jsonResponse({ error: 'Auth not configured (JWT_SECRET missing)' }, 500);
   }
@@ -235,12 +244,13 @@ async function handleVerify(request, env) {
 
   const linkData = await getMagicLink(env, token);
   if (!linkData) {
-    return Response.redirect(`${env.APP_URL || 'https://obiomacare.com'}/login?error=invalid_token`, 302);
+    const appUrl = getEnvVar(env, 'APP_URL') || 'https://obiomacare.com';
+    return Response.redirect(`${appUrl}/login?error=invalid_token`, 302);
   }
 
-  const jwtSecret = env.JWT_SECRET;
+  const jwtSecret = getEnvVar(env, 'JWT_SECRET');
   if (!jwtSecret) {
-    return Response.redirect(`${env.APP_URL || 'https://obiomacare.com'}/login?error=not_configured`, 302);
+    return Response.redirect(`${getEnvVar(env, 'APP_URL') || 'https://obiomacare.com'}/login?error=not_configured`, 302);
   }
 
   const email = linkData.email;
@@ -270,8 +280,8 @@ async function handleVerify(request, env) {
   };
   const jwt = await signJWT(jwtPayload, jwtSecret);
 
-  // Redirect to account page with cookie
-  const response = Response.redirect(`${env.APP_URL || 'https://obiomacare.com'}/account`, 302);
+  const appUrl = getEnvVar(env, 'APP_URL') || 'https://obiomacare.com';
+  const response = Response.redirect(`${appUrl}/account`, 302);
   response.headers.set('Set-Cookie', setCookie('obioma_session', jwt, { maxAge: 7 * 24 * 60 * 60 }));
   return response;
 }
