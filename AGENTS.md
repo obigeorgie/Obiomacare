@@ -54,6 +54,7 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 | **Medical content needs citations** | Source citation + nurse-review status |
 | **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
 | **Stripe keys live in Cloudflare Worker secrets only** | Never hardcode |
+| **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. If asked, STOP and get explicit human approval |
 | **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
 
 ---
