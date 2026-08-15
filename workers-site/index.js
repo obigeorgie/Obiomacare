@@ -33,7 +33,6 @@ async function handleEvent(event) {
    */
   const redirects = {
     '/cases': '/case-engine.html',
-    '/login': '/',
     '/anatomy-lab': '/',
     '/readiness/': '/readiness.html',
   }

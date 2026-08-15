@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — ObiomaCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f0f1a;
+      color: #e2e2e8;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #2a2a3e;
+    }
+    .logo a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 20px;
+    }
+    .nav-links a:hover { color: #e2e2e8; }
+
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: #666;
+    }
+    .error-state {
+      text-align: center;
+      padding: 60px;
+    }
+    .error-state h2 { margin-bottom: 12px; }
+    .error-state p { color: #888; margin-bottom: 24px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+    .btn:hover { background: #4338ca; }
+    .btn-secondary {
+      background: #2a2a3e;
+      color: #e2e2e8;
+    }
+    .btn-secondary:hover { background: #3a3a4e; }
+
+    .card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #b4b4c0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tier-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .tier-free { background: #374151; color: #9ca3af; }
+    .tier-student { background: #1e3a5f; color: #60a5fa; }
+    .tier-lifetime { background: #3f2e18; color: #fbbf24; }
+    .tier-institutional { background: #2e1065; color: #c4b5fd; }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #2a2a3e;
+      font-size: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: #888; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      padding: 8px 0;
+    }
+    .feature-item.enabled { color: #34d399; }
+    .feature-item.disabled { color: #666; }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .logout-btn {
+      background: #450a0a;
+      color: #f87171;
+      border: 1px solid #7f1d1d;
+    }
+    .logout-btn:hover { background: #7f1d1d; }
+
+    @media (max-width: 480px) {
+      .container { padding: 20px 16px; }
+      header { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .nav-links a { margin-left: 0; margin-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><a href="/">ObiomaCare</a></div>
+      <nav class="nav-links">
+        <a href="/pricing">Pricing</a>
+        <a href="/readiness.html">Readiness</a>
+        <a href="/" id="logoutLink">Log Out</a>
+      </nav>
+    </header>
+
+    <div id="app">
+      <div class="loading">Loading your account...</div>
+    </div>
+  </div>
+
+  <script>
+    const app = document.getElementById('app');
+    const logoutLink = document.getElementById('logoutLink');
+
+    const TIER_LABELS = {
+      free: { label: 'Free', class: 'tier-free' },
+      student_monthly: { label: 'Student Monthly', class: 'tier-student' },
+      student_annual: { label: 'Student Annual', class: 'tier-student' },
+      lifetime: { label: 'Lifetime', class: 'tier-lifetime' },
+      institutional_instructor: { label: 'Institutional', class: 'tier-institutional' },
+      institutional_student: { label: 'Institutional Student', class: 'tier-institutional' },
+    };
+
+    const FEATURE_LABELS = {
+      questionBank: 'Question Bank',
+      caseEngine: 'Case Engine',
+      readiness: 'Readiness Assessment',
+      spacedRepetition: 'Spaced Repetition',
+      progressSync: 'Progress Sync',
+      tutorCredits: 'AI Tutor Credits',
+      analytics: 'Performance Analytics',
+      printPdfs: 'Printable PDFs',
+      support: 'Support Level',
+      liveReview: 'Live Review Sessions',
+      cmeCredits: 'CME Credits',
+      sso: 'SSO Integration',
+    };
+
+    async function loadAccount() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.status === 401) {
+          app.innerHTML = `
+            <div class="error-state">
+              <h2>Not logged in</h2>
+              <p>Please log in to view your account.</p>
+              <a href="/login" class="btn">Log In</a>
+            </div>
+          `;
+          return;
+        }
+
+        const { user } = await res.json();
+        const tierInfo = TIER_LABELS[user.tier] || TIER_LABELS.free;
+
+        // Fetch entitlements
+        const tierRes = await fetch('/api/user-tier');
+        const tierData = await tierRes.json();
+
+        app.innerHTML = `
+          <div class="card">
+            <h2>Account</h2>
+            <span class="tier-badge ${tierInfo.class}">${tierInfo.label}</span>
+            <div class="info-row">
+              <span class="info-label">Email</span>
+              <span>${escapeHtml(user.email)}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Member since</span>
+              <span>${formatDate(user.createdAt)}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Last login</span>
+              <span>${formatDate(user.lastLoginAt)}</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Your Features</h2>
+            <div class="feature-grid">
+              ${Object.entries(tierData.features || {}).map(([key, val]) => {
+                const enabled = val !== false && val !== 0;
+                return `
+                  <div class="feature-item ${enabled ? 'enabled' : 'disabled'}">
+                    ${enabled ? '✅' : '❌'}
+                    ${FEATURE_LABELS[key] || key}
+                    ${typeof val === 'number' && val > 0 ? `(${val})` : ''}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Actions</h2>
+            <div class="actions">
+              ${user.tier === 'free' ? `
+                <a href="/pricing" class="btn">Upgrade Plan</a>
+              ` : `
+                <a href="/pricing" class="btn btn-secondary">Change Plan</a>
+                <button class="btn btn-secondary" id="portalBtn">Manage Subscription</button>
+              `}
+              <button class="btn logout-btn" id="logoutBtn">Log Out</button>
+            </div>
+          </div>
+        `;
+
+        // Wire up buttons
+        document.getElementById('logoutBtn')?.addEventListener('click', handleLogout);
+        document.getElementById('portalBtn')?.addEventListener('click', openPortal);
+
+      } catch (err) {
+        app.innerHTML = `
+          <div class="error-state">
+            <h2>Something went wrong</h2>
+            <p>${escapeHtml(err.message)}</p>
+            <a href="/login" class="btn">Log In</a>
+          </div>
+        `;
+      }
+    }
+
+    async function handleLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/';
+    }
+
+    async function openPortal() {
+      // For now, redirect to pricing page. In production, this would call /api/customer-portal
+      window.location.href = '/pricing';
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(ts) {
+      if (!ts) return 'Never';
+      const d = new Date(ts);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    logoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+
+    loadAccount();
+  </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
  */
 
 import { routeReadiness } from './api-readiness.js';
+import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
 
 // ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
@@ -277,7 +278,7 @@ export async function routeApi(request, env) {
       case '/api/health':
         return await handleHealth();
       case '/api/user-tier':
-        return await handleUserTier(request);
+        return await handleAuthUserTier(request, env);
       case '/api/create-subscription-checkout':
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleCreateCheckout(request, env);
@@ -287,6 +288,18 @@ export async function routeApi(request, env) {
       case '/api/webhook':
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleWebhook(request, env);
+      case '/api/auth/send-link':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSendLink(request, env);
+      case '/api/auth/verify':
+        if (request.method !== 'GET') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleVerify(request, env);
+      case '/api/auth/me':
+        if (request.method !== 'GET') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleMe(request, env);
+      case '/api/auth/logout':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleLogout(request, env);
       default:
         // Try readiness routes
         const readinessResponse = await routeReadiness(request, env);
