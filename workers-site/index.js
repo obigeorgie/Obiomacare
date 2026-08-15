@@ -35,6 +35,7 @@ async function handleEvent(event) {
     '/cases': '/case-engine.html',
     '/anatomy-lab': '/',
     '/readiness/': '/readiness.html',
+    '/institutional': '/instructor-dashboard.html',
   }
   if (redirects[url.pathname]) {
     return Response.redirect(url.origin + redirects[url.pathname], 301)
