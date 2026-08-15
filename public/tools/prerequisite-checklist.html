@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prerequisite Skills Checklist — Free Tool | Obioma</title>
+    <meta name="description" content="Free printable prerequisite skills checklist for children ages 4-11. Identify learning gaps before they become problems. Based on 1,590+ micro-topics.">
+    <meta name="keywords" content="prerequisite skills checklist, learning gaps, homeschool assessment, math prerequisites, literacy prerequisites">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Prerequisite Skills Checklist — Free Tool | Obioma">
+    <meta property="og:description" content="Identify the exact skills your child needs before learning any new topic. Free printable checklist.">
+    <meta property="og:url" content="https://obiomacare.com/tools/prerequisite-checklist.html">
+    <meta property="og:type" content="website">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-922HP9B76M');
+    </script>
+    <style>
+        :root {
+            --mg-primary: #6366f1;
+            --mg-primary-dark: #4f46e5;
+            --mg-success: #10b981;
+            --mg-warm-50: #faf9f7;
+            --mg-warm-100: #f5f3ef;
+            --mg-warm-200: #e8e5df;
+            --mg-warm-300: #d4cfc5;
+            --mg-warm-500: #7c756d;
+            --mg-warm-700: #3d3834;
+            --mg-warm-800: #1f1c19;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--mg-warm-50);
+            color: var(--mg-warm-800);
+            line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 48px 0;
+            text-align: center;
+            color: white;
+        }
+        header h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+        header p { font-size: 18px; opacity: 0.9; }
+        .tool { padding: 48px 0; }
+        .step { background: white; padding: 32px; border-radius: 16px; margin-bottom: 24px; border: 1px solid var(--mg-warm-200); }
+        .step h2 { font-size: 20px; color: var(--mg-warm-700); margin-bottom: 16px; }
+        .step p { color: var(--mg-warm-500); margin-bottom: 16px; }
+        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--mg-warm-50);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .checkbox-item:hover { background: #f0eeff; }
+        .checkbox-item input { width: 18px; height: 18px; accent-color: var(--mg-primary); }
+        .checkbox-item label { cursor: pointer; font-size: 14px; color: var(--mg-warm-700); }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); }
+        .btn-secondary { background: white; color: var(--mg-primary); border: 2px solid #e8e5df; }
+        .result { display: none; background: #f0f9ff; padding: 32px; border-radius: 16px; margin-top: 24px; border: 1px solid #bae6fd; }
+        .result h3 { color: #0369a1; margin-bottom: 12px; }
+        .result p { color: var(--mg-warm-600); margin-bottom: 16px; }
+        .share { margin-top: 32px; padding: 24px; background: var(--mg-warm-100); border-radius: 12px; text-align: center; }
+        .share p { color: var(--mg-warm-500); font-size: 14px; margin-bottom: 16px; }
+        .share a { color: var(--mg-primary); font-weight: 600; text-decoration: none; }
+        .share a:hover { text-decoration: underline; }
+        footer { padding: 32px; text-align: center; color: var(--mg-warm-400); font-size: 14px; }
+        @media (max-width: 600px) {
+            .checkbox-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i data-lucide="clipboard-list" class="icon icon-coral icon-md" aria-label="Checklist"></i> Prerequisite Skills Checklist</h1>
+            <p>Identify the exact skills your child needs before learning any new topic.</p>
+        </div>
+    </header>
+    
+    <div class="tool">
+        <div class="container">
+            <div class="step">
+                <h2>Step 1: Select a topic your child wants to learn</h2>
+                <div class="checkbox-grid" id="topics">
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="fractions" value="fractions">
+                        <label for="fractions">Understanding fractions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="multiplication" value="multiplication">
+                        <label for="multiplication">Multiplication tables</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="division" value="division">
+                        <label for="division">Division with remainders</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="reading" value="reading">
+                        <label for="reading">Reading comprehension</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="writing" value="writing">
+                        <label for="writing">Writing sentences</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="topic" id="money" value="money">
+                        <label for="money">Money & counting coins</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <h2>Step 2: Check the skills your child already has</h2>
+                <p style="color: var(--mg-warm-500);">Go through the list below. Check each skill your child can do confidently.</p>
+                <div id="checklist">
+                    <p style="color: var(--mg-warm-400); text-align: center; padding: 32px;"><i data-lucide="arrow-up" class="icon icon-coral icon-md" aria-label="Up"></i> Select a topic above to see the prerequisite checklist.</p>
+                </div>
+            </div>
+            
+            <div class="result" id="result">
+                <h3><i data-lucide="target" class="icon icon-coral icon-md" aria-label="Goal"></i> Your Checklist Results</h3>
+                <p id="result-text"></p>
+                <a href="https://app.obiomacare.com/assessment" class="btn btn-primary">Get a Full Learning Path →</a>
+            </div>
+            
+            <div class="share">
+                <p><i data-lucide="send" class="icon icon-coral icon-md" aria-label="Send"></i> This tool is free. Share it with other parents who might find it helpful.</p>
+                <p><a href="https://twitter.com/intent/tweet?text=Free%20prerequisite%20skills%20checklist%20for%20kids%20ages%204-11&url=https://obiomacare.com/tools/prerequisite-checklist.html">Share on Twitter/X</a> · <a href="https://www.facebook.com/sharer/sharer.php?u=https://obiomacare.com/tools/prerequisite-checklist.html">Share on Facebook</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Powered by <a href="https://obiomacare.com" style="color: var(--mg-primary); text-decoration: none;">Obioma</a> — prerequisite-aware learning paths for kids 4-11.</p>
+    </footer>
+    
+    <script>
+    var prerequisites = {
+        fractions: [
+            "Can count to 100",
+            "Can add and subtract single-digit numbers",
+            "Understands equal parts (e.g., half a pizza)",
+            "Can read and write numbers to 100",
+            "Can identify parts of a whole (e.g., 3 out of 4 parts)"
+        ],
+        multiplication: [
+            "Can count by 2s, 5s, and 10s",
+            "Can add the same number repeatedly (e.g., 3+3+3)",
+            "Understands groups and equal sets",
+            "Can add two-digit numbers",
+            "Knows addition facts up to 10+10"
+        ],
+        division: [
+            "Can multiply single-digit numbers",
+            "Understands equal sharing",
+            "Can subtract with borrowing",
+            "Knows multiplication tables up to 5x5",
+            "Can group objects into equal sets"
+        ],
+        reading: [
+            "Knows all letter sounds",
+            "Can blend sounds into words (CVC words)",
+            "Can read common sight words",
+            "Understands what a sentence is",
+            "Can answer simple questions about a story"
+        ],
+        writing: [
+            "Can write all letters of the alphabet",
+            "Can write their own name",
+            "Can spell simple CVC words",
+            "Can write a complete sentence with a capital and period",
+            "Can copy text from a book"
+        ],
+        money: [
+            "Can identify coins (penny, nickel, dime, quarter)",
+            "Knows coin values",
+            "Can count to 100 by 1s and 10s",
+            "Can add two-digit numbers",
+            "Understands the concept of 'change'"
+        ]
+    };
+    
+    document.querySelectorAll('input[name="topic"]').forEach(function(radio){
+        radio.addEventListener('change', function(){
+            var topic = this.value;
+            var items = prerequisites[topic] || [];
+            var html = '';
+            items.forEach(function(item, i){
+                html += '<div class="checkbox-item"><input type="checkbox" id="skill_' + i + '" onchange="calculateResult()"><label for="skill_' + i + '">' + item + '</label></div>';
+            });
+            document.getElementById('checklist').innerHTML = html;
+            document.getElementById('result').style.display = 'none';
+            gtag('event', 'select_content', {content_type: 'checklist_topic', item_id: topic});
+        });
+    });
+    
+    function calculateResult(){
+        var checked = document.querySelectorAll('#checklist input[type="checkbox"]:checked').length;
+        var total = document.querySelectorAll('#checklist input[type="checkbox"]').length;
+        if(total === 0) return;
+        
+        var result = document.getElementById('result');
+        var text = document.getElementById('result-text');
+        
+        if(checked === total){
+            text.innerHTML = '<strong><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i> Your child has all the prerequisites!</strong><br>They are ready to learn this topic. Use Obioma to generate a personalized learning path with time estimates.';
+        } else if(checked >= total * 0.6){
+            text.innerHTML = '<strong><i data-lucide="zap" class="icon icon-warning icon-md" aria-label="Fast"></i> Almost ready!</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Review the unchecked items, then they will be ready to learn this topic.';
+        } else {
+            text.innerHTML = '<strong><i data-lucide="tools" class="icon icon-coral icon-md" aria-label="Tools"></i> Needs some prep first.</strong><br>Your child has ' + checked + ' out of ' + total + ' skills. Focus on the unchecked items first. Obioma can generate a step-by-step prerequisite path for you.';
+        }
+        result.style.display = 'block';
+        gtag('event', 'generate_lead', {content_type: 'checklist_complete', value: checked / total});
+    }
+    </script>
+
+    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>

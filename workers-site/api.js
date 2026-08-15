@@ -4,6 +4,8 @@
  * Uses Stripe REST API via fetch (no Node.js SDK).
  */
 
+import { routeReadiness } from './api-readiness.js';
+
 // ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
   FREE: 'free',
@@ -286,6 +288,9 @@ export async function routeApi(request, env) {
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleWebhook(request, env);
       default:
+        // Try readiness routes
+        const readinessResponse = await routeReadiness(request, env);
+        if (readinessResponse) return readinessResponse;
         return null; // Not an API route
     }
   } catch (err) {

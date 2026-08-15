@@ -41,7 +41,6 @@ async function handleEvent(event) {
   const redirects = {
     '/cases': '/case-engine.html',
     '/login': '/',
-    '/readiness': '/case-engine.html',
     '/anatomy-lab': '/',
   }
   if (redirects[url.pathname]) {

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Adaptive NCLEX readiness assessment. CAT-style engine estimates your preparedness with honest, data-driven feedback.">
+    <title>NCLEX Readiness Assessment — ObiomaCare</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --coral: #FF6B5B;
+            --coral-dark: #E55A4A;
+            --navy: #1A365D;
+            --dark: #0A1628;
+            --surface: #F8FAFC;
+            --text: #1E293B;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --border: #E2E8F0;
+            --card: #FFFFFF;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--navy);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: var(--coral);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .logo-text { font-size: 1.125rem; font-weight: 700; }
+        
+        .header-timer {
+            font-size: 0.875rem;
+            font-variant-numeric: tabular-nums;
+            opacity: 0.9;
+        }
+        
+        /* Progress */
+        .progress-container {
+            padding: 12px 20px;
+            background: white;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--coral);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            min-width: 4%;
+        }
+        
+        .progress-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            text-align: center;
+        }
+        
+        /* Main Content */
+        .main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 24px 20px 80px;
+        }
+        
+        /* Screens */
+        .screen { display: none; }
+        .screen.active { display: block; }
+        
+        /* Pre-assessment */
+        .pre-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .pre-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        
+        .info-card h3 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-card p, .info-card li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .info-card ul {
+            margin: 8px 0 0 20px;
+        }
+        
+        .info-card li { margin-bottom: 4px; }
+        
+        .honesty-note {
+            background: #FEF3C7;
+            border: 1px solid #FDE68A;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 20px 0;
+            font-size: 0.8125rem;
+            color: #92400E;
+            line-height: 1.5;
+        }
+        
+        .honesty-note strong { color: #78350F; }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+        }
+        
+        .btn-primary:hover { background: var(--coral-dark); }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        
+        .btn-secondary:hover { background: var(--surface); }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Question */
+        .question-container {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        
+        .question-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        
+        .question-stem {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        
+        .option:hover {
+            border-color: var(--coral);
+            background: #FFF5F4;
+        }
+        
+        .option.selected {
+            border-color: var(--coral);
+            background: #FFF5F4;
+        }
+        
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        
+        .option.selected .option-letter {
+            background: var(--coral);
+            border-color: var(--coral);
+            color: white;
+        }
+        
+        .option-text {
+            font-size: 0.9375rem;
+            color: var(--text);
+            line-height: 1.4;
+            padding-top: 3px;
+        }
+        
+        .submit-btn {
+            margin-top: 20px;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--coral);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Results */
+        .results-header {
+            text-align: center;
+            padding: 32px 20px;
+            background: var(--navy);
+            color: white;
+            margin: -24px -20px 32px;
+            border-radius: 0 0 24px 24px;
+        }
+        
+        .band-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        
+        .band-not-ready { background: #FEE2E2; color: #991B1B; }
+        .band-approaching { background: #FEF3C7; color: #92400E; }
+        .band-ready { background: #D1FAE5; color: #065F46; }
+        
+        .ability-score {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+        
+        .ability-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        .results-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        
+        .results-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        
+        .category-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .category-row:last-child { border-bottom: none; }
+        
+        .category-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .category-strength {
+            font-size: 0.8125rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        .strength-strong { background: #D1FAE5; color: #065F46; }
+        .strength-weak { background: #FEE2E2; color: #991B1B; }
+        .strength-unknown { background: var(--surface); color: var(--text-muted); }
+        
+        .ncjmm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        
+        .ncjmm-item {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .ncjmm-step {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .ncjmm-name {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .ncjmm-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .ncjmm-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        
+        .retake-info {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        
+        .retake-info p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .upgrade-prompt {
+            background: linear-gradient(135deg, var(--navy) 0%, #2D4A7C 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        
+        .upgrade-prompt h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .upgrade-prompt p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+        
+        .disclaimer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 32px;
+            padding: 16px;
+            border-top: 1px solid var(--border);
+            line-height: 1.5;
+        }
+        
+        /* Study guide links */
+        .guide-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--coral);
+            text-decoration: none;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .guide-link:hover { text-decoration: underline; }
+        
+        /* Mobile */
+        @media (max-width: 480px) {
+            .pre-title { font-size: 1.5rem; }
+            .question-container { padding: 16px; }
+            .question-stem { font-size: 1rem; }
+            .option { padding: 12px; }
+            .results-header { margin: -16px -16px 24px; padding: 24px 16px; }
+            .ability-score { font-size: 2.5rem; }
+        }
+        
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo">
+            <div class="logo-icon">⚕️</div>
+            <span class="logo-text">ObiomaCare</span>
+        </a>
+        <span class="header-timer" id="timer" style="display:none">00:00</span>
+    </header>
+    
+    <div class="progress-container" id="progressBar" style="display:none">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width:4%"></div>
+        </div>
+        <div class="progress-text" id="progressText">Question 1 of 20–30</div>
+    </div>
+    
+    <main class="main">
+        <!-- Pre-Assessment Screen -->
+        <section class="screen active" id="screen-pre">
+            <h1 class="pre-title">NCLEX Readiness Assessment</h1>
+            <p class="pre-subtitle">An honest estimate of your preparedness based on how you answer, not just what you get right.</p>
+            
+            <div class="info-card">
+                <h3>📋 What to expect</h3>
+                <ul>
+                    <li><strong>20–30 questions</strong> that adapt to your ability</li>
+                    <li><strong>About 25 minutes</strong> — take your time</li>
+                    <li><strong>No back-navigation</strong> — just like the real NCLEX</li>
+                    <li>Your session is saved server-side, so a refresh won't lose progress</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>🧠 How it works</h3>
+                <p>This uses a simplified adaptive engine. Each question adjusts based on your previous answer. The goal is to find your ability level, not just count correct answers.</p>
+            </div>
+            
+            <div class="honesty-note">
+                <strong>Honest disclaimer:</strong> Item difficulties are author estimates, not psychometrically calibrated. Your results will improve in accuracy as more students complete the assessment and we collect response data.
+            </div>
+            
+            <button class="btn btn-primary" id="btnStart" onclick="startAssessment()">
+                Start Assessment
+            </button>
+            <p style="text-align:center; margin-top:12px; font-size:0.8125rem; color:var(--text-muted)">
+                Free tier: 1 full assessment with summary results
+            </p>
+        </section>
+        
+        <!-- Question Screen -->
+        <section class="screen" id="screen-question">
+            <div class="question-container">
+                <div class="question-number" id="qNumber">Question 1</div>
+                <div class="question-stem" id="qStem">Loading...</div>
+                <div id="qOptions"></div>
+                <button class="btn btn-primary submit-btn" id="btnSubmit" onclick="submitAnswer()" disabled>
+                    Submit Answer
+                </button>
+            </div>
+        </section>
+        
+        <!-- Loading Screen -->
+        <section class="screen" id="screen-loading">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p style="color:var(--text-secondary); font-size:0.9375rem">Calculating your results...</p>
+            </div>
+        </section>
+        
+        <!-- Results Screen -->
+        <section class="screen" id="screen-results">
+            <div id="resultsContent"></div>
+        </section>
+    </main>
+    
+    <script>
+        // ─── STATE ───
+        let sessionId = null;
+        let currentItem = null;
+        let itemsAnswered = 0;
+        let selectedAnswer = null;
+        let startTime = null;
+        let timerInterval = null;
+        let secondsElapsed = 0;
+        
+        // ─── NAVIGATION ───
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + id).classList.add('active');
+        }
+        
+        // ─── TIMER ───
+        function startTimer() {
+            secondsElapsed = 0;
+            document.getElementById('timer').style.display = 'block';
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                const m = Math.floor(secondsElapsed / 60).toString().padStart(2, '0');
+                const s = (secondsElapsed % 60).toString().padStart(2, '0');
+                document.getElementById('timer').textContent = `${m}:${s}`;
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').style.display = 'none';
+        }
+        
+        // ─── PROGRESS ───
+        function updateProgress(answered, min, max) {
+            const pct = Math.min(100, Math.max(4, (answered / min) * 100));
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = 
+                answered < min 
+                    ? `Question ${answered + 1} of ${min}–${max} minimum`
+                    : `Question ${answered + 1} — assessing confidence`;
+        }
+        
+        // ─── START ───
+        async function startAssessment() {
+            document.getElementById('btnStart').disabled = true;
+            
+            try {
+                const res = await fetch('/api/readiness/start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: '', tier: 'free' })
+                });
+                
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to start');
+                
+                sessionId = data.sessionId;
+                currentItem = data.item;
+                itemsAnswered = data.itemsAnswered || 0;
+                
+                document.getElementById('progressBar').style.display = 'block';
+                updateProgress(itemsAnswered, 20, 30);
+                startTimer();
+                renderQuestion();
+                showScreen('question');
+                
+            } catch (err) {
+                alert('Error starting assessment: ' + err.message);
+                document.getElementById('btnStart').disabled = false;
+            }
+        }
+        
+        // ─── RENDER QUESTION ───
+        function renderQuestion() {
+            if (!currentItem) return;
+            
+            selectedAnswer = null;
+            document.getElementById('qNumber').textContent = `Question ${itemsAnswered + 1}`;
+            document.getElementById('qStem').textContent = currentItem.stem;
+            document.getElementById('btnSubmit').disabled = true;
+            
+            const optsContainer = document.getElementById('qOptions');
+            optsContainer.innerHTML = '';
+            
+            const letters = ['A', 'B', 'C', 'D'];
+            currentItem.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.innerHTML = `
+                    <div class="option-letter">${letters[idx]}</div>
+                    <div class="option-text">${escapeHtml(opt)}</div>
+                `;
+                div.onclick = () => selectOption(idx, div);
+                optsContainer.appendChild(div);
+            });
+            
+            startTime = Date.now();
+        }
+        
+        function selectOption(idx, el) {
+            selectedAnswer = idx;
+            document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('btnSubmit').disabled = false;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // ─── SUBMIT ANSWER ───
+        async function submitAnswer() {
+            if (selectedAnswer === null) return;
+            
+            const responseTime = Date.now() - startTime;
+            document.getElementById('btnSubmit').disabled = true;
+            
+            try {
+                const res = await fetch('/api/readiness/answer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        itemId: currentItem.id,
+                        answerIndex: selectedAnswer,
+                        responseTimeMs: responseTime
+                    })
+                });
+                
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to submit');
+                
+                itemsAnswered++;
+                
+                if (data.completed) {
+                    stopTimer();
+                    showScreen('loading');
+                    // Fetch full results
+                    const resultRes = await fetch(`/api/readiness/result/${sessionId}`);
+                    const resultData = await resultRes.json();
+                    renderResults(resultData.results);
+                    showScreen('results');
+                } else {
+                    currentItem = data.item;
+                    updateProgress(itemsAnswered, 20, 30);
+                    renderQuestion();
+                }
+                
+            } catch (err) {
+                alert('Error submitting answer: ' + err.message);
+                document.getElementById('btnSubmit').disabled = false;
+            }
+        }
+        
+        // ─── RENDER RESULTS ───
+        function renderResults(results) {
+            const isPaid = !results._tierNote?.includes('Free summary');
+            const bandClass = results.band === 'Ready' ? 'band-ready' : 
+                              results.band === 'Approaching' ? 'band-approaching' : 'band-not-ready';
+            
+            let html = `
+                <div class="results-header">
+                    <div class="band-badge ${bandClass}">${results.band}</div>
+                    <div class="ability-score">${results.ability}</div>
+                    <div class="ability-label">Ability Estimate (0–1 scale)</div>
+                    <div style="font-size:0.8125rem; opacity:0.7; margin-top:8px">
+                        95% CI: ${results.ciLower} – ${results.ciUpper} · ${results.itemsAnswered} items
+                    </div>
+                </div>
+                
+                <div class="results-section">
+                    <h3>📊 Category Breakdown</h3>
+            `;
+            
+            if (results.categoryBreakdown && results.categoryBreakdown.length > 0) {
+                for (const cat of results.categoryBreakdown) {
+                    const strengthClass = cat.strength ? 'strength-strong' : 
+                                          cat.accuracy !== undefined ? 'strength-weak' : 'strength-unknown';
+                    const strengthText = cat.strength ? 'Strong' : 
+                                         cat.accuracy !== undefined ? 'Needs Work' : '–';
+                    html += `
+                        <div class="category-row">
+                            <span class="category-name">${formatCategory(cat.category)}</span>
+                            <span class="category-strength ${strengthClass}">${strengthText}</span>
+                        </div>
+                    `;
+                }
+            } else {
+                html += '<p style="color:var(--text-muted); font-size:0.875rem">No category data available.</p>';
+            }
+            
+            html += '</div>';
+            
+            // NCJMM Breakdown (paid only)
+            if (isPaid && results.ncjmmBreakdown) {
+                html += `
+                    <div class="results-section">
+                        <h3>🧠 Clinical Judgment Steps</h3>
+                        <div class="ncjmm-grid">
+                `;
+                for (const step of results.ncjmmBreakdown) {
+                    const fillColor = step.accuracy >= 70 ? 'var(--success)' : 
+                                      step.accuracy >= 50 ? 'var(--warning)' : 'var(--error)';
+                    html += `
+                        <div class="ncjmm-item">
+                            <div class="ncjmm-step">Step ${step.step}</div>
+                            <div class="ncjmm-name">${step.stepName}</div>
+                            <div class="ncjmm-bar">
+                                <div class="ncjmm-fill" style="width:${step.accuracy}%; background:${fillColor}"></div>
+                            </div>
+                            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px">${step.accuracy}%</div>
+                        </div>
+                    `;
+                }
+                html += '</div></div>';
+            }
+            
+            // Retake info
+            if (results.canRetake) {
+                html += `
+                    <div class="retake-info">
+                        <p>🔄 Unlimited retakes included with your plan</p>
+                        <button class="btn btn-primary" onclick="location.reload()">Retake Assessment</button>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="retake-info">
+                        <p>⏳ Retake available in ${results.retakeInDays} days</p>
+                        <p style="font-size:0.75rem; color:var(--text-muted)">Upgrade for unlimited retakes + detailed breakdown</p>
+                    </div>
+                `;
+            }
+            
+            // Upgrade prompt (free tier)
+            if (!isPaid) {
+                html += `
+                    <div class="upgrade-prompt">
+                        <h3>Unlock Full Breakdown</h3>
+                        <p>Upgrade to see your Clinical Judgment step analysis, detailed category scores, and unlimited retakes.</p>
+                        <a href="/pricing" class="btn btn-primary" style="background:var(--coral); width:auto; display:inline-flex">View Plans</a>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div class="disclaimer">
+                    ${results._disclaimer || ''}<br><br>
+                    <strong>No pass-probability claim:</strong> We do not estimate your chance of passing the NCLEX because we do not yet have outcome data linking these scores to actual exam results. This assessment measures your current ability level on our item bank.
+                </div>
+            `;
+            
+            document.getElementById('resultsContent').innerHTML = html;
+        }
+        
+        function formatCategory(cat) {
+            return cat.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+        
+        // ─── KEYBOARD SUPPORT ───
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('screen-question').classList.contains('active')) return;
+            
+            const opts = document.querySelectorAll('.option');
+            if (e.key >= '1' && e.key <= '4' && opts[e.key - 1]) {
+                selectOption(e.key - 1, opts[e.key - 1]);
+            } else if (e.key === 'Enter' && selectedAnswer !== null) {
+                submitAnswer();
+            }
+        });
+    </script>
+</body>
+</html>

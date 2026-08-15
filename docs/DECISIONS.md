@@ -104,3 +104,27 @@ wrangler rollback <version-id>   # from wrangler deployments list
 ---
 
 *Last updated: 2026-08-07*
+
+---
+
+## Readiness Assessment (G3) — 2026-08-15
+
+### 8. CAT-Style Adaptive Engine (IRT-Lite)
+**Decision**: Use a simplified item response theory approach: θ ± 0.15 per response, bounded 0.1–1.0.
+**Rationale**: Full IRT requires thousands of responses for calibration. This lite version is explainable, implementable in a Worker, and honest about its limitations.
+**Date**: 2026-08-15
+
+### 9. In-Memory Session Store (Temporary)
+**Decision**: Store assessment sessions in a JavaScript Map (in-memory).
+**Rationale**: Workers are stateless; KV or D1 is needed for production persistence. In-memory is acceptable for initial build and testing. Migration path: replace Map with Cloudflare KV binding.
+**Date**: 2026-08-15
+
+### 10. No Pass-Probability Claims
+**Decision**: Results show ability estimate + confidence interval + readiness band. Never claim "X% chance of passing NCLEX."
+**Rationale**: We do not have outcome data correlating our scores with actual NCLEX pass rates. Any such claim would be unverifiable and potentially harmful.
+**Date**: 2026-08-15
+
+### 11. Tier-Based Result Gating
+**Decision**: Free tier gets summary (band + strength/weakness flags). Paid tier gets full breakdown (category accuracy %, NCJMM step analysis, history over time).
+**Rationale**: Free tier must provide value (honest readiness estimate) while creating upgrade incentive (detailed action plan).
+**Date**: 2026-08-15

@@ -168,6 +168,7 @@ const FEATURE = {
   PROGRESS_SYNC: 'progress_sync',
   DOWNLOADABLE_GUIDES: 'downloadable_guides',
   WEBINAR_ACCESS: 'webinar_access',
+  READINESS: 'readiness',
 
   // Institutional-only
   COHORT_DASHBOARD: 'cohort_dashboard',
@@ -182,6 +183,7 @@ const ENTITLEMENTS = {
     FEATURE.ARTICLES,
     FEATURE.BASIC_QUIZ,
     FEATURE.COMMUNITY,
+    FEATURE.READINESS, // 1 free assessment — gated by count, not tier
   ],
   [TIER.STUDENT_MONTHLY]: [
     FEATURE.ARTICLES,
@@ -196,6 +198,7 @@ const ENTITLEMENTS = {
     FEATURE.SATA_PRACTICE,
     FEATURE.BOW_TIE_PRACTICE,
     FEATURE.PROGRESS_SYNC,
+    FEATURE.READINESS,
   ],
   [TIER.STUDENT_ANNUAL]: [
     // Inherits all monthly features
@@ -214,6 +217,7 @@ const ENTITLEMENTS = {
     // Annual-only extras
     FEATURE.DOWNLOADABLE_GUIDES,
     FEATURE.WEBINAR_ACCESS,
+    FEATURE.READINESS,
   ],
   [TIER.LIFETIME]: [
     // Same as annual
@@ -231,6 +235,7 @@ const ENTITLEMENTS = {
     FEATURE.PROGRESS_SYNC,
     FEATURE.DOWNLOADABLE_GUIDES,
     FEATURE.WEBINAR_ACCESS,
+    FEATURE.READINESS,
   ],
   [TIER.INSTITUTIONAL_INSTRUCTOR]: [
     FEATURE.ARTICLES,
@@ -251,6 +256,7 @@ const ENTITLEMENTS = {
     FEATURE.COHORT_DASHBOARD,
     FEATURE.ASSIGN_CASES,
     FEATURE.COHORT_ANALYTICS,
+    FEATURE.READINESS,
   ],
   [TIER.INSTITUTIONAL_STUDENT]: [
     // Same as student monthly (seats are managed by instructor)
@@ -266,6 +272,7 @@ const ENTITLEMENTS = {
     FEATURE.SATA_PRACTICE,
     FEATURE.BOW_TIE_PRACTICE,
     FEATURE.PROGRESS_SYNC,
+    FEATURE.READINESS,
   ],
 };
 
