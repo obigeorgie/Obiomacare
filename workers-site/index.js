@@ -1,37 +1,30 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
 import { routeApi } from './api.js'
 
-/**
- * The DEBUG flag will do two things:
- * 1. Output logs to the console
- * 2. Return detailed error messages in the response
- */
 const DEBUG = false
 
-addEventListener('fetch', event => {
-  try {
-    event.respondWith(handleEvent(event))
-  } catch (e) {
-    if (DEBUG) {
-      return event.respondWith(
-        new Response(e.message || e.toString(), {
-          status: 500,
-        }),
-      )
+export default {
+  async fetch(request, env, executionCtx) {
+    try {
+      return await handleRequest(request, env, executionCtx)
+    } catch (e) {
+      if (DEBUG) {
+        return new Response(e.message || e.toString(), { status: 500 })
+      }
+      return new Response('Internal Error', { status: 500 })
     }
-    event.respondWith(new Response('Internal Error', { status: 500 }))
   }
-})
+}
 
-async function handleEvent(event) {
-  const url = new URL(event.request.url)
+async function handleRequest(request, env, executionCtx) {
+  const url = new URL(request.url)
   let options = {}
 
   /**
    * API routes — handled before static assets
    */
   if (url.pathname.startsWith('/api/')) {
-    const apiResponse = await routeApi(event.request, event.env || {})
+    const apiResponse = await routeApi(request, env)
     if (apiResponse) return apiResponse
   }
 
@@ -68,7 +61,7 @@ async function handleEvent(event) {
   }
 
   try {
-    const page = await getAssetFromKV(event, options)
+    const page = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx) }, options)
     
     // Allow CORS for assets
     const response = new Response(page.body, page)
@@ -81,7 +74,7 @@ async function handleEvent(event) {
     // Fallthrough, look for 404.html
     if (e.status === 404) {
       try {
-        let notFoundResponse = await getAssetFromKV(event, {
+        let notFoundResponse = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx) }, {
           mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
         })
         return new Response(notFoundResponse.body, { ...notFoundResponse, status: 404 })
