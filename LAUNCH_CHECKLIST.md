@@ -50,17 +50,11 @@
 ## 🔴 NEEDS YOUR ACTION
 
 ### 1. Domain DNS (Critical)
-**Problem:** Domain is using Cloudflare nameservers, but Vercel needs its own.
+**Status:** Domain is using Cloudflare nameservers. Keep them.
 
-**Fix:** Update nameservers at your domain registrar to:
-```
-ns1.vercel-dns.com
-ns2.vercel-dns.com
-```
-
-**Alternative:** If you want to keep Cloudflare, add these DNS records in Cloudflare:
-- Type: A | Name: @ | Value: 76.76.21.21
-- Type: CNAME | Name: www | Value: cname.vercel-dns.com
+**Cloudflare DNS Records:**
+- Type: A | Name: @ | Value: 76.76.21.21 (or Workers route)
+- Type: CNAME | Name: www | Value: obiomacare-site.empathycollection.workers.dev
 
 ### 2. Google Analytics (Important)
 **Problem:** Placeholder ID `GA_MEASUREMENT_ID` in code.
@@ -145,18 +139,18 @@ ns2.vercel-dns.com
 ```bash
 # Deploy updates
 cd /root/.openclaw/workspace/obioma-care
-vercel --prod
+npx wrangler deploy --config wrangler.toml
 
 # View logs
-vercel logs obioma-care.vercel.app
+npx wrangler tail
 
-# Check Stripe products
-curl -s https://api.stripe.com/v1/products -u "sk_live_..."
+# Check Stripe products (test mode)
+curl -s https://api.stripe.com/v1/products -u "sk_test_..."
 
 # Test checkout
-curl -s -X POST https://obiomacare.com/api/create-checkout \
+curl -s -X POST https://obiomacare.com/api/create-subscription-checkout \
   -H "Content-Type: application/json" \
-  -d '{"tier":"core","email":"test@example.com"}'
+  -d '{"plan":"core","email":"test@example.com"}'
 ```
 
 ---
@@ -165,7 +159,7 @@ curl -s -X POST https://obiomacare.com/api/create-checkout \
 
 **Problems?**
 - Stripe issues: https://stripe.com/support
-- Vercel issues: https://vercel.com/help
+- Cloudflare Workers: https://developers.cloudflare.com/workers/
 - Resend issues: https://resend.com/support
 - Domain issues: Check with your registrar
 

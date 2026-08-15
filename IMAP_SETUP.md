@@ -54,23 +54,24 @@ The IMAP password is stored in Vercel environment variables (encrypted at rest).
 
 | Issue | Solution |
 |-------|----------|
-| "IMAP not configured" | Set `IMAP_PASS` in Vercel env |
+| "IMAP not configured" | Set `IMAP_PASS` as a Cloudflare Worker secret |
 | Connection refused | Check `IMAP_HOST` is `imap.hostinger.com` |
 | Auth failed | Reset password in Hostinger, update `IMAP_PASS` |
 | Emails not found | Make sure emails are unread (not already opened) |
 
-## Vercel Cron Limitations
+## Cloudflare Workers Cron
 
-**Important:** Vercel Hobby plan allows:
-- **1 cron job** maximum
-- **Once per day** maximum frequency
+Use Cloudflare Workers Cron Triggers for scheduling:
+- https://developers.cloudflare.com/workers/configuration/cron-triggers/
 
 For 10-minute polling, you have two options:
 
-### Option 1: Upgrade to Vercel Pro
-- $20/month
-- Unlimited cron jobs
-- Configurable schedules
+### Option 1: Cloudflare Workers Cron Triggers
+Configure in `wrangler.toml`:
+```toml
+[triggers]
+crons = ["*/10 * * * *"]
+```
 
 ### Option 2: External Cron Service (Free)
 Use **cron-job.org** (free):

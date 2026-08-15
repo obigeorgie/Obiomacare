@@ -619,11 +619,11 @@ app.get('/api/health', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-// Export for Vercel serverless
+// Export for serverless (Cloudflare Workers)
 module.exports = app;
 
 // Start server for local dev
-if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => console.log(`🚀 Obioma Care server running on port ${PORT}`));
 }
 // Cache bust: 1785450246

@@ -11,10 +11,13 @@
 2. Go to **Settings → API** or **Developer**
 3. Copy the **Mailbox Resource ID**
 
-## Step 2: Set Environment Variable
+## Step 2: Set Environment Variable (Cloudflare Workers Secret)
+
+Set the token as a Cloudflare Worker secret:
 
 ```bash
-export HOSTINGER_MAILBOX_ID=your-mailbox-id-here
+npx wrangler secret put HOSTINGER_EMAIL_TOKEN
+# Enter your API token when prompted
 ```
 
 ## Step 3: Run Setup Script
@@ -25,9 +28,14 @@ node scripts/setup-hostinger-webhook.js
 
 This creates a webhook that forwards ALL emails to `https://obiomacare.com/api/email-webhook`.
 
-## Step 4: Save the Webhook Secret
+## Step 4: Save the Webhook Secret (Cloudflare Workers)
 
-The script will output a **webhook secret**. Save it in Vercel:
+The script will output a **webhook secret**. Save it as a Cloudflare Worker secret:
+
+```bash
+npx wrangler secret put HOSTINGER_WEBHOOK_SECRET
+# Enter the webhook secret when prompted
+```
 
 ```
 HOSTINGER_WEBHOOK_SECRET=the-secret-from-output

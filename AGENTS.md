@@ -23,8 +23,8 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 
 **Obioma Care** is a nursing education platform focused on NCLEX Clinical Judgment preparation.
 
-- **Landing site**: Static HTML pages (Vercel) — lead magnets, content, checkout
-- **API**: Express server (Vercel Functions) — Stripe, email, Firestore, tutor
+- **Landing site**: Static HTML pages (Cloudflare Workers) — lead magnets, content, checkout
+- **API**: Express routes (Cloudflare Workers) — Stripe, email, Firestore, tutor
 - **Content**: 64+ NCLEX study guides with NGN case studies
 - **Products**: Digital downloads (Core $47, Complete $67)
 
@@ -50,10 +50,10 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 
 | Rule | Detail |
 |------|--------|
-| **No deploys without explicit approval** | Always ask before `vercel --prod` |
+| **No deploys without explicit approval** | Always ask before `wrangler deploy --production` |
 | **Medical content needs citations** | Source citation + nurse-review status |
 | **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
-| **Stripe keys live in Vercel env vars only** | Never hardcode |
+| **Stripe keys live in Cloudflare Worker secrets only** | Never hardcode |
 | **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
 
 ---
@@ -124,13 +124,13 @@ curl -s -o /dev/null -w "terms %{http_code}\n" $BASE/terms.html
 
 | Symptom | Likely Cause | Fix |
 |---------|-------------|-----|
-| Stripe webhook 400/500 | `STRIPE_WEBHOOK_SECRET` mismatch | Check Vercel env vars match Stripe dashboard |
+| Stripe webhook 400/500 | `STRIPE_WEBHOOK_SECRET` mismatch | Check Worker secrets match Stripe dashboard |
 | Build fails with missing files | `landing/content/` copy in build script | Remove stale copy, ensure source files exist |
-| Emails not sending | Hostinger SMTP blocked/credentials wrong | Check `SMTP_USER`/`SMTP_PASS` in Vercel env |
+| Emails not sending | Resend API key missing / SMTP blocked | Check `RESEND_API_KEY` and `SMTP_USER`/`SMTP_PASS` Worker secrets |
 | Firestore permission denied | Service account key missing/invalid | Verify `firebase-service-account.json` exists and is valid |
-| Analytics not showing data | Scripts not in HTML | Check `_vercel/insights/script.js` in page `<head>` |
+| Analytics not showing data | Scripts not in HTML | Check GA4 + FB Pixel scripts in page `<head>` |
 | Old app links in content | Stale `dist/` or missed replacements | Search for `app.obiomacare.com` in `content/` |
-| Deploy takes forever | Large `node_modules` or build cache | `vercel --force` to skip cache |
+| Deploy takes forever | Large `node_modules` or build cache | `wrangler deploy --force` to skip cache |
 
 ---
 
@@ -154,10 +154,12 @@ At the **end of every session**, append to `docs/SESSION-LOG.md`:
 
 ```
 obioma-care/
-├── api/                  # Express API (Vercel serverless)
-│   ├── index.js         # Main API entry (~1100 lines)
-│   └── tutor.js         # AI tutor module
-├── content/             # 64 NCLEX study guides (HTML)
+├── workers-site/         # Cloudflare Workers site
+│   ├── index.js         # Worker entry — static asset serving + API routing
+│   ├── auth.js          # Magic-link auth + JWT sessions
+│   ├── api.js           # API routes (Stripe, email, readiness, SR)
+│   └── api-*.js         # Modular API handlers
+├── content/             # 80+ NCLEX study guides (HTML)
 ├── landing/             # Landing pages (HTML)
 │   ├── index.html       # Homepage
 │   ├── success.html     # Post-purchase
@@ -169,7 +171,7 @@ obioma-care/
 ├── scripts/             # Build + utility scripts
 │   ├── build.js
 │   └── check-firestore.js
-├── public/              # Build output (Vercel serves this)
+├── public/              # Build output (served by Worker)
 ├── products/            # PDF deliverables
 ├── research/            # Competitive research
 ├── docs/                # Project documentation
@@ -177,7 +179,8 @@ obioma-care/
 │   ├── DECISIONS.md
 │   ├── links.md
 │   └── SESSION-LOG.md
-└── vercel.json          # Vercel config + routes + crons
+├── wrangler.toml        # Worker config + KV bindings + secrets
+└── deploy.sh            # Deploy script with test-mode gate
 ```
 
 ---
@@ -189,8 +192,8 @@ obioma-care/
 | **Firebase Project** | `kindred-x5pbk` |
 | **GA4 ID** | `G-922HP9B76M` |
 | **FB Pixel ID** | `1045171501242922` |
-| **Vercel Project** | `prj_8ehbHaJEcI9vlxLb0VVdihCxixZZ` |
-| **Vercel Org** | `team_zQK0ygIpqt6DgFz5Dolfdoe3` |
+| **Cloudflare Account** | `empathycollection` |
+| **Worker Name** | `obiomacare-site` |
 | **Brand Email** | `admin@obiomacare.com` |
 | **Domain** | `obiomacare.com` |
 | **Repo** | `https://github.com/obigeorgie/Obiomacare.git` |
@@ -201,8 +204,8 @@ obioma-care/
 
 1. **Submit sitemap to Google Search Console**
 2. **Real Stripe test purchase** with `TEST99` promo
-3. **Add GitHub Action secrets**: `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
-4. **Batch 4 content**: Fundamentals, Fluids/Electrolytes, Mechanical Ventilation, Trauma
+3. **Verify Worker secrets**: `RESEND_API_KEY`, `STRIPE_SECRET_KEY`
+4. **Batch 5 content**: Fluids/Electrolytes, Mechanical Ventilation, Trauma, Pediatrics, OB/Labor
 5. **Verify GA4/FB Pixel** receive real purchase events
 
 ---
@@ -211,7 +214,7 @@ obioma-care/
 
 | Issue | What to Check |
 |-------|--------------|
-| Site down | Vercel dashboard → deployment status |
+| Site down | Cloudflare dashboard → Workers & Pages → obiomacare-site |
 | Payments broken | Stripe dashboard → webhooks → recent events |
 | Emails down | Hostinger email settings + SMTP logs |
 | Database issues | Firebase console → Firestore → usage |

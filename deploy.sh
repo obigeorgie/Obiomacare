@@ -49,20 +49,27 @@ fi
 echo "🔨 Building..."
 # Add any build steps here
 
-# Deploy to Vercel
-echo "🚀 Deploying to Vercel..."
-if command -v vercel &> /dev/null; then
+# Deploy to Cloudflare Workers
+echo "🚀 Deploying to Cloudflare Workers..."
+
+# Check that we're in test mode before deploying
+HEALTH_MODE=$(curl -s https://obiomacare.com/api/health | grep -o '"mode":"[^"]*"' | cut -d'"' -f4)
+if [ "$HEALTH_MODE" != "test" ]; then
+    echo -e "${RED}❌ ERROR: Production API is not in test mode (mode=$HEALTH_MODE). Aborting.${NC}"
+    exit 1
+fi
+
+if command -v wrangler &> /dev/null; then
     if [ "$ENV" == "production" ]; then
-        vercel --prod
+        npx wrangler deploy --config wrangler.toml
     else
-        vercel
+        npx wrangler deploy --config wrangler.toml --env staging
     fi
 else
-    echo -e "${YELLOW}⚠️  Vercel CLI not found. Install with: npm i -g vercel${NC}"
+    echo -e "${YELLOW}⚠️  Wrangler not found. Install with: npm i -g wrangler${NC}"
     echo "Manual deployment:"
     echo "1. Push to GitHub"
-    echo "2. Connect repo to Vercel"
-    echo "3. Set environment variables in Vercel dashboard"
+    echo "2. Run: npx wrangler deploy"
 fi
 
 # Setup Stripe webhook
