@@ -48,14 +48,23 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 
 ## ⚠️ Critical Rules
 
-| Rule | Detail |
-|------|--------|
-| **No deploys without explicit approval** | Always ask before `wrangler deploy --production` |
-| **Medical content needs citations** | Source citation + nurse-review status |
-| **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
-| **Stripe keys live in Cloudflare Worker secrets only** | Never hardcode |
-| **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. If asked, STOP and get explicit human approval |
-| **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
+| # | Rule | Detail |
+|---|------|--------|
+| 1 | **No deploys without explicit approval** | Always ask before `wrangler deploy --production` |
+| 2 | **A build is "complete" only with production URL + check output** | Screenshots must match production, not localhost |
+| 3 | **One deploy = one purpose** | P0 fixes and visual migrations never mix in one deploy |
+| 4 | **Medical content needs citations** | Source citation + nurse-review status; unreviewed never renders |
+| 5 | **Deploy gates: placeholder check, contrast (≥4.5:1), route smoke test** | Blank / "Failed to load" = fail. No exceptions. |
+| 6 | **No unverifiable statistics** | Every number traceable to a system of record |
+| 7 | **No fabricated endorsements or credentials, ever** | No unnamed reviewers, no fake quotes |
+| 8 | **Deploy requests must match what deploys** | Commit hash + production proof required IN the deploy message |
+| 9 | **One deployment path only** | Infra decisions recorded in DECISIONS.md same day |
+| 10 | **Post-deploy smoke test = full nav/footer link crawl** | Custom domain, not just routes that changed |
+| 11 | **No ✅ without a production-verifiable artifact** | "Code-complete in test mode" ≠ "complete". Commit hash travels IN deploy message |
+| 12 | **Payment/live keys are NEVER agent-installed** | Owner installs into Worker environment directly, by hand, at deliberate go-live only |
+| 12a | **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. STOP and get explicit human approval |
+| — | **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
+| — | **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
 
 ---
 
