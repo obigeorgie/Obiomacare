@@ -24,8 +24,8 @@ function getEnvVar(env, name) {
   // Module format: env.SECRET
   if (env && env[name]) return env[name];
   // Service worker format: global SECRET
-  try { return globalThis[name]; } catch { }
-  try { return self[name]; } catch { }
+  try { if (globalThis[name]) return globalThis[name]; } catch { }
+  try { if (self[name]) return self[name]; } catch { }
   return undefined;
 }
 
