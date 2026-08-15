@@ -239,7 +239,8 @@ async function handleVerify(request, env) {
   const token = url.searchParams.get('token');
 
   if (!token) {
-    return Response.redirect(`${env.APP_URL || 'https://obiomacare.com'}/login?error=missing_token`, 302);
+    const appUrl = getEnvVar(env, 'APP_URL') || 'https://obiomacare.com';
+    return Response.redirect(`${appUrl}/login?error=missing_token`, 302);
   }
 
   const linkData = await getMagicLink(env, token);
@@ -281,9 +282,14 @@ async function handleVerify(request, env) {
   const jwt = await signJWT(jwtPayload, jwtSecret);
 
   const appUrl = getEnvVar(env, 'APP_URL') || 'https://obiomacare.com';
-  const response = Response.redirect(`${appUrl}/account`, 302);
-  response.headers.set('Set-Cookie', setCookie('obioma_session', jwt, { maxAge: 7 * 24 * 60 * 60 }));
-  return response;
+  // Use mutable Response (Response.redirect() is immutable in Workers)
+  return new Response(null, {
+    status: 302,
+    headers: {
+      'Location': `${appUrl}/account`,
+      'Set-Cookie': setCookie('obioma_session', jwt, { maxAge: 7 * 24 * 60 * 60 }),
+    },
+  });
 }
 
 async function handleMe(request, env) {
