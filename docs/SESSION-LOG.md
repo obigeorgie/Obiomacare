@@ -79,3 +79,49 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 ---
 
 *Next session should start here and continue from docs/TODO.md*
+
+---
+
+## 2026-08-16 04:23 — PWA Build (G7)
+
+- **Agent**: KimiClaw (main session)
+- **Task**: Build Progressive Web App support (G7 gap from audit)
+- **Files created**: `landing/manifest.json`, `landing/sw.js`
+- **Files modified**: 90+ HTML pages across landing/content/downloads/quiz, `scripts/build.js`
+- **Commits**: `fce368e`
+- **Deployed**: No (requires explicit approval per AGENTS.md rule #1)
+- **Blockers**: None
+- **Next**: Deploy to production, verify manifest + SW registration in DevTools
+
+### Key Changes
+1. **Created `landing/manifest.json`** — PWA manifest with:
+   - App name: "Obioma Care — NCLEX Clinical Judgment" / short_name: "Obioma"
+   - Theme color: #0a1628 (navy), background: #0a1628
+   - Display: standalone, orientation: portrait-primary
+   - Icons: 192x192 + 512x192 (maskable)
+   - Shortcuts: Case Engine, Study Guides, Readiness Check
+   - Categories: education, health, medical
+
+2. **Created `landing/sw.js`** — Service Worker with:
+   - Pre-cache: homepage, case-engine, checklist, readiness, pricing, legal pages, icons, tokens
+   - Cache-first strategy for static assets (JS, CSS, fonts)
+   - Cache-first for images
+   - Stale-while-revalidate for HTML documents
+   - Network-first for API/content routes with cache fallback
+   - Background sync stub for offline form submissions
+   - Push notification stub for future study reminders
+   - Cache cleanup on activate (old versions purged)
+
+3. **Registered SW in 90+ pages** — Added to all HTML files:
+   - `<link rel="manifest" href="/manifest.json">`
+   - `theme-color`, `apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`
+   - Service worker registration script before `</body>`
+
+4. **Updated `scripts/build.js`** — manifest.json + sw.js now copied to public/
+
+5. **Build verified** — `npm run build` passes, manifest + sw present in public/
+
+### Notes
+- 8 content files (`nclex-emergency-drugs.html` etc.) are Markdown-like, not valid HTML — skipped PWA injection
+- These may need conversion to proper HTML format in future session
+- G7 status updated from 🔴 to 🟢 in standing gap tracker

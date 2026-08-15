@@ -41,6 +41,7 @@
 - [x] NGN Case Engine: 10 clinical judgment cases
 - [x] Quiz system: lab-values quiz live
 - [x] 12+ downloadable cheat sheets / quick references
+- [x] **PWA support** — manifest.json, service worker, offline cache (G7)
 
 ---
 
