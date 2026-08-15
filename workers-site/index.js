@@ -61,7 +61,7 @@ async function handleRequest(request, env, executionCtx) {
   }
 
   try {
-    const page = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx) }, options)
+    const page = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx), env }, options)
     
     // Allow CORS for assets
     const response = new Response(page.body, page)
@@ -74,7 +74,7 @@ async function handleRequest(request, env, executionCtx) {
     // Fallthrough, look for 404.html
     if (e.status === 404) {
       try {
-        let notFoundResponse = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx) }, {
+        let notFoundResponse = await getAssetFromKV({ request, waitUntil: executionCtx.waitUntil.bind(executionCtx), env }, {
           mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
         })
         return new Response(notFoundResponse.body, { ...notFoundResponse, status: 404 })
