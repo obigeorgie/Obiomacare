@@ -12,3 +12,7 @@ workers_dev = true
 
 [site]
 bucket = "./public"
+
+[[kv_namespaces]]
+binding = "readiness_sessions"
+id = "8d942c4cf31a442483e832d5a392ad1b"

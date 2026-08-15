@@ -1,6 +1,6 @@
 /**
  * Worker-native Readiness Assessment API — CAT-style adaptive engine
- * Test mode. Sessions stored in-memory (migrate to KV for production persistence).
+ * Production mode. Sessions stored in Cloudflare KV (persistent across isolates).
  *
  * Algorithm: IRT-lite
  * - Start ability θ = 0.5
@@ -15,8 +15,24 @@
  * - Results show estimate + confidence interval, not prediction
  */
 
-// ─── SESSION STORE (in-memory; migrate to KV for production) ───
-const sessions = new Map(); // sessionId → sessionState
+// ─── SESSION STORE (KV-backed for production persistence) ───
+// Sessions survive isolate changes, refreshes, and redeploys
+const SESSION_TTL_SECONDS = 3600; // 1 hour
+
+async function kvPutSession(env, sessionId, session) {
+  await env.readiness_sessions.put(sessionId, JSON.stringify(session), {
+    expirationTtl: SESSION_TTL_SECONDS,
+  });
+}
+
+async function kvGetSession(env, sessionId) {
+  const raw = await env.readiness_sessions.get(sessionId);
+  return raw ? JSON.parse(raw) : null;
+}
+
+async function kvDeleteSession(env, sessionId) {
+  await env.readiness_sessions.delete(sessionId);
+}
 
 // ─── ITEM BANK (seeded below; in production load from Firestore) ───
 // Populated by seedReadinessItems()
@@ -153,7 +169,7 @@ function seedReadinessItems() {
 itemBank = seedReadinessItems();
 
 // ─── SESSION MANAGEMENT ───
-function createSession(userTier, userEmail) {
+async function createSession(env, userTier, userEmail) {
   const sessionId = crypto.randomUUID();
   const session = {
     id: sessionId,
@@ -167,13 +183,15 @@ function createSession(userTier, userEmail) {
     terminationReason: null,
     currentItemIndex: 0,
     categoryCounts: {}, // category → count
+    // Response-data collection for difficulty calibration
+    responseData: [],
   };
-  sessions.set(sessionId, session);
+  await kvPutSession(env, sessionId, session);
   return session;
 }
 
-function getSession(sessionId) {
-  return sessions.get(sessionId);
+async function getSession(env, sessionId) {
+  return await kvGetSession(env, sessionId);
 }
 
 // ─── ITEM SELECTION ───
@@ -376,7 +394,7 @@ async function handleReadinessAnswer(request, env) {
   const body = await request.json().catch(() => ({}));
   const { sessionId, itemId, answerIndex, responseTimeMs } = body;
 
-  const session = getSession(sessionId);
+  const session = await getSession(env, sessionId);
   if (!session) {
     return jsonResponse({ error: 'Session not found' }, 404);
   }
@@ -398,8 +416,8 @@ async function handleReadinessAnswer(request, env) {
   const correct = answerIndex === item.correctIndex;
   const responseTime = responseTimeMs || (Date.now() - session.itemStartTime);
 
-  // Record response
-  session.items.push({
+  // Record response with calibration data
+  const responseRecord = {
     itemId: item.id,
     response: answerIndex,
     correct,
@@ -408,7 +426,10 @@ async function handleReadinessAnswer(request, env) {
     ncjmmStep: item.ncjmmStep,
     ngn: item.ngn,
     responseTime,
-  });
+    answeredAt: Date.now(),
+  };
+  session.items.push(responseRecord);
+  session.responseData.push(responseRecord);
 
   // Update ability estimate
   updateAbility(session, correct);
@@ -418,6 +439,9 @@ async function handleReadinessAnswer(request, env) {
   if (termCheck.should) {
     session.terminated = true;
     session.terminationReason = termCheck.reason;
+
+    // Save to KV before returning
+    await kvPutSession(env, session.id, session);
 
     // Calculate results
     const results = calculateResults(session);
@@ -434,6 +458,7 @@ async function handleReadinessAnswer(request, env) {
   if (!nextItem) {
     session.terminated = true;
     session.terminationReason = 'bank_exhausted';
+    await kvPutSession(env, session.id, session);
     return jsonResponse({
       completed: true,
       sessionId: session.id,
@@ -444,6 +469,9 @@ async function handleReadinessAnswer(request, env) {
   session.categoryCounts[nextItem.category] = (session.categoryCounts[nextItem.category] || 0) + 1;
   session.currentItemId = nextItem.id;
   session.itemStartTime = Date.now();
+
+  // Save to KV
+  await kvPutSession(env, session.id, session);
 
   return jsonResponse({
     completed: false,
