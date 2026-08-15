@@ -369,7 +369,7 @@ async function handleReadinessStart(request, env) {
   // Determine tier (fallback to free)
   const userTier = tier || 'free';
 
-  const session = createSession(userTier, email);
+  const session = await createSession(env, userTier, email);
   const item = selectNextItem(session);
 
   if (!item) {
@@ -380,6 +380,9 @@ async function handleReadinessStart(request, env) {
   session.categoryCounts[item.category] = (session.categoryCounts[item.category] || 0) + 1;
   session.currentItemId = item.id;
   session.itemStartTime = Date.now();
+
+  // Save to KV
+  await kvPutSession(env, session.id, session);
 
   return jsonResponse({
     sessionId: session.id,
@@ -488,7 +491,7 @@ async function handleReadinessResult(request, env) {
   const pathParts = url.pathname.split('/');
   const sessionId = pathParts[pathParts.length - 1];
 
-  const session = getSession(sessionId);
+  const session = await getSession(env, sessionId);
   if (!session) {
     return jsonResponse({ error: 'Session not found' }, 404);
   }
