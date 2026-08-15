@@ -10,6 +10,11 @@
     
     <link rel="canonical" href="https://obiomacare.com/" />
     <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Obioma">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
@@ -999,7 +1004,7 @@
         .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 900px; margin: 48px auto 0; }
         .pricing-card { background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 16px; padding: 40px 32px; position: relative; transition: transform 0.3s, border-color 0.3s; }
         .pricing-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
-        .pricing-popular { border-color: var(--coral); background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-coral-8) 100%); }
+        .pricing-popular { border-color: var(--coral); background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(255,107,91,0.08) 100%); }
         .pricing-popular:hover { border-color: var(--coral-light); }
         .pricing-badge { position: absolute; top: -12px; right: 24px; background: var(--coral); color: white; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
         .pricing-name { font-size: 20px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px; }
@@ -1388,7 +1393,7 @@
                 </div>
             </div>
             <div class="solution-content animate-on-scroll">
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-coral-10); border: 1px solid var(--color-coral-20); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,91,0.1); border: 1px solid rgba(255,107,91,0.2); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
                     <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
                 </div>
                 <h2>NGN Case Engine</h2>
@@ -1425,7 +1430,7 @@
                             </div>
                             <div style="font-size: 14px; color: var(--color-text-secondary); padding-left: 40px;">Why is morphine contraindicated in acute pancreatitis?</div>
                         </div>
-                        <div style="background: var(--color-coral-5); border-radius: 12px; padding: 16px; border: 1px solid var(--color-coral-10); margin-bottom: 16px;">
+                        <div style="background: rgba(255,107,91,0.05); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,107,91,0.1); margin-bottom: 16px;">
                             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
                                 <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-tertiary) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" class="icon icon-coral icon-sm" aria-label="AI"></i></div>
                                 <div style="font-size: 13px; color: var(--coral); font-weight: 600;">Obioma AI Tutor</div>
@@ -1443,7 +1448,7 @@
                 </div>
             </div>
             <div class="solution-content animate-on-scroll" style="direction: ltr;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--color-coral-10); border: 1px solid var(--color-coral-20); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,91,0.1); border: 1px solid rgba(255,107,91,0.2); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--coral); font-weight: 700; margin-bottom: 16px;">
                     <i data-lucide="check-circle" class="icon icon-coral icon-sm" aria-label="Shipped"></i> Live Now
                 </div>
                 <h2>AI Tutor</h2>
@@ -1599,11 +1604,11 @@
                     <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">Interactive Body Systems</h3>
                     <p style="color: var(--color-text-secondary);">Explore 5 major body systems in 3D. Click any organ to see anatomy, physiology, common diseases, and nursing priorities.</p>
                     <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px;">
-                        <span style="background: var(--color-coral-10); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Cardiovascular</span>
-                        <span style="background: var(--color-coral-10); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Respiratory</span>
-                        <span style="background: var(--color-coral-10); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Nervous</span>
-                        <span style="background: var(--color-coral-10); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Digestive</span>
-                        <span style="background: var(--color-coral-10); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Musculoskeletal</span>
+                        <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Cardiovascular</span>
+                        <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Respiratory</span>
+                        <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Nervous</span>
+                        <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Digestive</span>
+                        <span style="background: rgba(255,107,91,0.1); color: var(--coral); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600;">Musculoskeletal</span>
                     </div>
                 </div>
             </div>
@@ -1635,17 +1640,17 @@
         <div style="text-align: center; margin: 48px 0;">
             <div style="display: inline-flex; gap: 48px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px;">
                 <div style="text-align: center; padding: 24px; max-width: 200px;">
-                    <div style="font-size: 48px; margin-bottom: 12px; color: var(--coral);"><i data-lucide="gift" style="width:48px;height:48px;"></i></div>
+                    <div style="font-size: 48px; margin-bottom: 12px;">🆓</div>
                     <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Free Forever</div>
                     <div style="color: var(--color-text-muted); font-size: 14px;">Articles, references & limited quizzes</div>
                 </div>
                 <div style="text-align: center; padding: 24px; max-width: 200px;">
-                    <div style="font-size: 48px; margin-bottom: 12px; color: var(--coral);"><i data-lucide="graduation-cap" style="width:48px;height:48px;"></i></div>
+                    <div style="font-size: 48px; margin-bottom: 12px;">🎓</div>
                     <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Student Plans</div>
                     <div style="color: var(--color-text-muted); font-size: 14px;">Monthly or annual — cancel anytime</div>
                 </div>
                 <div style="text-align: center; padding: 24px; max-width: 200px;">
-                    <div style="font-size: 48px; margin-bottom: 12px; color: var(--coral);"><i data-lucide="crown" style="width:48px;height:48px;"></i></div>
+                    <div style="font-size: 48px; margin-bottom: 12px;">💎</div>
                     <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Lifetime</div>
                     <div style="color: var(--color-text-muted); font-size: 14px;">One-time purchase, all future updates</div>
                 </div>
@@ -2000,5 +2005,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('[PWA] SW registered:', registration.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] SW registration failed:', err);
+          });
+      });
+    }
+    </script>
 </body>
 </html>

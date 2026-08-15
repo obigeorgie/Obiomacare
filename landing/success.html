@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Purchase Confirmed — Obioma Care</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Obioma">
 <meta name="description" content="Thank you for your purchase! Your Clinical Judgment Mastery System is ready.">
 <link rel="canonical" href="https://obiomacare.com/success.html">
 
@@ -102,5 +107,20 @@ console.log('Purchase tracked:', { sessionId, tier, value });
     <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('[PWA] SW registered:', registration.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] SW registration failed:', err);
+          });
+      });
+    }
+    </script>
 </body>
 </html>

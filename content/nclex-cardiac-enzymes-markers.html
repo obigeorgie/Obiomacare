@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Obioma">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NCLEX Cardiac Enzymes & Markers: Troponin, BNP, CK-MB | Obioma Care</title>
     <meta name="description" content="Master NCLEX cardiac enzymes and biomarkers. Troponin, CK-MB, BNP, myoglobin — timing, interpretation, and differential diagnosis for MI, CHF, and PE.">
@@ -443,5 +448,20 @@
     <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('[PWA] SW registered:', registration.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] SW registration failed:', err);
+          });
+      });
+    }
+    </script>
 </body>
 </html>

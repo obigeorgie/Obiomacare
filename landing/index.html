@@ -10,6 +10,11 @@
     
     <link rel="canonical" href="https://obiomacare.com/" />
     <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Obioma">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
@@ -2000,5 +2005,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('[PWA] SW registered:', registration.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] SW registration failed:', err);
+          });
+      });
+    }
+    </script>
 </body>
 </html>

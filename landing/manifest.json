@@ -1,0 +1,54 @@
+{
+  "name": "Obioma Care — NCLEX Clinical Judgment",
+  "short_name": "Obioma",
+  "description": "NCLEX Next Gen prep that trains clinical judgment, not memorization. Case studies, study guides, and adaptive assessments.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "id": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "health", "medical"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Case Engine",
+      "short_name": "Cases",
+      "description": "Interactive NGN case studies",
+      "url": "/case-engine.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Study Guides",
+      "short_name": "Guides",
+      "description": "NCLEX study guides & cheat sheets",
+      "url": "/content/",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Readiness Check",
+      "short_name": "Check",
+      "description": "Adaptive readiness assessment",
+      "url": "/readiness.html",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

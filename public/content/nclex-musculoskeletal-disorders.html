@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0a1628">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Obioma">
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
 <script>
@@ -41,8 +46,7 @@ src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
 <meta name="twitter:title" content="NCLEX Musculoskeletal Disorders: Fractures, Arthritis, Joints | Obioma Care">
 <meta name="twitter:description" content="NCLEX musculoskeletal study guide: fractures, arthritis, joint replacements, osteoporosis, compartment syndrome. Nursing priorities and NCLEX traps.">
 <meta name="twitter:image" content="https://obiomacare.com/obioma-seo.png">
-  <link rel="stylesheet" href="/design-tokens/tokens.css">
-    <link rel="canonical" href="https://obiomacare.com/content/nclex-musculoskeletal-disorders.html">
+  <link rel="canonical" href="https://obiomacare.com/content/nclex-musculoskeletal-disorders.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -426,5 +430,20 @@ src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
     <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('[PWA] SW registered:', registration.scope);
+          })
+          .catch(function(err) {
+            console.warn('[PWA] SW registration failed:', err);
+          });
+      });
+    }
+    </script>
 </body>
 </html>
