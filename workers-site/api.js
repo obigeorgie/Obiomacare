@@ -6,6 +6,7 @@
 
 import { routeReadiness } from './api-readiness.js';
 import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
+import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 
 // ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
@@ -300,6 +301,24 @@ export async function routeApi(request, env) {
       case '/api/auth/logout':
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleLogout(request, env);
+
+      // ─── SPACED REPETITION ───
+      case '/api/sr/next':
+        if (request.method !== 'GET') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSRNext(request, env);
+      case '/api/sr/answer':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSRAnswer(request, env);
+      case '/api/sr/stats':
+        if (request.method !== 'GET') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSRStats(request, env);
+      case '/api/sr/add-card':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSRAddCard(request, env);
+      case '/api/sr/import-readiness':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleSRImportFromReadiness(request, env);
+
       default:
         // Try readiness routes
         const readinessResponse = await routeReadiness(request, env);
