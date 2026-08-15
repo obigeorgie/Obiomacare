@@ -62,7 +62,8 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 | 10 | **Post-deploy smoke test = full nav/footer link crawl** | Custom domain, not just routes that changed |
 | 11 | **No ✅ without a production-verifiable artifact** | "Code-complete in test mode" ≠ "complete". Commit hash travels IN deploy message |
 | 12 | **Payment/live keys are NEVER agent-installed** | Owner installs into Worker environment directly, by hand, at deliberate go-live only |
-| 12a | **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. STOP and get explicit human approval |
+| 13 | **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. STOP and get explicit human approval |
+| 14 | **No status report may claim committed/built/complete while `git log origin/main..HEAD` is non-empty** | Before every report: run `git status` and `git log origin/main..HEAD --oneline`; paste the output. Unpushed commits = work not done. |
 | — | **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
 | — | **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
 

@@ -84,6 +84,7 @@
 | In-memory delivery tokens | Low | Lost on deploy; low impact for digital downloads |
 | No automated tests | Low | Manual testing only; stable for 2+ weeks |
 | Express API not on Worker | Medium | API endpoints (`/api/*`, `/tutor/*`) return 404 from Worker. Needs separate architecture decision. |
+| 8 content files are Markdown, not valid HTML | Medium | `nclex-emergency-drugs`, `nclex-fluids-electrolytes-deep-dive`, `nclex-mechanical-ventilation`, `nclex-ob-labor-stages`, `nclex-pediatric-milestones`, `nclex-prioritization-frameworks`, `nclex-trauma-nursing`, `nclex-wound-care-pressure-injuries` — missing `<!DOCTYPE html>`, PWA meta not injected. Convert to proper HTML format. |
 
 ---
 
