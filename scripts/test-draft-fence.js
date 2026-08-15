@@ -22,11 +22,11 @@ async function startAssessment() {
   return res.json();
 }
 
-async function answerQuestion(sessionId, questionId, answerIndex) {
+async function answerQuestion(sessionId, itemId, answerIndex) {
   const res = await fetch(`${API_BASE}/api/readiness/answer`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sessionId, questionId, answerIndex }),
+    body: JSON.stringify({ sessionId, itemId, answerIndex }),
   });
   return res.json();
 }
@@ -41,15 +41,15 @@ async function runTrial(trialNum) {
   const itemsSeen = [];
   let current = start;
 
-  // Answer up to 10 questions or until done
-  for (let i = 0; i < 10; i++) {
+  // Answer up to 5 questions or until done (faster for bulk testing)
+  for (let i = 0; i < 5; i++) {
     if (current.done) break;
-    if (!current.question) break;
+    if (!current.item) break;
 
-    itemsSeen.push(current.question.id);
+    itemsSeen.push(current.item.id);
 
     // Always answer index 0 (random would also work)
-    current = await answerQuestion(start.sessionId, current.question.id, 0);
+    current = await answerQuestion(start.sessionId, current.item.id, 0);
   }
 
   return { draftSeen: false, itemsSeen };
