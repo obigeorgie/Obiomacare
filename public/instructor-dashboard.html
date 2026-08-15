@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Dashboard — ObiomaCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f0f1a;
+      color: #e2e2e8;
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #2a2a3e;
+    }
+    .logo a {
+      color: #8b5cf6;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 20px;
+    }
+    .nav-links a:hover { color: #e2e2e8; }
+
+    h1 { font-size: 24px; margin-bottom: 24px; }
+    h2 { font-size: 16px; color: #b4b4c0; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card h3 {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .big-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: #e2e2e8;
+    }
+    .big-number.good { color: #34d399; }
+    .big-number.warn { color: #fbbf24; }
+    .big-number.bad { color: #f87171; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover { background: #4338ca; }
+    .btn-small { padding: 6px 14px; font-size: 13px; }
+    .btn-secondary { background: #2a2a3e; color: #e2e2e8; }
+    .btn-secondary:hover { background: #3a3a4e; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #2a2a3e; }
+    th { color: #888; font-weight: 500; font-size: 12px; text-transform: uppercase; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .code-pill {
+      background: #2a2a3e;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #8b5cf6;
+    }
+
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-size: 13px; color: #888; margin-bottom: 6px; }
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px 12px;
+      background: #0f0f1a;
+      border: 1px solid #2a2a3e;
+      border-radius: 8px;
+      color: #e2e2e8;
+      font-size: 14px;
+    }
+    input:focus, select:focus { outline: none; border-color: #8b5cf6; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-overlay.visible { display: flex; }
+    .modal {
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 16px;
+      padding: 28px;
+      width: 90%;
+      max-width: 480px;
+    }
+    .modal h3 { margin-bottom: 16px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .topic-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .topic-name { width: 140px; font-size: 13px; color: #b4b4c0; }
+    .topic-track {
+      flex: 1;
+      height: 8px;
+      background: #2a2a3e;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .topic-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+    .topic-fill.good { background: #34d399; }
+    .topic-fill.warn { background: #fbbf24; }
+    .topic-fill.bad { background: #f87171; }
+    .topic-pct { width: 40px; text-align: right; font-size: 13px; }
+
+    .loading { text-align: center; padding: 60px; color: #666; }
+    .error { text-align: center; padding: 60px; color: #f87171; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo"><a href="/">ObiomaCare</a></div>
+      <nav class="nav-links">
+        <a href="/account">Account</a>
+        <a href="/" id="logoutLink">Log Out</a>
+      </nav>
+    </header>
+
+    <div id="app">
+      <div class="loading">Loading dashboard...</div>
+    </div>
+  </div>
+
+  <!-- Create Cohort Modal -->
+  <div class="modal-overlay" id="createModal">
+    <div class="modal">
+      <h3>Create New Cohort</h3>
+      <div class="form-group">
+        <label>Cohort Name</label>
+        <input type="text" id="cohortName" placeholder="e.g., Fall 2026 NCLEX Prep">
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="createCohort()">Create Cohort</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const app = document.getElementById('app');
+    let cohorts = [];
+    let selectedCohort = null;
+
+    async function init() {
+      const authRes = await fetch('/api/auth/me');
+      if (authRes.status === 401) {
+        app.innerHTML = '<div class="error">Please <a href="/login" style="color:#8b5cf6">log in</a> to access the instructor dashboard.</div>';
+        return;
+      }
+
+      const { user } = await authRes.json();
+      if (user.tier !== 'institutional_instructor') {
+        app.innerHTML = '<div class="error">This dashboard is for institutional instructors only. <a href="/pricing" style="color:#8b5cf6">View plans</a></div>';
+        return;
+      }
+
+      loadDashboard();
+    }
+
+    async function loadDashboard() {
+      try {
+        const res = await fetch('/api/institution/cohorts');
+        const data = await res.json();
+        cohorts = data.cohorts || [];
+        renderDashboard();
+      } catch (err) {
+        app.innerHTML = `<div class="error">${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    function renderDashboard() {
+      if (cohorts.length === 0) {
+        app.innerHTML = `
+          <h1>Instructor Dashboard</h1>
+          <div class="empty-state">
+            <p style="font-size:18px;margin-bottom:12px">No cohorts yet</p>
+            <p style="margin-bottom:24px">Create your first cohort to start tracking student progress.</p>
+            <button class="btn" onclick="openModal()">+ Create Cohort</button>
+          </div>
+        `;
+        return;
+      }
+
+      const selected = selectedCohort || cohorts[0];
+
+      app.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+          <h1>Instructor Dashboard</h1>
+          <button class="btn" onclick="openModal()">+ New Cohort</button>
+        </div>
+
+        <div class="grid">
+          <!-- Cohort List -->
+          <div class="card">
+            <h3>Your Cohorts</h3>
+            <table>
+              <thead><tr><th>Name</th><th>Code</th><th>Students</th></tr></thead>
+              <tbody>
+                ${cohorts.map(c => `
+                  <tr style="cursor:pointer;${selected.id === c.id ? 'background:rgba(139,92,246,0.1)' : ''}"
+                      onclick="selectCohort('${c.id}')">
+                    <td><strong>${escapeHtml(c.name)}</strong></td>
+                    <td><span class="code-pill">${c.code}</span></td>
+                    <td>${c.studentCount}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            <p style="margin-top:12px;font-size:12px;color:#666">Students join with the 6-character code.</p>
+          </div>
+
+          <!-- Cohort Detail -->
+          <div class="card" id="cohortDetail">
+            ${renderCohortDetail(selected)}
+          </div>
+        </div>
+      `;
+
+      // Load full cohort data for analytics
+      loadCohortDetail(selected.id);
+    }
+
+    function renderCohortDetail(cohort) {
+      return `
+        <h3>${escapeHtml(cohort.name)}</h3>
+        <div style="margin-bottom:16px">
+          <span class="code-pill">${cohort.code}</span>
+          <span style="color:#666;margin-left:8px;font-size:13px">Share this code with students</span>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div class="big-number">${cohort.studentCount || 0}</div>
+            <div style="font-size:12px;color:#888">Students</div>
+          </div>
+          <div>
+            <div class="big-number" id="avgScore">—</div>
+            <div style="font-size:12px;color:#888">Avg Score</div>
+          </div>
+        </div>
+        <div id="analyticsContent" style="margin-top:16px">
+          <p style="color:#666;font-size:13px">Loading analytics...</p>
+        </div>
+      `;
+    }
+
+    async function loadCohortDetail(cohortId) {
+      try {
+        const res = await fetch(`/api/institution/cohort/${cohortId}`);
+        const data = await res.json();
+        if (!data.cohort) return;
+
+        const analytics = data.cohort.analytics || {};
+        const avgScore = analytics.avgScore;
+        const weakTopics = analytics.weakTopics || [];
+        const strongTopics = analytics.strongTopics || [];
+
+        const avgEl = document.getElementById('avgScore');
+        if (avgEl && avgScore !== undefined) {
+          avgEl.textContent = Math.round(avgScore * 100) + '%';
+          avgEl.className = 'big-number ' + (avgScore >= 0.8 ? 'good' : avgScore >= 0.6 ? 'warn' : 'bad');
+        }
+
+        const content = document.getElementById('analyticsContent');
+        if (content) {
+          if (weakTopics.length === 0 && strongTopics.length === 0) {
+            content.innerHTML = '<p style="color:#666;font-size:13px">No assessment data yet. Students will appear here after completing readiness assessments.</p>';
+          } else {
+            content.innerHTML = `
+              ${weakTopics.length > 0 ? `
+                <h3 style="color:#f87171;margin:16px 0 8px">⚠️ Weak Topics</h3>
+                ${weakTopics.map(t => renderTopicBar(t.topic, t.avg)).join('')}
+              ` : ''}
+              ${strongTopics.length > 0 ? `
+                <h3 style="color:#34d399;margin:16px 0 8px">✅ Strong Topics</h3>
+                ${strongTopics.slice(0, 5).map(t => renderTopicBar(t.topic, t.avg)).join('')}
+              ` : ''}
+            `;
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load cohort detail:', err);
+      }
+    }
+
+    function renderTopicBar(topic, avg) {
+      const pct = Math.round(avg * 100);
+      const cls = pct >= 85 ? 'good' : pct >= 60 ? 'warn' : 'bad';
+      return `
+        <div class="topic-bar">
+          <span class="topic-name">${escapeHtml(topic.replace(/_/g, ' '))}</span>
+          <div class="topic-track"><div class="topic-fill ${cls}" style="width:${pct}%"></div></div>
+          <span class="topic-pct ${cls}" style="color:${cls === 'good' ? '#34d399' : cls === 'warn' ? '#fbbf24' : '#f87171'}">${pct}%</span>
+        </div>
+      `;
+    }
+
+    function selectCohort(id) {
+      selectedCohort = cohorts.find(c => c.id === id);
+      renderDashboard();
+    }
+
+    function openModal() {
+      document.getElementById('createModal').classList.add('visible');
+      document.getElementById('cohortName').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('createModal').classList.remove('visible');
+      document.getElementById('cohortName').value = '';
+    }
+
+    async function createCohort() {
+      const name = document.getElementById('cohortName').value.trim();
+      if (!name) return;
+
+      try {
+        const res = await fetch('/api/institution/cohorts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          closeModal();
+          loadDashboard();
+        } else {
+          alert(data.error || 'Failed to create cohort');
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    document.getElementById('logoutLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      fetch('/api/auth/logout', { method: 'POST' }).then(() => window.location.href = '/');
+    });
+
+    // Close modal on backdrop click
+    document.getElementById('createModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('createModal')) closeModal();
+    });
+
+    init();
+  </script>
+</body>
+</html>

@@ -7,6 +7,7 @@
 import { routeReadiness } from './api-readiness.js';
 import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
+import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
 
 // ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
@@ -319,7 +320,31 @@ export async function routeApi(request, env) {
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleSRImportFromReadiness(request, env);
 
+      // ─── INSTITUTIONAL DASHBOARD ───
+      case '/api/institution/cohorts':
+        if (request.method === 'GET') return await handleListCohorts(request, env);
+        if (request.method === 'POST') return await handleCreateCohort(request, env);
+        return jsonResponse({ error: 'Method not allowed' }, 405);
+      case '/api/institution/join':
+        if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleJoinCohort(request, env);
+
       default:
+        // Institution sub-routes with path params
+        if (path.startsWith('/api/institution/cohort/')) {
+          if (path.endsWith('/assign') && request.method === 'POST') {
+            return await handleAssignContent(request, env);
+          }
+          if (request.method === 'GET') {
+            return await handleGetCohort(request, env);
+          }
+          return jsonResponse({ error: 'Method not allowed' }, 405);
+        }
+        if (path.startsWith('/api/institution/analytics/')) {
+          if (request.method === 'POST') return await handleSubmitAnalytics(request, env);
+          return jsonResponse({ error: 'Method not allowed' }, 405);
+        }
+
         // Try readiness routes
         const readinessResponse = await routeReadiness(request, env);
         if (readinessResponse) return readinessResponse;
