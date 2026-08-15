@@ -386,7 +386,7 @@
           <!-- Rendered by JS -->
         </table>
       </div>
-      <p class="source-note">Prices verified from competitor websites on 2026-08-14. Subject to change.</p>
+      <p class="source-note">Prices checked 2026-08-15. UWorld: nursing.uworld.com/nclex-rn (30-day $139, 90-day $229–$329, 180-day $329–$439). Archer: archerreview.com/nclex-rn (Sure Pass 1-mo $159, 6-mo $209; Intense PREP to $599). Kaplan: kaptest.com (Self-Paced $399, Live Online $599, In-Person $699). ATI: atitesting.com ($200–$500). All competitors offer NGN content — UWorld 500+ items, Archer 1,100+ incl. case studies. Subject to change; verify before purchase.</p>
     </div>
   </section>
 
@@ -506,10 +506,15 @@
     };
 
     const COMPETITORS = [
-      { name: 'UWorld', price: '$369–$499', ngn: false, cases: false, ai: false, anatomy: false, sr: false },
-      { name: 'Kaplan', price: '$399–$599', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
-      { name: 'ATI', price: '$500+', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
-      { name: 'Archer', price: '$89–$199', ngn: false, cases: false, ai: false, anatomy: false, sr: false },
+      // Sources (pricing checked 2026-08-15):
+      // UWorld: nursing.uworld.com/nclex-rn — 30-day $139, 90-day $249–$329, 180-day $329–$439. NGN: 500+ items incl. case studies (source: uworld.com, studybuddy.live).
+      // Archer: archerreview.com — Sure Pass 1-mo $159 (sale $189), 2-mo $169, 3-mo $189, 6-mo $209. Intense PREP up to $599. NGN: 1,100+ incl. 175+ standalone & 63+ unfolding case studies (source: archerreview.com, nurselicenseguide.com).
+      // Kaplan: kaptest.com — Self-Paced $399, Live Online $599, In-Person $699 (source: nurselicenseguide.com).
+      // ATI: atitesting.com — Basic $200–300, Virtual-ATI $400–500 (source: nurselicenseguide.com).
+      { name: 'UWorld', price: '$139–$439', ngn: true, cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'Kaplan', price: '$399–$699', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'ATI', price: '$200–$500', ngn: 'partial', cases: false, ai: false, anatomy: false, sr: false },
+      { name: 'Archer', price: '$159–$229', ngn: true, cases: false, ai: false, anatomy: false, sr: false },
       { name: 'Obioma', price: '$19/mo', ngn: true, cases: true, ai: true, anatomy: true, sr: true, isUs: true },
     ];
 

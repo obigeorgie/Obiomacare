@@ -59,7 +59,7 @@
           "brand": {"@id": "https://obiomacare.com/#organization"},
           "offers": {
             "@type": "Offer",
-            "url": "https://obiomacare.com/#pricing",
+            "url": "https://obiomacare.com/pricing",
             "price": "47.00",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
@@ -1064,7 +1064,7 @@
                 <a href="/quiz/">Quizzes</a>
                 <a href="/content/">Blog</a>
                 <a href="/free-nclex-checklist">Free Checklist</a>
-                <a href="#pricing" class="btn btn-primary">Get Started</a>
+                <a href="/pricing" class="btn btn-primary">Get Started</a>
             </nav>
         </div>
     </div>
@@ -1626,85 +1626,32 @@
     </div>
 </section>
 
-<!-- Pricing -->
+<!-- Pricing Teaser -->
 <section class="section" id="pricing">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">Choose Your Path</h2>
-        <p class="section-subtitle animate-on-scroll">One-time investment. Lifetime access. No subscriptions.</p>
+        <h2 class="section-title animate-on-scroll">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle animate-on-scroll">Start free. Upgrade when you're ready. No hidden fees.</p>
         
-        <div class="pricing-grid">
-            <div class="pricing-card animate-on-scroll">
-                <div class="pricing-name">Core System</div>
-                <div class="pricing-price">$47</div>
-                <div class="pricing-desc">Everything you need to master clinical judgment</div>
-                <ul class="pricing-features">
-                    <li>NGN Clinical Judgment Framework PDF</li>
-                    <li>Prioritization Decision Trees</li>
-                    <li>Clinical Cheat Sheets</li>
-                    <li>Clinical Day Planner</li>
-                    <li>Lifetime updates</li>
-                </ul>
-                <button class="btn btn-secondary btn-large" onclick="buyNow('core')" style="width: 100%;">Get Core — $47</button>
+        <div style="text-align: center; margin: 48px 0;">
+            <div style="display: inline-flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px;">
+                <div style="text-align: center; padding: 24px;">
+                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">Free</div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">10 questions/day</div>
+                </div>
+                <div style="text-align: center; padding: 24px;">
+                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">$19<span style="font-size: 18px;">/mo</span></div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">Student Monthly</div>
+                </div>
+                <div style="text-align: center; padding: 24px;">
+                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">$99<span style="font-size: 18px;">/yr</span></div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">Student Annual</div>
+                </div>
             </div>
-            
-            <div class="pricing-card pricing-popular animate-on-scroll">
-                <div class="pricing-badge">Best Value</div>
-                <div class="pricing-name">Complete Mastery</div>
-                <div class="pricing-price">$67</div>
-                <div class="pricing-desc">Full system + video walkthroughs + case studies</div>
-                <ul class="pricing-features">
-                    <li>Everything in Core</li>
-                    <li>Real Case Walkthroughs PDF</li>
-                    <li>SBAR Templates</li>
-                    <li>First-Year Survival Guide</li>
-                    <li>5 Video Walkthroughs (MP4)</li>
-                    <li>Video Scripts & Study Guides</li>
-                    <li>Lifetime updates</li>
-                </ul>
-                <button class="btn btn-primary btn-large" onclick="buyNow('complete')" style="width: 100%;">Get Complete — $67</button>
-            </div>
+            <a href="/pricing" class="btn btn-primary btn-large">See Full Pricing & Compare</a>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--color-text-muted);">14-day free trial • Cancel anytime • No credit card required for free tier</p>
         </div>
-        
-        <p style="text-align: center; margin-top: 32px; font-size: 14px; color: var(--color-text-muted);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Secure Stripe checkout. Instant delivery. 30-day money-back guarantee.
-        </p>
     </div>
 </section>
-
-<script>
-async function buyNow(tier) {
-    const product = { id: tier, name: tier === 'core' ? 'Core System' : 'Complete Mastery', price: tier === 'core' ? 47 : 67 };
-    
-    // Track add_to_cart before checkout
-    if (window.ObiomaAnalytics) {
-        window.ObiomaAnalytics.trackAddToCart(product);
-    } else {
-        if (typeof gtag !== 'undefined') gtag('event', 'add_to_cart', { currency: 'USD', value: product.price, items: [{ item_id: product.id, item_name: product.name, price: product.price }] });
-        if (typeof fbq !== 'undefined') fbq('track', 'AddToCart', { content_ids: [product.id], content_type: 'product', value: product.price, currency: 'USD' });
-    }
-    
-    if (typeof gtag !== 'undefined') gtag('event', 'begin_checkout', { currency: 'USD', value: tier === 'core' ? 47 : 67, items: [{ item_id: tier, item_name: tier === 'core' ? 'Core System' : 'Complete Mastery' }] });
-    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_ids: [tier], content_type: 'product', value: tier === 'core' ? 47 : 67, currency: 'USD' });
-    
-    try {
-        const body = window.ObiomaAnalytics 
-            ? window.ObiomaAnalytics.withUTM({ tier, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' })
-            : { tier, abTest: window.__abTestVariant || 'A', abTestName: window.__abTestName || '' };
-        const res = await fetch('/api/create-checkout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
-        const data = await res.json();
-        if (data.url) window.location.href = data.url;
-        else alert('Checkout failed. Please try again.');
-    } catch (e) {
-        console.error(e);
-        alert('Checkout failed. Please try again.');
-    }
-}
-</script>
 
 <!-- Blog Preview -->
 <section class="section section-alt">

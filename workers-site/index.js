@@ -1,4 +1,5 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
+import { routeApi } from './api.js'
 
 /**
  * The DEBUG flag will do two things:
@@ -25,6 +26,14 @@ addEventListener('fetch', event => {
 async function handleEvent(event) {
   const url = new URL(event.request.url)
   let options = {}
+
+  /**
+   * API routes — handled before static assets
+   */
+  if (url.pathname.startsWith('/api/')) {
+    const apiResponse = await routeApi(event.request, event.env || {})
+    if (apiResponse) return apiResponse
+  }
 
   /**
    * Redirects for retired app routes (Vercel app pages, now static site)
