@@ -1,106 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Purchase Confirmed — Obioma Care</title>
-<meta name="description" content="Thank you for your purchase! Your Clinical Judgment Mastery System is ready.">
-<link rel="canonical" href="https://obiomacare.com/success.html">
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-922HP9B76M', { send_page_view: true, cookie_flags: 'SameSite=None;Secure' });
-</script>
-
-<!-- Facebook Pixel -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1045171501242922');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
-/></noscript>
-
-<style>
-:root{--navy:#1a365d;--coral:#c53030;--bg:#fffaf0;--text:#374151;}
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:40px 20px;display:flex;align-items:center;justify-content:center;min-height:100vh;}
-.container{max-width:600px;width:100%;background:#fff;padding:48px;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);text-align:center;}
-h1{color:var(--navy);font-size:1.75rem;margin-bottom:12px;}
-.check{font-size:4rem;margin-bottom:16px;}
-.subtitle{color:#718096;margin-bottom:32px;font-size:1.05rem;}
-.btn{display:inline-block;background:var(--coral);color:#fff;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem;margin:8px;}
-.btn-secondary{background:var(--navy);}
-.note{background:#fef3c7;padding:16px;border-radius:8px;margin-top:24px;font-size:0.9rem;color:#92400e;}
-footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--color-text-primary);color:#718096;font-size:0.875rem;}
-</style>
-  <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to ObiomaCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f0f1a;
+      color: #e2e2e8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .container { max-width: 480px; padding: 24px; }
+    .check {
+      width: 64px;
+      height: 64px;
+      background: #34d399;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 32px;
+    }
+    h1 { font-size: 28px; margin-bottom: 12px; }
+    p { color: #888; font-size: 16px; line-height: 1.6; margin-bottom: 8px; }
+    .tier-name {
+      display: inline-block;
+      background: #8b5cf6;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 8px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-top: 24px;
+    }
+    .btn:hover { background: #4338ca; }
+    .features {
+      text-align: left;
+      background: #1a1a2e;
+      border: 1px solid #2a2a3e;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .features h3 { font-size: 14px; margin-bottom: 12px; color: #b4b4c0; }
+    .features li { list-style: none; padding: 6px 0; color: #888; font-size: 14px; }
+    .features li::before { content: "✓ "; color: #34d399; }
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="check"><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i></div>
-  <h1>You're In!</h1>
-  <p class="subtitle">Your Clinical Judgment Mastery System is being prepared. Check your email in the next 2 minutes for your download link.</p>
+  <div class="container">
+    <div class="check">✓</div>
+    <h1>Welcome to ObiomaCare</h1>
+    <p>Your subscription is active.</p>
+    <div id="tierBadge" class="tier-name">Loading...</div>
+    <p id="message">Redirecting you to your account...</p>
+    <a href="/account" class="btn">Go to My Account</a>
 
-  <a href="/" class="btn btn-secondary">← Back to Homepage</a>
-  <a href="https://obiomacare.com/content/nclex-clinical-judgment-framework.html" class="btn">Start Reading the Framework →</a>
-
-  <div class="note">
-    <i data-lucide="mail" class="icon icon-coral icon-md" aria-label="Email"></i> <strong>Didn't get the email?</strong> Check your spam/promotions folder. Still nothing? Email <a href="mailto:admin@obiomacare.com">admin@obiomacare.com</a> and I'll resend it manually.
+    <div class="features" id="features">
+      <h3>What's included</h3>
+      <ul id="featureList">
+        <li>Loading...</li>
+      </ul>
+    </div>
   </div>
 
-  <footer>
-    <p>Questions? Just reply to your delivery email — I read every one.</p>
-    <p>— Nnamdi Okorafor, RN · <a href="/">Obioma Care</a></p>
-  </footer>
-</div>
+  <script>
+    const TIER_FEATURES = {
+      student_monthly: [
+        'Unlimited readiness assessments',
+        'Spaced repetition flashcards',
+        'Progress sync across devices',
+        'Printable study PDFs',
+        '5 AI tutor credits',
+        'Priority email support',
+        'Cancel anytime',
+      ],
+      student_annual: [
+        'Unlimited readiness assessments',
+        'Spaced repetition flashcards',
+        'Progress sync across devices',
+        'Printable study PDFs',
+        '5 AI tutor credits',
+        'Priority email support',
+        '14-day free trial',
+        'Save 35% vs monthly',
+      ],
+      lifetime: [
+        'Lifetime access — pay once',
+        'Unlimited readiness assessments',
+        'Spaced repetition flashcards',
+        'Progress sync across devices',
+        'Printable study PDFs',
+        'Unlimited AI tutor credits',
+        'Priority email support',
+        'All future updates included',
+      ],
+    };
 
-<script>
-// Parse URL params for purchase tracking
-const params = new URLSearchParams(window.location.search);
-const sessionId = params.get('session_id');
-const tier = params.get('tier') || 'core';
-const value = tier === 'complete' ? 67 : 47;
+    async function init() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      const tier = params.get('tier');
 
-// Fire GA4 purchase event
-gtag('event', 'purchase', {
-  transaction_id: sessionId || 'unknown',
-  value: value,
-  currency: 'USD',
-  items: [{
-    item_id: tier,
-    item_name: tier === 'complete' ? 'Clinical Judgment Complete Mastery' : 'Clinical Judgment Core System',
-    item_category: 'Digital Product',
-    quantity: 1,
-    price: value
-  }]
-});
+      // Display tier
+      const tierBadge = document.getElementById('tierBadge');
+      const tierNames = {
+        student_monthly: 'Student Monthly',
+        student_annual: 'Student Annual',
+        lifetime: 'Lifetime',
+      };
 
-// Fire Facebook Purchase event
-fbq('track', 'Purchase', {
-  content_ids: [tier],
-  content_type: 'product',
-  value: value,
-  currency: 'USD'
-});
+      if (tier && tierNames[tier]) {
+        tierBadge.textContent = tierNames[tier];
+        const features = TIER_FEATURES[tier] || TIER_FEATURES.student_monthly;
+        document.getElementById('featureList').innerHTML = features.map(f => `<li>${f}</li>`).join('');
+      } else if (params.get('test_mode')) {
+        tierBadge.textContent = 'Test Mode';
+        document.getElementById('message').textContent = 'This was a test checkout — no charge was made.';
+      } else {
+        tierBadge.textContent = 'Active';
+      }
 
-console.log('Purchase tracked:', { sessionId, tier, value });
-</script>
+      // If session_id exists, verify with backend
+      if (sessionId) {
+        try {
+          const res = await fetch(`/api/verify-checkout?session_id=${sessionId}`);
+          const data = await res.json();
+          if (data.tier) {
+            tierBadge.textContent = tierNames[data.tier] || data.tier;
+          }
+        } catch (e) {
+          console.log('Session verification skipped');
+        }
+      }
+    }
 
-    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+    init();
+  </script>
 </body>
 </html>

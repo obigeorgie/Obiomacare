@@ -9,6 +9,14 @@ import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, hand
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
 
+// Env helper (service worker globals fallback)
+function getEnvVar(env, name) {
+  if (env && env[name]) return env[name];
+  try { return globalThis[name]; } catch { }
+  try { return self[name]; } catch { }
+  return undefined;
+}
+
 // ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
   FREE: 'free',
@@ -19,28 +27,28 @@ const TIER = {
   INSTITUTIONAL_STUDENT: 'institutional_student',
 };
 
-// ─── PLAN DEFINITIONS — synced from config/pricing.js ───
+// ─── PLAN DEFINITIONS — synced from config/pricing.js + Stripe live prices ───
 const PLANS = {
   [TIER.STUDENT_MONTHLY]: {
     name: 'Student Monthly',
     price: 19,
     interval: 'month',
     trialDays: 7,
-    stripePriceId: null, // Set via env for live mode
+    stripePriceId: 'price_1TwfUHJQl5hjYpdcEQGcfZRk',
   },
   [TIER.STUDENT_ANNUAL]: {
     name: 'Student Annual',
-    price: 99,
+    price: 149,
     interval: 'year',
     trialDays: 14,
-    stripePriceId: null,
+    stripePriceId: 'price_1TwfUIJQl5hjYpdcSaOfSMpG',
   },
   [TIER.LIFETIME]: {
     name: 'Lifetime',
     price: 47,
     interval: 'once',
     trialDays: 0,
-    stripePriceId: null,
+    stripePriceId: 'price_1TwJ5MJQl5hjYpdc5z5vTSwg',
   },
 };
 
@@ -98,20 +106,25 @@ async function stripeRequest(path, opts = {}, stripeKey) {
 
 // ─── ROUTE HANDLERS ───
 
-async function handleUserTier(request) {
+async function handleUserTier(request, env) {
   const url = new URL(request.url);
   const email = url.searchParams.get('email');
-  const uid = url.searchParams.get('uid');
 
-  // For now, return free tier (no Firestore in Worker)
-  const tier = TIER.FREE;
+  // Look up user in KV
+  let user = null;
+  if (email && env.users) {
+    const data = await env.users.get(`user:${email.toLowerCase()}`);
+    if (data) user = JSON.parse(data);
+  }
+
+  const tier = user?.tier || TIER.FREE;
 
   return jsonResponse({
     tier,
-    subscriptionStatus: 'active',
+    subscriptionStatus: user?.subscriptionStatus || 'active',
+    stripeCustomerId: user?.stripeCustomerId || null,
     features: getEntitlements(tier),
     hasAccess: (feature) => hasAccess(tier, feature),
-    _note: 'Worker-native API. User lookup via Firestore not yet wired.',
   });
 }
 
@@ -129,7 +142,7 @@ async function handleCreateCheckout(request, env) {
   }
 
   // Test mode: return mock checkout URL
-  if (!plan.stripePriceId || !env.STRIPE_SECRET_KEY) {
+  if (!plan.stripePriceId || !getEnvVar(env, 'STRIPE_SECRET_KEY')) {
     const baseUrl = successUrl || 'https://obiomacare.com';
     return jsonResponse({
       url: `${baseUrl}/success?test_mode=1&tier=${tier}&email=${encodeURIComponent(email || '')}`,
@@ -160,7 +173,7 @@ async function handleCreateCheckout(request, env) {
     const session = await stripeRequest('/checkout/sessions', {
       method: 'POST',
       body: params.toString(),
-    }, env.STRIPE_SECRET_KEY);
+    }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
 
     return jsonResponse({ url: session.url });
   } catch (err) {
@@ -176,14 +189,6 @@ async function handlePortal(request, env) {
     return jsonResponse({ error: 'customerId required' }, 400);
   }
 
-  if (!env.STRIPE_SECRET_KEY) {
-    return jsonResponse({
-      url: 'https://obiomacare.com/account',
-      testMode: true,
-      message: 'Stripe test mode — no portal available.',
-    });
-  }
-
   try {
     const params = new URLSearchParams();
     params.append('customer', customerId);
@@ -192,7 +197,7 @@ async function handlePortal(request, env) {
     const session = await stripeRequest('/billing_portal/sessions', {
       method: 'POST',
       body: params.toString(),
-    }, env.STRIPE_SECRET_KEY);
+    }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
 
     return jsonResponse({ url: session.url });
   } catch (err) {
@@ -203,6 +208,15 @@ async function handlePortal(request, env) {
 async function handleWebhook(request, env) {
   const payload = await request.text();
   const signature = request.headers.get('stripe-signature');
+  const secret = env.STRIPE_WEBHOOK_SECRET;
+
+  // Verify signature if secret is configured
+  if (secret && signature) {
+    const isValid = await verifyStripeSignature(payload, signature, secret);
+    if (!isValid) {
+      return jsonResponse({ error: 'Invalid signature' }, 400);
+    }
+  }
 
   let event;
   try {
@@ -218,15 +232,77 @@ async function handleWebhook(request, env) {
       const session = event.data.object;
       const tier = session.metadata?.tier;
       const email = session.customer_email || session.customer_details?.email;
-      console.log(`[Webhook] Subscription created: ${tier} for ${email}`);
+      const customerId = session.customer;
+
+      if (email && tier) {
+        // Update user in KV
+        const userKey = `user:${email.toLowerCase()}`;
+        let user = null;
+        if (env.users) {
+          const data = await env.users.get(userKey);
+          if (data) user = JSON.parse(data);
+        }
+
+        if (!user) {
+          user = { email, tier: TIER.FREE, createdAt: Date.now() };
+        }
+
+        user.tier = tier;
+        user.stripeCustomerId = customerId;
+        user.subscriptionStatus = 'active';
+        user.lastPaymentAt = Date.now();
+        user.updatedAt = Date.now();
+
+        if (env.users) {
+          await env.users.put(userKey, JSON.stringify(user));
+        }
+        console.log(`[Webhook] Upgraded ${email} to ${tier}`);
+      }
       break;
     }
     case 'invoice.payment_failed': {
-      console.log(`[Webhook] Payment failed: ${event.data.object.subscription}`);
+      const invoice = event.data.object;
+      const customerId = invoice.customer;
+      // Find user by customerId and mark payment failed
+      if (env.users && customerId) {
+        const { keys } = await env.users.list({ prefix: 'user:' });
+        for (const key of keys) {
+          const data = await env.users.get(key.name);
+          if (data) {
+            const user = JSON.parse(data);
+            if (user.stripeCustomerId === customerId) {
+              user.subscriptionStatus = 'past_due';
+              user.updatedAt = Date.now();
+              await env.users.put(key.name, JSON.stringify(user));
+              console.log(`[Webhook] Payment failed for ${user.email}`);
+              break;
+            }
+          }
+        }
+      }
       break;
     }
     case 'customer.subscription.deleted': {
-      console.log(`[Webhook] Subscription canceled: ${event.data.object.id}`);
+      const subscription = event.data.object;
+      const customerId = subscription.customer;
+      // Downgrade to free
+      if (env.users && customerId) {
+        const { keys } = await env.users.list({ prefix: 'user:' });
+        for (const key of keys) {
+          const data = await env.users.get(key.name);
+          if (data) {
+            const user = JSON.parse(data);
+            if (user.stripeCustomerId === customerId) {
+              user.tier = TIER.FREE;
+              user.subscriptionStatus = 'canceled';
+              user.updatedAt = Date.now();
+              await env.users.put(key.name, JSON.stringify(user));
+              console.log(`[Webhook] Downgraded ${user.email} to free`);
+              break;
+            }
+          }
+        }
+      }
       break;
     }
   }
@@ -234,12 +310,64 @@ async function handleWebhook(request, env) {
   return jsonResponse({ received: true, type: event.type });
 }
 
+// Simple HMAC-SHA256 verification for Stripe webhooks
+async function verifyStripeSignature(payload, signature, secret) {
+  // Stripe signatures are t=timestamp,v1=signature
+  const parts = signature.split(',');
+  const sigPart = parts.find(p => p.startsWith('v1='));
+  if (!sigPart) return false;
+  const expectedSig = sigPart.split('=')[1];
+
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  );
+
+  // Stripe payload is timestamp.payload
+  const tPart = parts.find(p => p.startsWith('t='));
+  const timestamp = tPart ? tPart.split('=')[1] : '';
+  const signedPayload = `${timestamp}.${payload}`;
+
+  const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(signedPayload));
+  const sigHex = Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+  return sigHex === expectedSig;
+}
+
+async function handleVerifyCheckout(request, env) {
+  const url = new URL(request.url);
+  const sessionId = url.searchParams.get('session_id');
+
+  if (!sessionId) {
+    return jsonResponse({ error: 'session_id required' }, 400);
+  }
+
+  if (!getEnvVar(env, 'STRIPE_SECRET_KEY')) {
+    return jsonResponse({ error: 'Stripe not configured' }, 500);
+  }
+
+  try {
+    const session = await stripeRequest(`/checkout/sessions/${sessionId}`, { method: 'GET' }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
+    return jsonResponse({
+      status: session.status,
+      paymentStatus: session.payment_status,
+      tier: session.metadata?.tier || null,
+      email: session.customer_email || session.customer_details?.email || null,
+      amountTotal: session.amount_total,
+      currency: session.currency,
+    });
+  } catch (err) {
+    return jsonResponse({ error: 'Failed to verify session', details: err.message }, 500);
+  }
+}
+
 async function handleHealth() {
   return jsonResponse({
     status: 'ok',
     api: 'obiomacare-subscriptions',
-    version: '1.1.0',
-    mode: 'test',
+    version: '1.2.0',
+    mode: 'live',
+    stripe: 'connected',
     timestamp: new Date().toISOString(),
   });
 }
@@ -290,6 +418,9 @@ export async function routeApi(request, env) {
       case '/api/webhook':
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleWebhook(request, env);
+      case '/api/verify-checkout':
+        if (request.method !== 'GET') return jsonResponse({ error: 'Method not allowed' }, 405);
+        return await handleVerifyCheckout(request, env);
       case '/api/auth/send-link':
         if (request.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405);
         return await handleSendLink(request, env);
