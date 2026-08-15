@@ -3,28 +3,28 @@ import { routeApi } from './api.js'
 
 const DEBUG = false
 
-export default {
-  async fetch(request, env, executionCtx) {
-    try {
-      return await handleRequest(request, env, executionCtx)
-    } catch (e) {
-      if (DEBUG) {
-        return new Response(e.message || e.toString(), { status: 500 })
-      }
-      return new Response('Internal Error', { status: 500 })
+addEventListener('fetch', event => {
+  try {
+    event.respondWith(handleEvent(event))
+  } catch (e) {
+    if (DEBUG) {
+      return event.respondWith(
+        new Response(e.message || e.toString(), { status: 500 }),
+      )
     }
+    event.respondWith(new Response('Internal Error', { status: 500 }))
   }
-}
+})
 
-async function handleRequest(request, env, executionCtx) {
-  const url = new URL(request.url)
+async function handleEvent(event) {
+  const url = new URL(event.request.url)
   let options = {}
 
   /**
    * API routes — handled before static assets
    */
   if (url.pathname.startsWith('/api/')) {
-    const apiResponse = await routeApi(request, env)
+    const apiResponse = await routeApi(event.request, event.env || {})
     if (apiResponse) return apiResponse
   }
 
@@ -61,10 +61,7 @@ async function handleRequest(request, env, executionCtx) {
   }
 
   try {
-    const page = await getAssetFromKV(
-      { request, waitUntil: executionCtx.waitUntil.bind(executionCtx), env },
-      { ...options, ASSET_NAMESPACE: env.__STATIC_CONTENT }
-    )
+    const page = await getAssetFromKV(event, options)
     
     // Allow CORS for assets
     const response = new Response(page.body, page)
@@ -77,10 +74,9 @@ async function handleRequest(request, env, executionCtx) {
     // Fallthrough, look for 404.html
     if (e.status === 404) {
       try {
-        let notFoundResponse = await getAssetFromKV(
-          { request, waitUntil: executionCtx.waitUntil.bind(executionCtx), env },
-          { mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req), ASSET_NAMESPACE: env.__STATIC_CONTENT }
-        )
+        let notFoundResponse = await getAssetFromKV(event, {
+          mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
+        })
         return new Response(notFoundResponse.body, { ...notFoundResponse, status: 404 })
       } catch (e) {}
     }

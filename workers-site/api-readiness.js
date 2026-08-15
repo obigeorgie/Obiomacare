@@ -19,19 +19,29 @@
 // Sessions survive isolate changes, refreshes, and redeploys
 const SESSION_TTL_SECONDS = 3600; // 1 hour
 
+function getKV(env) {
+  return env?.readiness_sessions || (typeof readiness_sessions !== 'undefined' ? readiness_sessions : null);
+}
+
 async function kvPutSession(env, sessionId, session) {
-  await env.readiness_sessions.put(sessionId, JSON.stringify(session), {
+  const kv = getKV(env);
+  if (!kv) throw new Error('readiness_sessions KV not available');
+  await kv.put(sessionId, JSON.stringify(session), {
     expirationTtl: SESSION_TTL_SECONDS,
   });
 }
 
 async function kvGetSession(env, sessionId) {
-  const raw = await env.readiness_sessions.get(sessionId);
+  const kv = getKV(env);
+  if (!kv) throw new Error('readiness_sessions KV not available');
+  const raw = await kv.get(sessionId);
   return raw ? JSON.parse(raw) : null;
 }
 
 async function kvDeleteSession(env, sessionId) {
-  await env.readiness_sessions.delete(sessionId);
+  const kv = getKV(env);
+  if (!kv) throw new Error('readiness_sessions KV not available');
+  await kv.delete(sessionId);
 }
 
 // ─── ITEM BANK (seeded below; in production load from Firestore) ───

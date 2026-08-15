@@ -14,9 +14,5 @@ workers_dev = true
 bucket = "./public"
 
 [[kv_namespaces]]
-binding = "__STATIC_CONTENT"
-id = "9f1bdcbd7a0c43eb89a45910c9a282e0"
-
-[[kv_namespaces]]
 binding = "readiness_sessions"
 id = "8d942c4cf31a442483e832d5a392ad1b"
