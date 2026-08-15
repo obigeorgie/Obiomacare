@@ -1320,10 +1320,10 @@
                 </tr>
                 <tr class="highlight-row">
                     <td>Price</td>
-                    <td>$47 one-time</td>
-                    <td>$369-499</td>
-                    <td>$199-499</td>
-                    <td>Variable</td>
+                    <td><a href="/pricing" style="color: var(--coral); font-weight: 600;">View Plans →</a></td>
+                    <td><a href="/pricing" style="color: var(--color-text-muted);">See comparison</a></td>
+                    <td><a href="/pricing" style="color: var(--color-text-muted);">See comparison</a></td>
+                    <td><a href="/pricing" style="color: var(--color-text-muted);">See comparison</a></td>
                 </tr>
             </tbody>
         </table>
@@ -1626,29 +1626,32 @@
     </div>
 </section>
 
-<!-- Pricing Teaser -->
+<!-- Pricing Teaser — no prices hardcoded; all pricing lives in /pricing fed by config/pricing.js -->
 <section class="section" id="pricing">
     <div class="container">
         <h2 class="section-title animate-on-scroll">Simple, Transparent Pricing</h2>
         <p class="section-subtitle animate-on-scroll">Start free. Upgrade when you're ready. No hidden fees.</p>
         
         <div style="text-align: center; margin: 48px 0;">
-            <div style="display: inline-flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px;">
-                <div style="text-align: center; padding: 24px;">
-                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">Free</div>
-                    <div style="color: var(--color-text-muted); font-size: 14px;">10 questions/day</div>
+            <div style="display: inline-flex; gap: 48px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px;">
+                <div style="text-align: center; padding: 24px; max-width: 200px;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">🆓</div>
+                    <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Free Forever</div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">Articles, references & limited quizzes</div>
                 </div>
-                <div style="text-align: center; padding: 24px;">
-                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">$19<span style="font-size: 18px;">/mo</span></div>
-                    <div style="color: var(--color-text-muted); font-size: 14px;">Student Monthly</div>
+                <div style="text-align: center; padding: 24px; max-width: 200px;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">🎓</div>
+                    <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Student Plans</div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">Monthly or annual — cancel anytime</div>
                 </div>
-                <div style="text-align: center; padding: 24px;">
-                    <div style="font-size: 36px; font-weight: 800; color: var(--coral);">$99<span style="font-size: 18px;">/yr</span></div>
-                    <div style="color: var(--color-text-muted); font-size: 14px;">Student Annual</div>
+                <div style="text-align: center; padding: 24px; max-width: 200px;">
+                    <div style="font-size: 48px; margin-bottom: 12px;">💎</div>
+                    <div style="font-size: 18px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 8px;">Lifetime</div>
+                    <div style="color: var(--color-text-muted); font-size: 14px;">One-time purchase, all future updates</div>
                 </div>
             </div>
             <a href="/pricing" class="btn btn-primary btn-large">See Full Pricing & Compare</a>
-            <p style="margin-top: 16px; font-size: 14px; color: var(--color-text-muted);">14-day free trial • Cancel anytime • No credit card required for free tier</p>
+            <p style="margin-top: 16px; font-size: 14px; color: var(--color-text-muted);">Free trial available • Cancel anytime • No credit card required for free tier</p>
         </div>
     </div>
 </section>

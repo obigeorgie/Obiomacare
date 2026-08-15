@@ -1,51 +1,61 @@
 /**
  * Worker-native Subscription API
- * Test mode only. No live keys touched.
- * Uses Stripe REST API via fetch (no Node.js SDK)
+ * Tiers match config/pricing.js exactly. Test mode only.
+ * Uses Stripe REST API via fetch (no Node.js SDK).
  */
 
+// ─── TIER ENUM — must match config/pricing.js exactly ───
 const TIER = {
   FREE: 'free',
-  STUDENT: 'student',
-  ANNUAL: 'annual',
+  STUDENT_MONTHLY: 'student_monthly',
+  STUDENT_ANNUAL: 'student_annual',
   LIFETIME: 'lifetime',
-  INSTITUTION: 'institution',
+  INSTITUTIONAL_INSTRUCTOR: 'institutional_instructor',
+  INSTITUTIONAL_STUDENT: 'institutional_student',
 };
 
+// ─── PLAN DEFINITIONS — synced from config/pricing.js ───
 const PLANS = {
-  [TIER.STUDENT]: {
+  [TIER.STUDENT_MONTHLY]: {
     name: 'Student Monthly',
     price: 19,
     interval: 'month',
-    stripePriceId: null, // Test mode
+    trialDays: 7,
+    stripePriceId: null, // Set via env for live mode
   },
-  [TIER.ANNUAL]: {
+  [TIER.STUDENT_ANNUAL]: {
     name: 'Student Annual',
     price: 99,
     interval: 'year',
+    trialDays: 14,
     stripePriceId: null,
   },
   [TIER.LIFETIME]: {
     name: 'Lifetime',
-    price: 199,
+    price: 47,
     interval: 'once',
+    trialDays: 0,
     stripePriceId: null,
   },
 };
 
+// Valid checkout tiers (must have a price ID or be in test mode)
+const CHECKOUT_TIERS = Object.keys(PLANS);
+
+// ─── FEATURE ENTITLEMENTS ───
 const FEATURES = {
-  questionBank: { free: true, student: true, annual: true, lifetime: true, institution: true },
-  caseEngine: { free: true, student: true, annual: true, lifetime: true, institution: true },
-  readiness: { free: false, student: true, annual: true, lifetime: true, institution: true },
-  spacedRepetition: { free: false, student: true, annual: true, lifetime: true, institution: true },
-  progressSync: { free: false, student: true, annual: true, lifetime: true, institution: true },
-  tutorCredits: { free: 0, student: 5, annual: 5, lifetime: -1, institution: -1 },
-  analytics: { free: false, student: true, annual: true, lifetime: true, institution: true },
-  printPdfs: { free: false, student: true, annual: true, lifetime: true, institution: true },
-  support: { free: 'community', student: 'priority', annual: 'priority', lifetime: 'priority', institution: 'dedicated' },
-  liveReview: { free: false, student: false, annual: false, lifetime: false, institution: true },
-  cmeCredits: { free: false, student: false, annual: false, lifetime: false, institution: true },
-  sso: { free: false, student: false, annual: false, lifetime: false, institution: true },
+  questionBank: { free: true, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  caseEngine: { free: true, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  readiness: { free: false, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  spacedRepetition: { free: false, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  progressSync: { free: false, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  tutorCredits: { free: 0, student_monthly: 5, student_annual: 5, lifetime: -1, institutional_instructor: -1, institutional_student: 5 },
+  analytics: { free: false, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  printPdfs: { free: false, student_monthly: true, student_annual: true, lifetime: true, institutional_instructor: true, institutional_student: true },
+  support: { free: 'community', student_monthly: 'priority', student_annual: 'priority', lifetime: 'priority', institutional_instructor: 'dedicated', institutional_student: 'priority' },
+  liveReview: { free: false, student_monthly: false, student_annual: false, lifetime: false, institutional_instructor: true, institutional_student: false },
+  cmeCredits: { free: false, student_monthly: false, student_annual: false, lifetime: false, institutional_instructor: true, institutional_student: false },
+  sso: { free: false, student_monthly: false, student_annual: false, lifetime: false, institutional_instructor: true, institutional_student: false },
 };
 
 function hasAccess(tier, feature) {
@@ -89,7 +99,6 @@ async function handleUserTier(request) {
   const uid = url.searchParams.get('uid');
 
   // For now, return free tier (no Firestore in Worker)
-  // In production, this would check KV or D1
   const tier = TIER.FREE;
 
   return jsonResponse({
@@ -107,7 +116,11 @@ async function handleCreateCheckout(request, env) {
   const plan = PLANS[tier];
 
   if (!plan) {
-    return jsonResponse({ error: 'Invalid tier' }, 400);
+    return jsonResponse({
+      error: 'Invalid tier',
+      validTiers: CHECKOUT_TIERS,
+      received: tier,
+    }, 400);
   }
 
   // Test mode: return mock checkout URL
@@ -116,6 +129,8 @@ async function handleCreateCheckout(request, env) {
     return jsonResponse({
       url: `${baseUrl}/success?test_mode=1&tier=${tier}&email=${encodeURIComponent(email || '')}`,
       testMode: true,
+      tier,
+      plan: plan.name,
       message: 'Stripe test mode — no real charge. Configure STRIPE_SECRET_KEY and STRIPE_PRICE_* for live checkout.',
     });
   }
@@ -125,7 +140,7 @@ async function handleCreateCheckout(request, env) {
     params.append('payment_method_types[]', 'card');
     params.append('line_items[0][price]', plan.stripePriceId);
     params.append('line_items[0][quantity]', '1');
-    params.append('mode', 'subscription');
+    params.append('mode', plan.interval === 'once' ? 'payment' : 'subscription');
     params.append('success_url', successUrl || 'https://obiomacare.com/success?session_id={CHECKOUT_SESSION_ID}');
     params.append('cancel_url', cancelUrl || 'https://obiomacare.com/pricing');
     params.append('metadata[tier]', tier);
@@ -133,7 +148,7 @@ async function handleCreateCheckout(request, env) {
     params.append('metadata[source]', 'pricing_page');
 
     if (email) params.append('customer_email', email);
-    if (plan.trialDays) {
+    if (plan.trialDays && plan.interval !== 'once') {
       params.append('subscription_data[trial_period_days]', String(plan.trialDays));
     }
 
@@ -184,9 +199,6 @@ async function handleWebhook(request, env) {
   const payload = await request.text();
   const signature = request.headers.get('stripe-signature');
 
-  // In production, verify signature with STRIPE_WEBHOOK_SECRET
-  // For test mode, just parse and log
-
   let event;
   try {
     event = JSON.parse(payload);
@@ -221,7 +233,7 @@ async function handleHealth() {
   return jsonResponse({
     status: 'ok',
     api: 'obiomacare-subscriptions',
-    version: '1.0.0',
+    version: '1.1.0',
     mode: 'test',
     timestamp: new Date().toISOString(),
   });
