@@ -10,3 +10,4 @@ venv/
 dist/
 __pycache__/
 *.pyc
+.wrangler/state/
