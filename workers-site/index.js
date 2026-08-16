@@ -42,6 +42,31 @@ async function handleEvent(event) {
   }
 
   /**
+   * Media assets — served from R2 bucket
+   */
+  if (url.pathname.startsWith('/media/')) {
+    try {
+      const objectKey = url.pathname.slice(7) // Remove '/media/' prefix
+      const bucket = (event.env && event.env.MEDIA_BUCKET) || globalThis.MEDIA_BUCKET || self.MEDIA_BUCKET
+      if (!bucket) {
+        return new Response('R2 bucket not bound', { status: 500 })
+      }
+      const object = await bucket.get(objectKey)
+      if (object) {
+        const headers = new Headers()
+        object.writeHttpMetadata(headers)
+        headers.set('etag', object.httpEtag)
+        headers.set('Cache-Control', 'public, max-age=31536000, immutable')
+        headers.set('X-Content-Type-Options', 'nosniff')
+        return new Response(object.body, { headers })
+      }
+      return new Response('Not Found: ' + objectKey, { status: 404 })
+    } catch (e) {
+      return new Response('Error: ' + (e.message || e.toString()), { status: 500 })
+    }
+  }
+
+  /**
    * mapRequestToAsset serves a default asset when the route is "/"
    */
   options.mapRequestToAsset = req => {

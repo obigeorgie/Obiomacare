@@ -21,3 +21,8 @@ id = "8d942c4cf31a442483e832d5a392ad1b"
 [[kv_namespaces]]
 binding = "users"
 id = "c8a6959ce7a54d5c8092c8ddcc4d175e"
+
+# Media storage bucket
+[[r2_buckets]]
+bucket_name = "obiomacare-media"
+binding = "MEDIA_BUCKET"
