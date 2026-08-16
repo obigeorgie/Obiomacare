@@ -189,3 +189,37 @@ button .icon {
   vertical-align: middle;
   margin-right: var(--space-2);
 }
+
+/* ─── Obioma Figure (medical illustrations) ─── */
+.obioma-figure {
+  margin: var(--space-8) 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-navy-800);
+  border: 1px solid var(--color-navy-600);
+}
+
+.obioma-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+}
+
+.obioma-figure figcaption {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: var(--color-navy-900);
+  border-top: 1px solid var(--color-navy-700);
+}
+
+.obioma-figure figcaption strong {
+  color: var(--color-coral);
+  font-weight: var(--font-weight-semibold);
+}
+
+.obioma-figure figcaption em {
+  font-style: italic;
+  color: var(--color-text-secondary);
+}

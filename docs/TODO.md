@@ -52,6 +52,8 @@
 | Stripe E2E test purchase | Blocked | Live mode only; needs real payment or test keys |
 | GSC automated submission | Working | Use `sc-domain:obiomacare.com` format; URL indexing requires explicit per-URL ownership |
 | GA4 analytics review | Blocked | No Data API credentials configured |
+| **R2 bucket + /media/* route** | Blocked | Waiting for user to enable R2 in Cloudflare dashboard |
+| **First 5 anatomical diagrams** | Blocked | OpenAI API key invalid (HTTP 401); needs key refresh or alternative provider (Gemini/Fal) |
 
 ---
 
@@ -61,12 +63,14 @@
 - [ ] **GSC access fix** — Add `masterygraph-sitemap@masterygraph-gsc.iam.gserviceaccount.com` as Owner in GSC
 - [ ] **Stripe test mode** — Set up test keys for safe E2E verification
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
+- [ ] **R2 media pipeline** — Create `obiomacare-media` bucket, wire `/media/*` route, upload 5 diagrams, flip ledger to `reviewed` after user approval
 
 ### Medium Priority
 - [x] **Content gap analysis** — 12 opportunities identified, 9 guides published (~120K words)
 - [ ] **Backlink outreach** — In progress: templates drafted, prospect research begun
 - [ ] **Social content calendar** — Schedule posts from `social-schedule.json`
 - [ ] **A/B test pricing page** — Test headline/CTA variants
+- [ ] **Visual content blockout (15 remaining diagrams)** — See Visual Content Backlog below
 
 ### Low Priority
 - [ ] **Redirects for retired app routes** — `/pricing`, `/cases`, `/login`, `/readiness`, `/anatomy-lab` currently 404. Map to working pages or add wrangler redirects.
@@ -98,3 +102,32 @@
 | Leads in Firestore | 53 |
 | Promo codes active | 3 |
 | Email sequences | 2 (nurture + post-purchase) |
+| Visual diagrams (blockout) | 5 generated, pending review |
+| Visual diagrams (backlog) | 15 planned — see Visual Content Backlog below |
+
+---
+
+## 🎨 Visual Content Backlog
+
+Blockout pass approved: 5 core system diagrams (cardiovascular, respiratory, neuro, renal, GI). 
+Remaining 15 descoped to backlog:
+
+| # | System/Topic | Target Guide | Priority |
+|---|-------------|--------------|----------|
+| 1 | Musculoskeletal system | nclex-musculoskeletal-disorders-deep-dive | P2 |
+| 2 | Integumentary / skin layers | nclex-burns-integumentary-disorders | P2 |
+| 3 | Wound healing stages | nclex-burns-wound-care-deep-dive | P2 |
+| 4 | Hematopoiesis & blood cell types | nclex-hematology-disorders | P2 |
+| 5 | Eye anatomy (cross-section) | nclex-sensory-disorders | P2 |
+| 6 | Ear anatomy (cross-section) | nclex-sensory-disorders | P2 |
+| 7 | Female reproductive system | nclex-maternity-study-guide | P2 |
+| 8 | Fetal circulation | nclex-obstetric-complications | P2 |
+| 9 | Labor stages diagram | nclex-ob-labor-stages | P2 |
+| 10 | Pediatric growth milestones chart | nclex-pediatric-milestones | P2 |
+| 11 | Congenital heart defects (cyanotic vs acyanotic) | nclex-pediatric-cardiac-congenital | P3 |
+| 12 | Mental health medication mechanisms | nclex-psychiatric-medications | P3 |
+| 13 | Emergency drug algorithm flowchart | nclex-emergency-drugs | P3 |
+| 14 | ABG interpretation diagram (ROME method) | nclex-abg-interpretation | P3 |
+| 15 | EKG waveform with intervals labeled | nclex-ekg-interpretation | P3 |
+
+*Status: All entries pending R2 pipeline completion and blockout review gate.*
