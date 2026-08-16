@@ -52,8 +52,8 @@
 | Stripe E2E test purchase | Blocked | Live mode only; needs real payment or test keys |
 | GSC automated submission | Working | Use `sc-domain:obiomacare.com` format; URL indexing requires explicit per-URL ownership |
 | GA4 analytics review | Blocked | No Data API credentials configured |
-| **R2 bucket + /media/* route** | Blocked | Waiting for user to enable R2 in Cloudflare dashboard |
-| **First 5 anatomical diagrams** | Blocked | OpenAI API key invalid (HTTP 401); needs key refresh or alternative provider (Gemini/Fal) |
+| **R2 bucket + /media/* route** | ✅ Done | Bucket created, route wired, 5 diagrams uploaded |
+| **First 5 anatomical diagrams** | ✅ Done | All 5 reviewed, embedded, CI gate active |
 
 ---
 
@@ -63,7 +63,10 @@
 - [ ] **GSC access fix** — Add `masterygraph-sitemap@masterygraph-gsc.iam.gserviceaccount.com` as Owner in GSC
 - [ ] **Stripe test mode** — Set up test keys for safe E2E verification
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
-- [ ] **R2 media pipeline** — Create `obiomacare-media` bucket, wire `/media/*` route, upload 5 diagrams, flip ledger to `reviewed` after user approval
+- [x] **R2 media pipeline** — ✅ Complete: bucket created, `/media/*` route wired, 5 diagrams reviewed + embedded, CI gate active
+- [ ] **Visual content tranche 2 (15 remaining diagrams)** — See Visual Content Backlog below
+- [ ] **Neuro diagram composition rebalance** — Crop dead space on left half (non-blocking from v2 review)
+- [ ] **GI absorption-icon anchoring** — Move "Fat" icon from transverse colon to small intestine (non-blocking from v2 review)
 
 ### Medium Priority
 - [x] **Content gap analysis** — 12 opportunities identified, 9 guides published (~120K words)
@@ -102,7 +105,7 @@
 | Leads in Firestore | 53 |
 | Promo codes active | 3 |
 | Email sequences | 2 (nurture + post-purchase) |
-| Visual diagrams (blockout) | 5 generated, pending review |
+| Visual diagrams (blockout) | 5 reviewed + embedded |
 | Visual diagrams (backlog) | 15 planned — see Visual Content Backlog below |
 
 ---
