@@ -62,5 +62,17 @@ copyDir('landing/products', 'public/products');
 copyDir('landing/quiz', 'public/quiz');
 copyDir('design-tokens', 'public/design-tokens');
 
+// ─── Media License Gate ───
+// Fail build if any production HTML references unreviewed /media/ assets
+const gatePath = path.join(__dirname, 'media-license-gate.js');
+if (fs.existsSync(gatePath)) {
+  try {
+    require(gatePath);
+  } catch (e) {
+    console.error(`\n❌ Build aborted: media license gate failed`);
+    console.error(e.message);
+    process.exit(1);
+  }
+}
 
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);
