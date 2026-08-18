@@ -14,6 +14,7 @@
  * - Difficulty values are author estimates, labeled as such
  * - Results show estimate + confidence interval, not prediction
  */
+import { trackEvent } from './api-events.js';
 
 // ─── SESSION STORE (KV-backed for production persistence) ───
 // Sessions survive isolate changes, refreshes, and redeploys
@@ -392,6 +393,9 @@ async function handleReadinessStart(request, env) {
   // Determine tier (fallback to free)
   const userTier = tier || 'free';
 
+  // Revenue OS: funnel event (server-side)
+  await trackEvent(env, 'assessment_started', { session: null, tier: userTier, page: '/api/readiness/start' });
+
   const session = await createSession(env, userTier, email);
   const item = selectNextItem(session);
 
@@ -517,6 +521,11 @@ async function handleReadinessResult(request, env) {
   const session = await getSession(env, sessionId);
   if (!session) {
     return jsonResponse({ error: 'Session not found' }, 404);
+  }
+
+  // Revenue OS: funnel event (server-side, only when actually completed)
+  if (session.terminated) {
+    await trackEvent(env, 'assessment_completed', { session: sessionId, tier: session.userTier || 'free', page: '/api/readiness/result' });
   }
 
   const results = calculateResults(session);

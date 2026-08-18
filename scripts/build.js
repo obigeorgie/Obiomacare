@@ -75,4 +75,17 @@ if (fs.existsSync(gatePath)) {
   }
 }
 
+// ─── Revenue OS injection (Phase 1) ───
+// Analytics beacon + funnel-events client into every built HTML page
+const injectPath = path.join(__dirname, 'inject-revenue-os.js');
+if (fs.existsSync(injectPath)) {
+  try {
+    require(injectPath);
+  } catch (e) {
+    console.error(`\n❌ Build aborted: revenue-os injection failed`);
+    console.error(e.message);
+    process.exit(1);
+  }
+}
+
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);

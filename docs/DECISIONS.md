@@ -138,3 +138,18 @@ wrangler rollback <version-id>   # from wrangler deployments list
 **Decision**: Free tier gets summary (band + strength/weakness flags). Paid tier gets full breakdown (category accuracy %, NCJMM step analysis, history over time).
 **Rationale**: Free tier must provide value (honest readiness estimate) while creating upgrade incentive (detailed action plan).
 **Date**: 2026-08-15
+
+---
+
+## Revenue OS — 2026-08-18
+
+### 15. Funnel Events Storage: Cloudflare KV
+**Decision**: Canonical funnel events stored in KV namespace `events` — raw events as `evt:<date>:<type>:<uuid>` + daily counters `cnt:<date>:<type>`. Firestore deferred (no service-account key on the Worker path today; KV is queryable enough for counters/digest and cheap).
+**Rationale**: Existing stack, zero new platforms, sufficient for daily counters + digest; migrate to Firestore/D1 only if analytics needs grow beyond counters.
+**Date**: 2026-08-18
+**Status**: ACTIVE
+
+### 16. Operator Auth (dashboard + digest)
+**Decision**: `/admin`, `/api/operator/metrics`, `/api/operator/email` accept (a) owner JWT session (ADMIN_EMAIL match) or (b) `X-Operator-Key` header matching Worker secret `OPERATOR_API_KEY` (for the scheduled digest). `ADMIN_EMAIL` gates the dashboard; `OPERATOR_API_KEY` is owner-installed in Cloudflare AND this box — never in chat.
+**Date**: 2026-08-18
+**Status**: ACTIVE

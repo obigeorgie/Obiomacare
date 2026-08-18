@@ -22,6 +22,11 @@ id = "8d942c4cf31a442483e832d5a392ad1b"
 binding = "users"
 id = "c8a6959ce7a54d5c8092c8ddcc4d175e"
 
+# Revenue OS — funnel events KV (Phase 1)
+[[kv_namespaces]]
+binding = "events"
+id = "086045e4c2324add985328ec7e793d4f"
+
 # Media storage bucket
 [[r2_buckets]]
 bucket_name = "obiomacare-media"

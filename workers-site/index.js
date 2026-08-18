@@ -1,5 +1,6 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
 import { routeApi } from './api.js'
+import { routeAdmin } from './api-events.js'
 
 const DEBUG = false
 
@@ -26,6 +27,11 @@ async function handleEvent(event) {
   if (url.pathname.startsWith('/api/')) {
     const apiResponse = await routeApi(event.request, event.env || {})
     if (apiResponse) return apiResponse
+  }
+
+  // Private operator dashboard (Revenue OS Phase 1)
+  if (url.pathname === '/admin') {
+    return await routeAdmin(event.request, event.env || {})
   }
 
   /**

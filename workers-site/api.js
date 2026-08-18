@@ -8,6 +8,7 @@ import { routeReadiness } from './api-readiness.js';
 import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
+import { routeEvent, routeOperatorMetrics, routeOperatorEmail, trackEvent } from './api-events.js';
 
 // Env helper (service worker globals fallback)
 function getEnvVar(env, name) {
@@ -133,6 +134,9 @@ async function handleCreateCheckout(request, env) {
   const { tier, email, successUrl, cancelUrl } = body;
   const plan = PLANS[tier];
 
+  // Revenue OS: funnel event (server-side)
+  await trackEvent(env, 'checkout_started', { session: null, tier, page: '/api/create-subscription-checkout' });
+
   if (!plan) {
     return jsonResponse({
       error: 'Invalid tier',
@@ -226,6 +230,9 @@ async function handleWebhook(request, env) {
       const email = session.customer_email || session.customer_details?.email;
       const customerId = session.customer;
 
+      // Revenue OS: funnel event (server-side)
+      await trackEvent(env, 'checkout_completed', { session: session.id, tier, page: 'webhook' });
+
       if (email && tier) {
         // Update user in KV
         const userKey = `user:${email.toLowerCase()}`;
@@ -277,6 +284,10 @@ async function handleWebhook(request, env) {
     case 'customer.subscription.deleted': {
       const subscription = event.data.object;
       const customerId = subscription.customer;
+
+      // Revenue OS: funnel event (server-side)
+      await trackEvent(env, 'subscription_canceled', { session: subscription.id, tier: subscription.metadata?.tier || null, page: 'webhook' });
+
       // Downgrade to free
       if (env.users && customerId) {
         const { keys } = await env.users.list({ prefix: 'user:' });
@@ -340,6 +351,10 @@ async function handleVerifyCheckout(request, env) {
 
   try {
     const session = await stripeRequest(`/checkout/sessions/${sessionId}`, { method: 'GET' }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
+    // Revenue OS: funnel event (server-side, client verify path)
+    if (session.payment_status === 'paid') {
+      await trackEvent(env, 'checkout_completed', { session: sessionId, tier: session.metadata?.tier || null, page: '/api/verify-checkout' });
+    }
     return jsonResponse({
       status: session.status,
       paymentStatus: session.payment_status,
@@ -398,6 +413,12 @@ export async function routeApi(request, env) {
     switch (path) {
       case '/api/health':
         return await handleHealth();
+      case '/api/event':
+        return await routeEvent(request, env);
+      case '/api/operator/metrics':
+        return await routeOperatorMetrics(request, env);
+      case '/api/operator/email':
+        return await routeOperatorEmail(request, env);
       case '/api/user-tier':
         return await handleAuthUserTier(request, env);
       case '/api/create-subscription-checkout':
