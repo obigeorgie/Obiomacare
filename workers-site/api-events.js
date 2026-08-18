@@ -148,7 +148,7 @@ export async function routeOperatorEmail(request, env) {
   const { subject, text } = body
   if (!subject || !text) return jsonResponse({ error: 'subject and text required' }, 400)
   const resendKey = getBinding(env, 'RESEND_API_KEY')
-  const from = getBinding(env, 'FROM_EMAIL') || 'ObiomaCare <digest@obiomacare.com>'
+  const from = getBinding(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma Care <digest@obiomacare.com>'
   const to = getBinding(env, 'ADMIN_EMAIL')
   if (!resendKey || !to) return jsonResponse({ error: 'Email not configured' }, 500)
   const r = await fetch('https://api.resend.com/emails', {

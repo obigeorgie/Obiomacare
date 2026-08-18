@@ -5,6 +5,8 @@ beyond test-mode (owner inbox only). All emails: plain-text-first, one CTA each,
 real unsubscribe link, CAN-SPAM footer. No purchased lists, no fake urgency.
 
 **CAN-SPAM footer (all emails):**
+> Nnamdi Okorafor, RN — Founder, Obioma Care
+>
 > ObiomaCare · [Mailing address — owner fills before activation]
 > You're getting this because you signed up for the free NCLEX Study Checklist.
 > Unsubscribe anytime: https://obiomacare.com/api/unsubscribe?email=<subscriber>

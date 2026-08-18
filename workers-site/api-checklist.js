@@ -80,7 +80,7 @@ async function removeContact(env, audienceId, email) {
 }
 
 async function sendEmail(env, to, subject, text) {
-  const from = getBinding(env, 'FROM_EMAIL') || 'ObiomaCare <hello@obiomacare.com>'
+  const from = getBinding(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma Care <hello@obiomacare.com>'
   const r = await resend(env, '/emails', 'POST', { from, to, subject, text })
   return r
 }
