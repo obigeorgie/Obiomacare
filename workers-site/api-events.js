@@ -32,6 +32,17 @@ function jsonResponse(obj, status = 200) {
   })
 }
 
+/**
+ * Service-worker-format workers expose bindings as globals, not event.env.
+ * Check env first (module format), then globalThis/self (legacy format).
+ */
+function getBinding(env, name) {
+  if (env && env[name] !== undefined && env[name] !== null) return env[name]
+  try { if (typeof self !== 'undefined' && self[name] !== undefined) return self[name] } catch (e) {}
+  try { if (typeof globalThis !== 'undefined' && globalThis[name] !== undefined) return globalThis[name] } catch (e) {}
+  return undefined
+}
+
 function todayISO(offsetDays = 0) {
   return new Date(Date.now() - offsetDays * 86400000).toISOString().slice(0, 10)
 }
@@ -42,9 +53,9 @@ function todayISO(offsetDays = 0) {
  */
 export async function trackEvent(env, type, { session = null, tier = null, guide = null, page = null, ts = null } = {}) {
   try {
-    if (!EVENT_TYPES.has(type)) return null
-    const kv = env.events
-    if (!kv) return null
+    if (!EVENT_TYPES.has(type)) return { error: 'unknown type' }
+    const kv = getBinding(env, 'events')
+    if (!kv) return { error: 'events binding missing' }
     const iso = ts || new Date().toISOString()
     const date = iso.slice(0, 10)
     const id = (crypto.randomUUID && crypto.randomUUID()) || Math.random().toString(36).slice(2)
@@ -61,7 +72,7 @@ export async function trackEvent(env, type, { session = null, tier = null, guide
     }
     return { key }
   } catch (e) {
-    return null
+    return { error: (e && e.message) || String(e) }
   }
 }
 
@@ -71,18 +82,19 @@ export async function routeEvent(request, env) {
   const { type, ts, session, tier, guide, page } = body
   if (!EVENT_TYPES.has(type)) return jsonResponse({ error: 'Unknown event type' }, 400)
   const r = await trackEvent(env, type, { session, tier, guide, page, ts })
-  if (!r) return jsonResponse({ error: 'Events not configured' }, 500)
+  if (!r || r.error) return jsonResponse({ error: 'Events not configured', detail: r && r.error }, 500)
   return jsonResponse({ ok: true })
 }
 
 /** Counts per day per event type, newest first. */
 async function getCounts(env, days) {
+  const kv = getBinding(env, 'events')
   const out = {}
   for (let i = days - 1; i >= 0; i--) {
     const d = todayISO(i)
     const row = {}
     for (const t of EVENT_TYPES) {
-      row[t] = parseInt((await env.events.get(`cnt:${d}:${t}`)) || '0', 10)
+      row[t] = parseInt((await kv.get(`cnt:${d}:${t}`)) || '0', 10)
     }
     out[d] = row
   }
@@ -91,13 +103,14 @@ async function getCounts(env, days) {
 
 /** Top guides by guide_view count over the window (drives the digest). */
 async function getTopGuides(env, days, limit = 5) {
+  const kv = getBinding(env, 'events')
   const counts = {}
   for (let i = 0; i < days; i++) {
     const d = todayISO(i)
-    const { keys } = await env.events.list({ prefix: `gcnt:${d}:` })
+    const { keys } = await kv.list({ prefix: `gcnt:${d}:` })
     for (const k of keys) {
       const guide = k.name.split(':')[2]
-      counts[guide] = (counts[guide] || 0) + parseInt((await env.events.get(k.name)) || '0', 10)
+      counts[guide] = (counts[guide] || 0) + parseInt((await kv.get(k.name)) || '0', 10)
     }
   }
   return Object.entries(counts)
@@ -109,9 +122,9 @@ async function getTopGuides(env, days, limit = 5) {
 /** Operator auth: JWT (owner email) OR X-Operator-Key (machine, cron digest). */
 async function isOperator(request, env) {
   const user = await getAuthUser(request, env);
-  const adminEmail = env.ADMIN_EMAIL;
+  const adminEmail = getBinding(env, 'ADMIN_EMAIL');
   if (user && adminEmail && user.email === adminEmail) return true;
-  const opKey = env.OPERATOR_API_KEY;
+  const opKey = getBinding(env, 'OPERATOR_API_KEY');
   const header = request.headers.get('x-operator-key');
   return !!(opKey && header && header === opKey);
 }
@@ -134,9 +147,9 @@ export async function routeOperatorEmail(request, env) {
   const body = await request.json().catch(() => ({}))
   const { subject, text } = body
   if (!subject || !text) return jsonResponse({ error: 'subject and text required' }, 400)
-  const resendKey = env.RESEND_API_KEY
-  const from = env.FROM_EMAIL || 'ObiomaCare <digest@obiomacare.com>'
-  const to = env.ADMIN_EMAIL
+  const resendKey = getBinding(env, 'RESEND_API_KEY')
+  const from = getBinding(env, 'FROM_EMAIL') || 'ObiomaCare <digest@obiomacare.com>'
+  const to = getBinding(env, 'ADMIN_EMAIL')
   if (!resendKey || !to) return jsonResponse({ error: 'Email not configured' }, 500)
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -150,7 +163,7 @@ export async function routeOperatorEmail(request, env) {
 /** Private operator dashboard — plain HTML, auth-gated, owner email only. */
 export async function routeAdmin(request, env) {
   const user = await getAuthUser(request, env)
-  const adminEmail = env.ADMIN_EMAIL
+  const adminEmail = getBinding(env, 'ADMIN_EMAIL')
   if (!user || !adminEmail || user.email !== adminEmail) {
     return new Response('Unauthorized — log in as owner to view the instrument panel.', {
       status: 401,

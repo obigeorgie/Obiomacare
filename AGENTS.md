@@ -149,6 +149,8 @@ curl -s -o /dev/null -w "terms %{http_code}\n" $BASE/terms.html
 | Analytics not showing data | Scripts not in HTML | Check GA4 + FB Pixel scripts in page `<head>` |
 | Old app links in content | Stale `dist/` or missed replacements | Search for `app.obiomacare.com` in `content/` |
 | Deploy takes forever | Large `node_modules` or build cache | `wrangler deploy --force` to skip cache |
+| `/api/event` returns 500 "Events not configured" or metrics 401 with correct key | Worker is **service-worker format** (`addEventListener`) — bindings/secrets are GLOBALS, not `event.env` | Access bindings via global fallback (`env?.x ?? self.x ?? globalThis.x`) — see `getBinding()` in `workers-site/api-events.js`. Never read `env.X` directly in this codebase |
+| Two workers exist (`obiomacare` + `obiomacare-site`) | Duplicate deploy targets from different machines | Consolidate to ONE worker per DECISIONS #9; check route ownership in the CF dashboard |
 
 ---
 
