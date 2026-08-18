@@ -36,7 +36,7 @@ function jsonResponse(obj, status = 200) {
  * Service-worker-format workers expose bindings as globals, not event.env.
  * Check env first (module format), then globalThis/self (legacy format).
  */
-function getBinding(env, name) {
+export function getBinding(env, name) {
   if (env && env[name] !== undefined && env[name] !== null) return env[name]
   try { if (typeof self !== 'undefined' && self[name] !== undefined) return self[name] } catch (e) {}
   try { if (typeof globalThis !== 'undefined' && globalThis[name] !== undefined) return globalThis[name] } catch (e) {}

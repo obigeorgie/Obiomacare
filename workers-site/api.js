@@ -9,6 +9,7 @@ import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, hand
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
 import { routeEvent, routeOperatorMetrics, routeOperatorEmail, trackEvent } from './api-events.js';
+import { routeLeadMagnet, routeUnsubscribe, routeProcessSequence } from './api-checklist.js';
 
 // Env helper (service worker globals fallback)
 function getEnvVar(env, name) {
@@ -419,6 +420,12 @@ export async function routeApi(request, env) {
         return await routeOperatorMetrics(request, env);
       case '/api/operator/email':
         return await routeOperatorEmail(request, env);
+      case '/api/operator/process-sequence':
+        return await routeProcessSequence(request, env);
+      case '/api/lead-magnet':
+        return await routeLeadMagnet(request, env);
+      case '/api/unsubscribe':
+        return await routeUnsubscribe(request, env);
       case '/api/user-tier':
         return await handleAuthUserTier(request, env);
       case '/api/create-subscription-checkout':

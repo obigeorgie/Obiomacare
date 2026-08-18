@@ -168,3 +168,17 @@ all bindings (events, users, readiness_sessions, MEDIA_BUCKET, secrets)
 confirmed on the surviving worker.
 **Date**: 2026-08-18
 **Status**: ACTIVE
+
+### 19. Phase 2 Nurture Sequence — architecture
+**Decision**: Email capture/nurture runs through the Worker (Resend secret stays
+in Cloudflare). `/api/lead-magnet` (POST) = email-gated checklist (ensure
+`checklist` audience → add contact → KV `seq:<email>` state → send E0 →
+`{ok, downloadUrl}`). `/api/unsubscribe` = one-click (contact delete +
+suppression flag). `/api/operator/process-sequence` (operator-key gated) =
+daily sweep sending due E2/E4/E7/E10. Sweep triggered by Hermes cron
+`b9103651f5bb` (06:00 UTC daily, silent-when-empty).
+**Fences**: copy DRAFT at `docs/phase2-email-copy.md` — owner approves
+email-by-email before any send beyond owner test inbox; mailing address
+owner-filled before activation. Sequence state in KV `events` namespace.
+**Date**: 2026-08-18
+**Status**: BUILD COMPLETE — parked at deploy gate (rule #1)

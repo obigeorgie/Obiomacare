@@ -99,7 +99,8 @@
             </form>
             <div class="success-message" id="successMessage">
                 <h3><i data-lucide="check-circle" class="icon icon-coral icon-md" aria-label="Completed"></i> Checklist sent!</h3>
-                <p>Check your inbox (and spam folder) for the NCLEX Study Checklist. You'll also get 3 bonus clinical judgment tips over the next week.</p>
+                <p>Check your inbox (and spam folder) for the NCLEX Study Checklist. You'll also get occasional study tips — unsubscribe anytime.</p>
+                <p style="margin-top:12px;"><a href="#" id="inlineDownload" style="color: var(--accent, #ff6b4a); font-weight: 600;">Or open it right here →</a></p>
             </div>
         </div>
 
@@ -152,6 +153,10 @@ document.getElementById('leadForm').addEventListener('submit', async function(e)
         if (response.ok) {
             document.getElementById('formCard').querySelector('form').style.display = 'none';
             document.getElementById('successMessage').style.display = 'block';
+            const data = await response.json();
+            if (data.downloadUrl) {
+                document.getElementById('inlineDownload').href = data.downloadUrl;
+            }
             if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { method: 'nclex-checklist' });
         } else {
             throw new Error('Failed');
