@@ -141,3 +141,8 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - **Verified on production**: 112/112 pages 200 · full link crawl 133/133 internal targets OK (rule #10) · styles.css live (fixes 8 previously-unstyled pages) · 5/5 diagram embeds with alt text · 0 pending-asset embeds (tranche-2 gate holds) · converted guides live with tokens.css + bylines
 - **Screenshots**: BLOCKED — no root on container to install browser system libs (libnspr4); DOM/CSS inspection used per 2026-08-14 precedent
 - **Note**: wrangler exited 1 on route reconciliation (token lacks zone perms) — upload + custom-domain serving verified independently; routes unchanged
+
+### Deploy outcome (v2 diagrams) — 2026-08-18
+- **Deployed**: YES — version 5026d018-c2ce-4acc-9c75-b5ae50e89c37 (2026-08-18T11:35:32Z), 100% traffic
+- **Scope**: eye-anatomy-diagram-v2 + integumentary-system-diagram-v2 embeds (approved), versioned-key convention ratified, ledger reviewed (Nnamdi Okorafor, RN / 2026-08-18)
+- **Verified**: 111/111 pages 200 · 137/137 internal targets OK · both embeds live with alt text (192/260 chars) + caption bylines · 0 old-key refs · pre-report-check OK
