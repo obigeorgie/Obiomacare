@@ -103,7 +103,17 @@ wrangler rollback <version-id>   # from wrangler deployments list
 
 ---
 
-*Last updated: 2026-08-07*
+*Last updated: 2026-08-18*
+
+---
+
+## Master Directive — 2026-08-18
+
+### 14. Master Directive Registration
+**Decision**: The ATLAS persona + ObiomaCare governance bundle (14 process rules, audit log, gap tracker) is registered as the Master Directive. Canonical copy lives at `/data/profiles/atlas/SOUL.md`; this file and `AGENTS.md` are the enforcement copies.
+**Rationale**: A single named directive gives every session a stable source of authority. All three copies must stay identical; rule or decision changes update every copy in the same commit.
+**Date**: 2026-08-18
+**Status**: ACTIVE
 
 ---
 
