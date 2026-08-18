@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Postiz API config
-const API_KEY = 'pos_80nVwWb8TIdMFTDV3Q8Z0Wpzu61bGiUy8iADDCMB';
+const API_KEY = process.env.POSTIZ_API_KEY; // env-ref (owner-installed; no literals in repo)
 const API_URL = 'https://api.postiz.com';
 const X_INTEGRATION = 'cmrqspwfp0843qj0yyiru88sy';
 
