@@ -11,14 +11,36 @@
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob') || { sync: (p) => require('child_process').execSync(`find ${p.replace(/\*\*/g,'*').replace(/\*/g,'*')} -type f 2>/dev/null || true`).toString().trim().split('\n').filter(Boolean) };
 
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 const LICENSES_PATH = path.join(__dirname, '..', 'assets', 'media', 'LICENSES.md');
 
+/**
+ * Recursively collect all *.html files under a directory.
+ * Native fs walk — no external dependencies (a require('glob') here would
+ * throw in a lean CI checkout where glob is not installed).
+ */
+function findHtmlFiles(dir) {
+  const out = [];
+  if (!fs.existsSync(dir)) return out;
+  const stack = [dir];
+  while (stack.length) {
+    const current = stack.pop();
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(full);
+      } else if (entry.name.endsWith('.html')) {
+        out.push(full);
+      }
+    }
+  }
+  return out;
+}
+
 function findMediaRefs(dir) {
   const refs = new Set();
-  const htmlFiles = glob.sync(path.join(dir, '**', '*.html'));
+  const htmlFiles = findHtmlFiles(dir);
 
   for (const file of htmlFiles) {
     const content = fs.readFileSync(file, 'utf-8');
@@ -98,7 +120,6 @@ function main() {
   }
 
   console.log('✅ MEDIA LICENSE GATE PASSED: all referenced assets are reviewed.\n');
-  process.exit(0);
 }
 
 main();
