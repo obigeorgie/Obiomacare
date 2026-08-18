@@ -26,12 +26,12 @@ from production + fix inbound links). No changes executed — awaiting line-item
 | 17 | `nclex-priority-abcde-method` | 1 | **RETIRE** | Superseded by `nclex-prioritization-frameworks`. Link fix |
 | 18 | `nclex-prioritization-strategy` | 1 | **RETIRE** | Superseded by `nclex-prioritization-frameworks`. Link fix |
 | 19 | `nclex-prioritization-strategy-master` | 0 | **RETIRE** | Superseded by `nclex-prioritization-frameworks` |
-| 20 | `delegation-assignment-guide` | 0 | **RETIRE** | Duplicate of #12 (adopted); SEO cannibalization |
+| 20 | `nclex-delegation-assignment-guide` | 0 | **RETIRE** | Duplicate of #12 (adopted); SEO cannibalization |
 | 21 | `nclex-sata-questions-strategy` | 3 | **RETIRE** | Duplicate of #4 (adopted). Link fixes → #4 |
 | 22 | `nclex-clinical-judgment-framework-master` | 2 | **RETIRE** | Duplicate of #1 (adopted). Link fixes → #1 |
 | 23 | `why-nursing-students-struggle-nclex-next-gen` | 2 | **ADOPT** | Unique topic, no dup |
 
-**Summary: 12 ADOPT · 11 RETIRE.**
+**Summary: 13 ADOPT · 10 RETIRE.**
 
 ## Execution plan (on approval)
 - **ADOPT**: copy `public/content/<slug>.html` → `content/<slug>.html` (identical bytes; pipeline-owned thereafter — build, media gate, injection all apply).
