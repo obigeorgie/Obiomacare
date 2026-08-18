@@ -146,3 +146,9 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - **Deployed**: YES — version 5026d018-c2ce-4acc-9c75-b5ae50e89c37 (2026-08-18T11:35:32Z), 100% traffic
 - **Scope**: eye-anatomy-diagram-v2 + integumentary-system-diagram-v2 embeds (approved), versioned-key convention ratified, ledger reviewed (Nnamdi Okorafor, RN / 2026-08-18)
 - **Verified**: 111/111 pages 200 · 137/137 internal targets OK · both embeds live with alt text (192/260 chars) + caption bylines · 0 old-key refs · pre-report-check OK
+
+### Firestore reconciliation closeout — 2026-08-18
+- **Deleted (owner line-item approved)**: users (3), content (60), social_videos (6) — all verified 0 remaining. social_videos cleared after Postiz confirmed zero trap posts scheduled.
+- **Postiz**: 4 X-queue posts cancelled via API (DELETE /public/v1/posts/:id); verified QUEUE=0 across all integrations (52 PUBLISHED / 8 ERROR remain).
+- **Postiz key incident CLOSED**: cbcfd05 scrubbed residual literals; GitHub code search total_count=0 for pos_; history scrub skipped per documented decision.
+- **Phase 1 (Revenue OS)**: remains undeployed — awaiting owner hand-installed secrets (ADMIN_EMAIL, OPERATOR_API_KEY, beacon token) + explicit deploy go.
