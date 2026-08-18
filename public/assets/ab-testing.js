@@ -1,5 +1,5 @@
 /**
- * Simple A/B Testing for Obioma Care Landing Page
+ * Simple A/B Testing for Obioma Landing Page
  * 
  * Usage:
  * 1. Define test variants below

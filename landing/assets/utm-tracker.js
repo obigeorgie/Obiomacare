@@ -1,4 +1,4 @@
-// UTM Tracking Module — Obioma Care
+// UTM Tracking Module — Obioma
 // Captures UTM params from URL, stores in localStorage, and includes with API calls
 
 (function() {

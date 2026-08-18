@@ -1,5 +1,5 @@
 /**
- * Obioma Care — Service Worker
+ * Obioma — Service Worker
  * Caches static assets for offline study sessions
  * Version: 2026.08.16.01
  */
@@ -197,7 +197,7 @@ async function syncPendingLeads() {
 // Push notifications (future capability)
 self.addEventListener('push', event => {
   const data = event.data ? event.data.json() : {};
-  const title = data.title || 'Obioma Care';
+  const title = data.title || 'Obioma';
   const options = {
     body: data.body || 'Time for your daily NCLEX study session!',
     icon: '/icon-192.png',

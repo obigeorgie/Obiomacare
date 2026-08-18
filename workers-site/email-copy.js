@@ -14,7 +14,7 @@ function footer(email) {
   return [
     '',
     '—',
-    'Nnamdi Okorafor, RN — Founder, Obioma Care',
+    'Nnamdi Okorafor, RN — Founder, Obioma',
     "You're getting this because you signed up for the free NCLEX Study Checklist.",
     'Unsubscribe anytime: ' + BASE + '/api/unsubscribe?email=' + encodeURIComponent(email),
   ].join('\n')

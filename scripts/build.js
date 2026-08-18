@@ -88,4 +88,10 @@ if (fs.existsSync(injectPath)) {
   }
 }
 
+// ─── Site header/logo standardization (2026-08-18) ───
+const injectHeaderPath = path.join(__dirname, 'inject-site-header.js');
+if (fs.existsSync(injectHeaderPath)) {
+  require(injectHeaderPath)();
+}
+
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);

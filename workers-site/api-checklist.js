@@ -80,7 +80,7 @@ async function removeContact(env, audienceId, email) {
 }
 
 async function sendEmail(env, to, subject, text) {
-  const from = getBinding(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma Care <hello@obiomacare.com>'
+  const from = getBinding(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma <hello@obiomacare.com>'
   const r = await resend(env, '/emails', 'POST', { from, to, subject, text })
   return r
 }
@@ -161,7 +161,7 @@ export async function routeUnsubscribe(request, env) {
   // suppression flag regardless
   try { await getBinding(env, 'events').put(`suppress:${email}`, '1') } catch (e) {}
   return new Response(
-    'You have been unsubscribed from ObiomaCare emails. You will not receive any further messages.\n\n— ObiomaCare',
+    'You have been unsubscribed from Obioma emails. You will not receive any further messages.\n\n— Obioma',
     { status: 200, headers: { 'Content-Type': 'text/plain' } },
   )
 }
