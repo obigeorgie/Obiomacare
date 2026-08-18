@@ -125,3 +125,13 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - 8 content files (`nclex-emergency-drugs.html` etc.) are Markdown-like, not valid HTML — skipped PWA injection
 - These may need conversion to proper HTML format in future session
 - G7 status updated from 🔴 to 🟢 in standing gap tracker
+
+---
+
+## 2026-08-18 — Work Order 1 + corrections (Atlas/Hermes)
+- **Task**: WO1 — media-vs-ledger CI gate, 8 markdown→tokenized HTML conversions, docs/READINESS-BANK.md; then owner corrections (LICENSES reviewer field, Master Directive sync)
+- **Files modified**: scripts/media-license-gate.js (hardening), content/*.html (8 conversions), docs/READINESS-BANK.md (new), assets/media/LICENSES.md (reviewer fix), AGENTS.md + docs/DECISIONS.md (Master Directive #14), landing/styles.css + scripts/build.js (dead /styles.css fix), 68 pages (Vercel script tag removal), public/ (rebuild)
+- **Commits**: b3aa342 (WO1), 8d7df28 (chore: vercel tags + styles.css + link fixes), 366ecab (LICENSES reviewer), 5964773 (Master Directive sync) — ALL UNPUSHED (no GitHub creds on box)
+- **Deployed**: no (blocked: GitHub push credential + Cloudflare API token; deploy requires owner creds + explicit go per rule #1)
+- **Blockers**: push credential; CLOUDFLARE_API_TOKEN for media close-out deploy; tranche-2 diagram review (owner) before embeds
+- **Next**: owner provides credentials → push → wrangler deploy → post-deploy link crawl (rule #10)
