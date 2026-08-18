@@ -53,7 +53,7 @@ async function ensureAudience(env) {
   const existing = list.data && list.data.data && list.data.data.find(a => a.name === 'checklist')
   if (existing) return existing.id
   const created = await resend(env, '/audiences', 'POST', { name: 'checklist' })
-  if (created.status === 200 && created.data && created.data.id) return created.data.id
+  if ((created.status === 200 || created.status === 201) && created.data && created.data.id) return created.data.id
   throw new Error('Could not ensure checklist audience: ' + created.status)
 }
 
