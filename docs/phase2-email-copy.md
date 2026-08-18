@@ -6,10 +6,12 @@ real unsubscribe link, CAN-SPAM footer. No purchased lists, no fake urgency.
 
 **CAN-SPAM footer (all emails):**
 > Nnamdi Okorafor, RN — Founder, Obioma Care
->
-> ObiomaCare · [Mailing address — owner fills before activation]
 > You're getting this because you signed up for the free NCLEX Study Checklist.
 > Unsubscribe anytime: https://obiomacare.com/api/unsubscribe?email=<subscriber>
+
+⚠️ Owner decision 2026-08-18: **no physical mailing address in emails** — email is the
+only point of contact. CAN-SPAM technically requires a valid physical postal address
+in commercial email; this risk is accepted by the owner (revisit before live activation).
 
 ---
 

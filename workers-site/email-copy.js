@@ -4,19 +4,17 @@
  * each email individually. Plain-text-first, one CTA each, honest framing,
  * CAN-SPAM footer with real unsubscribe link.
  *
- * MAILING ADDRESS: owner fills before activation (CAN-SPAM requires a
- * physical postal address in the footer).
+ * OWNER DECISION 2026-08-18: no physical mailing address in emails —
+ * email is the only point of contact. Compliance risk accepted by owner;
+ * revisit before live activation.
  */
 const BASE = 'https://obiomacare.com'
-const OWNER_PLACEHOLDER = '[Mailing address — owner fills before activation]'
 
 function footer(email) {
   return [
     '',
     '—',
     'Nnamdi Okorafor, RN — Founder, Obioma Care',
-    '',
-    'ObiomaCare · ' + OWNER_PLACEHOLDER,
     "You're getting this because you signed up for the free NCLEX Study Checklist.",
     'Unsubscribe anytime: ' + BASE + '/api/unsubscribe?email=' + encodeURIComponent(email),
   ].join('\n')
