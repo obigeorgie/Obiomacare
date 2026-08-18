@@ -135,3 +135,9 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - **Deployed**: no (blocked: GitHub push credential + Cloudflare API token; deploy requires owner creds + explicit go per rule #1)
 - **Blockers**: push credential; CLOUDFLARE_API_TOKEN for media close-out deploy; tranche-2 diagram review (owner) before embeds
 - **Next**: owner provides credentials → push → wrangler deploy → post-deploy link crawl (rule #10)
+
+### Deploy outcome (media close-out) — 2026-08-18
+- **Deployed**: YES — version f1550b9e-4681-4ea7-b083-6f23aa4cad83 (2026-08-18T10:37:34Z), 100% traffic
+- **Verified on production**: 112/112 pages 200 · full link crawl 133/133 internal targets OK (rule #10) · styles.css live (fixes 8 previously-unstyled pages) · 5/5 diagram embeds with alt text · 0 pending-asset embeds (tranche-2 gate holds) · converted guides live with tokens.css + bylines
+- **Screenshots**: BLOCKED — no root on container to install browser system libs (libnspr4); DOM/CSS inspection used per 2026-08-14 precedent
+- **Note**: wrangler exited 1 on route reconciliation (token lacks zone perms) — upload + custom-domain serving verified independently; routes unchanged
