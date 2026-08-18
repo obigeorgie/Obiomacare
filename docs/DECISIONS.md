@@ -159,3 +159,12 @@ wrangler rollback <version-id>   # from wrangler deployments list
 **Rationale**: Re-adding Firestore to the entitlement path recreates the two-sources-of-truth problem we consolidated away from (DECISIONS #15). Firestore keeps read-only archival value (leads, automation logs, analytics evidence) and may be decommissioned per the 2026-08-18 end-state plan after line-by-line owner approval of deletions.
 **Date**: 2026-08-18
 **Status**: ACTIVE
+
+### 18. Worker Consolidation — single deployment target
+**Decision**: The duplicate worker `obiomacare` (deployed 2026-08-18T17:26 from a
+non-canonical tree) was DELETED. `obiomacare-site` is the sole Worker per
+DECISIONS #9. Verified: custom domain unaffected (routes → obiomacare-site),
+all bindings (events, users, readiness_sessions, MEDIA_BUCKET, secrets)
+confirmed on the surviving worker.
+**Date**: 2026-08-18
+**Status**: ACTIVE
