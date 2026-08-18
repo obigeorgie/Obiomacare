@@ -57,7 +57,7 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 
 | # | Rule | Detail |
 |---|------|--------|
-| 1 | **No deploys without explicit approval** | Always ask before `wrangler deploy --production` |
+| 1 | **No deploys or infrastructure deletions without explicit approval** | Always ask before `wrangler deploy --production`; deleting workers/namespaces/buckets/routes/DNS also requires explicit owner approval |
 | 2 | **A build is "complete" only with production URL + check output** | Screenshots must match production, not localhost |
 | 3 | **One deploy = one purpose** | P0 fixes and visual migrations never mix in one deploy |
 | 4 | **Medical content needs citations** | Source citation + nurse-review status; unreviewed never renders |
