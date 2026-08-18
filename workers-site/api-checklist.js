@@ -12,6 +12,15 @@ import { SEQUENCE } from './email-copy.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
+/** Test-mode guard: when NURTURE_TEST_MODE=1, ONLY the owner inbox receives nurture emails. */
+function isTestMode(env) {
+  return getBinding(env, 'NURTURE_TEST_MODE') === '1'
+}
+function isOwner(env, email) {
+  const admin = getBinding(env, 'ADMIN_EMAIL')
+  return !!admin && admin.toLowerCase() === String(email).toLowerCase()
+}
+
 function jsonResponse(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
     status,
@@ -94,6 +103,12 @@ export async function routeLeadMagnet(request, env) {
   const firstName = String(body.first_name || '').trim()
   if (!EMAIL_RE.test(email)) return jsonResponse({ error: 'Valid email required' }, 400)
 
+  // TEST-MODE FENCE: before owner copy approval + activation, only the owner
+  // inbox can receive nurture emails. Real subscribers get a polite 403.
+  if (isTestMode(env) && !isOwner(env, email)) {
+    return jsonResponse({ ok: true, message: 'Checklist is in test mode — signups will open soon.' }, 403)
+  }
+
   try {
     const audienceId = await ensureAudience(env)
     await addContact(env, audienceId, email, firstName)
@@ -166,6 +181,8 @@ export async function routeProcessSequence(request, env) {
       const record = JSON.parse(await kv.get(k.name))
       if (!record || record.step >= SEQUENCE.length) continue
       if (record.suppressed || (await kv.get(`suppress:${record.email}`))) continue
+      // TEST-MODE FENCE: only owner inbox advances the sequence pre-activation
+      if (isTestMode(env) && !isOwner(env, record.email)) continue
       if (new Date(record.nextAt).getTime() > now) continue
 
       const stepIdx = record.step + 1 // send next email
