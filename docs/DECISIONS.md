@@ -153,3 +153,9 @@ wrangler rollback <version-id>   # from wrangler deployments list
 **Decision**: `/admin`, `/api/operator/metrics`, `/api/operator/email` accept (a) owner JWT session (ADMIN_EMAIL match) or (b) `X-Operator-Key` header matching Worker secret `OPERATOR_API_KEY` (for the scheduled digest). `ADMIN_EMAIL` gates the dashboard; `OPERATOR_API_KEY` is owner-installed in Cloudflare AND this box — never in chat.
 **Date**: 2026-08-18
 **Status**: ACTIVE
+
+### 17. Firestore is Archive-Only; KV is Canonical
+**Decision**: Firebase Firestore is an archive-only store. KV is the canonical system of record for users, entitlements, sessions, and funnel counters. The "Firestore not yet wired" note in /api/user-tier is removed (verified gone from code and production 2026-08-18); it will not be re-added.
+**Rationale**: Re-adding Firestore to the entitlement path recreates the two-sources-of-truth problem we consolidated away from (DECISIONS #15). Firestore keeps read-only archival value (leads, automation logs, analytics evidence) and may be decommissioned per the 2026-08-18 end-state plan after line-by-line owner approval of deletions.
+**Date**: 2026-08-18
+**Status**: ACTIVE
