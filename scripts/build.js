@@ -39,7 +39,7 @@ copyDir('landing/downloads', 'public/downloads');
 const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html', 
   'privacy.html', 'terms.html', 'success.html', 'sitemap.xml', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'obioma-logo.svg', 'obioma-seo.png',
-  'manifest.json', 'sw.js'];
+  'manifest.json', 'sw.js', 'styles.css'];
 for (const file of landingFiles) {
   const src = path.join('landing', file);
   const dest = path.join('public', file);
