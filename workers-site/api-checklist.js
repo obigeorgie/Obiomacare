@@ -127,7 +127,7 @@ export async function routeLeadMagnet(request, env) {
 
     // E0 — instant delivery
     const e0 = SEQUENCE[0]
-    const text = e0.body(record)
+    const text = e0.body({ ...record, unsubUrl: unsubUrl(env, email, await signUnsubToken(env, email)) })
     const sent = await sendEmail(env, email, e0.subject, text)
     if (sent.status !== 200) {
       return jsonResponse({ error: 'Email send failed' }, 502)
@@ -144,26 +144,90 @@ export async function routeLeadMagnet(request, env) {
   }
 }
 
-/** GET /api/unsubscribe?email=... — one-click unsubscribe (CAN-SPAM). */
+/**
+ * Signed unsubscribe token — HMAC-SHA256(email, JWT_SECRET). Prevents
+ * scanner/prefetch GETs from unsubscribing anyone: bare GET renders a confirm
+ * page; only an explicit POST with a valid token executes the unsubscribe.
+ */
+async function signUnsubToken(env, email) {
+  const secret = getBinding(env, 'JWT_SECRET') || 'unsubscribe-fallback-secret'
+  const key = await crypto.subtle.importKey(
+    'raw', new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'],
+  )
+  const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(email))
+  return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+async function verifyUnsubToken(env, email, token) {
+  if (!token || !email) return false
+  const expect = await signUnsubToken(env, email)
+  if (token.length !== expect.length) return false
+  let diff = 0
+  for (let i = 0; i < token.length; i++) diff |= token.charCodeAt(i) ^ expect.charCodeAt(i)
+  return diff === 0
+}
+
+function unsubUrl(env, email, token) {
+  return 'https://obiomacare.com/api/unsubscribe?email=' + encodeURIComponent(email) + '&t=' + token
+}
+
+function confirmPage(email, token) {
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unsubscribe from Obioma</title>
+<style>body{font-family:system-ui,sans-serif;background:#0b1f3a;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
+.card{background:#12294a;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:36px;max-width:420px;text-align:center}
+h1{font-size:1.4rem;margin:0 0 12px}p{color:rgba(255,255,255,.75);line-height:1.5;margin:0 0 24px}
+button{background:#ff6b4a;color:#fff;border:0;border-radius:8px;padding:12px 22px;font-size:1rem;font-weight:600;cursor:pointer}
+a{color:rgba(255,255,255,.7);display:block;margin-top:14px;font-size:.9rem}</style></head><body>
+<div class="card"><h1>Unsubscribe from Obioma emails?</h1>
+<p>You're about to stop receiving the NCLEX Study Checklist and nurture emails from Obioma. You can re-subscribe anytime at obiomacare.com.</p>
+<form method="POST" action="/api/unsubscribe"><input type="hidden" name="email" value="${encodeURIComponent(email)}"><input type="hidden" name="t" value="${token}"><button type="submit">Yes, unsubscribe me</button></form>
+<a href="/">Keep my subscription</a></div></body></html>`
+}
+
+/** GET /api/unsubscribe?email=...&t=... — confirm page (NO side effects).
+ *  POST /api/unsubscribe (email+t) — executes unsubscribe (scanner-safe). */
 export async function routeUnsubscribe(request, env) {
   const url = new URL(request.url)
   const email = String(url.searchParams.get('email') || '').trim().toLowerCase()
+  const token = String(url.searchParams.get('t') || '')
   if (!EMAIL_RE.test(email)) {
-    return new Response('Missing or invalid email. Please use the unsubscribe link from the email.', {
+    return new Response('Missing or invalid email. Use the unsubscribe link from the email.', {
       status: 400,
       headers: { 'Content-Type': 'text/plain' },
     })
   }
-  try {
-    const audienceId = await ensureAudience(env)
-    await removeContact(env, audienceId, email)
-  } catch (e) { /* best effort */ }
-  // suppression flag regardless
-  try { await getBinding(env, 'events').put(`suppress:${email}`, '1') } catch (e) {}
-  return new Response(
-    'You have been unsubscribed from Obioma emails. You will not receive any further messages.\n\n— Obioma',
-    { status: 200, headers: { 'Content-Type': 'text/plain' } },
-  )
+
+  if (request.method === 'POST') {
+    const body = await request.formData().catch(() => new FormData())
+    const postEmail = String((body.get('email') || email) || '').trim().toLowerCase()
+    const postToken = String(body.get('t') || token || '')
+    if (!EMAIL_RE.test(postEmail) || !(await verifyUnsubToken(env, postEmail, postToken))) {
+      return new Response('Invalid unsubscribe link.', { status: 400, headers: { 'Content-Type': 'text/plain' } })
+    }
+    try {
+      const audienceId = await ensureAudience(env)
+      await removeContact(env, audienceId, postEmail)
+    } catch (e) { /* best effort */ }
+    try { await getBinding(env, 'events').put(`suppress:${postEmail}`, '1') } catch (e) {}
+    return new Response(
+      'You have been unsubscribed from Obioma emails. You will not receive any further messages.\n\n— Obioma',
+      { status: 200, headers: { 'Content-Type': 'text/plain' } },
+    )
+  }
+
+  // GET: verify token, render confirm page. Bare GET (no/invalid token) = 400, no side effects.
+  if (!(await verifyUnsubToken(env, email, token))) {
+    return new Response('Invalid unsubscribe link. Use the link from the email.', {
+      status: 400,
+      headers: { 'Content-Type': 'text/plain' },
+    })
+  }
+  return new Response(confirmPage(email, token), {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  })
 }
 
 /** POST /api/operator/process-sequence — daily sweep for due nurture emails (operator-key gated). */
@@ -187,7 +251,7 @@ export async function routeProcessSequence(request, env) {
 
       const stepIdx = record.step + 1 // send next email
       const step = SEQUENCE[stepIdx]
-      const text = step.body(record)
+      const text = step.body({ ...record, unsubUrl: unsubUrl(env, record.email, await signUnsubToken(env, record.email)) })
       const sent = await sendEmail(env, record.email, step.subject, text)
       record.step = stepIdx
       record.lastSent = new Date(now).toISOString()

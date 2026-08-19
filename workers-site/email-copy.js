@@ -10,13 +10,13 @@
  */
 const BASE = 'https://obiomacare.com'
 
-function footer(email) {
+function footer(v) {
   return [
     '',
     '—',
     'Nnamdi Okorafor, RN — Founder, Obioma',
     "You're getting this because you signed up for the free NCLEX Study Checklist.",
-    'Unsubscribe anytime: ' + BASE + '/api/unsubscribe?email=' + encodeURIComponent(email),
+    'Unsubscribe anytime: ' + (v.unsubUrl || ('https://obiomacare.com/api/unsubscribe?email=' + encodeURIComponent(v.email))),
   ].join('\n')
 }
 
@@ -37,7 +37,7 @@ export const SEQUENCE = [
       `Quick intro to Obioma: we're a nursing-education team building NCLEX prep around clinical judgment — realistic NGN case studies, a CAT-style readiness check, and honest guidance. No hype, no "pass in 30 days" promises. If a number isn't true, we don't say it.`,
       '',
       `You'll get a short email every few days with a study tip or a free tool. Unsubscribe anytime — no hard feelings.`,
-      footer(v.email),
+      footer(v),
     ].join('\n'),
     cta: 'Open the checklist',
   },
@@ -57,7 +57,7 @@ export const SEQUENCE = [
       BASE + '/case-engine.html',
       '',
       `One case, about 10 minutes. You might notice the difference between "knowing" and "thinking like a nurse."`,
-      footer(v.email),
+      footer(v),
     ].join('\n'),
     cta: 'Try a free case study',
   },
@@ -77,7 +77,7 @@ export const SEQUENCE = [
       BASE + '/readiness',
       '',
       `About 20 questions. You'll see where you are, your weak categories, and what to work on next.`,
-      footer(v.email),
+      footer(v),
     ].join('\n'),
     cta: 'Take the free readiness check',
   },
@@ -100,7 +100,7 @@ export const SEQUENCE = [
       `Plans and honest pricing:`,
       '',
       BASE + '/pricing',
-      footer(v.email),
+      footer(v),
     ].join('\n'),
     cta: 'See the plans',
   },
@@ -120,7 +120,7 @@ export const SEQUENCE = [
       BASE + '/pricing',
       '',
       `Either way, thanks for reading. That's the end of this sequence — no more emails unless you want them or we have something genuinely useful.`,
-      footer(v.email),
+      footer(v),
     ].join('\n'),
     cta: 'Start the annual plan',
   },
