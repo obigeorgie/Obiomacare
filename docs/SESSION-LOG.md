@@ -152,3 +152,16 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - **Postiz**: 4 X-queue posts cancelled via API (DELETE /public/v1/posts/:id); verified QUEUE=0 across all integrations (52 PUBLISHED / 8 ERROR remain).
 - **Postiz key incident CLOSED**: cbcfd05 scrubbed residual literals; GitHub code search total_count=0 for pos_; history scrub skipped per documented decision.
 - **Phase 1 (Revenue OS)**: remains undeployed — awaiting owner hand-installed secrets (ADMIN_EMAIL, OPERATOR_API_KEY, beacon token) + explicit deploy go.
+
+### P1 fix (footer + contact) — deployed + owner-confirmed 2026-08-18/19
+- **Footer**: homepage restored from last good version (a06f10e); shared
+  component (scripts/inject-site-footer.js) + footer gate (footer-gate.js —
+  exactly one canonical footer per page, build-fails otherwise).
+- **Contact**: /contact.html + POST /api/contact (Resend → ADMIN_EMAIL,
+  honeypot, per-email + per-IP KV rate limit 5/hr).
+- **Verified**: 128 pages, 0 broken links, honeypot drop confirmed,
+  real submission landed in admin inbox (owner-confirmed 2026-08-19).
+- **Known limitation**: KV rate limit is best-effort (non-atomic RMW under
+  eventual consistency) — DECISIONS #20; Durable Object deferred (worker is
+  service-worker format).
+- **Commits**: d8a938a, eb35176, bc24a29. Deployed.
