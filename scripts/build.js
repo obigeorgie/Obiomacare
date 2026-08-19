@@ -36,8 +36,8 @@ for (const entry of rootContentFiles) {
 copyDir('landing/downloads', 'public/downloads');
 
 // Also copy landing/ assets to public/ so they're available at root
-const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html', 
-  'privacy.html', 'terms.html', 'success.html', 'sitemap.xml', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
+const landingFiles = ['index.html', '404.html', 'free-nclex-checklist.html', 'neuro-cheat-sheet.html',
+  'privacy.html', 'terms.html', 'success.html', 'contact.html', 'sitemap.xml', 'ab-dashboard.html', 'favicon.ico', 'favicon.svg', 'robots.txt',
   'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'obioma-logo.svg', 'obioma-seo.png',
   'manifest.json', 'sw.js', 'styles.css'];
 for (const file of landingFiles) {
@@ -92,6 +92,23 @@ if (fs.existsSync(injectPath)) {
 const injectHeaderPath = path.join(__dirname, 'inject-site-header.js');
 if (fs.existsSync(injectHeaderPath)) {
   require(injectHeaderPath)();
+}
+
+// ─── Site footer standardization (2026-08-18, P1) ───
+const injectFooterPath = path.join(__dirname, 'inject-site-footer.js');
+if (fs.existsSync(injectFooterPath)) {
+  require(injectFooterPath)();
+}
+
+// ─── Footer gate (exactly one canonical footer per page) ───
+const footerGatePath = path.join(__dirname, 'footer-gate.js');
+if (fs.existsSync(footerGatePath)) {
+  try {
+    require(footerGatePath);
+  } catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
 }
 
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);

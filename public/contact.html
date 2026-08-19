@@ -1,49 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You — Obioma</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    <!-- Facebook Pixel -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window,document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'FB_PIXEL_ID');
-      fbq('track', 'PageView');
-    </script>
-    <noscript>
-      <img height="1" width="1" style="display:none" 
-           src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"/>
-    </noscript>
-    <style>
-        :root { --primary: #1a365d; --accent: #c53030; --bg-warm: #fffaf0; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-warm); color: #2d3748; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .container { max-width: 600px; text-align: center; padding: 40px; }
-        .icon { font-size: 4rem; margin-bottom: 24px; }
-        h1 { color: var(--primary); font-size: 2rem; margin-bottom: 16px; }
-        p { color: #718096; font-size: 1.125rem; margin-bottom: 32px; }
-        .btn { display: inline-block; background: var(--accent); color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; }
-        .note { margin-top: 32px; padding: 24px; background: white; border-radius: 8px; }
-    </style>
-<!-- Cloudflare Web Analytics -->
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "156afa3b1ed1486cb0fc62708b1802ce"}'></script>
-<!-- End Cloudflare Web Analytics -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Obioma — We Read Everything</title>
+<meta name="description" content="Contact Obioma — questions, feedback, or partnership inquiries. We read everything and reply to most.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="stylesheet" href="/design-tokens/tokens.css">
+<style>
+  body{font-family:system-ui,sans-serif;background:#f6f8fb;color:#1a365d;margin:0}
+  .page{padding:64px 20px}
+  .container{max-width:680px;margin:0 auto}
+  .page h1{font-size:2rem;margin:0 0 8px}
+  .page .sub{color:#5b6b83;margin:0 0 36px;line-height:1.6}
+  .form-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:32px}
+  label{display:block;font-weight:600;margin:0 0 6px;font-size:.95rem}
+  input,textarea{width:100%;padding:12px 14px;border:1px solid #cbd5e1;border-radius:8px;font-size:1rem;font-family:inherit;box-sizing:border-box;margin-bottom:20px}
+  input:focus,textarea:focus{outline:2px solid #ff6b4a;border-color:transparent}
+  textarea{min-height:140px;resize:vertical}
+  button{background:#ff6b4a;color:#fff;border:0;border-radius:8px;padding:12px 26px;font-size:1rem;font-weight:600;cursor:pointer}
+  button:hover{background:#e85a3c}
+  button:disabled{opacity:.6;cursor:default}
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+  .success,.error{display:none;border-radius:12px;padding:16px 20px;margin-bottom:20px;font-size:.95rem}
+  .success{background:#e6f7ee;color:#14613c;border:1px solid #b7e5cd}
+  .error{background:#fdeeee;color:#8f1d1d;border:1px solid #f5c6c6}
+</style>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"7355b4ba270b499f8b0d5788379dff7b"}'></script>
 </head>
 <body>
 <!-- Site header (standardized 2026-08-18) -->
@@ -76,39 +59,74 @@
     </nav>
   </div>
 </header>
-    <div class="container">
-        <div class="icon"><i data-lucide="party-popper" class="icon icon-coral icon-md" aria-label="Celebrate"></i></div>
-        <h1>Thank You for Your Purchase!</h1>
-        <p>Your Clinical Judgment Mastery System is being prepared. Check your email in the next 2-3 minutes for your download link.</p>
-        <a href="/" class="btn">Back to Homepage</a>
-        <div class="note">
-            <p style="margin: 0; font-size: 1rem; color: #2d3748;"><strong>What's next:</strong></p>
-            <p style="margin: 8px 0 0; font-size: 0.875rem;">1. Download your files from the email<br>2. Start with the NGN Framework<br>3. Work through one scenario per day</p>
-        </div>
-    </div>
-    <script>
-        // Track purchase from URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        const sessionId = urlParams.get('session_id');
-        if (sessionId) {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'purchase', {
-                    transaction_id: sessionId,
-                    currency: 'USD'
-                });
-            }
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Purchase', {
-                    content_type: 'product',
-                    currency: 'USD'
-                });
-            }
-        }
-    </script>
 
-    <!-- Lucide Icons — loaded once, hydrates all [data-lucide] elements -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.lucide) lucide.createIcons(); });</script>
+<section class="page">
+  <div class="container">
+    <h1>Contact Obioma</h1>
+    <p class="sub">Questions, feedback, or partnership inquiries — we read everything and reply to most. Expect a response within a couple of business days.</p>
+
+    <div class="success" id="successMsg"><strong>Message sent.</strong> Thanks for reaching out — we'll get back to you at the email you provided.</div>
+    <div class="error" id="errorMsg"><strong>Something went wrong.</strong> Please check your details and try again.</div>
+
+    <div class="form-card">
+      <form id="contactForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required maxlength="100">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="How can we help?" required minlength="10" maxlength="5000"></textarea>
+
+        <!-- Honeypot — humans never see this -->
+        <div class="hp" aria-hidden="true">
+          <label>Leave this field empty</label>
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" id="submitBtn">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  document.getElementById('successMsg').style.display = 'none';
+  document.getElementById('errorMsg').style.display = 'none';
+  const payload = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    message: document.getElementById('message').value,
+    website: document.querySelector('input[name="website"]').value,
+  };
+  try {
+    const r = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (r.ok) {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      if (typeof window.ObiomaEvents !== 'undefined') window.ObiomaEvents.track('contact_submitted', { page: '/contact.html' });
+    } else {
+      throw new Error('Failed');
+    }
+  } catch (err) {
+    document.getElementById('errorMsg').style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send message';
+  }
+});
+</script>
+
   <script src="/assets/revenue-events.js" defer></script>
 <!-- Obioma canonical footer (standardized 2026-08-18) -->
 <footer class="site-footer">
