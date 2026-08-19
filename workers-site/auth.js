@@ -1,5 +1,5 @@
 /**
- * ObiomaCare Authentication System
+ * Obioma Authentication System
  * Magic links + JWT sessions. No passwords. No external auth providers.
  *
  * Flow:
@@ -155,19 +155,19 @@ async function sendMagicLinkEmail(email, token, env) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: env.FROM_EMAIL || 'ObiomaCare <auth@obiomacare.com>',
+      from: env.FROM_EMAIL || 'Obioma <auth@obiomacare.com>',
       to: email,
-      subject: 'Your ObiomaCare Login Link',
+      subject: 'Your Obioma Login Link',
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;padding:32px">
-          <h2 style="color:#1a1a2e">Log in to ObiomaCare</h2>
+          <h2 style="color:#1a1a2e">Log in to Obioma</h2>
           <p>Click the button below to log in. This link expires in 10 minutes.</p>
-          <a href="${verifyUrl}" style="display:inline-block;background:#4f46e5;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;margin:16px 0">Log In to ObiomaCare</a>
+          <a href="${verifyUrl}" style="display:inline-block;background:#4f46e5;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;margin:16px 0">Log In to Obioma</a>
           <p style="color:#666;font-size:14px">Or copy this URL:<br><code style="background:#f4f4f5;padding:8px;border-radius:4px;word-break:break-all">${verifyUrl}</code></p>
           <p style="color:#666;font-size:12px;margin-top:24px">If you didn't request this, you can safely ignore this email.</p>
         </div>
       `,
-      text: `Log in to ObiomaCare: ${verifyUrl}\n\nThis link expires in 10 minutes.`,
+      text: `Log in to Obioma: ${verifyUrl}\n\nThis link expires in 10 minutes.`,
     }),
   });
 
