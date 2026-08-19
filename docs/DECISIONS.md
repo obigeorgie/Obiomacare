@@ -182,3 +182,16 @@ email-by-email before any send beyond owner test inbox; mailing address
 owner-filled before activation. Sequence state in KV `events` namespace.
 **Date**: 2026-08-18
 **Status**: BUILD COMPLETE — parked at deploy gate (rule #1)
+
+### 20. Contact form + rate limit approach (P1, 2026-08-18)
+**Decision**: `/contact.html` + `POST /api/contact` — honeypot field (primary
+spam defense, silently drops bots) + KV rate limit (5/hr per email AND per IP).
+**Known limitation (documented)**: Cloudflare KV read-modify-write is
+non-atomic under eventual consistency — burst counters can undercount
+(observed: 7 rapid requests → counter 3). The limit blocks sustained abuse
+from a stable source once propagation catches up; it is best-effort, not
+strict. A strict atomic limiter would require a Durable Object, which the
+service-worker-format worker cannot export without a module-format refactor
+(deferred; revisit if spam becomes a problem).
+**Date**: 2026-08-18
+**Status**: ACTIVE
