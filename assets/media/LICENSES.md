@@ -50,3 +50,9 @@ All media assets generated for Obioma Care. AI-generated medical diagrams requir
 ---
 
 *Last updated: 2026-08-18*
+
+| endocrine-system-diagram-v1.webp | 2026-08-18 | kimi image generation | AI-generated (Kimi), enumerated-label prompt pattern — endocrine system cross-section: pituitary, thyroid, parathyroid, adrenal, pancreas, pineal, hypothalamus — each label exactly once | ai-generated-obioma | pending |  |  | nclex-endocrine-disorders |
+| musculoskeletal-system-diagram-v1.webp | 2026-08-18 | kimi image generation | AI-generated (Kimi), enumerated-label prompt pattern — musculoskeletal system: skeleton, major muscle groups, joint types — each label exactly once | ai-generated-obioma | pending |  |  | nclex-musculoskeletal-disorders |
+| hepatobiliary-pancreas-diagram-v2.webp | 2026-08-18 | kimi image generation | AI-generated (Kimi), enumerated-label prompt pattern — liver, gallbladder, pancreas anatomy with biliary tree — v2 canonical (v1 never entered pipeline) — each label exactly once | ai-generated-obioma | pending |  |  | nclex-liver-pancreas-disorders |
+| immune-lymphatic-system-diagram-v1.webp | 2026-08-18 | kimi image generation | AI-generated (Kimi), enumerated-label prompt pattern — immune/lymphatic system: thymus, spleen, lymph nodes, tonsils, bone marrow, lymphatic vessels — each label exactly once | ai-generated-obioma | pending |  |  | nclex-immune-disorders |
+| pediatric-congenital-cardiac-diagram-v3.webp | 2026-08-18 | kimi image generation | AI-generated (Kimi), enumerated-label prompt pattern — congenital cardiac defects: ASD, VSD, PDA, TOF, TGA — v3 canonical (v1/v2 rejected for shunt-arrow errors, never entered pipeline) — each label exactly once | ai-generated-obioma | pending |  |  | nclex-pediatric-cardiac-congenital |
