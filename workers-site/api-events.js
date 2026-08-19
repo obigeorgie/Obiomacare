@@ -160,6 +160,29 @@ export async function routeOperatorEmail(request, env) {
   return jsonResponse({ ok: true })
 }
 
+/** GET /api/operator/email-status — Resend delivery status for recent emails (operator-gated, read-only). */
+export async function routeOperatorEmailStatus(request, env) {
+  if (!(await isOperator(request, env))) return jsonResponse({ error: 'Unauthorized' }, 401)
+  const resendKey = getBinding(env, 'RESEND_API_KEY')
+  if (!resendKey) return jsonResponse({ error: 'Email not configured' }, 500)
+  const url = new URL(request.url)
+  const limit = Math.min(parseInt(url.searchParams.get('limit') || '30', 10), 100)
+  const r = await fetch(`https://api.resend.com/emails?limit=${limit}`, {
+    headers: { Authorization: `Bearer ${resendKey}` },
+  })
+  const data = await r.json().catch(() => ({}))
+  const items = (data.data || []).map((e) => ({
+    id: e.id,
+    to: e.to,
+    from: e.from,
+    subject: e.subject,
+    status: e.status,
+    last_event: e.last_event,
+    created_at: e.created_at,
+  }))
+  return jsonResponse({ items })
+}
+
 /** Private operator dashboard — plain HTML, auth-gated, owner email only. */
 export async function routeAdmin(request, env) {
   const user = await getAuthUser(request, env)

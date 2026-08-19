@@ -8,7 +8,7 @@ import { routeReadiness } from './api-readiness.js';
 import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
-import { routeEvent, routeOperatorMetrics, routeOperatorEmail, trackEvent } from './api-events.js';
+import { routeEvent, routeOperatorMetrics, routeOperatorEmail, routeOperatorEmailStatus, trackEvent } from './api-events.js';
 import { routeLeadMagnet, routeUnsubscribe, routeProcessSequence } from './api-checklist.js';
 import { routeContact } from './api-contact.js';
 
@@ -421,6 +421,8 @@ export async function routeApi(request, env) {
         return await routeOperatorMetrics(request, env);
       case '/api/operator/email':
         return await routeOperatorEmail(request, env);
+      case '/api/operator/email-status':
+        return await routeOperatorEmailStatus(request, env);
       case '/api/operator/process-sequence':
         return await routeProcessSequence(request, env);
       case '/api/lead-magnet':
