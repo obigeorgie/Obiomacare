@@ -63,7 +63,7 @@ async function addContact(env, audienceId, email, firstName) {
     first_name: firstName || '',
     unsubscribed: false,
   })
-  if (r.status !== 200) throw new Error('Contact add failed: ' + r.status)
+  if (r.status !== 200 && r.status !== 201) throw new Error('Contact add failed: ' + r.status)
   return r.data
 }
 
