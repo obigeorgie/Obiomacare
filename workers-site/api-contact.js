@@ -37,12 +37,18 @@ export async function routeContact(request, env) {
   const kv = getBinding(env, 'events')
   if (kv) {
     const ip = request.headers.get('cf-connecting-ip') || 'unknown'
-    const rlKey = `contact:${email}:${ip}`
-    const cnt = parseInt((await kv.get(rlKey)) || '0', 10)
-    if (cnt >= RATE_LIMIT) {
-      return jsonResponse({ error: 'Too many submissions from this address. Try again later.' }, 429)
+    // per-email AND per-IP limits (5/hour each) — blocks single-address hammering
+    // even behind rotating egress, and single-IP bots across many addresses.
+    for (const rlKey of [`contact:${email}`, `contact:ip:${ip}`]) {
+      const cnt = parseInt((await kv.get(rlKey)) || '0', 10)
+      if (cnt >= RATE_LIMIT) {
+        return jsonResponse({ error: 'Too many submissions from this address. Try again later.' }, 429)
+      }
     }
-    await kv.put(rlKey, String(cnt + 1), { expirationTtl: RATE_TTL_SECONDS })
+    for (const rlKey of [`contact:${email}`, `contact:ip:${ip}`]) {
+      const cnt = parseInt((await kv.get(rlKey)) || '0', 10)
+      await kv.put(rlKey, String(cnt + 1), { expirationTtl: RATE_TTL_SECONDS })
+    }
   }
 
   const resendKey = getBinding(env, 'RESEND_API_KEY')
