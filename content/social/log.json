@@ -4,5 +4,13 @@
     "action": "KILL",
     "halted": 1,
     "dryRun": true
+  },
+  {
+    "at": "2026-08-20T16:49:56.094Z",
+    "id": "demo-trap-reviewed-1787244587583",
+    "assetId": "eye-anatomy-diagram-v2.webp",
+    "action": "SKIP",
+    "reason": "script demo-trap-reviewed.json NOT reviewed at publish time by Nnamdi Okorafor, RN",
+    "dryRun": true
   }
 ]

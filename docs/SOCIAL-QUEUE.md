@@ -10,10 +10,10 @@ owner command.
 
 1. **Factory proof**: at least one full batch (3 shorts) manually reviewed,
    rendered, and manually posted by the owner via the Phase 3 flow.
-2. **Queue gate demonstration**: enqueue of an unreviewed script REFUSED, with
-   the refusal shown as evidence (planted-violation proof — the media-gate
-   philosophy). Local evidence produced 2026-08-20 (see report); re-run at
-   activation.
+2. **Queue gate demonstration**: enqueue of an unreviewed SCRIPT refused (the
+   review unit is the script JSON — captions + CTA link — not the media
+   ledger). Evidence produced 2026-08-20: reviewed-image + unreviewed-script
+   → REFUSED; publish-time flip → SKIPPED (see report). Re-run at activation.
 3. **Kill switch demonstrated**: owner command (or file flag) halts the queue
    and dequeues everything pending. Local evidence produced 2026-08-20.
 4. **Platform tokens installed owner-side only** (rule #12): TikTok Content
@@ -23,10 +23,14 @@ owner command.
 
 ## Queue mechanics
 
-- **Source of truth**: `content/social/queue.json` — every entry references an
-  asset whose LICENSES.md record shows `reviewed` by **Nnamdi Okorafor, RN**.
-- **Double verification**: review status is re-checked AT PUBLISH TIME, not
-  just at enqueue. If the ledger flipped, the post is SKIPPED.
+- **Source of truth**: `content/social/queue.json` — every entry references a
+  **script JSON** (`content/social/scripts/*.json`) whose review record shows
+  `reviewed` by **Nnamdi Okorafor, RN** (script + per-platform captions + CTA
+  link are the review unit — a reviewed image is NOT a reviewed post).
+- **Double verification**: the script's reviewStatus/reviewer/reviewedAt is
+  re-checked AT PUBLISH TIME, not just at enqueue. If the script flipped to
+  unreviewed, the post is SKIPPED (demonstrated: accepted entry + script
+  flipped pending → skip).
 - **Depth**: ≤ 5 days of content. No evergreen auto-scheduling beyond the
   current approved batch.
 - **UTM + captions**: every post carries the UTM-tagged link; per-platform

@@ -50,19 +50,22 @@ if (fs.existsSync(KILL) || load(QUEUE, {}).killSwitch === true) {
 
 const q = load(QUEUE, { entries: [], rateLimitPerPlatformPerDay: 1 });
 const state = load(STATE, { lastPostByPlatform: {} });
-const ledger = fs.readFileSync(LICENSES, 'utf8');
 const now = Date.now();
 const due = q.entries.filter((e) => e.status === 'queued' && Date.parse(e.publishDate) <= now);
 
 console.log(`Queue processor (${DRY ? 'DRY-RUN' : 'LIVE'}) — ${due.length} due of ${q.entries.length} entries`);
 
 for (const e of due) {
-  // ---- REVIEW RE-VERIFY AT PUBLISH TIME ----
-  const line = ledger.split('\n').find((l) => l.startsWith(`| ${e.assetId} `));
-  const reviewed = line && line.includes('| reviewed |') && line.includes(`| ${REVIEWER} |`);
+  // ---- SCRIPT REVIEW RE-VERIFY AT PUBLISH TIME (script JSON is the review unit) ----
+  const scriptPath = path.join(ROOT, 'content', 'social', 'scripts', e.script);
+  let reviewed = false;
+  try {
+    const script = JSON.parse(fs.readFileSync(scriptPath, 'utf8'));
+    reviewed = script.reviewStatus === 'reviewed' && script.reviewer === REVIEWER && !!script.reviewedAt;
+  } catch { /* missing/unreadable script = not reviewed */ }
   if (!reviewed) {
     e.status = 'skipped';
-    e.skipReason = `NOT reviewed at publish time by ${REVIEWER}`;
+    e.skipReason = `script ${e.script} NOT reviewed at publish time by ${REVIEWER}`;
     log({ at: new Date().toISOString(), id: e.id, assetId: e.assetId, action: 'SKIP', reason: e.skipReason, dryRun: DRY });
     console.log(`⏭  SKIP ${e.id}: ${e.skipReason}`);
     continue;
