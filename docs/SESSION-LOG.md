@@ -165,3 +165,13 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
   eventual consistency) — DECISIONS #20; Durable Object deferred (worker is
   service-worker format).
 - **Commits**: d8a938a, eb35176, bc24a29. Deployed.
+
+### Tranches 3+4 staging (2026-08-19)
+- 6 diagrams staged: 5 earlier + female-reproductive (re-fetched via fresh
+  signed URL after 307-redirect issue; verified 108,230 B, 2048x1082).
+- Skeletal guide content/nclex-reproductive-health-basics.html drafted with
+  citations (rule #4) + diagram wired; pending nurse review.
+- Ledger: 6 pending entries; reviewer/reviewedAt blank (pipeline never fills).
+- Gate: build exits 1 on 6 unreviewed assets — structural enforcement verified.
+- Audit: "credential pasted in chat, unused, rotated — rule #12 held"
+  (Hostinger email API key, 2026-08-19).
