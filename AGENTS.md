@@ -71,6 +71,7 @@ If anything contradicts what you find in the repo, **flag it** instead of guessi
 | 12 | **Payment/live keys are NEVER agent-installed** | Owner installs into Worker environment directly, by hand, at deliberate go-live only |
 | 13 | **NEVER install Stripe apps, browser extensions, or CLI plugins** | These can silently switch accounts or leak keys. STOP and get explicit human approval |
 | 14 | **No status report may claim committed/built/complete while `git log origin/main..HEAD` is non-empty** | Before every report: run `scripts/pre-report-check.sh` and paste its output in the report. A BLOCKED result means no ✅ claims — paste the script output instead. |
+| — | **No unreviewed content is ever published** | Owner-approved content MAY be scheduled/auto-posted through the publishing queue (Phase 3.5). Approval is per-asset, recorded (asset ID, reviewer, timestamp); the queue halts instantly on owner command (kill switch). Replaces the earlier absolute no-auto-posting stance — amended 2026-08-20 |
 | — | **Secrets never in chat/code/logs** | `.env` and `firebase-service-account.json` are gitignored |
 | — | **Update docs at session end** | `docs/TODO.md`, `docs/DECISIONS.md` if decisions made |
 

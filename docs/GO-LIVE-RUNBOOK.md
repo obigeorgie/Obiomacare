@@ -90,7 +90,9 @@ activates anything by itself — each phase is gated on an explicit owner "go".
 - [ ] Daily heartbeat (site + API).
 - [ ] First Monday digest: baseline live-week numbers (Revenue OS Phase 1).
 - [ ] Watch: bounce rate, spam complaints, refund requests — weekly digest.
-- [ ] No auto-posting; no pricing changes without line-item approval.
+- [ ] No unreviewed content published; owner-approved content MAY auto-post via
+      the Phase 3.5 queue (per-asset approval, instant halt); no pricing changes
+      without line-item approval.
 
 ---
 *Draft 2026-08-19 — pending owner review; dormant until explicit "go live".*
