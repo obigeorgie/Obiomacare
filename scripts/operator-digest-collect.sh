@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -a; source /data/.hermes/profiles/atlas/secrets.env 2>/dev/null || true; set +a
 # Operator Digest — data collection for the Monday 08:00 weekly digest.
 # Fetches 14 days of funnel metrics + top guides from the Worker.
 # stdout (JSON) is injected into the cron agent's prompt for composition.

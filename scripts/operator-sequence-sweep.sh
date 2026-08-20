@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -a; source /data/.hermes/profiles/atlas/secrets.env 2>/dev/null || true; set +a
 # Phase 2 — daily nurture-sequence sweep.
 # Calls the Worker's operator-gated processor; prints ONLY when emails were sent
 # (watchdog pattern — silent when nothing processed).
