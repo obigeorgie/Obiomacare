@@ -182,3 +182,17 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
   implemented; GO-LIVE-RUNBOOK drafted with GATE A.
 - Post-deploy: claim greps 0/0/0, JSON-LD clean, trial copy spot-check OK,
   refund language identical, crawl 129 pages 0 non-200.
+
+### E2 non-delivery — root cause + fix (2026-08-20)
+- ROOT CAUSE 1: gateway cron ticker owned the WRONG profile home
+  (HERMES_HOME=/data → /data/cron/); jobs live in /data/profiles/atlas/cron/.
+  Jobs showed "scheduled" but no ticker owned the store — watchdog + sweep
+  never fired (last run Aug 18).
+- ROOT CAUSE 2: sweep script env lacked OPERATOR_API_KEY — run output was
+  {"error":"OPERATOR_API_KEY not set"} (cron env ≠ sourced terminal env).
+- FIX: multiplex_profiles: true in /data/config.yaml (ticker iterates profile
+  homes); scripts source /data/.hermes/profiles/atlas/secrets.env. Gateway
+  restarted. Verified: watchdog ticking every 5m (19:37→19:57→…), hourly
+  sweep fired 20:00 silent (healthy — E2 not due until 08:01 Aug 21).
+- E2 lands via the 09:00 UTC sweep on 2026-08-21 (first tick after due) —
+  by automation, no manual send.
