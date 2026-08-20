@@ -175,3 +175,10 @@ Log of all AI agent sessions. Each entry should help the next agent understand w
 - Gate: build exits 1 on 6 unreviewed assets — structural enforcement verified.
 - Audit: "credential pasted in chat, unused, rotated — rule #12 held"
   (Hostinger email API key, 2026-08-19).
+
+### Offer-integrity P1 — deployed + verified (2026-08-19)
+- Claims removed sitewide; trial rule (7/14) consistent; refund policy verbatim
+  (FAQ == terms); refund contact = /contact.html; trial_will_end webhook
+  implemented; GO-LIVE-RUNBOOK drafted with GATE A.
+- Post-deploy: claim greps 0/0/0, JSON-LD clean, trial copy spot-check OK,
+  refund language identical, crawl 129 pages 0 non-200.
