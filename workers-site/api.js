@@ -283,6 +283,41 @@ async function handleWebhook(request, env) {
       }
       break;
     }
+    case 'customer.subscription.trial_will_end': {
+      // Offer integrity: the FAQ promises a trial reminder — send it (Stripe
+      // fires trial_will_end ~3 days before trial end).
+      const subscription = event.data.object;
+      const customerId = subscription.customer;
+      try {
+        const cust = await stripeRequest(`/customers/${customerId}`, { method: 'GET' }, getEnvVar(env, 'STRIPE_SECRET_KEY'));
+        const email = (cust && cust.email) || subscription.metadata?.email;
+        const resendKey = getEnvVar(env, 'RESEND_API_KEY');
+        if (email && resendKey) {
+          const from = getEnvVar(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma <hello@obiomacare.com>';
+          const text = [
+            `Hi${subscription.metadata?.firstName ? ' ' + subscription.metadata.firstName : ''},`,
+            '',
+            'Your Obioma free trial ends in 3 days. If you don\'t cancel, your card will be charged.',
+            'No surprises — that\'s the promise. Cancel anytime from your account:',
+            '',
+            'https://obiomacare.com/account',
+            '',
+            'If you have questions, we read everything: https://obiomacare.com/contact.html',
+            '',
+            '— Nnamdi Okorafor, RN — Founder, Obioma',
+          ].join('\n');
+          await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ from, to: email, subject: 'Your Obioma trial ends in 3 days', text }),
+          });
+          console.log(`[Webhook] Trial reminder sent to ${email}`);
+        }
+      } catch (e) {
+        console.log('[Webhook] trial_will_end handling failed:', e.message);
+      }
+      break;
+    }
     case 'customer.subscription.deleted': {
       const subscription = event.data.object;
       const customerId = subscription.customer;
