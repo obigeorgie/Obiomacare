@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Phase 3.5 approved-only publishing queue \u2014 source of truth. Every entry MUST reference an asset whose LICENSES.md record is reviewed by Nnamdi Okorafor, RN. The queue re-verifies review status at publish time.",
+  "description": "Phase 3.5 approved-only publishing queue \u2014 source of truth. Every entry's SCRIPT JSON (content/social/scripts/*.json) must be reviewed by Nnamdi Okorafor, RN (reviewStatus=reviewed + reviewer + reviewedAt); the queue re-verifies at publish time.",
   "killSwitch": false,
   "rateLimitPerPlatformPerDay": 1,
   "maxQueueDays": 5,

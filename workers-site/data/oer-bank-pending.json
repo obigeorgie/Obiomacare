@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "OER item bank \u2014 pending items only. reviewStatus/reviewer/reviewedAt are owner-only (rule: named human). Unreviewed items NEVER render or serve; the CI gate covers this store. sourceVerification is provenance-only (pipeline-fillable).",
+  "items": [],
+  "batches": []
+}

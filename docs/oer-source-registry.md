@@ -32,3 +32,13 @@ curl UA — verify in a browser at ingest and record.
 - US-gov/PD items: source note in the ledger (no UI line needed).
 - LICENSES.md: one ledger row per batch (source, chapter, license,
   licenseEvidence URL, item count, attribution text rendered).
+
+## Ingest-time rule (owner directive 2026-08-20, standing)
+
+Any source whose `licenseEvidence` URL **cannot be fetched and eyeballed at
+ingest** is **flagged to the owner before its content is used**. Bot-blocked
+(403 from the sandbox) is fine — the page exists and the owner can eyeball it
+in a browser. Unverified is not: no license statement actually seen = no
+ingest. Content-host reachability is part of the same check: if the chapter
+text cannot be fetched from the sandbox, the owner provides it (browser
+export / PDF) or the batch waits.
