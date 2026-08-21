@@ -40,6 +40,7 @@ export const SEQUENCE = [
       footer(v),
     ].join('\n'),
     cta: 'Open the checklist',
+    ctaUrl: BASE + '/free-nclex-checklist.html',
   },
   {
     key: 'E2',
@@ -60,6 +61,7 @@ export const SEQUENCE = [
       footer(v),
     ].join('\n'),
     cta: 'Try a free case study',
+    ctaUrl: BASE + '/case-engine.html',
   },
   {
     key: 'E4',
@@ -80,6 +82,7 @@ export const SEQUENCE = [
       footer(v),
     ].join('\n'),
     cta: 'Take the free readiness check',
+    ctaUrl: BASE + '/readiness',
   },
   {
     key: 'E7',
@@ -103,6 +106,7 @@ export const SEQUENCE = [
       footer(v),
     ].join('\n'),
     cta: 'See the plans',
+    ctaUrl: BASE + '/pricing',
   },
   {
     key: 'E10',
@@ -123,5 +127,6 @@ export const SEQUENCE = [
       footer(v),
     ].join('\n'),
     cta: 'Start the annual plan',
+    ctaUrl: BASE + '/pricing',
   },
 ]

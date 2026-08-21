@@ -9,6 +9,7 @@
  */
 import { getBinding } from './api-events.js'
 import { SEQUENCE } from './email-copy.js'
+import { emailHtml } from './email-html.js'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
@@ -79,9 +80,11 @@ async function removeContact(env, audienceId, email) {
   }
 }
 
-async function sendEmail(env, to, subject, text) {
+async function sendEmail(env, to, subject, text, html) {
   const from = getBinding(env, 'FROM_EMAIL') || 'Nnamdi Okorafor, RN — Obioma <hello@obiomacare.com>'
-  const r = await resend(env, '/emails', 'POST', { from, to, subject, text })
+  const payload = { from, to, subject, text }
+  if (html) payload.html = html
+  const r = await resend(env, '/emails', 'POST', payload)
   return r
 }
 
@@ -128,7 +131,7 @@ export async function routeLeadMagnet(request, env) {
     // E0 — instant delivery
     const e0 = SEQUENCE[0]
     const text = e0.body({ ...record, unsubUrl: unsubUrl(env, email, await signUnsubToken(env, email)) })
-    const sent = await sendEmail(env, email, e0.subject, text)
+    const sent = await sendEmail(env, email, e0.subject, text, emailHtml({ subject: e0.subject, bodyText: text, ctaText: e0.cta, ctaUrl: e0.ctaUrl }))
     if (sent.status !== 200) {
       return jsonResponse({ error: 'Email send failed' }, 502)
     }
@@ -252,7 +255,7 @@ export async function routeProcessSequence(request, env) {
       const stepIdx = record.step + 1 // send next email
       const step = SEQUENCE[stepIdx]
       const text = step.body({ ...record, unsubUrl: unsubUrl(env, record.email, await signUnsubToken(env, record.email)) })
-      const sent = await sendEmail(env, record.email, step.subject, text)
+      const sent = await sendEmail(env, record.email, step.subject, text, emailHtml({ subject: step.subject, bodyText: text, ctaText: step.cta, ctaUrl: step.ctaUrl }))
       record.step = stepIdx
       record.lastSent = new Date(now).toISOString()
       if (stepIdx < SEQUENCE.length - 1) {
