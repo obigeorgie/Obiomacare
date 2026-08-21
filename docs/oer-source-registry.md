@@ -42,3 +42,36 @@ in a browser. Unverified is not: no license statement actually seen = no
 ingest. Content-host reachability is part of the same check: if the chapter
 text cannot be fetched from the sandbox, the owner provides it (browser
 export / PDF) or the batch waits.
+
+
+## Reachability + lane status (verified 2026-08-20 from the operator sandbox)
+
+| Endpoint | Result | Lane status |
+|---|---|---|
+| DailyMed API — SPL search (`spls.json?drug_name=`) | 200 | ✅ PRIMARY pharm lane |
+| DailyMed API — label by setid (.xml) | 200 (XML; .json variant 415 — use .xml) | ✅ PRIMARY |
+| openFDA (`api.fda.gov/drug/label.json`) | 200, structured label sections | ✅ PRIMARY (used for batch 001) |
+| MedlinePlus (medlineplus.gov) | 200 | ✅ |
+| GitHub raw `openstax/osbooks-anatomy-physiology` | 200 (correct slug: `osbooks-anatomy-physiology`) | ⚠️ OpenStax lane HOLD (see below) |
+| NCBI eutils | 200 | ✅ |
+| Wikimedia Commons API | 200 | ✅ |
+| LibreTexts med (api.php) | 404 (non-MediaWiki API; use direct book URLs) | ⚠️ per-book verify |
+| OER Commons API (`api.oercommons.org`) | unreachable (000) from sandbox | ⚠️ flagged — owner browser check at ingest |
+| data.cdc.gov (Socrata) | 200 with real dataset id (metadata API 200) | ✅ |
+
+## OpenStax lane — HOLD-pending-license (2026-08-20)
+
+Repo LICENSE files state CC BY-NC-SA; the website states CC BY 4.0. Until
+resolved via authoritative openstax.org book-page evidence or direct OpenStax
+confirmation, treat as **NC → free surfaces only** (never gated/paid items).
+`licenseEvidence` for OpenStax A&P 2e remains
+https://openstax.org/details/books/anatomy-and-physiology-2e (200).
+
+## Lane pivots (2026-08-20, owner directive)
+
+- **Pharmacology: DailyMed + openFDA PRIMARY** (public domain, structured,
+  verbatim-faithful by design, no fetch problem). OpenRN becomes the
+  **owner-fetch secondary lane** (pressbooks network unreachable from the
+  sandbox; owner provides chapter text).
+- First batch `fda-pharm2e-001`: 30 items from digoxin/furosemide/lisinopril/
+  warfarin/insulin lispro labels — staged pending (2026-08-20).
