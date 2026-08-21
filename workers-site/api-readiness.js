@@ -15,6 +15,7 @@
  * - Results show estimate + confidence interval, not prediction
  */
 import { trackEvent } from './api-events.js';
+import oerStore from './data/oer-bank-pending.json';
 
 // ─── SESSION STORE (KV-backed for production persistence) ───
 // Sessions survive isolate changes, refreshes, and redeploys
@@ -185,6 +186,22 @@ function seedReadinessItems() {
   add({ stem: 'A patient with severe sepsis is receiving norepinephrine, vasopressin, and phenylephrine. MAP remains 52 despite maximum doses. The provider orders hydrocortisone 50mg IV q6h. One hour after the first dose, the nurse notes glucose 342 mg/dL (baseline 110). Which action is MOST appropriate?', options: ['Hold the next hydrocortisone dose — steroid-induced hyperglycemia','Start an insulin drip per protocol and continue hydrocortisone','Give subcutaneous insulin lispro 10 units and recheck in 2 hours','Notify provider — hydrocortisone is contraindicated with hyperglycemia'], correctIndex: 1, rationale: 'In septic shock, hydrocortisone is given for refractory hypotension (relative adrenal insufficiency). Steroid-induced hyperglycemia is expected and managed with insulin — the sepsis benefit outweighs the glucose risk. An insulin drip is appropriate for glucose >300 in an ICU patient. Holding steroids would reverse the hemodynamic benefit. This tests integration of endocrine physiology, sepsis protocols, and medication prioritization.', category: 'medical_surgical', difficulty: 0.92, ncjmmStep: 4, ngn: false, derivedFrom: null, original: true });
   add({ stem: 'A patient with end-stage liver disease presents with asterixis, fetor hepaticus, and a sodium of 118 mEq/L. The provider orders lactulose 30mL PO TID and restricts free water. The next morning, sodium is 124, but the patient is lethargic and has muscle cramps. Which is the MOST likely cause?', options: ['Worsening hepatic encephalopathy from inadequate lactulose','Osmotic demyelination syndrome from overly rapid sodium correction','Hypokalemia from lactulose-induced diarrhea','Hyponatremia-induced cerebral edema from water restriction'], correctIndex: 1, rationale: 'Rapid correction of chronic hyponatremia (>8-12 mEq/L in 24hr) risks osmotic demyelination syndrome (central pontine myelinolysis). Na+ rose 6 mEq/L overnight — within safe range per hour but concerning given the lethargy + cramps. In liver disease, ADH is often inappropriately elevated, making sodium correction unpredictable. The nurse should hold further free water restriction and notify the provider. This tests recognition of a rare but catastrophic complication of seemingly appropriate treatment.', category: 'medical_surgical', difficulty: 0.96, ncjmmStep: 1, ngn: false, derivedFrom: null, original: true });
   add({ stem: 'A nurse in the ICU receives four new post-op patients from PACU within 10 minutes. All are stable but need admission assessments. Which patient should the nurse assess FIRST?', options: ['Patient A: Open cholecystectomy, RR 18, SpO2 94% on 2L NC, pain 4/10','Patient B: Laparoscopic appendectomy, RR 22, SpO2 96% RA, pain 6/10','Patient C: Craniotomy for tumor resection, RR 14, SpO2 92% on 4L NC, GCS 14','Patient D: Total knee replacement, RR 20, SpO2 97% on 3L NC, pain 8/10, thigh dressing dry'], correctIndex: 2, rationale: 'Post-craniotomy with GCS 14 (mildly decreased from expected 15) + relative hypoxemia (92% on 4L) + borderline bradypnea (RR 14) = early signs of increased ICP or respiratory depression from anesthesia. Neurosurgical patients can deteriorate rapidly. The appendectomy and cholecystectomy patients are stable. The TKR patient has expected pain. This tests nuanced prioritization where the "sickest-looking" numbers are not the most urgent — a craniotomy with subtle neuro changes takes priority over better-looking vitals in less critical surgeries.', category: 'priority_delegation', difficulty: 0.94, ncjmmStep: 2, ngn: false, derivedFrom: null, original: true });
+
+  // ─── OER MERGE (2026-08-21): reviewed FDA-label items (batch fda-pharm2e-001) ───
+  // Only reviewStatus === 'reviewed' items enter the served bank. Pending
+  // items in oer-bank-pending.json stay invisible to users (CI-gate rule).
+  const categoryMap = { 'Pharmacological and Parenteral Therapies': 'pharmacology' };
+  for (const it of oerStore.items) {
+    if (it.reviewStatus !== 'reviewed') continue;
+    items.push({
+      ...it,
+      id: it.id,
+      category: categoryMap[it.category] || it.category || 'pharmacology',
+      ncjmmStep: typeof it.ncjmmStep === 'number' ? it.ncjmmStep : 4,
+      ngn: false,
+      exposureCount: 0,
+    });
+  }
 
   return items;
 }
