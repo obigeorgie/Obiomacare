@@ -24,6 +24,7 @@ export function getDebugBankInfo() {
     bankTotal: itemBank.length,
     bankApproved: itemBank.filter((i) => i.reviewStatus === 'approved').length,
     oerIdsInBank: itemBank.filter((i) => String(i.id).startsWith('fda-')).length,
+    cdcIdsInBank: itemBank.filter((i) => String(i.id).startsWith('cdc-')).length,
   };
 }
 
