@@ -4,7 +4,7 @@
  * Uses Stripe REST API via fetch (no Node.js SDK).
  */
 
-import { routeReadiness } from './api-readiness.js';
+import { routeReadiness, getDebugBankInfo } from './api-readiness.js';
 import { getAuthUser, handleSendLink, handleVerify, handleMe, handleLogout, handleUserTier as handleAuthUserTier } from './auth.js';
 import { handleSRNext, handleSRAnswer, handleSRStats, handleSRAddCard, handleSRImportFromReadiness } from './api-sr.js';
 import { handleCreateCohort, handleListCohorts, handleJoinCohort, handleGetCohort, handleAssignContent, handleSubmitAnalytics } from './api-institution.js';
@@ -458,6 +458,8 @@ export async function routeApi(request, env) {
         return await routeOperatorEmail(request, env);
       case '/api/operator/email-status':
         return await routeOperatorEmailStatus(request, env);
+      case '/api/debug/bank':
+        return new Response(JSON.stringify(getDebugBankInfo()), { headers: { 'Content-Type': 'application/json' } });
       case '/api/operator/process-sequence':
         return await routeProcessSequence(request, env);
       case '/api/lead-magnet':

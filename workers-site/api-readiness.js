@@ -16,6 +16,16 @@
  */
 import { trackEvent } from './api-events.js';
 import oerStore from './data/oer-bank-pending.json';
+// DEBUG (2026-08-21): expose served-pool stats for deploy verification.
+export function getDebugBankInfo() {
+  return {
+    oerItemsInStore: oerStore.items.length,
+    oerReviewedInStore: oerStore.items.filter((i) => i.reviewStatus === 'reviewed').length,
+    bankTotal: itemBank.length,
+    bankApproved: itemBank.filter((i) => i.reviewStatus === 'approved').length,
+    oerIdsInBank: itemBank.filter((i) => String(i.id).startsWith('fda-')).length,
+  };
+}
 
 // ─── SESSION STORE (KV-backed for production persistence) ───
 // Sessions survive isolate changes, refreshes, and redeploys
