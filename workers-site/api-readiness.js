@@ -196,6 +196,10 @@ function seedReadinessItems() {
     items.push({
       ...it,
       id: it.id,
+      // served-pool marker: the engine serves reviewStatus === 'approved'.
+      // Review provenance (reviewer/reviewedAt/batchReviewId) is retained in
+      // the item fields + the pending store is the review record of truth.
+      reviewStatus: 'approved',
       category: categoryMap[it.category] || it.category || 'pharmacology',
       ncjmmStep: typeof it.ncjmmStep === 'number' ? it.ncjmmStep : 4,
       ngn: false,
