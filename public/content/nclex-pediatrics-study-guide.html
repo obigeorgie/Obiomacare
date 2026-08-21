@@ -8,13 +8,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Obioma">
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted'});
+function __obiomaLoadGtag(){if(window.__obiomaGtagLoaded)return;window.__obiomaGtagLoaded=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-922HP9B76M';document.head.appendChild(s);s.onload=function(){};}
+if(localStorage.getItem('obioma_consent')==='granted'){__obiomaLoadGtag();}
+document.addEventListener('ObiomaConsentGranted',__obiomaLoadGtag);
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-922HP9B76M', { send_page_view: true, cookie_flags: 'SameSite=None;Secure' });
-</script>
+  </script>
 <!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -23,10 +28,8 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1045171501242922');
-fbq('track', 'PageView');
+s.parentNode.insertBefore(t,s)}(window, document,'script','data:text/javascript,');
+window.ObiomaLoadFbPixel=window.ObiomaLoadFbPixel||function(){var s=document.createElement('script');s.async=true;s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s);s.onload=function(){fbq('init','1045171501242922');fbq('track','PageView');};};if(localStorage.getItem('obioma_consent')==='granted'){window.ObiomaLoadFbPixel();}else{document.addEventListener('ObiomaConsentGranted',window.ObiomaLoadFbPixel);}
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
@@ -455,5 +458,25 @@ src="https://www.facebook.com/tr?id=1045171501242922&ev=PageView&noscript=1"
     </div>
   </div>
 </footer>
+<!-- Obioma cookie consent (Phase 1 WO 1.4) -->
+<div id="obioma-consent-banner" role="dialog" aria-label="Cookie consent" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;display:none;background:#0b1f3a;color:#fff;padding:14px 20px;font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+    <p style="margin:0;flex:1 1 60%;min-width:260px;">We use cookies to understand how visitors use our site — analytics only, no personal data sold. <a href="/privacy.html" style="color:#fbbf24;text-decoration:underline;">Privacy Policy</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button id="obioma-consent-decline" style="background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer;">Decline</button>
+      <button id="obioma-consent-accept" style="background:#c53030;border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var KEY='obioma_consent',b=document.getElementById('obioma-consent-banner');
+function set(v){localStorage.setItem(KEY,v);}
+function grant(){set('granted');document.dispatchEvent(new CustomEvent('ObiomaConsentGranted'));}
+function hide(){b.style.display='none';}
+if(!localStorage.getItem(KEY)){b.style.display='block';}
+document.getElementById('obioma-consent-accept').addEventListener('click',function(){grant();hide();});
+document.getElementById('obioma-consent-decline').addEventListener('click',function(){set('denied');hide();});
+})();
+</script>
 </body>
 </html>
