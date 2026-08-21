@@ -239,10 +239,10 @@ export async function routeAdmin(request, env) {
 <title>Obioma Operator Panel</title>
 <style>
   body{font-family:ui-monospace,Menlo,Consolas,monospace;background:#0f172a;color:#e2e8f0;margin:0;padding:24px}
-  h1{font-size:1.2rem;color:#FF6B5B} h2{font-size:1rem;margin-top:28px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em}
+  h1{font-size:1.2rem;color:#c53030} h2{font-size:1rem;margin-top:28px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em}
   table{border-collapse:collapse;margin-top:8px;font-size:.8rem} th,td{border:1px solid #1e293b;padding:6px 10px;text-align:right}
   th{color:#94a3b8;font-weight:600} td:first-child,th:first-child{text-align:left}
-  .total{color:#FF6B5B;font-weight:700} .meta{color:#64748b;font-size:.75rem}
+  .total{color:#c53030;font-weight:700} .meta{color:#64748b;font-size:.75rem}
 </style></head><body>
 <h1>Obioma Operator Panel</h1>
 <p class="meta">Revenue OS Phase 1 · 7-day window (${days7[0]} → ${days7[days7.length-1]}) · events: ${total7} (7d) / ${total30} (30d)</p>

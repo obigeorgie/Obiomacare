@@ -33,9 +33,9 @@
   --color-navy-400: #3d5a8a;
 
   /* ─── Coral Scale ─── */
-  --color-coral: #FF6B5B;
-  --color-coral-dark: #E85D4E;
-  --color-coral-light: #FF8A7D;
+  --color-coral: #c53030;
+  --color-coral-dark: #9b2c2c;
+  --color-coral-light: #E85D4E;
   --color-coral-muted: rgba(255, 107, 91, 0.10);
   --color-coral-glow: rgba(255, 107, 91, 0.20);
   --color-coral-5: rgba(255, 107, 91, 0.05);

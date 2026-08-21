@@ -21,9 +21,9 @@ const tokens = {
     },
     // Coral scale (brand accent)
     coral: {
-      DEFAULT: '#FF6B5B',
-      dark: '#E85D4E',
-      light: '#FF8A7D',
+      DEFAULT: '#c53030',
+      dark: '#9b2c2c',
+      light: '#E85D4E',
       muted: 'rgba(255, 107, 91, 0.15)',
       glow: 'rgba(255, 107, 91, 0.25)',
     },

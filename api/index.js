@@ -190,7 +190,7 @@ const BRAND_COLORS = {
   navy: '#1a365d',
   coral: '#c53030',
   gray: '#4a5568',
-  lightGray: '#718096',
+  lightGray: '#64748b',
   bg: '#f7fafc'
 };
 
@@ -2073,15 +2073,15 @@ function downloadPageTemplate(product, tier, baseUrl) {
         body { font-family: 'Inter', sans-serif; background: #fffaf0; color: #2d3748; margin: 0; padding: 40px 20px; }
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 48px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
         h1 { color: #1a365d; margin-bottom: 8px; }
-        .subtitle { color: #718096; margin-bottom: 32px; }
+        .subtitle { color: #64748b; margin-bottom: 32px; }
         .file-list { list-style: none; padding: 0; }
         .file-item { display: flex; align-items: center; padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 12px; background: #fff; }
         .file-icon { font-size: 1.5rem; margin-right: 16px; }
         .file-info { flex: 1; }
         .file-name { font-weight: 600; display: block; }
-        .file-desc { color: #718096; font-size: 0.875rem; }
+        .file-desc { color: #64748b; font-size: 0.875rem; }
         .btn { background: #c53030; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.875rem; }
-        .support { margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; color: #718096; }
+        .support { margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; color: #64748b; }
         .expiry { background: #fffaf0; padding: 12px 16px; border-radius: 8px; margin-bottom: 24px; font-size: 0.875rem; }
       </style>
     </head>

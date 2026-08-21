@@ -14,7 +14,7 @@
 const NAVY = '#1a365d'
 const CORAL = '#c53030'
 const GRAY = '#4a5568'
-const LIGHT_GRAY = '#718096'
+const LIGHT_GRAY = '#64748b'
 const BG = '#f7fafc'
 
 const LOGO_URL = 'https://obiomacare.com/assets/logo-email.png'
@@ -149,10 +149,10 @@ export function emailHtml({ subject, bodyText, ctaText, ctaUrl }) {
         <tr>
           <td style="padding:28px 40px;text-align:center;">
             ${footer}
-            <p style="margin:12px 0 0 0;color:#a0aec0;font-size:11px;">
-              <a href="https://obiomacare.com" style="color:#a0aec0;text-decoration:underline;">obiomacare.com</a> ·
-              <a href="https://obiomacare.com/privacy.html" style="color:#a0aec0;text-decoration:underline;">Privacy</a> ·
-              <a href="https://obiomacare.com/terms.html" style="color:#a0aec0;text-decoration:underline;">Terms</a>
+            <p style="margin:12px 0 0 0;color:#64748b;font-size:11px;">
+              <a href="https://obiomacare.com" style="color:#64748b;text-decoration:underline;">obiomacare.com</a> ·
+              <a href="https://obiomacare.com/privacy.html" style="color:#64748b;text-decoration:underline;">Privacy</a> ·
+              <a href="https://obiomacare.com/terms.html" style="color:#64748b;text-decoration:underline;">Terms</a>
             </p>
           </td>
         </tr>
