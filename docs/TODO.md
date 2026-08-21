@@ -54,7 +54,7 @@
 | GA4 analytics review | Blocked | No Data API credentials configured |
 | **R2 bucket + /media/* route** | ✅ Done | Bucket created, route wired, 5 diagrams uploaded |
 | **First 5 anatomical diagrams** | ✅ Done | All 5 reviewed, embedded, CI gate active |
-| **Sequence emails (E0/E2/E4/E7/E10) branded HTML** | ✅ Code done, deploy pending owner approval | User flagged E2 arrived plain-text; renderer `workers-site/email-html.js` + ctaUrl per entry; text fallback kept (multipart/alternative) |
+| **Sequence emails (E0/E2/E4/E7/E10) branded HTML** | ✅ Deployed 2026-08-21 (worker version 110) | E2 verified styled in owner inbox; text fallback kept (multipart/alternative) |
 
 ---
 
