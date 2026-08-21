@@ -111,4 +111,10 @@ if (fs.existsSync(footerGatePath)) {
   }
 }
 
+// ─── Cookie consent injection (Phase 1 WO 1.4) ───
+const injectConsentPath = path.join(__dirname, 'inject-consent.js');
+if (fs.existsSync(injectConsentPath)) {
+  require(injectConsentPath);
+}
+
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);
