@@ -55,6 +55,7 @@
 | **R2 bucket + /media/* route** | ✅ Done | Bucket created, route wired, 5 diagrams uploaded |
 | **First 5 anatomical diagrams** | ✅ Done | All 5 reviewed, embedded, CI gate active |
 | **Sequence emails (E0/E2/E4/E7/E10) branded HTML** | ✅ Deployed 2026-08-21 (worker version 110) | E2 verified styled in owner inbox; text fallback kept (multipart/alternative) |
+| **Pre-live gate (2026-08-21)** | ✅ Passed + deployed (cd3bac9) | 97/97 URLs 200; contrast ≥4.5:1 (coral → #c53030, grays → #64748b); sitemap /free-framework/ fix; RUM beacon on 94 pages |
 
 ---
 
