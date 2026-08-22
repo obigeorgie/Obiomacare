@@ -82,17 +82,20 @@ module.exports = function () {
     let body = fs.readFileSync(file, 'utf8');
     const orig = body;
 
-    // 1) remove any complete existing <footer>...</footer>
+    // 1) strip any previously-injected canonical-footer markers (idempotency: the
+    //    old regex only removed the <footer> body, so markers accumulated per build)
+    body = body.replace(/<!-- Obioma canonical footer \(standardized 2026-08-18\) -->\s*/g, '');
+    // 2) remove any complete existing <footer>...</footer>
     body = body.replace(/<footer[\s\S]*?<\/footer>\s*/g, () => { replaced++; return ''; });
-    // 2) remove stray </footer> tags (homepage-style breakage)
+    // 3) remove stray </footer> tags (homepage-style breakage)
     const strayBefore = (body.match(/<\/footer>/g) || []).length;
     body = body.replace(/<\/footer>\s*/g, '');
     if (strayBefore > 0) cleaned += strayBefore;
-    // 3) remove orphaned footer fragments (footer-bottom / footer-col remnants)
+    // 4) remove orphaned footer fragments (footer-bottom / footer-col remnants)
     body = body.replace(/\s*<div class="footer-bottom">[\s\S]*?<\/div>\s*/g, '');
     body = body.replace(/\s*<div class="footer-col">[\s\S]*?<\/div>\s*/g, '');
 
-    // 4) append canonical footer before </body>
+    // 5) append canonical footer before </body>
     if (/<\/body>/i.test(body)) {
       body = body.replace(/<\/body>/i, CANONICAL_FOOTER + '\n</body>');
       added++;
