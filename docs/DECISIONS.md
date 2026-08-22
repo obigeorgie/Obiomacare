@@ -195,3 +195,15 @@ service-worker-format worker cannot export without a module-format refactor
 (deferred; revisit if spam becomes a problem).
 **Date**: 2026-08-18
 **Status**: ACTIVE
+
+### 21. Company org restructure — profile-per-role (2026-08-22)
+**Decision**: ObiomaCare operations move from a single agent (Atlas) to a
+company structure. Atlas profile renamed `atlas` → `obioma-ceo` (CEO,
+Musk-class mandate, keeps governance bundle + audit log). New profiles:
+`obioma-cto` (engineering, autonomous deploys w/ commit-hash + smoke tests),
+`obioma-cfo` (Revenue OS, weekly digest Mon 12:00 UTC), `obioma-cmo` (growth:
+email E0–E10, buzz bot, X, SEO). All report to owner Nnamdi via Telegram bots
++ cron digests; kanban board `obioma` for task routing; portfolio drives at
+/data/portfolio/. Rule #12 unchanged: payment/live keys NEVER agent-installed.
+**Date**: 2026-08-22
+**Status**: ACTIVE

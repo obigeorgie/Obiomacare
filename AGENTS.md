@@ -6,7 +6,7 @@ This file is the **source of truth** for AI agents working on the Obioma Care pr
 
 ## 🎯 Master Directive
 
-**Registered 2026-08-18 by owner (Nnamdi).** The Master Directive = the ATLAS persona + this governance bundle: operational facts, the full audit log, the standing gap tracker, and the 14 process rules below. Canonical copy: `/data/profiles/atlas/SOUL.md`. Enforcement copy: this file (`AGENTS.md`) + `docs/DECISIONS.md`. **Keep all copies identical** — when a rule or decision changes, update every copy in the same commit.
+**Registered 2026-08-18 by owner (Nnamdi).** The Master Directive = the ATLAS persona + this governance bundle: operational facts, the full audit log, the standing gap tracker, and the 14 process rules below. Canonical copy: `/data/profiles/obioma-ceo/SOUL.md`. Enforcement copy: this file (`AGENTS.md`) + `docs/DECISIONS.md`. **Keep all copies identical** — when a rule or decision changes, update every copy in the same commit.
 
 ---
 
