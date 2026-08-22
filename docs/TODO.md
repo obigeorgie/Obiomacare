@@ -63,7 +63,7 @@
 
 ### High Priority
 - [x] **/quiz/ card-title contrast (P1)** — ✅ Deployed 2026-08-22 (commits 653d93e + ad13b10): `data-theme="dark"` + opaque navy card bg + coral-light text; deterministic cascade audit 43/43 pass; footer-standardization idempotency fix included (markers were accumulating per build)
-- [ ] **/quiz/lab-values.html contrast audit** — Same pattern as the hub (light `--color-border-light` backgrounds in a dark page); needs its own audit + fix (deferred from the P1 deploy to keep one-purpose scope)
+- [x] **/quiz/lab-values.html contrast audit** — ✅ Deployed 2026-08-22 (commit 3dbef57): same fix pattern as the hub — data-theme=dark, opaque surfaces, solid state tints, coral-light/bright text; static audit 34/34 + class-level 23/23 + hub regression 43/43
 - [ ] **GSC access fix** — Add `masterygraph-sitemap@masterygraph-gsc.iam.gserviceaccount.com` as Owner in GSC
 - [ ] **Stripe test mode** — Set up test keys for safe E2E verification
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
