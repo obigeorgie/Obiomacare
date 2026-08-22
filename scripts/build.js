@@ -118,3 +118,17 @@ if (fs.existsSync(injectConsentPath)) {
 }
 
 console.log(`✅ Build complete: ${copied} content files + landing assets → public/`);
+
+// ─── HTML structure gate (P0 2026-08-21: concatenated documents) ───
+const structureGatePath = path.join(__dirname, 'html-structure-gate.js');
+if (fs.existsSync(structureGatePath)) {
+  const result = require('child_process').spawnSync(process.execPath, [structureGatePath], { stdio: 'inherit' });
+  if (result.status !== 0) process.exit(result.status || 1);
+}
+
+// ─── Page-weight gate (per-page historical baseline) ───
+const weightGatePath = path.join(__dirname, 'page-weight-gate.js');
+if (fs.existsSync(weightGatePath)) {
+  const result = require('child_process').spawnSync(process.execPath, [weightGatePath], { stdio: 'inherit' });
+  if (result.status !== 0) process.exit(result.status || 1);
+}

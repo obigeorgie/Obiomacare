@@ -286,6 +286,28 @@ document.addEventListener('ObiomaConsentGranted',__obiomaLoadGtag);
 <!-- Obioma canonical footer (standardized 2026-08-18) -->
 <!-- Obioma canonical footer (standardized 2026-08-18) -->
 <!-- Obioma canonical footer (standardized 2026-08-18) -->
+<!-- Obioma cookie consent (Phase 1 WO 1.4) -->
+<div id="obioma-consent-banner" role="dialog" aria-label="Cookie consent" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;display:none;background:#0b1f3a;color:#fff;padding:14px 20px;font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
+    <p style="margin:0;flex:1 1 60%;min-width:260px;">We use cookies to understand how visitors use our site — analytics only, no personal data sold. <a href="/privacy.html" style="color:#fbbf24;text-decoration:underline;">Privacy Policy</a></p>
+    <div style="display:flex;gap:10px;flex-shrink:0;">
+      <button id="obioma-consent-decline" style="background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer;">Decline</button>
+      <button id="obioma-consent-accept" style="background:#c53030;border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var KEY='obioma_consent',b=document.getElementById('obioma-consent-banner');
+function set(v){localStorage.setItem(KEY,v);}
+function grant(){set('granted');document.dispatchEvent(new CustomEvent('ObiomaConsentGranted'));}
+function hide(){b.style.display='none';}
+if(!localStorage.getItem(KEY)){b.style.display='block';}
+document.getElementById('obioma-consent-accept').addEventListener('click',function(){grant();hide();});
+document.getElementById('obioma-consent-decline').addEventListener('click',function(){set('denied');hide();});
+})();
+</script>
+<!-- Obioma canonical footer (standardized 2026-08-18) -->
+<!-- Obioma canonical footer (standardized 2026-08-18) -->
 <footer class="site-footer">
 <style>
   .site-footer{background:#0b1f3a;color:rgba(255,255,255,.78);padding:56px 0 32px;margin-top:56px;font-family:system-ui,sans-serif}
@@ -337,25 +359,5 @@ document.addEventListener('ObiomaConsentGranted',__obiomaLoadGtag);
     </div>
   </div>
 </footer>
-<!-- Obioma cookie consent (Phase 1 WO 1.4) -->
-<div id="obioma-consent-banner" role="dialog" aria-label="Cookie consent" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;display:none;background:#0b1f3a;color:#fff;padding:14px 20px;font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);">
-  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;">
-    <p style="margin:0;flex:1 1 60%;min-width:260px;">We use cookies to understand how visitors use our site — analytics only, no personal data sold. <a href="/privacy.html" style="color:#fbbf24;text-decoration:underline;">Privacy Policy</a></p>
-    <div style="display:flex;gap:10px;flex-shrink:0;">
-      <button id="obioma-consent-decline" style="background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;cursor:pointer;">Decline</button>
-      <button id="obioma-consent-accept" style="background:#c53030;border:none;color:#fff;padding:8px 18px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;">Accept</button>
-    </div>
-  </div>
-</div>
-<script>
-(function(){var KEY='obioma_consent',b=document.getElementById('obioma-consent-banner');
-function set(v){localStorage.setItem(KEY,v);}
-function grant(){set('granted');document.dispatchEvent(new CustomEvent('ObiomaConsentGranted'));}
-function hide(){b.style.display='none';}
-if(!localStorage.getItem(KEY)){b.style.display='block';}
-document.getElementById('obioma-consent-accept').addEventListener('click',function(){grant();hide();});
-document.getElementById('obioma-consent-decline').addEventListener('click',function(){set('denied');hide();});
-})();
-</script>
 </body>
 </html>
