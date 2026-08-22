@@ -1,6 +1,6 @@
 # TODO.md — Obioma Care
 
-*Last updated: 2026-08-11*
+*Last updated: 2026-08-21*
 
 ## ✅ Completed
 
@@ -62,6 +62,7 @@
 ## 📋 Next Up
 
 ### High Priority
+- [ ] **/quiz/ card-title contrast (P1, small follow-up)** — Quiz hub card titles fail the 4.5:1 contrast check on the dark background (same class as the 2026-08-14 contrast round). Fix the card-title color in the /quiz/ stylesheet + run the contrast gate; one-purpose deploy. Ticket raised 2026-08-21 (owner) after P0 homepage-concat closure.
 - [ ] **GSC access fix** — Add `masterygraph-sitemap@masterygraph-gsc.iam.gserviceaccount.com` as Owner in GSC
 - [ ] **Stripe test mode** — Set up test keys for safe E2E verification
 - [ ] **Analytics dashboard** — Set up GA4 Data API access for programmatic reporting
